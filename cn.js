@@ -9,6 +9,7 @@ window.location="Pikayut26581584.htm";
 
 if (username=="XzThermique" && password=="Xz") {
 window.location="Pikayut26581584.htm";
+  alert ('Votre sessions vip a etait diriger ves la page de @PikaYut ! (votre sessions de page et pas trouvable !')
 }
 
 if (username=="vous" && password=="vous") { 
