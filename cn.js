@@ -9,7 +9,7 @@ window.location="Pikayut26581584.htm";
 
 if (username=="XzThermique" && password=="Xz") {
 window.location="Pikayut26581584.htm";
-  alert (Attentions , votre compte  a etait deplacer vers PikaYut (car votre page est introuvable )
+  alert (Attentions , votre compte  a etait deplacer vers PikaYut (car votre page est introuvable ))
 }
 
 if (username=="vous" && password=="vous") { 
