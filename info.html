@@ -1,6 +1,12 @@
 <head>
 <link rel="icon" src="https://cdn.discordapp.com/attachments/821713137379704854/1045434838926250054/Sans_titre_21_20221124212436.png" href="https://cdn.discordapp.com/attachments/821713137379704854/1045434838926250054/Sans_titre_21_20221124212436.png">
 </head>
+
+
+</head>
+<head>
+ 
+ 
  <meta http-equiv="Content-Language" content="fr" />
  <meta name="keywords" content="Pikayutmg" />
  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -8,11 +14,54 @@
  <meta name="author" lang="fr" content="PikaYut">
  <meta name="description" content="PikaYut" />
 
-<head>
-
-
-
 </head>
-<script>
 
+
+ 
+ 
+ 
+
+    <button id="notifier-btn">Nouvel info</button>
+
+    <script>
+        document.getElementById("notifier-btn").onclick = notifier;
+
+        /* Quand le document sera chargé */
+        document.addEventListener('DOMContentLoaded', function () {
+            
+            /* Vérifie si le navigateur est compatible avec les notifications */
+            if (!Notification) {
+                alert('Le navigateur ne supporte pas les notifications.');
+            } 
+            /* Si le navigateur prend en charge les notifications,
+             * on demande la permission si les notifications ne sont pas permises */
+            else if (Notification.permission !== 'granted')
+                Notification.requestPermission();
+        });
+
+
+        function notifier() {
+            /* On demande la permission si les notifications ne sont pas permises */
+            if (Notification.permission !== 'granted')
+                Notification.requestPermission();
+            else {
+                var notification = new Notification('Nos systeme sont on developpement ,  allez dans staff pikayut pour  accedez a votre page vip');
+                //var notification = new Notification('PikaYutMG Notif systeme', {body : 'He yle site et en beta '} );
+
+                /*var notification = new Notification('PikaYut V.I.P update ', {
+                    icon: 'https://cdn.discordapp.com/attachments/821713137379704854/1050482996668547162/pikayut64.png',
+                    body: 'Du minecraft ? , les version beta seront bientot la , sur notre store !',
+                    image: "https://cdn.discordapp.com/attachments/821713137379704854/1048228118726447165/Sans_titre_20_20221124212401.png",
+                });*/
+
+                notification.onclick = function () {
+                    window.open('https://pikayutmg.github.io');
+                };
+
+            }
+        }
+
+ 
+ 
+ 
 </script>
