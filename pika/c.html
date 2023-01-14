@@ -1,0 +1,62 @@
+
+<!DOCTYPE html> <html>        <head>     <title>PikaYut™</title>            <!-- linking the stylesheet(CSS) -->     
+<link rel="stylesheet" type="text/css" href="./style.css"> 
+</head>    
+<body>            <!-- input tag -->    
+ <input id="searchbar" onkeyup="search_animal()" type="text"         name="search" placeholder="faite une recherche..">            <!-- ordered list -->     
+<ol id='list'>         
+         
+<li class="Minecraft">Türkiye|•MRp</li>         
+<li class="Minecraft">FetherLs|•Mrp</li> 
+    </ol>            <!-- linking javascript -->     <script src="./animals.js"></script>
+</body>    </html>
+<link rel="icon" href="favicon.ico" />
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+
+<style>
+    #searchbar{
+    
+     margin-left: 10px;
+     padding:15px;
+     border-radius: 10px;
+   }
+ 
+   input[type=text] {
+      width: 30%;
+      -webkit-transition: width 0.15s ease-in-out;
+      transition: width 0.15s ease-in-out;
+   }
+ 
+   /* When the input field gets focus,
+        change its width to 100% */
+   input[type=text]:focus {
+     width: 70%;
+   }
+ 
+  #list{
+    font-size:  1.5em;
+    margin-left: 90px;
+   }
+ 
+.animals{
+   display: list-item;    
+  } 
+</style>
+
+<script>
+// JavaScript code
+function search_animal() {
+    let input = document.getElementById('searchbar').value
+    input=input.toLowerCase();
+    let x = document.getElementsByClassName('Minecraft');
+      
+    for (i = 0; i < x.length; i++) { 
+        if (!x[i].innerHTML.toLowerCase().includes(input)) {
+            x[i].style.display="none";
+        }
+        else {
+            x[i].style.display="list-item";                 
+        }
+    }
+}
+</script>
