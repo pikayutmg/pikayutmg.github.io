@@ -1,0 +1,248 @@
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  position: relative;
+  color: rgba(0, 0, 0, 0.8);
+  background-color: #e8eef5;
+  overflow: hidden;
+  height: 100%;
+}
+
+h3, h4, h5 {
+  margin: 0;
+}
+
+h3 {
+  font-size: 24px;
+}
+
+h4 {
+  font-size: 8px;
+}
+
+h5 {
+  font-size: 7px;
+}
+
+.ID-card {
+  width: 400px;
+  height: 250px;
+  margin: auto;
+  position: relative;
+  top: 80px;
+  padding: 20px;
+  border-radius: 10px;
+  background-image: url("https://i.ibb.co/NL188dQ/white-wood.png");
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  box-shadow: 2px 5px 8px rgba(0, 0, 0, 0.35);
+  z-index: 10;
+  filter: opacity(90%);
+}
+
+.top-row {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 5px 0;
+}
+
+.flag {
+  height: 10px;
+  margin-right: 5px;
+}
+
+.card-title, .card-title-en {
+  line-height: 100%;
+}
+
+.name, .name-en, .ID-number {
+  font-weight: normal;
+}
+
+.card-title-en {
+  margin-left: auto;
+}
+
+.middle-row {
+  margin-top: 30px;
+  display: inline-block;
+}
+
+.bottom-row {
+  position: absolute;
+  bottom: 20px;
+}
+
+.ID-photo {
+  display: block;
+  width: 100px;
+  height: 128px;
+  background-image: url("https://raw.githubusercontent.com/pikayutmg/pikayutmg.github.io/main/pika/favicon.ico");
+  background-repeat: no-repeat;
+  background-position: -90px center;
+  background-size: 250px;
+  position: absolute;
+  top: 60px;
+  right: 20px;
+}
+
+.series-number {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  position: absolute;
+  right: 20px;
+  bottom: 100px;
+  z-index: 10;
+}
+
+.signature-title {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+}
+
+.signature {
+  font-family: "Liu Jian Mao Cao", cursive;
+  font-weight: 100;
+  position: absolute;
+  right: 40px;
+  bottom: 35px;
+}
+
+.ID-number {
+  line-height: 100%;
+  margin-top: 5px;
+}
+
+.title {
+  text-align: center;
+  margin: 16px;
+  font-weight: normal;
+  font-size: 16px;
+  width: 100%;
+  position: absolute;
+  bottom: 20px;
+  z-index: 10;
+}
+
+.shape-1 {
+  z-index: 1;
+  position: absolute;
+  top: calc(23vh + -20px);
+  left: calc(22vw + -20px);
+  transform: rotate(92deg);
+  border: 49px solid rgba(230, 180, 80, 0.95);
+  border-color: rgba(30, 75, 133, 0.95) transparent transparent transparent;
+}
+
+.shape-2 {
+  z-index: 1;
+  position: absolute;
+  top: calc(34vh + 33px);
+  left: calc(60vw + 33px);
+  transform: rotate(340deg);
+  width: 46px;
+  height: calc(46px / 2);
+  border-bottom-left-radius: 46px;
+  border-bottom-right-radius: 46px;
+  background-color: rgba(200, 212, 230, 0.95);
+}
+
+.shape-3 {
+  z-index: 1;
+  position: absolute;
+  top: calc(52vh + -44px);
+  left: calc(11vw + -44px);
+  transform: rotate(82deg);
+  width: 40px;
+  height: calc(40px / 2);
+  border-bottom-left-radius: 40px;
+  border-bottom-right-radius: 40px;
+  background-color: rgba(230, 180, 80, 0.95);
+}
+
+.shape-4 {
+  z-index: 1;
+  position: absolute;
+  top: calc(79vh + 10px);
+  left: calc(67vw + 10px);
+  transform: rotate(67deg);
+  width: 50px;
+  height: calc(50px / 2);
+  border-bottom-left-radius: 50px;
+  border-bottom-right-radius: 50px;
+  background-color: rgba(200, 212, 230, 0.95);
+}
+
+.shape-5 {
+  z-index: 1;
+  position: absolute;
+  top: calc(56vh + 41px);
+  left: calc(89vw + 41px);
+  transform: rotate(123deg);
+  width: 33px;
+  height: 33px;
+  background-color: rgba(200, 212, 230, 0.95);
+  border-radius: 100%;
+}
+
+.shape-6 {
+  z-index: 1;
+  position: absolute;
+  top: calc(2vh + -5px);
+  left: calc(94vw + -5px);
+  transform: rotate(139deg);
+  border: 48px solid rgba(255, 255, 255, 0.95);
+  border-color: rgba(255, 255, 255, 0.95) transparent transparent transparent;
+}
+
+.shape-7 {
+  z-index: 1;
+  position: absolute;
+  top: calc(50vh + 34px);
+  left: calc(80vw + 34px);
+  transform: rotate(84deg);
+  width: 55px;
+  height: 55px;
+  background-color: rgba(69, 139, 68, 0.95);
+  border-radius: 100%;
+}
+
+.shape-8 {
+  z-index: 1;
+  position: absolute;
+  top: calc(62vh + 20px);
+  left: calc(44vw + 20px);
+  transform: rotate(52deg);
+  width: 31px;
+  height: 31px;
+  background-color: rgba(188, 66, 59, 0.95);
+  border-radius: 100%;
+}
+
+.shape-9 {
+  z-index: 1;
+  position: absolute;
+  top: calc(10vh + -2px);
+  left: calc(18vw + -2px);
+  transform: rotate(279deg);
+  width: 46px;
+  height: 46px;
+  background-color: rgba(230, 180, 80, 0.95);
+}
+
+.shape-10 {
+  z-index: 1;
+  position: absolute;
+  top: calc(87vh + 46px);
+  left: calc(98vw + 46px);
+  transform: rotate(5deg);
+  width: 45px;
+  height: 45px;
+  background-color: rgba(255, 255, 255, 0.95);
+}
