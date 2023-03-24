@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="Fr" >
 <head>
-<meta name="description" content="MultiGaming and code source ™ V1.0.0">
+<meta name="description" content="MultiGaming and code source ™ V1.0.1(beta)">
       <meta name="keywords" content="PikaYutMG">
       <meta name="author" content="PikaYut">
 <meta property="og:image" content="https://pikayutmg.github.io/favicon.png">
@@ -32,6 +32,23 @@
 <link rel="stylesheet" href="button.css">
 
 </head>
+<Script>
+
+function chargement(){
+   document.getElementById('chargement').style.display='none';
+   document.getElementById('site').style.visibility='visible';
+}
+
+</Script>
+<body onload="chargement()">
+ 
+<div id="chargement" style="width:150px;height:50px;position:absolute;top:0;left:0;color:red;font-weight:bold;font-size:14px;background:white;">
+   Chargement ...
+</div>
+ 
+<div id="site" style="visibility:hidden;">
+   <!-- Tout le site ici -->
+
 <body>
 <!-- partial:index.partial.html -->
 <section class="game-section">
@@ -346,7 +363,9 @@ border-radius : 59px;
 
 
 
-
+</div>
+ 
+</body>
 
 
 
