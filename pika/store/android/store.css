@@ -1,0 +1,57 @@
+
+
+
+.install {
+    background :   #80ffac;
+    padding : 10px 17px ;
+    color :black;
+    border-radius : 50px ;
+    text-align : center;
+    
+   }
+   
+   .e {
+   
+    width : 5px ;
+    height :  6px;
+   
+    
+   }
+   
+   .file {
+    background :   #2b82ff;
+    padding : 10px 17px ;
+    color :black;
+    border-radius : 50px ;
+    text-align : center;
+    
+   }
+  
+  
+  .site {
+    background :   #ff4055;
+    padding : 10px 17px ;
+    color :black;
+    border-radius : 50px ;
+    text-align : center;
+    
+   }
+  
+  
+  
+   .app {
+       
+       background : whitesmoke;
+       color : black;
+       padding : 0 50px;
+       border-radius : 25px ;
+   }
+  
+   .page {
+    background :   #5cddc6;
+    padding : 10px 17px ;
+    color :black;
+    border-radius : 50px ;
+    text-align : center;
+    
+   }

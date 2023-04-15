@@ -252,3 +252,91 @@ h3 {
     -webkit-transform: translateY(calc(100% - 42px));
   }
 }
+
+
+
+
+
+
+
+.sudg {
+  position :   fixed      ;
+  right    :   0px        ;
+  left     :   0px        ;
+  top      :   none       ;
+  bottom   :   0px        ;
+  width    :   none       ;
+  height   :   15px       ; 
+  padding  :   20px       ;
+  background : black      ;
+       color : #f4f4f4    ;
+  
+  }
+
+
+
+  .up {
+
+    background :  black ;
+    
+    padding    :  0.07777777px  0px;
+    
+    
+    
+    }
+    
+    
+    .dup {
+    border-left: 1px solid blue;
+    border-right: 1px solid red;
+    background: black;
+    color: #dcdcdc;
+    width: 360px;
+    border-radius: 50px;
+    }
+    
+    img {
+    width: 20px;
+    height: 20px;
+          }
+    
+    .loadd {
+    width:100%;
+    height:99999px; 
+    Padding: 100% 100%;
+    position:absolute;
+    top:0;
+    left:0;
+    color       :red     ;
+    font-weight : bold   ;
+    font-size   :  14px;
+    background  : #FF212121;
+    
+    }
+          ::selection{
+        background: #0800ff;
+    
+    }
+          
+          .infonb {
+          
+          background : #F4516D;
+          color : black;
+          border-radius: 50px;
+         padding: 15px 55px;
+                
+          }
+    
+    
+          .join
+    {
+    
+    background : #6aff8d;
+    color: silver;
+    padding : 15px 35px;
+    border-radius : 59px;
+    
+    
+    }
+    
+    
