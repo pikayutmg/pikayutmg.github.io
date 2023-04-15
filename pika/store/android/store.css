@@ -39,7 +39,7 @@
   
   
   
-   .app {
+   .appV1  {
        
        background : whitesmoke;
        color : black;
@@ -48,7 +48,7 @@
          width: 900px;
    }
   
-   .pageV1 {
+   .page{
     background :   #5cddc6;
     padding : 10px 17px ;
     color :black;
@@ -60,7 +60,7 @@
 
 
 
-.page {
+.app {
   background : whitesmoke;
        color : black;
        
