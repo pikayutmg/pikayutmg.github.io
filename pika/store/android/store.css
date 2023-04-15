@@ -48,7 +48,7 @@
          width: 900px;
    }
   
-   .page {
+   .pageV1 {
     background :   #5cddc6;
     padding : 10px 17px ;
     color :black;
@@ -56,3 +56,21 @@
     text-align : center;
     
    }
+
+
+
+
+.page {
+  background : whitesmoke;
+       color : black;
+       
+       border-radius : 25px ;
+       text-align: center;
+       padding : 0 50px;
+      width: 900px;
+
+       align-items: center;
+       justify-content: center;
+       }
+      
+      
