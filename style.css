@@ -5,6 +5,10 @@
 /********* Fonts Face CSS End **********/
 
 /******* Common Element CSS Start ******/
+body {
+
+background-color:#eaeef6;
+}
 * {
   margin: 0px;
   padding: 0px;
