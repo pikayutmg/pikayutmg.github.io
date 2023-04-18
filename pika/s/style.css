@@ -1,8 +1,8 @@
 :root {
 
-  --primColor: #dcdcdc;
+  --primColor: #eaeef6;
 
-  --secoColor: #555555;
+  --secoColor: #eaeeg9;
 
   --cornerRad: 4px;
 
@@ -307,6 +307,14 @@ details[open]::before {
 
 
 
+
+
+
+
+
+
+
+
 .install {
 
     background :   #80ffac;
@@ -560,5 +568,22 @@ text-decoration: none;
 
 }
 
+
+
+.infonb {
+
+      
+
+      background : #F4516D;
+
+      color : black;
+
+      border-radius: 50px;
+
+     padding: 15px 55px;
+
+            
+
+      }
 
 
