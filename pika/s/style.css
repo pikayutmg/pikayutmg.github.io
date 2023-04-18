@@ -291,3 +291,274 @@ details[open]::before {
 
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.install {
+
+    background :   #80ffac;
+
+    padding : 10px 17px ;
+
+    color :black;
+
+    border-radius : 50px ;
+
+    text-align : center;
+
+    
+
+   }
+
+   
+
+   .e {
+
+   
+
+    width : 5px ;
+
+    height :  6px;
+
+   
+
+    
+
+   }
+
+   
+
+   .file {
+
+    background :   #2b82ff;
+
+    padding : 10px 17px ;
+
+    color :black;
+
+    border-radius : 50px ;
+
+    text-align : center;
+
+    
+
+   }
+
+  
+
+  
+
+  .site {
+
+    background :   #ff4055;
+
+    padding : 10px 17px ;
+
+    color :black;
+
+    border-radius : 50px ;
+
+    text-align : center;
+
+    
+
+   }
+
+  
+
+  
+
+  
+
+   .app {
+
+       
+
+       background : whitesmoke;
+
+       color : black;
+
+       padding : 0 50px;
+
+       border-radius : 25px ;
+
+       
+
+   }
+
+  
+
+   .page{
+
+    background :   #5cddc6;
+
+    padding : 10px 17px ;
+
+    color :black;
+
+    border-radius : 50px ;
+
+    text-align : center;
+
+    
+
+   }
+
+
+
+
+.white{
+
+background : #ffffff;
+
+color: #353535;
+
+padding : 15px 35px;
+
+border-radius : 59px;
+
+text-decoration: none;
+
+}
+
+.blue {
+
+background : #345fe1;
+
+color: #353535;
+
+padding : 15px 35px;
+
+border-radius : 59px;
+
+text-decoration: none;
+
+}
+
+.green {
+
+background : #6deb84;
+
+color: #353535;
+
+padding : 15px 35px;
+
+border-radius : 59px;
+
+text-decoration: none;
+
+}
+
+.red {
+
+background : #f85555;
+
+color: #353535;
+
+padding : 15px 35px;
+
+border-radius : 59px;
+
+text-decoration: none;
+
+}
+
+.black{
+
+background : #353535;
+
+color: #d0d0d0;
+
+padding : 15px 35px;
+
+border-radius : 59px;
+
+text-decoration: none;
+
+}
+
+.yellow {
+
+background : #f3ff70;
+
+color: #353535;
+
+padding : 15px 35px;
+
+border-radius : 59px;
+
+text-decoration: none;
+
+}
+
+.gray {
+
+background : #3d3d3d;
+
+color: #cbcbcb;
+
+padding : 15px 35px;
+
+border-radius : 59px;
+
+text-decoration: none;
+
+}
+
+.purple {
+
+background :  #b372f1;
+
+color: #3d3d3d;
+
+padding : 15px 35px;
+
+border-radius : 59px;
+
+text-decoration: none;
+
+}
+
+.tiktok {
+
+background: linear-gradient(70deg, #5a5aff, #ff536f);
+
+color: #3d3d3d;
+
+padding : 15px 35px;
+
+border-radius : 59px;
+
+text-decoration: none;
+
+}
+
+.lspdfr {
+
+background: linear-gradient(70deg, #3939bf, #4b4344);
+
+color: #717171;
+
+padding : 15px 35px;
+
+border-radius : 59px;
+
+text-decoration: none;
+
+}
+
+
+
