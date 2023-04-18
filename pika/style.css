@@ -1,6 +1,7 @@
 :root {
-  --primColor: #dcdcdc;
-  --secoColor: #555555;
+   --primColor: #eaeef6;
+
+  --secoColor: #eaeeg9;
   --cornerRad: 4px;
 }
 body {
