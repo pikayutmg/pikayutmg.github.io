@@ -2,13 +2,13 @@
 var ogTitleMeta = document.querySelector('meta[property="og:title"]');
 
 // Modifier la valeur de l'attribut content
-ogTitleMeta.setAttribute('content', 'Nouveau titre');
+ogTitleMeta.setAttribute('content', 'PikaYutMG FR');
 
 // Accéder à la balise <meta> avec l'attribut name "description"
 var descriptionMeta = document.querySelector('meta[name="description"]');
 
 // Modifier la valeur de l'attribut content
-descriptionMeta.setAttribute('content', 'Nouvelle description');
+descriptionMeta.setAttribute('content', 'MultiGaming FR');
 
 
 
