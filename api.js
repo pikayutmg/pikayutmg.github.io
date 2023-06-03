@@ -24,22 +24,22 @@ document.addEventListener("DOMContentLoaded", function() {
     countdownTimer.innerHTML = `
       <div class="countdown-item">
         <span>${days}</span>
-        <span class="countdown-label">9</span>
+        <span class="countdown-label">Jours</span>
       </div>
       <div class="countdown-separator">:</div>
       <div class="countdown-item">
         <span>${hours}</span>
-        <span class="countdown-label">9</span>
+        <span class="countdown-label">Heures</span>
       </div>
       <div class="countdown-separator">:</div>
       <div class="countdown-item">
         <span>${minutes}</span>
-        <span class="countdown-label">9</span>
+        <span class="countdown-label">Minutes</span>
       </div>
       <div class="countdown-separator">:</div>
       <div class="countdown-item">
         <span>${seconds}</span>
-        <span class="countdown-label">9</span>
+        <span class="countdown-label">Secondes</span>
       </div>
     `;
   }
