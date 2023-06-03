@@ -1,6 +1,5 @@
 
-   
-     <!DOCTYPE html>
+   <!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
@@ -12,7 +11,7 @@
     <h1 class="title">Maintenance GFLP™</h1>
     
     <br>Chers utilisateurs,<br>
-    <br>Nous vous informons qu'une maintenance planifiée sera effectuée sur notre site le samedi 7 juin et se termine dimanche ou lundi.<br>
+    <br>Nous vous informons qu'une maintenance planifiée sera effectuée sur notre site dans les prochains jours.<br>
     <br>Cette opération est nécessaire pour améliorer les performances et la stabilité de notre plateforme.<br>
     <br>Pendant la durée de la maintenance, le site sera temporairement indisponible. Nous nous efforcerons de minimiser les perturbations et de rétablir le service dans les plus brefs délais.<br>
     <br>Nous vous remercions de votre compréhension et nous nous excusons pour les éventuels désagréments causés. Nous faisons tout notre possible pour améliorer votre expérience utilisateur.<br>
@@ -51,8 +50,9 @@
       // Récupérer la date et l'heure actuelles en utilisant le fuseau horaire de la France
       var now = new Date().toLocaleString("fr-FR", { timeZone: "Europe/Paris" });
 
-      // Date de fin du compte à rebours (exemple : le 10 juin 2023 à 00:00:00)
-      var endDate = new Date("2023-06-10T00:00:00");
+      // Date de fin du compte à rebours (exemple : 3 jours à partir d'aujourd'hui)
+      var endDate = new Date();
+      endDate.setDate(endDate.getDate() + 3);
 
       // Calculer la différence en millisecondes entre la date de fin et la date actuelle
       var timeRemaining = endDate - new Date(now);
@@ -92,4 +92,7 @@
   </script>
 </body>
 </html>
+
+   
+
 
