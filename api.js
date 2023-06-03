@@ -4,7 +4,7 @@ div.className = "d";
 
 // Création de la balise h3
 var h3 = document.createElement("h3");
-h3.innerHTML = "<center><p>En maintenance test</p></center>";
+h3.innerHTML = "<center><p>En maintenance prévue vers les 20heures | 21 heures</p></center>";
 
 // Ajout du h3 à la div
 div.appendChild(h3);
