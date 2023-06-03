@@ -31,16 +31,27 @@
 </html>
 
 
-<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+    
+
+   <!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+  <title>Cooldown</title>
 </head>
 <body>
   <div class="container">
-    <h1 class="title">Maintenance 🟠</h1>
+    <h1 class="title">Cooldown</h1>
     <div class="countdown">
       <span id="days"></span> jours, 
       <span id="hours"></span> heures, 
@@ -50,17 +61,22 @@
   </div>
 
   <script>
-    // Date de fin du cooldown (exemple : 7 jours à partir de maintenant)
-    var endDate = new Date();
-    endDate.setDate(endDate.getDate() + 7);
+    function countdown() {
+      // Récupérer la date et l'heure actuelles en utilisant le fuseau horaire de la France
+      var now = new Date().toLocaleString("fr-FR", { timeZone: "Europe/Paris" });
 
-    // Mettre à jour le compte à rebours toutes les secondes
-    setInterval(function() {
-      // Récupérer la date et l'heure actuelles
-      var startDate = new Date();
+      // Date de fin du cooldown (exemple : 7 jours à partir de maintenant)
+      var endDate = new Date();
+      endDate.setDate(endDate.getDate() + 7);
 
       // Calculer la différence en millisecondes entre la date de fin et la date actuelle
-      var timeRemaining = endDate - startDate;
+      var timeRemaining = endDate - new Date(now);
+
+      // Vérifier si le cooldown est terminé
+      if (timeRemaining <= 0) {
+        document.getElementById("countdown-timer").textContent = "Cooldown terminé";
+        return;
+      }
 
       // Calculer les jours, heures, minutes et secondes restantes
       var days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
@@ -68,25 +84,25 @@
       var minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
       var seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
 
-      // Mettre à jour les éléments HTML correspondants avec les valeurs calculées
-      document.getElementById('days').textContent = formatTime(days);
-      document.getElementById('hours').textContent = formatTime(hours);
-      document.getElementById('minutes').textContent = formatTime(minutes);
-      document.getElementById('seconds').textContent = formatTime(seconds);
-    }, 1000);
+      // Mettre à jour l'élément HTML correspondant avec les valeurs calculées
+      document.getElementById("days").textContent = formatTime(days);
+      document.getElementById("hours").textContent = formatTime(hours);
+      document.getElementById("minutes").textContent = formatTime(minutes);
+      document.getElementById("seconds").textContent = formatTime(seconds);
+
+      // Mettre à jour le cooldown toutes les secondes
+      setTimeout(countdown, 1000);
+    }
 
     function formatTime(time) {
       // Ajouter un zéro devant les chiffres inférieurs à 10
       return time < 10 ? '0' + time : time;
     }
+
+    // Démarrer le cooldown
+    countdown();
   </script>
 </body>
 </html>
-
-  
-     
-
-
-   
 
 
