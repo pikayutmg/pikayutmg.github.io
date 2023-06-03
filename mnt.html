@@ -46,49 +46,49 @@
     }
   </style>
   <script>
-    function countdown() {
-      // Récupérer la date et l'heure actuelles en utilisant le fuseau horaire de la France
-      var now = new Date().toLocaleString("fr-FR", { timeZone: "Europe/Paris" });
+     à reboursfunction countdown() {
+  // Récupérer l'heure actuelle
+  var now = new Date();
 
-      // Date de fin du compte à rebours (exemple : 3 jours à partir d'aujourd'hui)
-      var endDate = new Date();
-      endDate.setDate(endDate.getDate() + 3);
+  // Date de fin du compte à rebours (exemple : le 7 juin 2023 à 00:00:00)
+  var endDate = new Date("2023-06-07T00:00:00");
 
-      // Calculer la différence en millisecondes entre la date de fin et la date actuelle
-      var timeRemaining = endDate - new Date(now);
+  // Calculer la différence en millisecondes entre la date de fin et la date actuelle
+  var timeRemaining = endDate - now;
 
-      // Vérifier si le compte à rebours est terminé
-      if (timeRemaining <= 0) {
-        document.getElementById("countdown-timer").textContent = "Bientôt fini.";
-        return;
-      }
+  // Vérifier si le compte à rebours est terminé
+  if (timeRemaining <= 0) {
+    document.getElementById("countdown-timer").textContent = "Maintenance terminée.";
+    return;
+  }
 
-      // Calculer les jours, heures, minutes et secondes restantes
-      var days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
-      var hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      var minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
-      var seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+  // Calculer les jours, heures, minutes et secondes restantes
+  var days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+  var hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
 
-      // Mettre à jour l'élément HTML correspondant avec les valeurs calculées
-      document.getElementById("countdown-timer").textContent = formatTime(days, hours, minutes, seconds);
+  // Mettre à jour l'élément HTML correspondant avec les valeurs calculées
+  document.getElementById("countdown-timer").textContent = formatTime(days, hours, minutes, seconds);
 
-      // Mettre à jour le compte à rebours toutes les secondes
-      setTimeout(countdown, 1000);
-    }
+  // Mettre à jour le compte à rebours toutes les secondes
+  setTimeout(countdown, 1000);
+}
 
-    function formatTime(days, hours, minutes, seconds) {
-      // Formater les valeurs en ajoutant un zéro devant les chiffres inférieurs à 10
-      days = ("0" + days).slice(-2);
-      hours = ("0" + hours).slice(-2);
-      minutes = ("0" + minutes).slice(-2);
-      seconds = ("0" + seconds).slice(-2);
+function formatTime(days, hours, minutes, seconds) {
+  // Formater les valeurs en ajoutant un zéro devant les chiffres inférieurs à 10
+  days = ("0" + days).slice(-2);
+  hours = ("0" + hours).slice(-2);
+  minutes = ("0" + minutes).slice(-2);
+  seconds = ("0" + seconds).slice(-2);
 
-      // Retourner la chaîne formatée
-      return days + " jours, " + hours + " heures, " + minutes + " minutes, " + seconds + " secondes";
-    }
+  // Retourner la chaîne formatée
+  return days + " jours, " + hours + " heures, " + minutes + " minutes, " + seconds + " secondes";
+}
 
-    // Démarrer le compte à rebours
-    countdown();
+// Démarrer le compte à rebours
+countdown();
+
   </script>
 </body>
 </html>
