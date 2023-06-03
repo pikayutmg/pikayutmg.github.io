@@ -1,51 +1,84 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Maintenance en cours</title>
+  <title>Pikayut maintenance</title>
   <style>
     body {
-      background-color: #f2f2f2;
+      background: silver;
       font-family: Arial, sans-serif;
-      text-align: center;
-      padding: 50px;
+      margin: 0;
+      padding: 0;
     }
 
-    h1 {
-      font-size: 32px;
-      color: #333;
-      margin-bottom: 20px;
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
     }
 
-    p {
-      font-size: 18px;
-      color: #666;
-      margin-bottom: 10px;
+    .title {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .countdown {
+      font-size: 1.5rem;
     }
 
     .logo {
-      margin-bottom: 40px;
-      border-radius :100px;
+      max-width: 80%;
+      height: auto;
+      margin-bottom: 2rem;
+      border-radius: 50%;
     }
 
     .maintenance-image {
-      max-width: 400px;
+      max-width: 100%;
       height: auto;
-      margin-bottom: 40px;
-      border-radius:10px;
+      border-radius: 10px;
     }
   </style>
 </head>
 <body>
-  <div class="logo">
-    <img src="https://pikayutmg.github.io/favicon.png" alt="Logo de l'entreprise">
+  <div class="container">
+    <img src="logo.png" alt="Logo" class="logo">
+    <h1 class="title">Maintenance GFLP™</h1>
+    <p>
+      Chers utilisateurs,
+      <br>
+      Nous vous informons qu'une maintenance planifiée sera effectuée sur notre site le samedi 3 juin et se termine dimanche ou lundi.
+      <br>
+      Cette opération est nécessaire pour améliorer les performances et la stabilité de notre plateforme.
+      <br>
+      Pendant la durée de la maintenance, le site sera temporairement indisponible. Nous nous efforcerons de minimiser les perturbations et de rétablir le service dans les plus brefs délais.
+      <br>
+      Nous vous remercions de votre compréhension et nous nous excusons pour les éventuels désagréments causés. Nous faisons tout notre possible pour améliorer votre expérience utilisateur.
+      <br>
+      N'hésitez pas à nous contacter si vous avez des questions ou des préoccupations. Nous restons à votre disposition.
+      <br>
+      Cordialement,
+      <br>
+      L'équipe de PikaYutMG™•GFLP
+    </p>
+    <img src="maintenance.png" alt="Maintenance" class="maintenance-image">
+    <div class="countdown">
+      <span id="countdown-timer"></span>
+    </div>
   </div>
-  <h1>Maintenance en cours</h1>
-  <img class="maintenance-image" src="https://pikayutmg.github.io/favicon.png" alt="Image de maintenance">
-  <p>Nous effectuons actuellement des travaux de maintenance sur notre site web.</p>
-  <p>Veuillez nous excuser pour les désagréments occasionnés.</p>
-  <p>Nous travaillons activement pour rétablir le service dans les plus brefs délais. Veuillez revenir ultérieurement.</p>
+  <script>
+    function countdown() {
+      // Logique du compte à rebours
+    }
+
+    // Autres scripts et fonctions
+
+    // Démarrer le compte à rebours
+    countdown();
+  </script>
 </body>
 </html>
-
