@@ -64,3 +64,17 @@ document.addEventListener("DOMContentLoaded", function() {
       updateCountdown();
     } else {
       // La maintenance est terminée, afficher un message approprié ou rediriger
+      
+      
+      
+      countdownTimer.innerHTML = "Maintenance terminée !";
+
+    }
+
+  }, 1000);
+
+  // Mettre à jour la minuterie du compte à rebours lors du chargement initial de la page
+
+  updateCountdown();
+
+});
