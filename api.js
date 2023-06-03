@@ -1,3 +1,15 @@
+// Accéder à la balise <meta> avec l'attribut property "og:title"
+var ogTitleMeta = document.querySelector('meta[property="og:title"]');
+
+// Modifier la valeur de l'attribut content
+ogTitleMeta.setAttribute('content', 'Nouveau titre');
+
+// Accéder à la balise <meta> avec l'attribut name "description"
+var descriptionMeta = document.querySelector('meta[name="description"]');
+
+// Modifier la valeur de l'attribut content
+descriptionMeta.setAttribute('content', 'Nouvelle description');
+
 
 document.write("<div class=\"dddddddddddddddd\">\r\n\r\n    <h3>\r\n<center>\r\n<p> En maintenace test <\/p>\r\n\r\n    <\/h3>\r\n\r\n<\/div>\r\n<\/center>\r\n<style>\r\n\r\n    .dddddddddddddddd {\r\n\r\nbackground: black;\r\ncolor: whitesmoke;\r\nposition: fixed;\r\ntop: 0px;\r\nleft: 0px;\r\nright: 0px;\r\nbottom: 0px;\r\n\r\n    }\r\n<\/style>");
 
