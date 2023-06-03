@@ -1,97 +1,58 @@
-
-   <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pikayut maintenance</title>
+  <title>Cooldown</title>
 </head>
 <body>
   <div class="container">
-    <h1 class="title">Maintenance GFLP™</h1>
-    
-    <br>Chers utilisateurs,<br>
-    <br>Nous vous informons qu'une maintenance planifiée sera effectuée sur notre site dans les prochains jours.<br>
-    <br>Cette opération est nécessaire pour améliorer les performances et la stabilité de notre plateforme.<br>
-    <br>Pendant la durée de la maintenance, le site sera temporairement indisponible. Nous nous efforcerons de minimiser les perturbations et de rétablir le service dans les plus brefs délais.<br>
-    <br>Nous vous remercions de votre compréhension et nous nous excusons pour les éventuels désagréments causés. Nous faisons tout notre possible pour améliorer votre expérience utilisateur.<br>
-    <br>N'hésitez pas à nous contacter si vous avez des questions ou des préoccupations. Nous restons à votre disposition.<br>
-    <br>Cordialement,<br>
-    <br>L'équipe de PikaYutMG™•GFLP<br>
-
+    <h1 class="title">Cooldown</h1>
     <div class="countdown">
-      <span id="countdown-timer"></span>
+      <span id="days"></span> jours, 
+      <span id="hours"></span> heures, 
+      <span id="minutes"></span> minutes, 
+      <span id="seconds"></span> secondes
     </div>
   </div>
-  <style>
-    body {
-      background: silver;
-    }
 
-    .container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      flex-direction: column;
-    }
-
-    .title {
-      font-size: 2rem;
-      margin-bottom: 2rem;
-    }
-
-    .countdown {
-      font-size: 1.5rem;
-    }
-  </style>
   <script>
-     à reboursfunction countdown() {
-  // Récupérer l'heure actuelle
-  var now = new Date();
+    // Date de fin du cooldown (exemple : 7 jours à partir de maintenant)
+    var endDate = new Date();
+    endDate.setDate(endDate.getDate() + 7);
 
-  // Date de fin du compte à rebours (exemple : le 7 juin 2023 à 00:00:00)
-  var endDate = new Date("2023-06-07T00:00:00");
+    // Mettre à jour le compte à rebours toutes les secondes
+    setInterval(function() {
+      // Récupérer la date et l'heure actuelles
+      var startDate = new Date();
 
-  // Calculer la différence en millisecondes entre la date de fin et la date actuelle
-  var timeRemaining = endDate - now;
+      // Calculer la différence en millisecondes entre la date de fin et la date actuelle
+      var timeRemaining = endDate - startDate;
 
-  // Vérifier si le compte à rebours est terminé
-  if (timeRemaining <= 0) {
-    document.getElementById("countdown-timer").textContent = "Maintenance terminée.";
-    return;
-  }
+      // Calculer les jours, heures, minutes et secondes restantes
+      var days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+      var hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      var minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+      var seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
 
-  // Calculer les jours, heures, minutes et secondes restantes
-  var days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
-  var hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  var minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
-  var seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+      // Mettre à jour les éléments HTML correspondants avec les valeurs calculées
+      document.getElementById('days').textContent = formatTime(days);
+      document.getElementById('hours').textContent = formatTime(hours);
+      document.getElementById('minutes').textContent = formatTime(minutes);
+      document.getElementById('seconds').textContent = formatTime(seconds);
+    }, 1000);
 
-  // Mettre à jour l'élément HTML correspondant avec les valeurs calculées
-  document.getElementById("countdown-timer").textContent = formatTime(days, hours, minutes, seconds);
-
-  // Mettre à jour le compte à rebours toutes les secondes
-  setTimeout(countdown, 1000);
-}
-
-function formatTime(days, hours, minutes, seconds) {
-  // Formater les valeurs en ajoutant un zéro devant les chiffres inférieurs à 10
-  days = ("0" + days).slice(-2);
-  hours = ("0" + hours).slice(-2);
-  minutes = ("0" + minutes).slice(-2);
-  seconds = ("0" + seconds).slice(-2);
-
-  // Retourner la chaîne formatée
-  return days + " jours, " + hours + " heures, " + minutes + " minutes, " + seconds + " secondes";
-}
-
-// Démarrer le compte à rebours
-countdown();
-
+    function formatTime(time) {
+      // Ajouter un zéro devant les chiffres inférieurs à 10
+      return time < 10 ? '0' + time : time;
+    }
   </script>
 </body>
 </html>
+
+  
+     
+
 
    
 
