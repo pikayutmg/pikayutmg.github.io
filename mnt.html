@@ -13,7 +13,37 @@
       <span id="countdown-timer"></span>
     </div>
   </div>
+  <style>
 
+    .container {
+
+      display: flex;
+
+      justify-content: center;
+
+      align-items: center;
+
+      height: 100vh;
+
+      flex-direction: column;
+
+    }
+
+    .title {
+
+      font-size: 2rem;
+
+      margin-bottom: 2rem;
+
+    }
+
+    .countdown {
+
+      font-size: 1.5rem;
+
+    }
+
+  </style>
   <script>function countdown() {
   // Récupérer la date et l'heure actuelles en utilisant le fuseau horaire de la France
   var now = new Date().toLocaleString("fr-FR", { timeZone: "Europe/Paris" });
