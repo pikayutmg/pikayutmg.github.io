@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maintenance en cours</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1 class="logo">Nom du Site</h1>
+    <div class="maintenance-content">
+      <h2 class="title">Maintenance en cours</h2>
+      <p class="description">Nous sommes en train de réaliser des travaux de maintenance. Nous serons bientôt de retour.</p>
+      <div class="countdown">
+        <span class="countdown-label">Temps restant :</span>
+        <div class="countdown-timer">
+          <span class="countdown-item" id="days">00</span>
+          <span class="countdown-separator">:</span>
+          <span class="countdown-item" id="hours">00</span>
+          <span class="countdown-separator">:</span>
+          <span class="countdown-item" id="minutes">00</span>
+          <span class="countdown-separator">:</span>
+          <span class="countdown-item" id="seconds">00</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+</body>
+</html>
+
+
+<script> 
+  function countdown(endDate) {
+  // Récupérer la date et l'heure actuelles
+  var startDate = new Date();
+
+  // Calculer la différence en millisecondes entre la date de fin et la date actuelle
+  var timeRemaining = endDate - startDate;
+
+  // Calculer les jours, heures, minutes et secondes restantes
+  var days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+  var hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+  // Mettre à jour les éléments HTML correspondants avec les valeurs calculées
+  document.getElementById('days').textContent = formatTime(days);
+  document.getElementById('hours').textContent = formatTime(hours);
+  document.getElementById('minutes').textContent = formatTime(minutes);
+  document.getElementById('seconds').textContent = formatTime(seconds);
+}
+
+function formatTime(time) {
+  // Ajouter un zéro devant les chiffres inférieurs à 10
+  return time < 10 ? '0' + time : time;
+}
+
+// Date de fin de la maintenance (exemple : dans 7 jours à partir de maintenant)
+var endDate = new Date();
+endDate.setDate(endDate.getDate() + 7);
+
+// Mettre à jour la minuterie toutes les secondes
+setInterval(function() {
+  countdown(endDate);
+}, 1000);
+
+  </script>
