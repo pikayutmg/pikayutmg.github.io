@@ -47,7 +47,7 @@ title.innerHTML = "Maintenance en cours";
 // Création de la balise link stylesheet
 var linkStylesheet = document.createElement("link");
 linkStylesheet.setAttribute("rel", "stylesheet");
-linkStylesheet.setAttribute("href", "./css/sstyles.css");
+linkStylesheet.setAttribute("href", "./css/sstyle.css");
 
 // Ajout des balises meta, title et link à la balise head
 head.appendChild(metaCharset);
