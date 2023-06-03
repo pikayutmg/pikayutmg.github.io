@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Maintenance</title>
+  <title>Maintenance en cours</title>
   <style>
     body {
       background-color: #f2f2f2;
@@ -13,96 +13,37 @@
     }
 
     h1 {
-      font-size: 24px;
+      font-size: 32px;
       color: #333;
+      margin-bottom: 20px;
     }
 
     p {
       font-size: 18px;
       color: #666;
+      margin-bottom: 10px;
+    }
+
+    .logo {
+      margin-bottom: 40px;
+    }
+
+    .maintenance-image {
+      max-width: 400px;
+      height: auto;
+      margin-bottom: 40px;
     }
   </style>
 </head>
 <body>
-  <h1>En maintenance</h1>
-  <p>Nous effectuons actuellement des travaux de maintenance sur notre site web. Veuillez nous excuser pour les désagréments occasionnés.</p>
+  <div class="logo">
+    <img src="https://pikayutmg.github.io/favicon.png" alt="Logo de l'entreprise">
+  </div>
+  <h1>Maintenance en cours</h1>
+  <img class="maintenance-image" src="https://pikayutmg.github.io/favicon.png" alt="Image de maintenance">
+  <p>Nous effectuons actuellement des travaux de maintenance sur notre site web.</p>
+  <p>Veuillez nous excuser pour les désagréments occasionnés.</p>
   <p>Nous travaillons activement pour rétablir le service dans les plus brefs délais. Veuillez revenir ultérieurement.</p>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-    
-
-   <!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cooldown</title>
-</head>
-<body>
-  <div class="container">
-    <h1 class="title">Cooldown</h1>
-    <div class="countdown">
-      <span id="days"></span> jours, 
-      <span id="hours"></span> heures, 
-      <span id="minutes"></span> minutes, 
-      <span id="seconds"></span> secondes
-    </div>
-  </div>
-
-  <script>
-    function countdown() {
-      // Récupérer la date et l'heure actuelles en utilisant le fuseau horaire de la France
-      var now = new Date().toLocaleString("fr-FR", { timeZone: "Europe/Paris" });
-
-      // Date de fin du cooldown (exemple : 7 jours à partir de maintenant)
-      var endDate = new Date();
-      endDate.setDate(endDate.getDate() + 7);
-
-      // Calculer la différence en millisecondes entre la date de fin et la date actuelle
-      var timeRemaining = endDate - new Date(now);
-
-      // Vérifier si le cooldown est terminé
-      if (timeRemaining <= 0) {
-        document.getElementById("countdown-timer").textContent = "Cooldown terminé";
-        return;
-      }
-
-      // Calculer les jours, heures, minutes et secondes restantes
-      var days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
-      var hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      var minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
-      var seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
-
-      // Mettre à jour l'élément HTML correspondant avec les valeurs calculées
-      document.getElementById("days").textContent = formatTime(days);
-      document.getElementById("hours").textContent = formatTime(hours);
-      document.getElementById("minutes").textContent = formatTime(minutes);
-      document.getElementById("seconds").textContent = formatTime(seconds);
-
-      // Mettre à jour le cooldown toutes les secondes
-      setTimeout(countdown, 1000);
-    }
-
-    function formatTime(time) {
-      // Ajouter un zéro devant les chiffres inférieurs à 10
-      return time < 10 ? '0' + time : time;
-    }
-
-    // Démarrer le cooldown
-    countdown();
-  </script>
-</body>
-</html>
-
 
