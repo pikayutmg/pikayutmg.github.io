@@ -8,6 +8,8 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+
+    
         }
 
         /* Styles pour le corps de la page */
@@ -101,8 +103,134 @@ details > *:not(summary) {
             margin-bottom: 20px;
         }
 
+
+       
+        
+
+    </style>
+
+
+</head>
+
+
+
+
+
+
+
+
+
+<head>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .navbar {
+            width: 200px;
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            border-radius: 10px; /* Coins arrondis */
+        }
+
+        .navbar ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .navbar li {
+            margin-bottom: 10px;
+        }
+
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .navbar a:hover {
+            color: #ccc;
+        }
+
+        .animated {
+            animation: slideIn 1s ease-in-out;
+        }
+
+        .animated-click {
+            animation: clickIn 0.5s ease-in-out;
+        }
+
+        @keyframes slideIn {
+            0% {
+                opacity: 0;
+                transform: translateX(-100%);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes clickIn {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(0.9);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
     </style>
 </head>
+<body>
+    <div class="navbar animated">
+        <ul>
+            <li><a href="https://pikayutmg.github.io/pika/" onclick="animateLink(event)">Accueil</a></li>
+            <li><a href="https://pikayutmg.github.io/pika/me.html" onclick="animateLink(event)">À propos</a></li>
+            <li><a href="https://pikayutmg.github.io/pika/store" onclick="animateLink(event)">Produits ( en dev )</a></li>
+            <li><a href="https://pikayutmg.github.io/pika/contact" onclick="animateLink(event)">Contact</a></li>
+        </ul>
+    </div>
+
+    <script>
+        function animateLink(event) {
+            event.preventDefault();
+            var target = event.target;
+            target.classList.add('animated-click');
+            setTimeout(function() {
+                target.classList.remove('animated-click');
+            }, 500);
+        }
+
+        window.onload = function() {
+            var navbar = document.querySelector('.navbar');
+            navbar.classList.add('animated');
+        };
+    </script>
+</body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <body>
 
