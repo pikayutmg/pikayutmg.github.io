@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "gspjcqjaoi");
+</script>
+ <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MCHBLMB');</script>
+<!-- End Google Tag Manager -->
+</head>
+
+<body>
+
+  <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MCHBLMB"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="fr" >
+<head>
+  <meta charset="UTF-8">
+  <title>GFLP|• Installation</title>
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css'>
+<head>
+
+
+<meta name="viewport" content="width=device-width, initial-scale=0.86, maximum-scale=5.0, minimum-scale=0.86">
+</head>
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css'>
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.css'><link rel="stylesheet" href="./css/style.css">
+
+<link rel="stylesheet" href="https://pikayutmg.github.io/button.css">
+
+<link rel="stylesheet" href="button.css">
+
+</head>
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyA6RF1F8QEawwo0Jyl2FyZm3LwWH_Znw0A",
+    authDomain: "pikayuts.firebaseapp.com",
+    projectId: "pikayuts",
+    storageBucket: "pikayuts.appspot.com",
+    messagingSenderId: "396647637235",
+    appId: "1:396647637235:web:3a5782cc52808b3714d786",
+    measurementId: "G-T1CQFR2NNE"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+</script>
+<Script>
+
+function chargement(){
+   document.getElementById('chargement').style.display='none';
+   document.getElementById('site').style.visibility='visible';
+}
+
+</Script>
+<body onload="chargement()">
+ 
+<div id="chargement" class="loadd">
+   <! Chargement -->
+
+<center>
+<!-- 2 -->
+      
+      
+    
+<div class="loader loader--style2" title="1">
+  <svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+     width="40px" height="40px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;" xml:space="preserve">
+  <path fill="#000" d="M25.251,6.461c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615V6.461z">
+    <animateTransform attributeType="xml"
+      attributeName="transform"
+      type="rotate"
+      from="0 25 25"
+      to="360 25 25"
+      dur="0.6s"
+      repeatCount="indefinite"/>
+    </path>
+  </svg>
+</div>
+
+<P> <H2>Chargement</H2></p>
+
+</center>
+
+</div>
+ 
+<div id="site" style="visibility:hidden;">
+   <!-- Tout le site ici -->
+
+<body>
+<!-- partial:index.partial.html -->
+      
+      <center>  <div class="infonb"><img href="https://discord.gg/N9zSS9zHaQ" class="img" src="./img/discord.png">Merci , vous etes plus de 3,5k a utilisé notre site , PikaYutMG V2.4.0 arrivent bientot.</div> </center>
+      
+<section class="game-section">
+  <h2 class="line-title">LsFly™ Site</h2>
+  <div class="owl-carousel custom-carousel owl-theme">
+    <div class="item active" style="background-image: url(https://pikayutmg.github.io/favicon.png);">
+      <div class="item-desc">
+        <h3>PikaYutMG</h3>
+        <p>site officiel
+<br><br><a class="join" href="./pika/">Accédez</a>
+</p></p>
+      </div>
+    </div>
+    <div class="item" style="background-image: url(https://images.app.goo.gl/TrrgcwXALPtfscXb9);">
+      <div class="item-desc">
+        <h3>Source-DevMG</h3>
+        <p>Notre site secondaire
+<br><br><a class="join" href="https://source-devmg.github.io">Accédez</a>
+</p>
+      </div>
+    </div>
+    <div class="item" style="background-image: url(https://cdn.discordapp.com/attachments/871404973102092289/1063835379502956544/thumb2-black-hexagons-4k-3d-art-creative-honeycomb.png);">
+      <div class="item-desc">
+        <h3>EbsayderRpID</h3>
+        <p>carte identité RP ( Minecraft/gameRP).
+
+<br><br><a class="join" href="./ebsayder/">Accédez</a>
+</p>
+</p>
+      </div>
+    </div>
+   
+    <div class="item" style="background-image: url(
+
+);">
+      <div class="item-desc">
+        <h3>VoidScape's™ ToyBox</h3>
+        <p> un jeux open-source ( mod Half-Life) Actif , cree par Voidscape The Creator™.
+<br><br><a class="join" href="https://pikayutmg.github.io/404">Accédez</a>
+</p>
+
+
+      </div>
+    </div>
+    <div class="item" style="background-image: url();">
+      <div class="item-desc">
+        <h3>Pub</h3>
+        <p>a bientot</p>
+      </div>
+    </div>
+  </div>
+  </div>
+</section>
+<!-- partial -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js'></script><script  src="./js/script.js"></script>
+<script  src="https://pikayutmg.github.io/button.js"></script>
+<script  src="button.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="up">
+</div>
+
+
+
+
+
+
+
+
+<style>
+
+.up {
+
+background :  black ;
+
+padding    :  0.07777777px  0px;
+
+
+
+}
+
+
+.dup {
+border-left: 1px solid blue;
+border-right: 1px solid red;
+background: black;
+color: #dcdcdc;
+width: 360px;
+border-radius: 50px;
+}
+
+img {
+width: 20px;
+height: 20px;
+      }
+
+.loadd {
+width:100%;
+height:99999px; 
+Padding: 100% 100%;
+position:absolute;
+top:0;
+left:0;
+color       :red     ;
+font-weight : bold   ;
+font-size   :  14px;
+background  : #FF212121;
+
+}
+      ::selection{
+    background: #0800ff;
+
+}
+      
+      .infonb {
+      
+      background : #F4516D;
+      color : black;
+      border-radius: 50px;
+     padding: 15px 55px;
+            
+      }
+
+
+      .join
+{
+
+background : #6aff8d;
+color: silver;
+padding : 15px 35px;
+border-radius : 59px;
+
+
+}
+
+
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<center>
+
+<br>
+
+<h1><b>PikaYut™</h1>
+
+<br>
+<p> Bienvenue chez PikaYutMG™.</p>
+<p> Vous avez plusieurs choix de site , </p>
+<p> Tous ces sites sont développés par nous, sauf ' VoidScape's ToyBox'</p>
+
+
+
+<br><br>
+<br>
+<h1>Annonce</h1>
+<Br><br>
+  <a class="join" href="anc.html">Voir nos annonces</a>
+<br><br>
+<div class="dup">
+<center>
+
+<P>PikaYutMG |• mcpe | RP | EbsayderFlyse™</p>
+<h3>Ray tracing compatibilité :</h3>
+<p>PS5 :X | PS4 :X</p>
+<p>Xbox séries x : X ( erreur commis par mojang ) | S : X  ( erreur commis par mojang ) </p>
+<p> <h3>Windows</h3></p>
+<p>AMD RADEON :✓ (beta: aprer les AMD Radeon Rx 6000 )</p>
+<p>GeForce GTX | RTX : ✓ </p>
+<p>Phone : X |iPad/tablette : X</p>
+<p> <h1>Info!</h1></p>
+<p>Si vous avez crash,</p>
+<p>Le Ray Tracing n'est pas réellement résponsable de çe crash !!!</p>
+<p>PikaYut|•17/03/2023</p>
+
+</Center>
+
+</div>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <script>
+  window.announcekit = (window.announcekit || { queue: [], on: function(n, x) {
+    window.announcekit.queue.push([n, x]); }, push: function(x) { window.announcekit.queue.push(x); }
+  });
+
+  window.announcekit.push({
+    "widget": "https://announcekit.co/widgets/v2/2oSSLS",
+    "selector": ".announcekit-widget"
+  })
+</script>
+<script async src="https://cdn.announcekit.app/widget-v2.js"></script>
+
+
+
+
+
+
+
+
+<br><br>
+<br>
+
+</h2>
+<div class="up">
+</div>
+<H1>Sécurité</h1>
+<h2><img class="img" src="./img/cloud installation.svg"></img> Installation a partir du magasin ! !</h2>
+
+<p>Installez des jeux crack ou officiel sans soucis ! </p>
+
+
+
+
+
+<br>
+<br><br>
+
+
+<br><br>
+<br>
+</h2>
+
+
+<h2><img class="img" src="./img/sec.svg"></img> Renseignements de la sécurité !</h2>
+
+
+<br><br>
+<p>L'activité est actuellement surveiller,</p>
+<p>pour éviter les bots , les utilisateurs malveillant ... . </p>
+<p></p>
+<p>Surveillance gerer par Google dt LsFlySecurity. </p>
+
+
+
+<br><br>
+<br>
+
+</h2>
+
+
+
+<h2><img class="img" src="./img/discord.png"></img>Nos réseaux </h2>
+<Br><Br>
+<p>Parlais , demander de l'aide a nos membre , et rester actif sur nos annonces 😉!<a href="https://pikayutmg.github.io/pika/discord">Discord</a> </p>
+
+
+<br><br>
+<br>
+
+</h2>
+
+
+<br>
+<br><br>
+
+
+<h2><img class="img" src="./img/demo.png"></img>Démo du site </h2>
+<Br><Br>
+<p>Avoir les nouveautés du site en avance !  </p>
+
+
+
+
+
+<br>
+<br><br>
+
+
+
+
+<br><br>
+<br>
+
+
+
+<h2><img class="img" src="./img/update.png"></img>Avoir les nouveautés des app du  magasins!</h2>
+<Br><Br>
+<p>Avoir accès a des jeux payant, avec leur nouvelle version ? Dispo sur notre <a href="https://pikayutmg.github.io/pika/store">store</a></p>
+
+
+
+
+
+<br>
+<br><br>
+
+
+
+
+
+
+<script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QJNNJR5KZB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-QJNNJR5KZB');
+</script>
+
+
+
+
+</script>
+
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+<link rel="icon" href="favicon.ico" />
+  
+
+
+</head>
+
+
+
+
+</b>
+
+
+
+
+
+
+
+
+</div>
+ 
+</body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LsFlyDev™</title>
+    <meta name="description" content="LosFly|PikaYutMG|GFLP v2.2.9">
+    <meta name="image" content="https://github.com/source-devMG/source-devMG.github.io/blob/main/template/source/dev/Code/pilayutmg-source+-dev/d%C3%A9veloppement/pikayut28.png?raw=true">
+    <meta name="twitter:image" content="https://github.com/source-devMG/source-devMG.github.io/blob/main/template/source/dev/Code/pilayutmg-source+-dev/d%C3%A9veloppement/pikayut28.png?raw=true">
+
+
+    <meta name="keywords" content="PikaYutMG">
+    <meta name="author" content="enes">
+    <meta name="Category" content="gaming">
+    <meta property="og:title" content="LsFlyDev™">
+    <meta property="og:description" content="LosFly|PikaYutMG|GFLP v2.2.9">
+    <meta property="og:image" content="https://github.com/source-devMG/source-devMG.github.io/blob/main/template/source/dev/Code/pilayutmg-source+-dev/d%C3%A9veloppement/pikayut28.png?raw=true">
+    <meta property="og:image:alt" content="GFLP™">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://pikayutmg.github.io">
+    <meta property="og:site_name" content="LsFlyDev™">
+    <meta property="og:locale" content="fr">
+    <meta property="og:Content-Type" content="UTF-8">
+    <meta property="og:Content-Language" content="fr">
+    <meta property="og:Identifier-Url" content="https://pikayutmg.github.io">
+    <meta property="og:Revisit-After" content="31 days">
+    <meta property="og:Robots" content="all">
+    <meta property="og:Rating" content="general">
+    <meta property="og:Distribution" content="global">
+    <meta name="og:Subject" content="Gaming">
+    <meta name="og:Copyright" content="PikaYut™">
+    <meta name="og:keywords" content="PikaYutMG">
+    <meta name="og:Publisher" content="enes">
+    <meta name="google-site-verification" content="verification_token">
+    <meta name="yandex-verification" content="verification_token">
+    <meta name="msvalidate.01" content="verification_token">
+</head>
+<body>
+    <!-- Le reste de votre code HTML -->
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Autres | Google bot -->
+<meta name="robots" content="index,follow">
+
+<!-- Vérification du site -->
+<meta name="google-site-verification" content="verification_token"><!-- Google Search Console -->
+<meta name="yandex-verification" content="verification_token"><!-- Yandex Webmasters -->
+<meta name="msvalidate.01" content="verification_token"><!-- Bing Webmaster Center -->
+<meta name="alexaVerifyID" content="verification_token"><!-- Alexa Console -->
+<meta name="p:domain_verify" content="code_from_pinterest"><!-- Pinterest Console -->
+<meta name="norton-safeweb-site-verification" content="norton_code"><!-- Norton Safe Web -->
+<meta name="google" content="notranslate">
+
+<!-- Identifiant -->
+<meta name="generator" content="program">
+<meta name="subject" content="PikaYut - des jeux, du code et des amis :)">
+<meta name="rating" content="General">
+<meta name="referrer" content="no-referrer">
+<meta name="format-detection" content="telephone=yes">
+<meta http-equiv="x-dns-prefetch-control" content="off">
+<meta http-equiv="Window-Target" content="_value">
+<meta name="geo.placename" content="France">
+<meta name="monetization" content="$paymentpointer.example">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="https://pikayutmg.github.io/">
+<meta name="twitter:creator" content="@pika456fr">
+<meta name="twitter:url" content="https://pikayutmg.github.io/">
+<meta name="twitter:title" content="LosFlyDev">
+<meta name="twitter:image" content="https://pikayutmg.github.io/favicon.png">
+
+<!-- Smart App Banner -->
+<meta name="apple-itunes-app" content="app-id=APP_ID, affiliate-data=AFFILIATE_ID, app-argument=SOME_TEXT">
+<meta name="format-detection" content="telephone=no">
+<link rel="apple-touch-icon" href="https://media.discordapp.net/attachments/871404973102092289/1058935289244028979/laine.png">
+<link rel="apple-touch-startup-image" href="https://media.discordapp.net/attachments/871404973102092289/1058935289244028979/laine.png">
+<meta name="apple-mobile-web-app-title" content="Pikayut">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-itunes-app" content="app-id=APP-ID, app-argument=http/url-sample.com">
+
+<!-- Android -->
+<meta name="theme-color" content="#E64545">
+<meta name="mobile-web-app-capable" content="yes">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="skype_toolbar" content="skype_toolbar_parser_compatible">
+<meta name="msapplication-config" content="/browserconfig.xml">
+<meta name="google" content="notranslate">
+<link rel="icon" sizes="192x192" href="https://media.discordapp.net/attachments/871404973102092289/1058935289244028979/laine.png">
+<link rel="canonical" href="https://pikayutmg.github.io/">
+
+<!-- Divers -->
+<link rel="license" href="https://pikayutmg.github.io/index.html">
+<link rel="alternate" href="https://pikayutmg.github.io/" hreflang="fr">
+
+<link rel="search" href="/open-search.xml" type="application/opensearchdescription+xml" title="PikaYutMG"><!-- Recherche active -->
+<meta name="application-name" content="PikaYutMG">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'">
+<meta name="theme-color" content="#B2F5FF">
+
+
+
+      
+ 
+</head>
+ <script src="api.js"></script>
+</HTML>
