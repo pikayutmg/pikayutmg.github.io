@@ -112,6 +112,48 @@ function chargement(){
 <div id="site" style="visibility:hidden;">
    <!-- Tout le site ici -->
 
+
+        <!DOCTYPE html>
+<html>
+<head>
+  <title>Envoyer une notification</title>
+  <script>
+    function envoyerNotification() {
+      // Vérifier si les notifications sont prises en charge par le navigateur
+      if (!("Notification" in window)) {
+        alert("Les notifications ne sont pas prises en charge par ce navigateur.");
+      }
+      // Vérifier l'état de permission de notification
+      else if (Notification.permission === "granted") {
+        // Créer et afficher la notification
+        var notification = new Notification("GFLP NOTIF", {
+          body: "Merci d'avoir autoriser les notif :) . ",
+              icon: "https://pikayutmg.github.io/favicon.png" // Chemin vers une image d'icône (facultatif)
+        });
+      }
+      // Demander la permission d'afficher des notifications
+      else if (Notification.permission !== 'denied') {
+        Notification.requestPermission(function(permission) {
+          // Si l'utilisateur accepte la permission, créer et afficher la notification
+          if (permission === "granted") {
+            var notification = new Notification("GFLP", {
+              body: "Merci d'avoir autoriser les notif :) . ",
+              icon: "https://pikayutmg.github.io/favicon.png" // Chemin vers une image d'icône (facultatif)
+            });
+          }
+        });
+      }
+    }
+  </script>
+</head>
+<body>
+  <button onclick="envoyerNotification()"Accepter nos notification </button>
+</body>
+</html>
+
+
+
+
 <body>
 <!-- partial:index.partial.html -->
       
