@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+
+  <meta name="description" content="GFLP - LSP |  Editeur PHP : CSS : JS : HTML">
+  <meta name="keywords" content="GFLP, LSP, PikaYutMG, GFLP-LSP, LosFly">
+  <meta name="author" content="EnesGP ( D )">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="https://pikayutmg.github.io/favicon.png" type="image/png">
+ 
+
+
+  <title>GFLP - LSP | Editor v3.2</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+    #container {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      height: 100vh;
+    }
+    #logo {
+      padding: 10px;
+      background-color: #f5f5f5;
+      font-weight: bold;
+      font-size: 20px;
+    }
+    #editor-wrapper {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    #editor {
+      flex: 1;
+      padding: 10px;
+      font-family: monospace;
+      font-size: 14px;
+      white-space: pre;
+      overflow: auto;
+    }
+    #editor .html { color: #e91e63; }
+    #editor .css { color: #2196f3; }
+    #editor .js { color: #4caf50; }
+    #editor .php { color: #ff9800; }
+    #output {
+      flex: 1;
+      padding: 10px;
+      overflow: auto;
+      background-color: #f5f5f5;
+    }
+    .buttons {
+      padding: 10px;
+      background-color: #f5f5f5;
+      text-align: right;
+    }
+
+    /* Styles for PC */
+    @media only screen and (min-width: 768px) {
+      #container {
+        flex-direction: row;
+      }
+      #editor-wrapper {
+        flex-basis: 60%;
+      }
+      #output {
+        flex-basis: 40%;
+      }
+    }
+
+    /* Styles for Mobile */
+    @media only screen and (max-width: 767px) {
+      #editor-wrapper {
+        order: 2;
+      }
+      #output {
+        order: 1;
+      }
+    }
+
+    /* Styles for Tablet */
+    @media only screen and (min-width: 768px) and (max-width: 1023px) {
+      #container {
+        flex-direction: row;
+      }
+      #editor-wrapper {
+        flex-basis: 50%;
+      }
+      #output {
+        flex-basis: 50%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <div id="logo">
+      GFLP - LSP
+    </div>
+    <div id="editor-wrapper">
+      <div class="buttons">
+        <button id="saveButton">Enregistrer</button>
+        <button id="openButton">Ouvrir</button>
+      </div>
+      <textarea id="editor" spellcheck="false" name="code"><?php if(isset($_POST['code'])) { echo $_POST['code']; } ?></textarea>
+    </div>
+    <iframe id="output" sandbox="allow-same-origin allow-scripts"></iframe>
+  </div>
+
+  <script>
+    var editor = document.getElementById("editor");
+    var output = document.getElementById("output");
+    var saveButton = document.getElementById("saveButton");
+    var openButton = document.getElementById("openButton");
+
+    function updateOutput() {
+      var code = editor.value;
+      output.contentDocument.open();
+      output.contentDocument.write(code);
+      output.contentDocument.close();
+    }
+
+    function saveCode() {
+      var code = editor.value;
+      var form = document.createElement("form");
+      form.style.display = "none";
+      form.method = "POST";
+      form.action = "";
+      var textarea = document.createElement("textarea");
+      textarea.name = "code";
+      textarea.value = code;
+      form.appendChild(textarea);
+      document.body.appendChild(form);
+      form.submit();
+    }
+
+    function openCode() {
+      var input = document.createElement("input");
+      input.type = "file";
+      input.accept = ".txt";
+      input.onchange = function(event) {
+        var file = event.target.files[0];
+        var reader = new FileReader();
+        reader.onload = function() {
+          var code = reader.result;
+          editor.value = code;
+          updateOutput();
+        };
+        reader.readAsText(file);
+      };
+      input.click();
+    }
+
+    editor.addEventListener("input", updateOutput);
+    saveButton.addEventListener("click", saveCode);
+    openButton.addEventListener("click", openCode);
+  </script>
+</body>
+</html>
