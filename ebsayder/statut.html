@@ -1,17 +1,77 @@
-<script src="https://mcapi.us/scripts/minecraft.js"></script>
-<script src="http://code.jquery.com/jquery-2.2.0.min.js"></script>
-<div class="server-status">
-  Statut: <span class="server-online"></span><br />
-  Nombre de joueur: <span class="server-nbrPlayer"></span>/<span class="server-nbrPlayerMax"></span>
-</div>
-<script>
-$.get(
-    "https://mcapi.us/server/status",
-    {ip: "sepvp.aternos.me", port : 48600},
-    function(data) {
-        document.querySelector('.server-online').innerHTML = data.online ? '🟢' : '🔴';
-        document.querySelector('.server-nbrPlayer').innerHTML = data.players.now;
-        document.querySelector('.server-nbrPlayerMax').innerHTML = data.players.max;
-    }
-);
-</script>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>État du Serveur Minecraft</title>
+    <style>
+        .online {
+            color: green;
+        }
+        .offline {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>État du Serveur Minecraft</h1>
+    <p>IP: <span id="ip"></span></p>
+    <p>Port: <span id="port"></span></p>
+    <p>État: <span id="status"></span></p>
+    <p>Description: <span id="description"></span></p>
+
+    <script>
+        // Remplacez les valeurs ci-dessous par les informations de votre serveur Minecraft
+        var serverIP = "votre-ip";
+        var serverPort = "votre-port";
+
+        // Fonction pour mettre à jour l'état du serveur
+        function updateServerStatus() {
+            var statusElement = document.getElementById("status");
+            var ipElement = document.getElementById("ip");
+            var portElement = document.getElementById("port");
+            var descriptionElement = document.getElementById("description");
+
+            // Effectuer une requête HTTP pour récupérer l'état du serveur
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        // Analyser la réponse JSON
+                        var response = JSON.parse(xhr.responseText);
+                        var online = response.online;
+                        var description = response.motd;
+
+                        // Mettre à jour les éléments de la page avec les informations du serveur
+                        ipElement.textContent = serverIP;
+                        portElement.textContent = serverPort;
+                        descriptionElement.textContent = description;
+
+                        // Déterminer l'état en ligne/hors ligne
+                        if (online) {
+                            statusElement.textContent = "En ligne";
+                            statusElement.classList.add("online");
+                            statusElement.classList.remove("offline");
+                        } else {
+                            statusElement.textContent = "Hors ligne";
+                            statusElement.classList.add("offline");
+                            statusElement.classList.remove("online");
+                        }
+                    } else {
+                        // En cas d'erreur lors de la requête
+                        statusElement.textContent = "Erreur lors de la récupération de l'état du serveur";
+                        statusElement.classList.add("offline");
+                    }
+                }
+            };
+            xhr.open("GET", "https://api.mcsrvstat.us/bedrock/" + serverIP + ":" + serverPort, true);
+            xhr.send();
+        }
+
+        // Mettre à jour l'état du serveur lors du chargement de la page
+        updateServerStatus();
+
+        // Mettre à jour l'état du serveur toutes les 5 secondes (facultatif)
+        setInterval(updateServerStatus, 5000);
+    </script>
+</body>
+</html>
+
