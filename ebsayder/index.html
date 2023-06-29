@@ -71,9 +71,8 @@ border-radius : 59px;
 <html lang="Fr" >
 <head>
   <meta charset="UTF-8">
-<link rel="icon" href="favicon.ico" />
-  <title>PikaYut™|•Ebsayder RP</title>
-  <link rel="stylesheet" href="./css/style.css">
+
+  <link rel="stylesheet" href="./csss/style.css">
 
 </head>
 <body>
@@ -134,4 +133,31 @@ border-radius : 59px;
   gtag('js', new Date());
 
   gtag('config', 'G-QJNNJR5KZB');
+</script>
+
+
+
+
+
+    <hr>
+
+
+
+
+    <script src="https://mcapi.us/scripts/minecraft.js"></script>
+<script src="http://code.jquery.com/jquery-2.2.0.min.js"></script>
+<div class="server-status">
+  Statut: <span class="server-online"></span><br />
+  Nombre de joueur: <span class="server-nbrPlayer"></span>/<span class="server-nbrPlayerMax"></span>
+</div>
+<script>
+$.get(
+    "https://mcapi.us/server/status",
+    {ip: "sepvp.aternos.me", port : 48600},
+    function(data) {
+        document.querySelector('.server-online').innerHTML = data.online ? '🟢' : '🔴';
+        document.querySelector('.server-nbrPlayer').innerHTML = data.players.now;
+        document.querySelector('.server-nbrPlayerMax').innerHTML = data.players.max;
+    }
+);
 </script>
