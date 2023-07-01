@@ -129,33 +129,6 @@ border-radius : 59px;
 
 
 
-    <hr>
-<br><br><br>
-    <font color="black">
-
-
-    <script src="https://mcapi.us/scripts/minecraft.js"></script>
-<script src="http://code.jquery.com/jquery-2.2.0.min.js"></script>
-<div class="server-status">
-  Statut: <span class="server-online"></span><br />
-  Nombre de joueur: <span class="server-nbrPlayer"></span>/<span class="server-nbrPlayerMax"></span>
-</div>
-<script>
-$.get(
-    "https://mcapi.us/server/status",
-    {ip: "sepvp.aternos.me", port : 48600},
-    function(data) {
-        document.querySelector('.server-online').innerHTML = data.online ? '🟢' : '🔴';
-        document.querySelector('.server-nbrPlayer').innerHTML = data.players.now;
-        document.querySelector('.server-nbrPlayerMax').innerHTML = data.players.max;
-    }
-);
-</script>
-
-
-<p> Update</p>
- </font>
-    
 </body>
 </html>
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
