@@ -106,7 +106,40 @@ border-radius : 59px;
 
 
 
+<html>
+<head>
+  <title>Adaptation d'un iframe en 50% pour PC et mobile</title>
+  <style>
+    .iframe-container {
+      position: relative;
+      width: 50%;
+      padding-bottom: 56.25%; /* Ratio d'aspect 16:9 pour la hauteur */
+      margin: 0 auto; /* Centrer horizontalement */
+    }
 
+    .iframe-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    @media (max-width: 768px) {
+      /* Styles spécifiques aux appareils mobiles */
+      .iframe-container {
+        width: 100%; /* Occupe la largeur totale de l'écran */
+        padding-bottom: 75%; /* Ratio d'aspect 4:3 pour la hauteur */
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="iframe-container">
+    <iframe src="./map-mgi.html"></iframe>
+  </div>
+</body>
+</html>
 
 
 
