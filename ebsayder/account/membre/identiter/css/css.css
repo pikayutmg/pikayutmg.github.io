@@ -22,10 +22,10 @@
   --tag-8-text:#009118;
   --tag-10:#FA8072;
   --tag-10-text:#B22222;
-   --tag-11:#FA8072;
-  --tag-11-text:#B22222;
-   --tag-12:#FA8072;
-  --tag-12-text:#B22222;
+   --tag-11:#FFA500;
+  --tag-11-text:#FF7F50;
+   --tag-12:#4f2a09;
+  --tag-12-text:#5b3c11;
  
   
 
@@ -166,9 +166,27 @@ h1 {
 }
 
 .task__tag--ea {
-  color: var(--tag-8-text);
-  background-color: var(--tag-8);
+  color: var(--tag-11-text);
+  background-color: var(--tag-11);
 }
+
+
+.task__tag--fa {
+  color: var(--tag-9-text);
+  background-color: var(--tag-9);
+}
+
+.task__tag--ga {
+  color: var(--tag-10-text);
+  background-color: var(--tag-10);
+}
+
+.task__tag--ha {
+  color: var(--tag-12-text);
+  background-color: var(--tag-12);
+}
+
+
 
 .task__tag--design {
   color: var(--tag-3-text);
