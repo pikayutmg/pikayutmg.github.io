@@ -116,7 +116,126 @@ border-radius : 59px;
 
 
 
+<hr> 
+      <br>  <br>  <br>  <br>  <br>
 
+
+
+<h3>Map avancement : 43% environt </h3>
+<h6>Nous sommes tres actif *</h6>
+    
+
+<html>
+<head>
+    <style>
+        #image-container {
+            width: 500px;
+            height: 500px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        #image-container img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            transform-origin: 0 0;
+            cursor: move;
+        }
+    </style>
+</head>
+<body>
+    <div id="image-container">
+        <img src="https://cdn.discordapp.com/attachments/1034794192733487194/1126623810783826041/jhv.png" alt="Image">
+    </div>
+
+    <script>
+        // Variables pour le zoom
+        var scale = 1;
+        var zoomSpeed = 0.1;
+
+        // Variables pour le déplacement
+        var isDragging = false;
+        var startMouseX = 0;
+        var startMouseY = 0;
+        var startScrollLeft = 0;
+        var startScrollTop = 0;
+
+        var imageContainer = document.getElementById('image-container');
+        var image = document.querySelector('#image-container img');
+
+        // Gestion du zoom avec la molette de la souris
+        imageContainer.addEventListener('wheel', function (e) {
+            e.preventDefault();
+
+            var delta = e.deltaY || e.detail || e.wheelDelta;
+
+            // Calcul du facteur de zoom en fonction de la direction de la molette
+            var zoomFactor = 1 + (zoomSpeed * (delta < 0 ? 1 : -1));
+
+            // Mise à jour de l'échelle
+            scale *= zoomFactor;
+
+            // Limitation de l'échelle pour éviter des valeurs trop extrêmes
+            if (scale < 0.1) {
+                scale = 0.1;
+            }
+            if (scale > 3) {
+                scale = 3;
+            }
+
+            // Mise à jour de la taille de l'image en fonction de l'échelle
+            image.style.width = scale * 100 + '%';
+            image.style.height = scale * 100 + '%';
+
+            // Réglage de la position de l'image pour garder le point de zoom centré
+            var boundingRect = imageContainer.getBoundingClientRect();
+            var mouseX = e.clientX - boundingRect.left;
+            var mouseY = e.clientY - boundingRect.top;
+
+            var scrollX = mouseX / boundingRect.width;
+            var scrollY = mouseY / boundingRect.height;
+
+            var scrollLeft = (scrollX * image.offsetWidth) - mouseX;
+            var scrollTop = (scrollY * image.offsetHeight) - mouseY;
+
+            imageContainer.scrollLeft += scrollLeft;
+            imageContainer.scrollTop += scrollTop;
+        });
+
+        // Gestion du déplacement de l'image avec le clic de la souris
+        image.addEventListener('mousedown', function (e) {
+            e.preventDefault();
+
+            isDragging = true;
+            startMouseX = e.clientX;
+            startMouseY = e.clientY;
+            startScrollLeft = imageContainer.scrollLeft;
+            startScrollTop = imageContainer.scrollTop;
+        });
+
+        // Gestion du déplacement de l'image avec le mouvement de la souris
+        window.addEventListener('mousemove', function (e) {
+            if (isDragging) {
+                var dx = e.clientX - startMouseX;
+                var dy = e.clientY - startMouseY;
+                imageContainer.scrollLeft = startScrollLeft - dx;
+                imageContainer.scrollTop = startScrollTop - dy;
+            }
+        });
+
+        // Arrêt du déplacement de l'image lorsque le clic de la souris est relâché
+        window.addEventListener('mouseup', function () {
+            isDragging = false;
+        });
+    </script>
+</body>
+</html>
+
+
+
+
+    
     <br>  <br>  <br>  <br>  <br>
 <hr> 
       <br>  <br>  <br>  <br>  <br>
