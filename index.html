@@ -589,7 +589,26 @@ border-radius : 59px;
 
 
 
+<!-- The code below includes your Project ID (P2SDb9oqeX0HBMqQlp0UQAONeXLh) -->
+<descope-wc
+	project-id="P2SDb9oqeX0HBMqQlp0UQAONeXLh"
+	flow-id="sign-up-or-in"
+	theme="light"
+/>
 
+<script>
+	const wcElement = document.getElementsByTagName('descope-wc')[0];
+
+	const onSuccess = (e) => {
+			console.log(e.detail.user.name)
+			console.log(e.detail.user.email)
+	};
+	const onError = (err) => console.log(err);
+
+	wcElement.addEventListener('success', onSuccess);
+	wcElement.addEventListener('error', onError);
+</script>
+  
 
 
 
