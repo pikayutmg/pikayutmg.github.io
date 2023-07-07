@@ -1,290 +1,198 @@
-<div class="main">
-  
-  <div class="cardTop">
-    
-    <svg width="497" height="219" viewBox="0 0 497 219" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path fill-rule="evenodd" clip-rule="evenodd" d="M-38.5 196C-38.5 196 34 91 133.5 91C233 91 427 159 532.5 30C638 -99 518 236 518 236L-49 246.5L-38.5 196Z" fill="#FF768E"/>
-</svg>
-    
-    
-  
-  </div>
-  
-  
-    <div class="timeline">
-      
-      <h3>Updates</h3>
-      <label>Dernieres updates : 00:23 | 07.07.2023</label>
-      
-      
-      <div class="box">
-        
-        <div class="container">
-          
-          <div class="lines">
-            <div class="dot"></div>
-            <div class="line"></div>
-            <div class="dot"></div>
-            <div class="line"></div>
-            <div class="dot"></div>
-            <div class="line"></div>
-          </div>
-          
-          <div class="cards">
-            <div class="card">
-              
-              <h4>00:22 | 07.07.2023</h4>
-              <p> Optimisation du site + ameliorations Majeurs du site ! </p>
-            </div>
-            <div class="card mid">
-              <h4>00:40 | 07.07.2023</h4>
-              <p>page index en test <a href="https://pikayutmg.github.io/ebsayder/index-dev-06.07.2023.html"> y voir ? </a>   </p>
-            </div>
-            <div class="card">
-              <h4>heures |dates </h4>
-              <p> </p>
-            </div>
-          </div>
-          
-          
-          
+<!DOCTYPE html>
+<html lang="fr" >
+<head>
+  <meta charset="UTF-8">
+  <title>GFLP - Updates</title>
+  <link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<div class="wrapper">
+      <div class="card-container">
+        <svg
+          width="497"
+          height="219"
+          viewBox="0 0 497 219"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M-38.5 196C-38.5 196 34 91 133.5 91C233 91 427 159 532.5 30C638 -99 518 236 518 236L-49 246.5L-38.5 196Z"
+            fill="#FF768E"
+          />
+        </svg>
+      </div>
+      <div class="update-container">
+        <div class="basic-info">
+          <h1>Updates</h1>
+          <p>derniere update : 00:50 | 07.07.2023 "site Ebsayder"</p>
         </div>
-        
-        
-        
-        
-        <div class="bottom">
-          
-          <div class="btn">voirs toutes  updates</div>
-          
+        <div class="groups">
+          <div class="group">
+            <div class="time">00:22 | 07.07.2023"site Ebsayder"</div>
+            <div class="info">Optimisation du site + ameliorations Majeurs du site !</div>
+          </div>
+          <div class="group">
+            <div class="time">23:45 | 06.07.2023"site Ebsayder"</div>
+            <div class="info">Optimisation du site + ameliorations Majeurs du site ! <a href="https://pikayutmg.github.io/ebsayder/index-dev-06.07.2023.html">y voir?</a></div>
+          </div>
+          <div class="group">
+            <div class="time">00:35 "minecraft Ebsayder"</div>
+            <div class="info">Central nucleaire presque fini ( 85% ) </div>
+          </div>
+        </div>
+        <div class="show-all-update">
+          <button class="btn">Voir toutes les Updates ?</button>
         </div>
       </div>
-      
-      
     </div>
-</div>
-
-
-
-
-
-
+<!-- partial -->
+  
+</body>
+</html>
 
 
 
 <style>
 
-@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700");
 
-*{
-  
-  margin:0;
-  padding:0;
-  outline:none;
-  text-decoration:none;
-  list-style:none;
-  font-family: 'Mulish', sans-serif;
-  
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
+body {
+  background: #f2f2f2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
 
-body{
-  display:flex;
-  padding-top:50px;
-  justify-content:center;
-  background:#ecf1f5;
-  transform:scale(0.8) translateY(-50px);
-  
-  
+  padding: 5rem 0rem;
 }
-
-.cardTop{
-  
-  width:497px;
-  height:284px;
-  background: #FAC24F;
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.card-container {
+  width: 497px;
+  height: 284px;
   border-radius: 20px;
-  display:flex;
-  overflow:hidden;
-  align-items:flex-end;
+  background-color: #fac24f;
+  position: relative;
+}
+svg {
+  border-radius: 20px;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+.update-container {
+  width: 355px;
+  height: 696px;
+  background: rgba(236, 241, 245, 0.24);
+  border-radius: 10px 10px 0px 0px;
+  position: absolute;
+  left: 14.29%;
+  right: 14.29%;
+  top: 33%;
+  bottom: 19.24%;
+  backdrop-filter: blur(5px);
+  background-clip: padding-box;
+}
+.basic-info {
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-top: 40px;
+  margin-left: 66px;
+  margin-bottom: 45px;
+}
+.basic-info h1 {
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+.groups {
+  margin-left: 66px;
+  margin-right: 40px;
+}
+.group {
+  color: #2b2862;
+  width: 100%;
+  height: 118px;
+  background-color: rgba(255, 255, 255, 1);
+  padding: 25px;
+  margin-bottom: 10px;
+  box-shadow: 0px 16px 15px -10px rgba(105, 96, 215, 0.0944602);
+  border-radius: 10px;
+  position: relative;
+}
 
-  
-  
+.group::before {
+  content: '';
+  position: absolute;
+  left: -36px;
+  top: 50px;
+  width: 14px;
+  height: 14px;
+  background-color: rgba(209, 214, 230, 1);
+  border-radius: 50%;
+}
+.group::after {
+  content: '';
+  position: absolute;
+  left: -30px;
+  top: 50px;
+  width: 2px;
+  height: 128px;
+  background-color: rgba(209, 214, 230, 1);
+}
+.group:last-child::after {
+  content: '';
+  position: absolute;
+  left: -30px;
+  top: 50px;
+  width: 2px;
+  height: 78px;
+  background-color: rgba(209, 214, 230, 1);
+}
+
+.group .time {
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+.group .info {
+  line-height: 21.79px;
+}
+.show-all-update {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 35px 53px 45px 53px;
+  background-color: #fff;
+  z-index: 100;
+}
+.show-all-update .btn {
+  border: none;
+  border: 1px solid #8260d7;
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 5px;
+  font-weight: 700;
+  font-size: 14px;
+  padding: 22px 65px 21px 65px;
 }
 
 
-.timeline{
-  
-  width:355px;
-  height:696px;
-  background: #ECF1F524;
-  mix-blend-mode: normal;
-backdrop-filter: blur(15px);
-  
-  overflow:hidden;
- 
 
-
-position:absolute;
-  top:144px;
-  margin-left:71px;
-box-shadow: 0px 20px 53px -30px rgba(95, 102, 173, 0.566816);
-border-radius: 10px;
-
-  
-  
-  h3{
-    font-family: Open Sans;
-font-style: normal;
-font-weight: bold;
-font-size: 22px;
-line-height: 30px;
-color: #FFFFFF;
-    margin-left:66px;
-    margin-top:40px;
-
-
-
-  }
-  
-  label{
-    
-    font-family: Open Sans;
-font-style: normal;
-font-weight: normal;
-font-size: 16px;
-line-height: 22px;
-/* identical to box height */
-margin-left:66px;
-margin-top:10px;
-
-color: #FFFFFF;
-
-  }
-  
-  .box{
-    width:100%;
-    height:509px;
-    background:#fbfcfd;
-    margin-top:99.5px;
-    
-    
-    .container{
-      
-      width:100%;
-      height:357px;
-      display:flex;
-
-      .lines{
-        margin-left:40px;
-        margin-top:6px;
-        
-        
-        .dot{
-          width:14px;
-          height:14px;
-background: #D1D6E6;
-          border-radius:7px;
-        }
-        
-        .line{
-          height:103px;
-          width:2px;
-          background: #D1D6E6;
-          margin-left:5.3px;
-        }
-      }
-      .cards{
-        
-        margin-left:12px;
-        transform:translateY(-50px);
-        .card{
-          width:249px;
-          height:93px;
-          padding-top:25px;
-          background: #FFFFFF;
-box-shadow:0 2px 2px 0  #eeeeee40;
-border-radius: 10px;
-          
-          box-shadow: 0px 16px 15px -10px rgba(105, 96, 215, 0.0944602);
-          margin-bottom:10px;
-          
-          &.mid{
-   
-            height:71px;
-          }
-          
-          h4{
-            
-            font-family: Open Sans;
-font-style: normal;
-font-weight: bold;
-font-size: 14px;
-line-height: 19px;
-margin-left:25px;
-            margin-bottom:5px;
-            
-        
-
-
-color: #2B2862;
-
-          }
-          
-          p{
-            
-            font-family: Open Sans;
-font-style: normal;
-font-weight: normal;
-font-size: 16px;
-line-height: 22px;
-
-color: #2B2862;
-  margin-left:25px;
-          }
-        }
-      }
-    
-    }
-    
-    .bottom{
-      width:100%;
-      height:107px;
-        background:#fff;
-      box-shadow:0 0 2px #eeeeee50;
-      padding-top:45px;
-      
-      .btn{
-        width:249px;
-        height:62px;
-        background: #FFFFFF40;
-mix-blend-mode: normal;
-cursor:pointer;
-border: 1px solid #8260D780;
-border-radius: 5px;
-        
-        display:flex;
-        align-items:center;
-        justify-content:center;
-        font-family: Open Sans;
-font-style: normal;
-font-weight: bold;
-font-size: 14px;
-line-height: 19px;
-color: #2B2862;
-       
-        margin-left:53px;
-        transition:0.3s;
-        background:#2B2862;
-          color:#fff;
-           border-color:#2B2862;
-        
-        &:hover{
-           transform:scale(1.03)
-          
-        }
-      }
-    }
-  }
-}
-  
 </style>
