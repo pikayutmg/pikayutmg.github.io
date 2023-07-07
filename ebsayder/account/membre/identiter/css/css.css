@@ -33,6 +33,9 @@
   
    --tag-12:#F2937F;
   --tag-12-text:#5b3c11;
+  
+     --tag-13:#CFCEFE;
+  --tag-13-text:#2B59F5;
  
   
 
@@ -192,6 +195,12 @@ h1 {
   color: var(--tag-12-text);
   background-color: var(--tag-12);
 }
+
+.task__tag--ia {
+  color: var(--tag-13-text);
+  background-color: var(--tag-13);
+}
+
 
 
 
