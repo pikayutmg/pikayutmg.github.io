@@ -176,7 +176,138 @@ function chargement(){
 
 
 
+<br>     <br>     <br>     <br>     <br>     <br>     <br>
 
+
+
+                 <!DOCTYPE html>
+<html>
+<head>
+  <title>GFLP-LSP|•Connect</title>
+  <style>
+    body {
+
+        background: #e6f3ff;
+    }
+    .locker {
+      width: 200px;
+      height: 200px;
+      border: 1px solid black;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      border-radius: 15px;
+      background: #252525;
+      color: aliceblue;
+    }
+
+    .interface {
+      display: none;
+      text-align: center;
+    }
+
+    .iframe-container {
+      margin-top: 20px;
+      position: relative;
+      overflow: hidden;
+      padding-top: 56.25%; /* Ratio 16:9 pour les vidéos */
+    }
+
+    .iframe-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 1px ;
+      border-radius: 30px;
+    }
+
+    .confirm{
+
+        background: #7ae3b0;
+        border : 0px ;
+        color: black;
+        border-radius: 10px;
+    }
+
+    .ce {
+
+        border: 0px;
+        border-radius: 15px;
+        background: #c3e4ff;
+    }
+  </style>
+</head><body>
+    <center>
+<p><h2>GFLP - LSP</h2><h6>recherche</h6></p>
+
+
+
+
+  <div class="locker" id="locker">
+    <h2>Ebsayder - Gouv connect</h2>
+    <input  class="ce" type="text" id="username" placeholder="ID (fd)">
+    <br><input class="ce" type="password" id="password" placeholder=" ID (01)">
+   <br> <button class="confirm" onclick="unlockLocker()">Confirmer</button>
+  <br></div>
+</center>
+  <div class="interface" id="interface">
+    <h2>Bienvenue, Utilisateur!</h2>
+    <div class="iframe-container">
+      <a id="identity-link" target="_blank" href="">Voir l'identité</a>
+      <iframe id="identity-frame" sandbox="allow-same-origin allow-scripts allow-popups"></iframe>
+    </div>
+    <div class="iframe-container">
+      <a id="other-link" target="_blank" href="">Amande |Casier judiciaire |contrat </a>
+      <iframe id="other-frame" sandbox="allow-same-origin allow-scripts allow-popups"></iframe>
+    </div>
+  </div>
+
+  <script src="https://source-devMG.github.io/template/source/dev/Code/Id/new-dev/account/Gflp/id-accont/config,/id.js"></script>
+  <script>
+    function unlockLocker() {
+      var usernameInput = document.getElementById('username');
+      var passwordInput = document.getElementById('password');
+      var username = usernameInput.value;
+      var password = passwordInput.value;
+
+      // Vérifier les informations d'identification de l'utilisateur
+      if (checkCredentials(username, password)) {
+        var locker = document.getElementById('locker');
+        locker.style.display = 'none';
+
+        var interface = document.getElementById('interface');
+        interface.style.display = 'block';
+
+        var welcomeMessage = interface.getElementsByTagName('h2')[0];
+        welcomeMessage.textContent = 'Bienvenue, ' + username + '!';
+
+        var identityLink = document.getElementById('identity-link');
+        var identityFrame = document.getElementById('identity-frame');
+        var identityURL = 'https://pikayutmg.github.io/ebsayder/account/membre/identiter/' + username + password + '.html';
+        identityLink.href = identityURL;
+        identityFrame.src = identityURL;
+
+        var otherLink = document.getElementById('other-link');
+        var otherFrame = document.getElementById('other-frame');
+        var otherURL = 'https://pikayutmg.github.io/ebsayder/account/membre/identiter/icjac/' + username + password + '.html';
+        otherLink.href = otherURL;
+        otherFrame.src = otherURL;
+      } else {
+        alert('Nom d\'utilisateur ou mot de passe incorrect. Veuillez réessayer.');
+      }
+    }
+  </script>
+</body>
+</html>
+
+
+
+
+
+                 <br>     <br>     <br>     <br>     <br>     <br>     <br>
 
           <div class='task__stats'>
             <span><time datetime="2021-11-24T20:00:00"><i class="fas fa-flag"></i>A voir sur notre discord . (date) </time></span>
