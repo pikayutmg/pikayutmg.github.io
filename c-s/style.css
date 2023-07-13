@@ -399,6 +399,22 @@ https://www.html5rocks.com/en/tutorials/speed/high-performance-animations/
     -webkit-animation-delay: 0.2s;
 }
 
+
+
+
+::selection{
+    background: #0800ff;
+
+
+}
+
+
+img {
+width: 20px;
+height: 20px;
+}
+
+
 #masthead.is-active .col:nth-child(4) {
     -webkit-animation-delay: 0.3s;
 }
