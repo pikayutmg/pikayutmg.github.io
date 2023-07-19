@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>ChatGPT</title>
+    <style>
+        .chat-container {
+            width: 400px;
+            height: 500px;
+            border: 1px solid #ccc;
+            overflow-y: scroll;
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-container" id="chat-container"></div>
+    <input type="text" id="user-input">
+    <button onclick="sendMessage()">Send</button>
+
+    <script src="https://openai.com/api/chatgpt.js"></script>
+    <script>
+        const chatContainer = document.getElementById('chat-container');
+        const userInput = document.getElementById('user-input');
+
+        const chatGPT = new ChatGPT({
+            model:'gpt-3.5-turbo',
+            apiKey:'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' // Remplacez 'YOUR_API_KEY' par votre propre clé API OpenAI
+        });
+
+        const appendMessage = (message, sender) => {
+            const messageElement = document.createElement('div');
+            messageElement.innerHTML = `<strong>${sender}:</strong> ${message}`;
+            chatContainer.appendChild(messageElement);
+        };
+
+        // Définir la fonction sendMessage avant l'appel du bouton
+        async function sendMessage() {
+            const userMessage = userInput.value;
+            userInput.value = '';
+            appendMessage(userMessage, 'User');
+
+            const botMessage = await chatGPT.sendMessage(userMessage);
+            appendMessage(botMessage, 'ChatGPT');
+        }
+    </script>
+</body>
+</html>
