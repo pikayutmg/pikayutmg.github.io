@@ -17,14 +17,14 @@
     <input type="text" id="user-input">
     <button onclick="sendMessage()">Send</button>
 
-    <script src="https://openai.com/api/chatgpt.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@openai/chatgpt@1.0.0/dist/chatgpt.min.js"></script>
     <script>
         const chatContainer = document.getElementById('chat-container');
         const userInput = document.getElementById('user-input');
 
         const chatGPT = new ChatGPT({
-            model:'gpt-3.5-turbo',
-            apiKey:'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' // Remplacez 'YOUR_API_KEY' par votre propre clé API OpenAI
+            model: 'gpt-3.5-turbo',
+            apiKey: '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'
         });
 
         const appendMessage = (message, sender) => {
@@ -33,14 +33,18 @@
             chatContainer.appendChild(messageElement);
         };
 
-        // Définir la fonction sendMessage avant l'appel du bouton
         async function sendMessage() {
             const userMessage = userInput.value;
             userInput.value = '';
             appendMessage(userMessage, 'User');
 
-            const botMessage = await chatGPT.sendMessage(userMessage);
-            appendMessage(botMessage, 'ChatGPT');
+            try {
+                const botMessage = await chatGPT.sendMessage(userMessage);
+                appendMessage(botMessage, 'ChatGPT');
+            } catch (error) {
+                console.error('Error fetching response from ChatGPT:', error);
+                appendMessage('An error occurred while communicating with ChatGPT.', 'ChatGPT');
+            }
         }
     </script>
 </body>
