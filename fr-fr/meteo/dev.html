@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Météo France</title>
+</head>
+<body>
+  <h1>Météo France</h1>
+  <div id="weatherData"></div>
+
+
+  <script>
+
+    document.addEventListener("DOMContentLoaded", function () {
+  const apiEndpoint = "https://public-api.meteofrance.fr/public/DPVigilance/v1/textesvigilance/encours";
+
+  fetch(apiEndpoint)
+    .then((response) => response.json())
+    .then((data) => {
+      // Assuming that the data format from the API is in JSON format
+      const weatherData = JSON.stringify(data, null, 2);
+
+      // Display the weather data on the webpage
+      const weatherDataDiv = document.getElementById("weatherData");
+      weatherDataDiv.innerText = weatherData;
+    })
+    .catch((error) => {
+      console.error("Error fetching weather data:", error);
+    });
+});
+
+    
+  </script>
+   
+</body>
+</html>
