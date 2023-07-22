@@ -265,34 +265,41 @@
        <div class="exemple">
 <div class="code">
   <body>
-    <button id="copierScriptsBtn">Copier les scripts</button>
+<button id="copyButton">Copier les script <h6>22.07.2023</h6><details><summary>utilisation</summary> ( color V1 patch 1 , Plugin v1 patch 0 and 1 ) </details></button>
 
     <script>
-        function copierScripts() {
-            const scripts = [
+      // Fonction pour copier le code HTML dans le presse-papiers
+function copierCodeHTML() {
+  const codeHTML = `
+    <script src="https://pikayutmg.github.io/plugin/lsp-gflp-srdmg/v1/color-p-0.js"></script>
+    <script src="https://pikayutmg.github.io/plugin/lsp-gflp-srdmg/v1/script-gflp-realisepatch.js"></script>
+    <script src="https:/pikayutmg.github.io/plugin/lsp-gflp-srdmg/v1/color-p-0.js"></script>
+  `;
 
+  // Créer un élément textarea pour stocker le code HTML
+  const textarea = document.createElement('textarea');
+  textarea.value = codeHTML;
 
+  // Ajouter l'élément textarea à la page (caché)
+  document.body.appendChild(textarea);
 
-            "<script src="https://pikayutmg.github.io/plugin/lsp-gflp-srdmg/v1/color-p-0.js"></script>",
-            "<script src="https://pikayutmg.github.io/plugin/lsp-gflp-srdmg/v1/script-gflp-realisepatch.js"></script>",
-            "<script src="https://pikayutmg.github.io/plugin/lsp-gflp-srdmg/V2/script-gflp-dev.js"></script> "
-    
-              
-            ];
+  // Sélectionner le texte dans l'élément textarea
+  textarea.select();
 
-            const textArea = document.createElement('textarea');
-            textArea.value = scripts.join('\n');
+  // Copier le texte sélectionné dans le presse-papiers
+  document.execCommand('copy');
 
-            document.body.appendChild(textArea);
-            textArea.select();
-            document.execCommand('copy');
-            document.body.removeChild(textArea);
+  // Supprimer l'élément textarea car il n'est plus nécessaire
+  document.body.removeChild(textarea);
 
-            alert('Les plugins ont été copiés dans le presse-papiers!');
-        }
+  // Afficher un message pour indiquer que le code a été copié
+  alert('Le code a été copié dans le presse-papiers !');
+}
 
-        const copierScriptsBtn = document.getElementById('copierScriptsBtn');
-        copierScriptsBtn.addEventListener('click', copierScripts);
+// Ajouter un écouteur d'événement pour le bouton de copie
+const copyButton = document.getElementById('copyButton');
+copyButton.addEventListener('click', copierCodeHTML);
+
     </script>
 </body>
 
