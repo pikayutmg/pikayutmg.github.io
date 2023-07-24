@@ -1,13 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Alerte personnalisée avec balise <g-alert></title>
-</head>
-<body>
-    <!-- Utilisation de la balise <g-alert> avec un message d'alerte personnalisé -->
-    <g-alert alert="Ceci est un message personnalisé">Cliquez ici pour afficher l'alerte</g-alert>
-
-    <script>
+ 
         // Définir la classe de l'alerte personnalisée
         class GAlert extends HTMLElement {
             connectedCallback() {
@@ -29,7 +20,4 @@
 
         // Enregistrer l'élément personnalisé
         customElements.define('g-alert', GAlert);
-    </script>
-</body>
-</html>
-                  
+ 
