@@ -1420,10 +1420,24 @@ border-radius : 59px;
 
 
 
-      <style>
+      <script>
+$(".custom-carousel").owlCarousel({
+  autoWidth: true,
+  loop: true
+});
+$(document).ready(function () {
+  $(".custom-carousel .item").click(function () {
+    $(".custom-carousel .item").not($(this)).removeClass("active");
+    $(this).toggleClass("active");
+  });
+});
+</script>
 
 
-      @charset "utf-8";
+
+<style>
+
+@charset "utf-8";
 
 /******* Fonts Import Start **********/
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
@@ -1681,6 +1695,6 @@ button {
   }
 }
 
+</style>
 
-
-      </style>
+      
