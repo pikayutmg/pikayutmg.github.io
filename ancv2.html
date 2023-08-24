@@ -92,7 +92,7 @@
       const selectedTag = tagSelector.value;
       outputDiv.innerHTML = '';
 
-      fetch('./json.json')
+      fetch('https://enesgp.github.io/json/info.json')
         .then(response => response.json())
         .then(jsonData => {
           jsonData.forEach(item => {
