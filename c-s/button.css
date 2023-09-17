@@ -1,0 +1,99 @@
+
+   .white {
+  background : #ffffff;
+  color: #353535;
+  padding : 15px 35px;
+  border-radius : 59px;
+  text-decoration: none;
+  }
+  
+  img {
+  width: 20px;
+  height: 20px;
+       }
+  
+  .blue {
+  background : #345fe1;
+  color: #353535;
+  padding : 15px 35px;
+  border-radius : 59px;
+  text-decoration: none;
+  }
+  
+  .green {
+  background : #6deb84;
+  color: #353535;
+  padding : 15px 35px;
+  border-radius : 59px;
+  text-decoration: none;
+  }
+  
+  
+  .red {
+  background : #f85555;
+  color: #353535;
+  padding : 15px 35px;
+  border-radius : 59px;
+  text-decoration: none;
+  }
+  
+  .black{
+  background : #353535;
+  color: #d0d0d0;
+  padding : 15px 35px;
+  border-radius : 59px;
+  text-decoration: none;
+  }
+  
+    .infonb {
+       
+       background : #F4516D;
+       color : black;
+       border-radius: 50px;
+      padding: 15px 55px;
+             
+       }
+  
+  .yellow {
+  background : #f3ff70;
+  color: #353535;
+  padding : 15px 35px;
+  border-radius : 59px;
+  text-decoration: none;
+  }
+  
+  
+  .gray {
+  background : #3d3d3d;
+  color: #cbcbcb;
+  padding : 15px 35px;
+  border-radius : 59px;
+  text-decoration: none;
+  }
+  
+  .purple {
+  background :  #b372f1;
+  color: #3d3d3d;
+  padding : 15px 35px;
+  border-radius : 59px;
+  text-decoration: none;
+  }
+  
+  
+  .tiktok {
+  background: linear-gradient(70deg, #5a5aff, #ff536f);
+  color: #3d3d3d;
+  padding : 15px 35px;
+  border-radius : 59px;
+  text-decoration: none;
+  }
+  
+  
+  .lspdfr {
+  background: linear-gradient(70deg, #3939bf, #4b4344);
+  color: #717171;
+  padding : 15px 35px;
+  border-radius : 59px;
+  text-decoration: none;
+  }
+  
