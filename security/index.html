@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="Fr" >
+ 
+    <head>
+              <meta charset="utf-8">
+              <!-- PikaYutMG dev  -->
+   <script src="https://pikayutmg.github.io/plugin/site/index.js"></script>
+   <title>GFLP - LSP / SRDMG Secure™|• Acceuil .</title>
+   <link rel="stylesheet" href="https://gflp-e.vercel.app/gflp_lsp_srdmg/s-c/style.css">
+   <link rel="stylesheet" href="https://gflp-e.vercel.app/gflp_lsp_srdmg/s-c/widget.css">
+   <link rel="icon" href="https://pikayutmg.github.io/pikayut/favicon.ico">
+   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+   <meta name="description" content="MultiGaming and code source ™">
+   <meta name="keywords" content="PikaYutMG">
+   <meta name="author" content="PikaYut">
+   <meta property="og:image" content="https://pikayutmg.github.io/favicon.png">
+   <meta property="og:image" content="https://pikayutmg.github.io/favicon.png">
+
+<!-- google tag (analytics) -->
+ 
+<!-- Clarity -->
+
+<!-- Google Tag Manager -->
+   
+<!-- Google Tag Manager (noscript) -->
+   
+<!-- End Google Tag Manager (noscript) -->
+
+<!-- CSS -->
+
+<style>
+
+body {
+
+  
+  text-decoration: none;
+  
+
+}
+
+</style>
+</head>
+    
+
+
+
+ 
+
+  <body>
+
+    <!-- Menu -->
+
+     
+<details>
+    <summary></summary>
+    <nav class="menu">
+   
+         <a href="https://pikayutmg.github.io/">HOME</a> 
+         
+  
+    </nav>
+  </details>
+
+
+  <!-- fin du menu MG-->
+
+  
+ 
+
+
+
+  <!-- reste du site -->
+
+
+  <div class="category">
+    <h2>Bienvenue dans l'esoace SecureTM ,    </h2>
+    <ul class="grade-list">
+       <li>  Nous gerons la securiter en code source .  </li>
+       <li> Notres Plug-IN fournit  </li>
+       <li> <code>
+         <li> - IP </li>
+         <li> - HL ( Help for Loc )</li>
+         <li> - Loc ( localisation ) Desactiver</li>
+         <li> - SE ( Systeme d'exploit )</li>
+         <li> - MF </li>
+         <li> - FB ( Fabriquant )</li>
+         <li> - ECD </li> 
+         <li> - US ( USER AGENT )</li>
+         <li> - VE ( VERSION ) </li>
+         <li> - Autres details LSP</li>
+       </code></li>
+       
+
+ 
+       </li>
+    </ul>
+  </div>
+
+
+  <div class="category">
+    <h2>Lien   </h2>
+    <ul class="grade-list">
+       <li>  <a href="./security"> Secure pages </a> </li>
+      <li>  <a href="./plugin/"> Plugin pages </a> </li>
+        
+    </ul>
+  </div>
+
+
+
+    
+
+  <div class="category">
+    <h2>A propos de nous ?   </h2>
+    <ul class="grade-list">
+       <li>  Nous avons developper ce systeme pour detecter les bots , </li>
+       <li> Les mauvaises personne:E/S , pour les signaler ! </li>
+       <li> Ce projet avait pour but de proteger lequipe GFLP-LSP-SRDMG contres les  malfrat. !</li>
+    </ul>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<style>
+   /*Style général pour le corps de la page */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+  background-color: #f2f2f2;
+}
+
+/* Style pour l'affichage des données */
+#dataDisplay {
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 20px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Style pour les titres */
+h2 {
+  color: #333;
+}
+
+/* Style pour les propriétés et valeurs */
+p {
+  margin: 5px 0;
+  color: #666;
+}
+
+/* Style pour les propriétés en gras */
+strong {
+  font-weight: bold;
+}
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<body>
+
+  <div id="dataDisplay"></div>
+  
+  
+  
+  <script>
+    var jsonUrl = "https://gflp-e.vercel.app/gflp_lsp_srdmg/liste.json";
+    var dataDisplay = document.getElementById("dataDisplay");
+
+    fetch(jsonUrl)
+      .then(response => response.json())
+      .then(data => {
+        for (var id in data) {
+          var person = data[id];
+          var personInfo = "<h2>ID: " + id + "</h2>";
+          for (var key in person) {
+            personInfo += "<p><strong>" + key + ":</strong> " + person[key] + "</p>";
+          }
+
+          var profileButton = document.createElement("button");
+          profileButton.innerHTML = "Afficher le profil";
+          profileButton.addEventListener("click", createProfileButtonHandler(person.Profile));
+
+          var personDiv = document.createElement("div");
+          personDiv.className = "person";
+          personDiv.innerHTML = personInfo;
+          personDiv.appendChild(profileButton);
+
+          dataDisplay.appendChild(personDiv);
+        }
+      })
+      .catch(error => {
+        console.error("Une erreur s'est produite lors de la récupération des données : ", error);
+      });
+
+    function createProfileButtonHandler(profileUrl) {
+      return function() {
+        if (profileUrl) {
+          window.open(profileUrl, "_blank");
+        }
+      };
+    }
+  </script>
+</body>
+
+
+
+
+  
+
+
+
+  
+
+  
+
+
+  <!-- fin du reste du site -->
+
+
+
+
+
+      <!--  Discord PUB -->
+
+
+       <p>Nous rejoindre ?</p>
+       <p>⚠️|•Communautées strict en term de <a href="https://source-devmg.github.io/GFLP-LSP/discord.html"> CONDITIONS </a> . </p>
+       <p>🪪|•Verifiers les <a href="https://source-devmg.github.io/GFLP-LSP/discord-community.html"> avertissement + rapport </a> des membres . </p>
+       <p>🔰|•Serveur actif en termes de moderations , </p>
+       <p>🎫|•Serveur actif en termes de support (aide) , </p>
+       <p>✨|• Exclusivité V.I.P gratuit ! </p>
+       <iframe src="https://discord.com/widget?id=1034766016867225640&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+       <iframe src="https://gflp-e.vercel.app/gflp_lsp_srdmg" width="350" height="500" allowtransparency="true" frameborder="2" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+       <iframe src="https://gflp-e.vercel.app/gflp_lsp_srdmg/etat.html" width="350" height="500" allowtransparency="true" frameborder="2" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+       <iframe src="https://gflp-e.vercel.app/" width="350" height="500" allowtransparency="true" frameborder="2" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+
+
+
+
+      <!--  Discord PUB stop  -->
+
+
+      
+    
+      
+      
+      <!--  JavaScriptOpenGFLP  -->
+
+     <script src="https://enesgp.github.io/js/gflp/p/page.js"> </script>
+     <script src="https://enesgp.github.io/js/gflp/p/opti.js"> </script>
+     <script src="https://enesgp.github.io/js/gflp/p/1.js"> </script>
+     <script src="https://enesGP.github.io/js/gflp/here/here.js"> </script>
+            
+      <!-- JavaScriptStopGFLP  -->
+
+   
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+
+
+// Fonction pour vérifier si l'adresse IP de l'utilisateur est dans la liste noire
+function isIpBannie(adresseIpUtilisateur, ipListeNoire) {
+    return ipListeNoire.includes(adresseIpUtilisateur);
+}
+
+// Fonction pour effectuer la redirection si l'adresse IP est bannie
+function verifierEtRediriger(adresseIpUtilisateur, ipListeNoire) {
+    if (isIpBannie(adresseIpUtilisateur, ipListeNoire)) {
+        // Rediriger l'utilisateur vers la page de bannissement
+        window.location.href = "https://pikayutmg.github.io/redirect/ban.html";
+    }
+}
+
+// Récupérer la liste des adresses IP et l'adresse IP de l'utilisateur à partir du fichier JSON distant
+fetch("https://enesgp.github.io/ban.json")
+    .then(response => response.json())
+    .then(data => {
+        const adresseIpUtilisateur = data.adresseIpUtilisateur;
+        const ipListeNoire = data.ipBannies;
+        verifierEtRediriger(adresseIpUtilisateur, ipListeNoire);
+    })
+    .catch(error => {
+        console.error("Erreur lors de la récupération des données depuis le fichier JSON : " + error);
+    });
+    
+</script>
