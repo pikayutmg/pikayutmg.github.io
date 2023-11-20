@@ -1,1 +1,73 @@
-dev
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Votre Titre</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+    .bottom-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: #333;
+      display: flex;
+      justify-content: space-between;
+      padding: 10px;
+      box-sizing: border-box;
+      z-index: 999; 
+    }
+    .bottom-bar button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: white;
+    }
+    iframe {
+      width: 100%;
+      height: calc(100% - 40px);
+      border: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  </style>
+</head>
+<body>
+  <!-- Barre de navigation en bas -->
+  <div class="bottom-bar">
+    <button onclick="changeIframe('https://pikayutmg.github.io/application/version/1.9/open-webview8.html')">
+      <!-- Icône SVG pour Home -->
+      <svg width="24" height="24" viewBox="0 0 32 32">
+        <path fill="#FFF" d="M32 18.451l-16-12.42-16 12.42v-5.064l16-12.42 16 12.42zM28 18v12h-8v-8h-8v8h-8v-12l12-9z"></path>
+      </svg>
+    </button>
+    <button onclick="changeIframe('https://enesgp.github.io/fonts-e/select.html')">
+      <!-- Icône SVG pour Google -->
+      <svg width="24" height="24" viewBox="0 0 24 24">
+        <path fill="#4285f4" d="M22 12c0 5.523-4.477 10-10 10s-10-4.477-10-10c0-5.284 4.048-9.635 9.25-9.978v1.746c0 1.584 1.063 3.759 3.384 5.858 1.831 1.636 4.385 3.735 5.616 5.57h-5.616v4.415h9.978c1.617-3.744 2.546-7.919 2.546-12.415z"></path>
+      </svg>
+    </button>
+    <button onclick="changeIframe('https://PikaYutMG.github.io')">
+      <!-- Icône SVG pour PikaYutMG -->
+      <svg width="24" height="24" viewBox="0 0 512 512">
+        <path fill="#FFF" d="M466.895 305.125c-26.863-46.527-10.708-106.152 36.076-133.244l-50.313-87.146c-14.375 8.427-31.088 13.259-48.923 13.259-53.768 0-97.354-43.873-97.354-97.995h-100.629c0.133 16.705-4.037 33.641-12.979 49.126-26.862 46.528-86.578 62.351-133.431 35.379l-50.312 87.146c14.485 8.236 27.025 20.294 35.943 35.739 26.819 46.454 10.756 105.96-35.854 133.112l50.313 87.146c14.325-8.348 30.958-13.127 48.7-13.127 53.598 0 97.072 43.596 97.35 97.479h100.627c-0.043-16.537 4.136-33.285 12.983-48.609 26.818-46.453 86.388-62.297 133.207-35.506l50.313-87.145c-14.39-8.233-26.846-20.249-35.717-35.614zM256 359.666c-57.254 0-103.668-46.412-103.668-103.667 0-57.254 46.413-103.667 103.668-103.667s103.666 46.413 103.666 103.667c-0.001 57.255-46.412 103.667-103.666 103.667z"></path>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Contenu principal - iframe affichant le site par défaut -->
+  <iframe id="myIframe" src="https://pikayutmg.github.io/application/version/1.9/open-webview8.html"></iframe>
+
+  <script>
+    function changeIframe(src) {
+      document.getElementById('myIframe').src = src;
+    }
+  </script>
+</body>
+</html>
