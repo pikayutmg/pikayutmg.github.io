@@ -1,2 +1,263 @@
-Erreur 404 ,
-cette page n'est pas présente a l'heure actuelle.
+
+  
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="styles.css"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+	<title>Howard Armory Industries |• Recrutement </title>  <link rel="stylesheet" href="https://gflp-p.vercel.app/Howard/style.css">
+	<meta name="author" content="Aiden Howard">
+    <meta name="description" content="Etre recruter ?>
+    <meta property="og:title" content="Armurerie Howard">
+    <meta property="og:description" content="Etre recruter ?>
+    <meta property="og:image" content="https://cdn.discordapp.com/attachments/1143228500908703784/1143236726777716777/index.png?ex=656e0dab&is=655b98ab&hm=69ea895a625b3a07a72dcf970b2de0e705f03c2fcfdb7bc3a308cca25e7b97fb" type="image/png">
+   <link rel="icon" href="https://cdn.discordapp.com/attachments/1143228500908703784/1143236726777716777/index.png?ex=656e0dab&is=655b98ab&hm=69ea895a625b3a07a72dcf970b2de0e705f03c2fcfdb7bc3a308cca25e7b97fb" type="image/png">
+
+</head>
+<body>
+	<main id="main">
+		<section id="intro">
+			<div class="title">
+				<h1 id="title">Howard Armory</h1>
+				<p>Aiden Howard , Notres bien - aimer armurier , </p>
+				<br><br><p>
+
+					
+<style>
+  a {
+    color: white;
+  }
+</style>
+
+<font color="gray"><a href="../acceuil">Acceul </a></font>
+
+				</p>
+			</div>
+			<figure id="img-div">
+				<img id="image"
+					src="https://cdn.discordapp.com/attachments/751031131108802580/1178380024856969287/image.png?ex=6575eeeb&is=656379eb&hm=c8f39ba72b5b35ed66952126f4dfa7f906e3a2c5aacfbda991a4e9b61efcc9b7&"
+					alt="Howard Armory"
+				/>
+				<figcaption id="img-caption">
+					Howard Armory // Industries in Gmod
+				</figcaption>
+			</figure>
+		</section>
+		<section id="tribute-info">
+			<h2> Hum . . . </h2>
+			<p>
+			
+	<code> Rien ici ....</code>
+
+</p>
+			<hr><p>
+				
+<font color="white">
+<br>
+<br>
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulaire de Recrutement</title>
+    <script>
+        function validerRecrutement() {
+            var nom = document.getElementById('nom').value;
+            var prenom = document.getElementById('prenom').value;
+            var dateNaissance = document.getElementById('dateNaissance').value;
+            var emailDiscord = document.getElementById('emailDiscord').value;
+
+            var arme = document.getElementById('arme').value;
+            var licenceArme = document.getElementById('licenceArme').value;
+            var armeDetails = "";
+            if (arme === "oui") {
+                var parQuand = document.getElementById('parQuand').value;
+                armeDetails = `Arme: ${document.getElementById('typeArme').value}, Licence: ${licenceArme}, Par: ${parQuand}`;
+            }
+
+            var cv = document.getElementById('cv').value;
+            var lettreMotivation = document.getElementById('lettreMotivation').value;
+            var placeSouhaitez = document.getElementById('placeSouhaitez').value;
+
+            var donneesRecrutement = {
+                identite: {
+                    Nom: nom,
+                    Prenom: prenom,
+                    "Date de naissance": dateNaissance,
+                    "Email (Discord)": emailDiscord
+                },
+                howardArmoryLicence: {
+                    "Arme": armeDetails
+                },
+                informations: {
+                    "CV": cv,
+                    "Lettre de motivation": lettreMotivation,
+                    "Place souhaitée": placeSouhaitez
+                }
+            };
+
+            fetch('WEBHOOK_DISCORD_URL', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    embeds: [{
+                        title: "Formulaire de Recrutement",
+                        fields: [
+                            {
+                                name: "🪪 Identité",
+                                value: `
+                                - Nom: ${donneesRecrutement.identite.Nom}
+                                - Prénom: ${donneesRecrutement.identite.Prenom}
+                                - Date de naissance: ${donneesRecrutement.identite["Date de naissance"]}
+                                - Email (Discord): ${donneesRecrutement.identite["Email (Discord)"]}
+                                `
+                            },
+                            {
+                                name: "❔ Howard Armory • Licence d'arme",
+                                value: `
+                                ${donneesRecrutement.howardArmoryLicence["Arme"]}
+                                `
+                            },
+                            {
+                                name: "✉️ Informations",
+                                value: `
+                                - CV: ${donneesRecrutement.informations.CV}
+                                - Lettre de motivation: ${donneesRecrutement.informations["Lettre de motivation"]}
+                                - Place souhaitée: ${donneesRecrutement.informations["Place souhaitée"]}
+                                `
+                            }
+                        ]
+                    }]
+                })
+            }).then(response => response.json())
+              .then(data => console.log(data))
+              .catch(error => console.error('Erreur lors de l\'envoi des données:', error));
+
+            return false;
+        }
+    </script>
+</head>
+<body>
+    <h1>Formulaire de Recrutement</h1>
+    <form onsubmit="return validerRecrutement()">
+        <!-- Identité -->
+        <h2>🪪 Identité</h2>
+        <label for="nom">Nom:</label>
+        <input type="text" id="nom" required><br>
+
+        <label for="prenom">Prénom:</label>
+        <input type="text" id="prenom" required><br>
+
+        <label for="dateNaissance">Date de naissance:</label>
+        <input type="date" id="dateNaissance" required><br>
+
+        <label for="emailDiscord">Email (Discord):</label>
+        <input type="text" id="emailDiscord" required><br>
+
+        <!-- Howard Armory • Licence d'arme -->
+        <h2>❔ Howard Armory • Licence d'arme</h2>
+        <label for="arme">Arme, si oui laquelle:</label>
+        <select id="arme" onchange="afficherArmeDetails()">
+            <option value="non">Non</option>
+            <option value="oui">Oui</option>
+        </select><br>
+
+        <div id="detailsArme" style="display: none;">
+            <label for="typeArme">Type d'arme:</label>
+            <input type="text" id="typeArme"><br>
+
+            <label for="licenceArme">Licence:</label>
+            <input type="text" id="licenceArme"><br>
+
+            <label for="parQuand">Si oui, par quand:</label>
+            <input type="text" id="parQuand"><br>
+        </div>
+
+        <!-- Informations -->
+        <h2>✉️ Informations</h2>
+        <label for="cv">CV:</label>
+        <textarea id="cv" required></textarea><br>
+
+        <label for="lettreMotivation">Lettre de motivation:</label>
+        <textarea id="lettreMotivation" required></textarea><br>
+
+        <label for="placeSouhaitez">Votre place souhaitée:</label>
+        <select id="placeSouhaitez" required>
+            <option value="vendeur">Vendeur</option>
+            <option value="agentSecurite">Agent de sécurité</option>
+            <option value="nettoyage">Nettoyage</option>
+            <option value="autres">Autres</option>
+        </select><br>
+
+        <input type="submit" value="Confirmer">
+    </form>
+
+    <script>
+        function afficherArmeDetails() {
+            var detailsArme = document.getElementById('detailsArme');
+            var choixArme = document.getElementById('arme').value;
+
+            if (choixArme === 'oui') {
+                detailsArme.style.display = 'block';
+            } else {
+                detailsArme.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+	</font>		</p>
+		</section>
+		
+		
+				<center><cite>-- Howard Armory --</cite></center>
+			</blockquote>
+			<h3>
+				Nous rejoindres ?
+				<a 
+					id="tribute-link"
+					href="https://en.wikipedia.org/wiki/John_Browning"
+					target="_blank"
+					><br><font color="#2e72e8"></font> <img src="https://cdn.discordapp.com/attachments/1178355455832100874/1178378575414562930/image.png?ex=6575ed91&is=65637891&hm=3a0282a98755ad7dab13dcdf4c8439aad58680b53bef612fd7051965a6a83432&" alt="Icône" style="width: 100px; height: 100px;">
+					</a>
+			</h3>
+		</section>
+	</main>
+</body>
+</html>
+<!-- partial -->
+  
+</body>
+</html>
+
+
+
+
