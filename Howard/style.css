@@ -1,0 +1,117 @@
+body {
+  background-color: #24292A;
+  color: #909090;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif;
+  font-size: 10px;
+  line-height: 1.5;
+}
+body p {
+  text-align: justify;
+}
+body #main {
+  display: flex;
+  align-items: center;
+  flex-flow: column nowrap;
+  width: 900px;
+  margin: 2rem auto;
+  font-size: 1.2rem;
+}
+@media (max-width: 900px) {
+  body #main {
+    width: 100%;
+    margin: 0;
+  }
+}
+body h1, body h2, body h3 {
+  color: #D7E2E7;
+}
+body #intro {
+  width: 100%;
+  text-align: center;
+}
+body #intro .title {
+  background: #354048;
+  padding: 1em;
+}
+body #intro .title h1 {
+  font-size: 2em;
+}
+body #intro .title p {
+  text-align: center;
+}
+body #intro figure {
+  margin: 2rem 0;
+}
+body #intro figure img {
+  width: 100%;
+  object-fit: cover;
+}
+body #intro figure figcaption {
+  font-size: 0.8rem;
+  font-style: italic;
+  text-align: center;
+}
+body #info p {
+  text-indent: 2rem;
+}
+body #time-line {
+  margin: 0 1rem;
+  text-align: center;
+}
+body #time-line ul {
+  padding-left: 0;
+  margin: 2rem;
+}
+@media (max-width: 300px) {
+  body #time-line ul {
+    width: 100%;
+    margin: 0.5rem;
+  }
+}
+body #time-line ul li {
+  text-align: justify;
+  margin: 1em 0;
+}
+body #time-line ul li strong {
+  color: lightgrey;
+}
+body #read-more {
+  text-align: center;
+}
+body #read-more figure {
+  margin: 2rem 0;
+}
+body #read-more figure img {
+  width: 100%;
+  object-fit: cover;
+}
+body #read-more figure figcaption {
+  font-size: 0.8rem;
+  font-style: italic;
+  text-align: center;
+}
+body #read-more p {
+  text-indent: 2rem;
+}
+body #read-more blockquote {
+  font-style: italic;
+  max-width: 500px;
+  margin: 0 auto 50px auto;
+  text-align: left;
+}
+@media (max-width: 300px) {
+  body #read-more blockquote {
+    margin: 1rem;
+  }
+}
+body #read-more a {
+  color: #067aaf;
+}
+body #read-more a:visited {
+  color: #19043b;
+}
+
+
+img { 
+  border-radius: 10px;
+}
