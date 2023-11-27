@@ -1,4 +1,49 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulaire</title>
+    <style>
+        /* Style pour la boîte de notification */
+        .notif {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            background-color: #f1f1f1;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
 
+<!-- Bouton pour afficher la boîte de dialogue -->
+
+
+<!-- Boîte de notification -->
+<div id="notification" class="notif">
+    Formulaire envoyé ✅
+</div>
+
+<!-- Script JavaScript pour afficher la boîte de dialogue -->
+<script>
+    function afficherNotification() {
+        // Afficher la boîte de notification
+        document.getElementById('notification').style.display = 'block';
+
+        // Masquer la boîte de notification après quelques secondes (3000 millisecondes dans cet exemple)
+        setTimeout(function() {
+            document.getElementById('notification').style.display = 'none';
+        }, 3000);
+    }
+</script>
+
+</body>
+</html>
   
 <!DOCTYPE html>
 <html>
@@ -349,7 +394,7 @@ textarea {
         <label for="autresDetails">Autres détails:</label>
         <textarea id="autresDetails"></textarea><br>
 
-        <input type="submit" value="Confirmer">
+      <button onclick="afficherNotification()">  <input type="submit" value="Confirmer"></button>
     </form>
 </body>
 
