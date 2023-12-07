@@ -1,0 +1,363 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    
+    <link rel="stylesheet" href="https://pikayutmg.github.io/Howard/mvp.css">
+
+    <meta charset="utf-8">
+  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Howard Armory Industries |•  Recrutement</title>   
+	<meta name="author" content="Aiden Howard">
+    <meta name="description" content="Une armurerie très réputée grâce à ses prix abordables.//recrutement">
+    <meta property="og:title" content="Armurerie Howard // Recrutement">
+    <meta property="og:description" content="Une armurerie très réputée grâce à ses prix abordables.// Recrutement">
+    <meta property="og:image" content="https://cdn.discordapp.com/attachments/1143228500908703784/1143236726777716777/index.png?ex=656e0dab&is=655b98ab&hm=69ea895a625b3a07a72dcf970b2de0e705f03c2fcfdb7bc3a308cca25e7b97fb" type="image/png">
+   <link rel="icon" href="https://cdn.discordapp.com/attachments/1143228500908703784/1143236726777716777/index.png?ex=656e0dab&is=655b98ab&hm=69ea895a625b3a07a72dcf970b2de0e705f03c2fcfdb7bc3a308cca25e7b97fb" type="image/png">
+
+</head>
+
+<body>
+    <header>
+        <nav>
+            <a href="/"><style> img { border-radius : 10px;}</style><img alt="Logo" src="https://cdn.discordapp.com/attachments/751031131108802580/1178380024856969287/image.png?ex=6575eeeb&is=656379eb&hm=c8f39ba72b5b35ed66952126f4dfa7f906e3a2c5aacfbda991a4e9b61efcc9b7&" height="70"></a>
+            <ul>
+                <li>// Howard Armory Recrutement </li>
+                <
+            </ul>
+        </nav>
+        <h1>Bienvenue chez <i>Howard</i>   <u>Armory</u></h1>
+        <p> Web gerer par <mark> Mr Aidan Howard .</mark></p>
+        <br>
+        <p><a href="../index.html"><i>Acceuil //</i></a><a href="https://discord.gg/jwxjxXmzgk"><b>Notres discord ? &rarr;</b></a></p>
+    </header>
+    <main>
+        <hr>
+        <section id="section-1">
+            <header>
+                <h2> Informations concernant la déclaration</h2>
+                <p> Voici les informations nécessaires :
+</p>
+            </header>
+            <aside>
+                <h3> 💾 Le recrutement </h3>
+                <p> Votre recrutement sera soigneusement enregistrée dans notre registre pour une documentation complète !*</p>
+                <p>Details <small> Renseigner sur discord</small></p>
+            </aside>
+            <aside>
+                <h3>ℹ️ Vous et notres registes</h3>
+                <p>Une fois confirmées, les informations fournies seront dans notre registre ! </p>
+            </aside>
+           
+        </section>
+        <hr>
+        
+
+        <hr>
+        
+        <hr>
+        <article>
+            <h2> Formulaires de recrutement   </h2>
+            <p> ( 30/11/2023 |• 23:03)</p>
+            <aside>
+                <p> Recrutement pour Howard Armory </p>
+            </aside>
+            
+
+
+<style>
+  a {
+    color: white;
+  }
+
+
+	<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+h1 {
+    text-align: center;
+}
+
+form {
+    max-width: 600px;
+    margin: auto;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="date"],
+select,
+textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+
+input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+h2 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+
+textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+
+
+</style>
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulaire de Recrutement</title>
+    <script>
+        function validerRecrutement() {
+            var nom = document.getElementById('nom').value;
+            var prenom = document.getElementById('prenom').value;
+            var dateNaissance = document.getElementById('dateNaissance').value;
+            var emailDiscord = document.getElementById('emailDiscord').value;
+
+            var arme = document.getElementById('arme').value;
+            var licenceArme = document.getElementById('licenceArme').value;
+            var armeDetails = "";
+            if (arme === "oui") {
+                var parQuand = document.getElementById('parQuand').value;
+                armeDetails = `Arme: ${document.getElementById('typeArme').value}, Licence: ${licenceArme}, Par: ${parQuand}`;
+            }
+
+            var cv = document.getElementById('cv').value;
+            var lettreMotivation = document.getElementById('lettreMotivation').value;
+            var placeSouhaitez = document.getElementById('placeSouhaitez').value;
+
+            var donneesRecrutement = {
+                identite: {
+                    Nom: nom,
+                    Prenom: prenom,
+                    "Date de naissance": dateNaissance,
+                    "Email (Discord)": emailDiscord
+                },
+                howardArmoryLicence: {
+                    "Arme": armeDetails
+                },
+                informations: {
+                    "CV": cv,
+                    "Lettre de motivation": lettreMotivation,
+                    "Place souhaitée": placeSouhaitez
+                }
+            };
+
+            fetch('https://discord.com/api/webhooks/1178479874260877332/1lUDdQrwKOa7zYfs9hEr1ayDiTDFbRnmCH5Fv7PXOhHFpEwJRlTAqTQHoDeuqwfHKp76', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    embeds: [{
+                        title: "Formulaire de Recrutement",
+                        fields: [
+                            {
+                                name: "🪪 Identité",
+                                value: `
+                                - Nom: ${donneesRecrutement.identite.Nom}
+                                - Prénom: ${donneesRecrutement.identite.Prenom}
+                                - Date de naissance: ${donneesRecrutement.identite["Date de naissance"]}
+                                - Email (Discord): ${donneesRecrutement.identite["Email (Discord)"]}
+                                `
+                            },
+                            {
+                                name: "❔ Howard Armory • Licence d'arme",
+                                value: `
+                                ${donneesRecrutement.howardArmoryLicence["Arme"]}
+                                `
+                            },
+                            {
+                                name: "✉️ Informations",
+                                value: `
+                                - CV: ${donneesRecrutement.informations.CV}
+                                - Lettre de motivation: ${donneesRecrutement.informations["Lettre de motivation"]}
+                                - Place souhaitée: ${donneesRecrutement.informations["Place souhaitée"]}
+                                `
+                            }
+                        ]
+                    }]
+                })
+            }).then(response => response.json())
+              .then(data => console.log(data))
+              .catch(error => console.error('Erreur lors de l\'envoi des données:', error));
+
+            return false;
+        }
+    </script>
+</head>
+<body>
+    <h1>Formulaire de Recrutement</h1>
+    <form onsubmit="return validerRecrutement()">
+        <!-- Identité -->
+        <h2>🪪 Identité</h2>
+        <label for="nom">Nom:</label>
+        <input type="text" id="nom" required><br>
+
+<label for="prenom">Prénom:</label>
+        <input type="text" id="prenom" required><br>
+
+        <label for="dateNaissance">Date de naissance:</label>
+        <input type="date" id="dateNaissance" required><br>
+
+        <label for="emailDiscord">Email (Discord):</label>
+        <input type="text" id="emailDiscord" required><br>
+
+        <!-- Howard Armory • Licence d'arme -->
+        <h2>❔ Howard Armory • Licence d'arme</h2>
+        <label for="arme">Arme, si oui laquelle:</label>
+        <select id="arme" onchange="afficherArmeDetails()">
+            <option value="non">Non</option>
+            <option value="oui">Oui</option>
+        </select><br>
+
+        <div id="detailsArme" style="display: none;">
+            <label for="typeArme">Type d'arme:</label>
+            <input type="text" id="typeArme"><br>
+
+            <label for="licenceArme">Licence:</label>
+            <input type="text" id="licenceArme"><br>
+
+            <label for="parQuand">Si oui, par quand:</label>
+            <input type="text" id="parQuand"><br>
+        </div>
+
+        <!-- Informations -->
+        <h2>✉️ Informations</h2>
+        <label for="cv">CV:</label>
+        <textarea id="cv" required></textarea><br>
+
+        <label for="lettreMotivation">Lettre de motivation:</label>
+        <textarea id="lettreMotivation" required></textarea><br>
+
+        <label for="placeSouhaitez">Votre place souhaitée:</label>
+        <select id="placeSouhaitez" required>
+            <option value="vendeur">Vendeur</option>
+            <option value="agentSecurite">Agent de sécurité</option>
+            <option value="nettoyage">Nettoyage</option>
+            <option value="autres">Autres</option>
+        </select><br>
+
+        
+<button onclick="afficherNotification()"><input type="submit" value="Confirmer"></button>
+    </form>
+
+    <script>
+        function afficherArmeDetails() {
+            var detailsArme = document.getElementById('detailsArme');
+            var choixArme = document.getElementById('arme').value;
+
+            if (choixArme === 'oui') {
+                detailsArme.style.display = 'block';
+            } else {
+                detailsArme.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
+
+        </article>
+        <hr>
+        
+        
+      
+
+
+   
+
+
+
+
+<style>
+        /* Style pour la boîte de notification */
+        .notif {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            background-color: #f1f1f1;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            z-index: 1;
+        }
+    </style>
+<body>
+
+<!-- Bouton pour afficher la boîte de dialogue -->
+
+
+<!-- Boîte de notification -->
+<div id="notification" class="notif">
+    Formulaire envoyé ✅
+</div>
+
+<!-- Script JavaScript pour afficher la boîte de dialogue -->
+<script>
+    function afficherNotification() {
+        // Afficher la boîte de notification
+        document.getElementById('notification').style.display = 'block';
+
+        // Masquer la boîte de notification après quelques secondes (3000 millisecondes dans cet exemple)
+        setTimeout(function() {
+            document.getElementById('notification').style.display = 'none';
+        }, 3000);
+    }
+</script>
+
+</body>
+
+ </main>
+
+    <footer>
+        <hr>
+        <p>
+            <small>Développement via MVP , Editer / source By <h6>GFLP-LSP-SRDMG By PikaYut</h6></small>
+        </p>
+    </footer>
+</body>
+
+</html>
