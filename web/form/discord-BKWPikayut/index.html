@@ -93,20 +93,50 @@
         </form>
     </div>
 
-    <script>
-        function showWarningForm() {
-            const warningCode = document.getElementById('warningCode').value;
-            if (warningCode === '88446622abc') {
-                document.getElementById('warningForm').style.display = 'block';
-            } else {
-                alert('Code incorrect. Veuillez réessayer.');
-            }
+   <script>
+    function showWarningForm() {
+        const warningCode = document.getElementById('warningCode').value;
+        if (warningCode === '88446622abc') {
+            document.getElementById('warningForm').style.display = 'block';
+        } else {
+            alert('Code incorrect. Veuillez réessayer.');
         }
+    }
 
-        function sendWarning() {
-            // Mettez ici le code pour envoyer les détails du formulaire aux webhooks Discord.
-            alert('Formulaire envoyé avec succès!');
-        }
-    </script>
+    function sendWarning() {
+        const formData = {
+            pseudo: document.getElementById('pseudo').value,
+            userID: document.getElementById('userID').value,
+            motifs: document.getElementById('motifs').value,
+            otherDetails: document.getElementById('otherDetails').value,
+            type: document.getElementById('type').value,
+            by: document.getElementById('by').value,
+            duration: document.getElementById('duration').value,
+            date: document.getElementById('date').value,
+            warningOption: document.getElementById('warningOption').value,
+        };
+
+        // Vous devez remplacer ces URLs par vos propres webhooks Discord
+        const webhookURLs = [
+            'https://discord.com/api/webhooks/1182442754014449684/oKD5vLBb3LbQ2JLs4wOgJBP2rc_hCVmiYJwlc90DqELT8SPLpCLLavfUgMUoXnVFYmgG',
+            'https://discord.com/api/webhooks/1182442905634349216/uNGiDi0iqDYK9kLwFatMDeFMXryq1E9byOM24oGtgfbQoeHtizC9UTcAp8ZrKRVM9oDh',
+        ];
+
+        // Envoyer les données à chaque webhook
+        webhookURLs.forEach(url => {
+            sendRequest(url, formData);
+        });
+
+        alert('Formulaire envoyé avec succès!');
+        // Vous pouvez également réinitialiser le formulaire ici si nécessaire
+    }
+
+    function sendRequest(url, data) {
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', url, true);
+        xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+        xhr.send(JSON.stringify(data));
+    }
+</script>
 </body>
 </html>
