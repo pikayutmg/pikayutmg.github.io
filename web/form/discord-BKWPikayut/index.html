@@ -1,0 +1,112 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulaire d'Avertissement</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            text-align: center;
+            padding: 50px;
+        }
+
+        #warningForm {
+            display: none;
+            background-color: #fff;
+            max-width: 400px;
+            margin: auto;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 12px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Entrez le Code d'Avertissement</h1>
+    <input type="password" id="warningCode" placeholder="Code d'Avertissement">
+    <button onclick="showWarningForm()">Valider</button>
+
+    <div id="warningForm">
+        <h2>Formulaire d'Avertissement</h2>
+        <form id="warningDetailsForm">
+            <label for="pseudo">Pseudo:</label>
+            <input type="text" id="pseudo" name="pseudo" required>
+
+            <label for="userID">ID:</label>
+            <input type="text" id="userID" name="userID" required>
+
+            <label for="motifs">Motifs:</label>
+            <textarea id="motifs" name="motifs" required></textarea>
+
+            <label for="otherDetails">Autres détails:</label>
+            <textarea id="otherDetails" name="otherDetails"></textarea>
+
+            <label for="type">Type:</label>
+            <select id="type" name="type">
+                <option value="blame">Blame</option>
+                <option value="warn">Warn</option>
+                <option value="ban">Ban</option>
+                <option value="kick">Kick</option>
+                <option value="kick-temp">Kick Temporaire</option>
+            </select>
+
+            <label for="by">Par:</label>
+            <input type="text" id="by" name="by" required>
+
+            <label for="duration">Durée (minutes):</label>
+            <input type="number" id="duration" name="duration">
+
+            <label for="date">Date (JJ/MM/AAAA):</label>
+            <input type="text" id="date" name="date" placeholder="JJ/MM/AAAA" required>
+
+            <label for="warningOption">Option d'Avertissement:</label>
+            <select id="warningOption" name="warningOption">
+                <option value="rule-not-respected">Règle non respectée</option>
+                <!-- Ajoutez d'autres options d'avertissement au besoin -->
+            </select>
+
+            <button type="button" onclick="sendWarning()">Envoyer</button>
+        </form>
+    </div>
+
+    <script>
+        function showWarningForm() {
+            const warningCode = document.getElementById('warningCode').value;
+            if (warningCode === '88446622abc') {
+                document.getElementById('warningForm').style.display = 'block';
+            } else {
+                alert('Code incorrect. Veuillez réessayer.');
+            }
+        }
+
+        function sendWarning() {
+            // Mettez ici le code pour envoyer les détails du formulaire aux webhooks Discord.
+            alert('Formulaire envoyé avec succès!');
+        }
+    </script>
+</body>
+</html>
