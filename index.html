@@ -22,10 +22,9 @@
     </div>
     <ul class="nav no-search">
       <li class="nav-item"><a href="#">Home</a></li>
-      <li class="nav-item"><a href="#">About</a></li>
-      <li class="nav-item"><a href="#">Work</a></li>
-      <li class="nav-item"><a href="#">Careers</a></li>
-      <li class="nav-item"><a href="#">Contact Us</a></li>
+      <li class="nav-item"><a href="#about">About</a></li>
+      
+      <li class="nav-item"><a href="#contact">Contact</a></li>
       <i class="fas fa-search" id="search-icon"></i>
       <input class="search-input" type="text" placeholder="Search..">
     </ul>
@@ -75,4 +74,70 @@
 
 </body>
 
+<head>
+ 
+    <style>
+        /* Styles for the popup */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+        }
 
+        .popup-content {
+            background: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            max-width: 400px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Popup for #about -->
+<div id="aboutPopup" class="popup">
+    <div class="popup-content">
+        <p>By enes GP</p>
+        <p>C'est une communauté de jeux, de codage très développé où vous pouvez vous enrichir.</p>
+        <button onclick="closePopup('aboutPopup')">Fermer</button>
+    </div>
+</div>
+
+<!-- Popup for #contact -->
+<div id="contactPopup" class="popup">
+    <div class="popup-content">
+        <p>Discord: <a href="https://discord.gg/e6WMWXrSRt" target="_blank">https://discord.gg/e6WMWXrSRt</a></p>
+        <button onclick="closePopup('contactPopup')">Fermer</button>
+    </div>
+</div>
+
+<script>
+    // Function to open the popup
+    function openPopup(popupId) {
+        document.getElementById(popupId).style.display = 'flex';
+    }
+
+    // Function to close the popup
+    function closePopup(popupId) {
+        document.getElementById(popupId).style.display = 'none';
+    }
+
+    // Check the URL for #about or #contact and open the corresponding popup
+    window.onload = function () {
+        var hash = window.location.hash;
+        if (hash === '#about') {
+            openPopup('aboutPopup');
+        } else if (hash === '#contact') {
+            openPopup('contactPopup');
+        }
+    };
+</script>
+
+</body>
