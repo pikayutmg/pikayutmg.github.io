@@ -107,7 +107,7 @@
         </form>
     </div>
 
-   <script>
+  <script>
     function showWarningForm() {
         const warningCode = document.getElementById('warningCode').value;
         if (warningCode === '88446622abc') {
@@ -119,38 +119,53 @@
 
     function sendWarning() {
         const formData = {
-            pseudo: document.getElementById('pseudo').value,
-            userID: document.getElementById('userID').value,
-            motifs: document.getElementById('motifs').value,
-            otherDetails: document.getElementById('otherDetails').value,
-            type: document.getElementById('type').value,
-            by: document.getElementById('by').value,
-            duration: document.getElementById('duration').value,
-            date: document.getElementById('date').value,
-            warningOption: document.getElementById('warningOption').value,
+            pseudo: getValueById('pseudo'),
+            userID: getValueById('userID'),
+            motifs: getValueById('motifs'),
+            otherDetails: getValueById('otherDetails'),
+            type: getValueById('type'),
+            by: getValueById('by'),
+            duration: getValueById('duration'),
+            date: getValueById('date'),
+            warningOption: getValueById('warningOption'),
         };
 
-        // Vous devez remplacer ces URLs par vos propres webhooks Discord
+        // Replace these URLs with your own Discord webhooks
         const webhookURLs = [
             'https://discord.com/api/webhooks/1182442754014449684/oKD5vLBb3LbQ2JLs4wOgJBP2rc_hCVmiYJwlc90DqELT8SPLpCLLavfUgMUoXnVFYmgG',
             'https://discord.com/api/webhooks/1182442905634349216/uNGiDi0iqDYK9kLwFatMDeFMXryq1E9byOM24oGtgfbQoeHtizC9UTcAp8ZrKRVM9oDh'
         ];
 
-        // Envoyer les données à chaque webhook
+        // Send data to each webhook
         webhookURLs.forEach(url => {
             sendRequest(url, formData);
         });
 
         alert('Formulaire envoyé avec succès!');
-        // Vous pouvez également réinitialiser le formulaire ici si nécessaire
+        // You can also reset the form here if needed
+    }
+
+    function getValueById(id) {
+        return document.getElementById(id).value;
     }
 
     function sendRequest(url, data) {
         const xhr = new XMLHttpRequest();
         xhr.open('POST', url, true);
         xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+        xhr.onerror = function () {
+            console.error('Request failed');
+        };
+        xhr.onload = function () {
+            if (xhr.status >= 200 && xhr.status < 300) {
+                console.log('Request successful');
+            } else {
+                console.error('Request failed with status', xhr.status, xhr.statusText);
+            }
+        };
         xhr.send(JSON.stringify(data));
     }
 </script>
+
 </body>
 </html>
