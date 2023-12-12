@@ -135,36 +135,43 @@
         <input type="submit" value="Envoyer la Déclaration">
     </form>
 
-    <script>
-        function sendToDiscord(formData) {
-            const webhookUrl = 'https://discord.com/api/webhooks/1184225673154404402/Y5J5E5bFB_nHWCpVrQNuEx-9bEjmhDRPO6IFxHMSjq3ZbyWEHzA_xum5qk5u89gYBQw6';
+     <script>
+        document.getElementById('realEstateDeclarationForm').addEventListener('submit', function(event) {
+            event.preventDefault();
 
-            const jsonData = {
-                "content": "Nouvelle déclaration immobilière!",
-                "embeds": [
-                    {
-                        "title": "Déclaration Immobilière",
-                        "fields": [
-                            { "name": "Type d'immobilier", "value": formData.property_type, "inline": true },
-                            { "name": "Détails de l'immobilier", "value": formData.property_details, "inline": false },
-                            { "name": "Nom du propriétaire", "value": formData.owner_name, "inline": true },
-                            { "name": "ID du propriétaire", "value": formData.owner_id, "inline": true },
-                            { "name": "Emplacement", "value": formData.location, "inline": true },
-                            { "name": "Date d'achat", "value": formData.purchase_date, "inline": true },
-                            { "name": "Valeur de l'immobilier", "value": formData.property_value, "inline": true },
-                            { "name": "Hypothèque", "value": formData.mortgage ? "Oui" : "Non", "inline": true },
-                            { "name": "Commentaires supplémentaires", "value": formData.additional_comments, "inline": false }
-                        ]
-                    }
-                ]
-            };
+            const formData = new FormData(event.target);
+            const jsonData = {};
+
+            formData.forEach((value, key) => {
+                jsonData[key] = value;
+            });
+
+            const webhookUrl = 'https://discord.com/api/webhooks/1184225673154404402/Y5J5E5bFB_nHWCpVrQNuEx-9bEjmhDRPO6IFxHMSjq3ZbyWEHzA_xum5qk5u89gYBQw6';
 
             fetch(webhookUrl, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(jsonData),
+                body: JSON.stringify({
+                    content: 'Nouvelle déclaration immobilière!',
+                    embeds: [
+                        {
+                            title: 'Déclaration Immobilière',
+                            fields: [
+                                { name: 'Type d\'immobilier', value: jsonData.property_type, inline: true },
+                                { name: 'Détails de l\'immobilier', value: jsonData.property_details, inline: false },
+                                { name: 'Nom du propriétaire', value: jsonData.owner_name, inline: true },
+                                { name: 'ID du propriétaire', value: jsonData.owner_id, inline: true },
+                                { name: 'Emplacement', value: jsonData.location, inline: true },
+                                { name: 'Date d\'achat', value: jsonData.purchase_date, inline: true },
+                                { name: 'Valeur de l\'immobilier', value: jsonData.property_value, inline: true },
+                                { name: 'Hypothèque', value: jsonData.mortgage ? 'Oui' : 'Non', inline: true },
+                                { name: 'Commentaires supplémentaires', value: jsonData.additional_comments, inline: false },
+                            ],
+                        },
+                    ],
+                }),
             })
             .then(response => {
                 if (!response.ok) {
@@ -175,12 +182,6 @@
             .catch(error => {
                 console.error('Erreur:', error.message);
             });
-        }
-
-        document.getElementById('realEstateDeclarationForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            const formData = new FormData(event.target);
-            sendToDiscord(Object.fromEntries(formData.entries()));
         });
     </script>
 		
