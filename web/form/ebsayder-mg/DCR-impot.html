@@ -13,9 +13,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title> EbsayderMG // RolePlay</title>   
 	<meta name="author" content="Enes D">
-    <meta name="description" content="L'espace pour avoir une DCR darme">
+    <meta name="description" content="L'espace pour avoir une DCR d'impots .">
     <meta property="og:title" content="EbsayderFlyse">
-    <meta property="og:description" content="L'espace pour avoir une DCr darme">
+    <meta property="og:description" content="L'espace pour avoir une DCR d'impots .">
     <meta property="og:image" content="https://cdn.discordapp.com/attachments/1057796768617742407/1182409462779224184/pikayut8.png?ex=658497a0&is=657222a0&hm=6f92180503b2294550d39df53fa73b2162d9194dfc32e23c92bb5ad3693df9b2&" type="image/png">
    <link rel="icon" href="https://cdn.discordapp.com/attachments/1057796768617742407/1182409462779224184/pikayut8.png?ex=658497a0&is=657222a0&hm=6f92180503b2294550d39df53fa73b2162d9194dfc32e23c92bb5ad3693df9b2&" type="image/png">
 
@@ -99,7 +99,71 @@
 
 
 		
-       / / ici ||||
+      
+    <form id="taxDeclarationForm">
+        <label for="income">Revenu annuel :</label>
+        <input type="number" id="income" name="income" required><br>
+
+        <label for="deductions">Déductions :</label>
+        <input type="number" id="deductions" name="deductions" required><br>
+
+        <label for="taxRate">Taux d'imposition :</label>
+        <input type="number" id="taxRate" name="tax_rate" required><br>
+
+        <label for="taxAmount">Montant d'impôt calculé :</label>
+        <input type="number" id="taxAmount" name="tax_amount" required readonly><br>
+
+        <label for="additionalComments">Commentaires supplémentaires :</label><br>
+        <textarea id="additionalComments" name="additional_comments" rows="4" cols="50"></textarea><br><br>
+
+        <input type="submit" value="Envoyer la Déclaration d'Impôts">
+    </form>
+
+    <script>
+        document.getElementById('taxDeclarationForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const formData = new FormData(event.target);
+            const jsonData = {};
+
+            formData.forEach((value, key) => {
+                jsonData[key] = value;
+            });
+
+            const webhookUrl = 'https://discord.com/api/webhooks/1184232041903034369/ijWUwjIJpfMxHlyZJItpTDfsCPROu1yjt4s9wcTh0RCdB8hSAZPf1fdZGjO9sBekRJEe';
+
+            fetch(webhookUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    content: 'Nouvelle déclaration d\'impôts!',
+                    embeds: [
+                        {
+                            title: 'Déclaration d\'Impôts',
+                            fields: [
+                                { name: 'Revenu annuel', value: `${jsonData.income} 💰`, inline: true },
+                                { name: 'Déductions', value: `${jsonData.deductions} 💸`, inline: true },
+                                { name: 'Taux d\'imposition', value: `${jsonData.tax_rate}%`, inline: true },
+                                { name: 'Montant d\'impôt calculé', value: `${jsonData.tax_amount} 💼`, inline: true },
+                                { name: 'Commentaires supplémentaires', value: jsonData.additional_comments || 'Aucun', inline: false },
+                            ],
+                        },
+                    ],
+                }),
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Erreur lors de l\'envoi des données au webhook Discord');
+                }
+                console.log('Données envoyées avec succès au webhook Discord');
+            })
+            .catch(error => {
+                console.error('Erreur:', error.message);
+            });
+        });
+    </script>
 
 
           
