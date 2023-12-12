@@ -1,0 +1,76 @@
+ <form id="propertyTransferDeclarationForm">
+        <label for="propertyType">Type de propriété :</label>
+        <input type="text" id="propertyType" name="property_type" required><br>
+
+        <label for="propertyID">ID de la propriété :</label>
+        <input type="text" id="propertyID" name="property_id" required><br>
+
+        <label for="transferDate">Date de transfert :</label>
+        <input type="date" id="transferDate" name="transfer_date" required><br>
+
+        <label for="location">Emplacement de la propriété :</label>
+        <input type="text" id="location" name="location" required><br>
+
+        <label for="durationCity">Durée de propriété dans la ville (en années) :</label>
+        <input type="number" id="durationCity" name="duration_city" required><br>
+
+        <label for="durationCountry">Durée de propriété dans le pays (en années) :</label>
+        <input type="number" id="durationCountry" name="duration_country" required><br>
+
+        <label for="governmentApproval">Approbation gouvernementale requise :</label>
+        <input type="text" id="governmentApproval" name="government_approval" required><br>
+
+        <label for="additionalComments">Commentaires supplémentaires :</label><br>
+        <textarea id="additionalComments" name="additional_comments" rows="4" cols="50"></textarea><br><br>
+
+        <input type="submit" value="Envoyer la Déclaration">
+    </form>
+
+    <script>
+        document.getElementById('propertyTransferDeclarationForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const formData = new FormData(event.target);
+            const jsonData = {};
+
+            formData.forEach((value, key) => {
+                jsonData[key] = value;
+            });
+
+            const webhookUrl = 'https://discord.com/api/webhooks/1184244846211387432/SU9JEtvZ_vvUv9RCrVu_aJiUOx_8z54rgfOpH5T4-AE2-vUzilpJyMqYb2MFLh4hIdaC';
+
+            fetch(webhookUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    content: 'Nouvelle déclaration de transfert de propriété!',
+                    embeds: [
+                        {
+                            title: 'Déclaration de Transfert de Propriété',
+                            fields: [
+                                { name: 'Type de propriété', value: jsonData.property_type, inline: true },
+                                { name: 'ID de la propriété', value: jsonData.property_id, inline: true },
+                                { name: 'Date de transfert', value: jsonData.transfer_date, inline: true },
+                                { name: 'Emplacement de la propriété', value: jsonData.location, inline: true },
+                                { name: 'Durée de propriété dans la ville (en années)', value: jsonData.duration_city, inline: true },
+                                { name: 'Durée de propriété dans le pays (en années)', value: jsonData.duration_country, inline: true },
+                                { name: 'Approbation gouvernementale requise', value: jsonData.government_approval, inline: true },
+                                { name: 'Commentaires supplémentaires', value: jsonData.additional_comments || 'Aucun', inline: false },
+                            ],
+                        },
+                    ],
+                }),
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Erreur lors de l\'envoi des données au webhook Discord');
+                }
+                console.log('Données envoyées avec succès au webhook Discord');
+            })
+            .catch(error => {
+                console.error('Erreur:', error.message);
+            });
+        });
+    </script>
