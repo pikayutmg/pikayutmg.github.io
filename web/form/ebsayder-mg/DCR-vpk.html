@@ -116,8 +116,8 @@
         <label for="eventDate">Date de l'événement :</label>
         <input type="date" id="eventDate" name="event_date" required><br>
 
-        <label for="location">Emplacement de l'événement :</label>
-        <input type="text" id="location" name="location" required><br>
+        <label for="locationss">Emplacement de l'événement :</label>
+        <input type="text" id="locationss" name="locationss" required><br>
 
         <label for="reporterName">Nom du déclarant :</label>
         <input type="text" id="reporterName" name="reporter_name" required><br>
@@ -164,7 +164,7 @@
                                 { name: 'Type d\'événement', value: jsonData.event_type === 'perte' ? 'Perte' : (jsonData.event_type === 'vol' ? 'Vol' : 'Kidnapping'), inline: true },
                                 { name: 'Nom de la victime', value: `${jsonData.victim_name} (ID: ${jsonData.victim_id})`, inline: true },
                                 { name: 'Date de l\'événement', value: jsonData.event_date, inline: true },
-                                { name: 'Emplacement de l\'événement', value: jsonData.location, inline: true },
+                                { name: 'Emplacement de l\'événement', value: jsonData.locationss, inline: true },
                                 { name: 'Déclarant', value: `${jsonData.reporter_name} (ID: ${jsonData.reporter_id})`, inline: true },
                                 { name: 'Relation avec la victime', value: jsonData.relationship, inline: true },
                                 { name: 'Informations de contact du déclarant', value: jsonData.contact, inline: true },
