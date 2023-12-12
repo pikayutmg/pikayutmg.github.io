@@ -92,9 +92,14 @@
 
         <section>
            
-     
-          <form id="weaponDeclarationForm">
 
+
+
+
+
+
+		
+       <form id="weaponDeclarationForm">
         <label for="weaponType">Type d'arme :</label>
         <select id="weaponType" name="weapon_type" required>
             <option value="pistolet">Pistolet</option>
@@ -111,13 +116,10 @@
         <label for="purchaseDate">Date d'achat :</label>
         <input type="date" id="purchaseDate" name="purchase_date" required><br>
 
-        <label for="purchaseProof">Preuve d'achat (téléchargez le fichier) :</label>
-        <input type="file" id="purchaseProof" name="purchase_proof" accept=".pdf, .jpg, .jpeg, .png" required><br>
-
         <label for="ownerName">Nom du propriétaire :</label>
         <input type="text" id="ownerName" name="owner_name" required><br>
 
-        <label for="ownerID">ID du propriétaire (ex. numéro de sécurité sociale) :</label>
+        <label for="ownerID">ID du propriétaire :</label>
         <input type="text" id="ownerID" name="owner_id" required><br>
 
         <label for="storageLocation">Lieu de stockage :</label>
@@ -129,33 +131,35 @@
         <input type="submit" value="Envoyer la Déclaration">
     </form>
 
+    <script>
+        function sendToDiscord(formData) {
+            const webhookUrl = 'https://discord.com/api/webhooks/1184217906301649006/Hkzt6deZ4uBy7KoCOnaG2HOp1zEFOoEyllyNMKZCQ62W1LxJ8rQ99QjhhpxQbWYnIjyK';
 
+            const jsonData = {
+                "content": "Nouvelle déclaration d'arme!",
+                "embeds": [
+                    {
+                        "title": "Déclaration d'Arme",
+                        "fields": [
+                            { "name": "Type d'arme", "value": formData.weapon_type, "inline": true },
+                            { "name": "Modèle d'arme", "value": formData.weapon_model, "inline": true },
+                            { "name": "Numéro de série", "value": formData.serial_number, "inline": true },
+                            { "name": "Date d'achat", "value": formData.purchase_date, "inline": true },
+                            { "name": "Nom du propriétaire", "value": formData.owner_name, "inline": true },
+                            { "name": "ID du propriétaire", "value": formData.owner_id, "inline": true },
+                            { "name": "Lieu de stockage", "value": formData.storage_location, "inline": true },
+                            { "name": "Commentaires supplémentaires", "value": formData.additional_comments, "inline": false }
+                        ]
+                    }
+                ]
+            };
 
-          
- 
- <script>
-        document.getElementById('weaponDeclarationForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-
-            // Récupérer les données du formulaire
-            const formData = new FormData(event.target);
-
-            // Créer un objet JSON à partir des données du formulaire
-            const jsonData = {};
-            formData.forEach((value, key) => {
-                jsonData[key] = value;
-            });
-
-            // Convertir l'objet JSON en chaîne
-            const jsonString = JSON.stringify(jsonData);
-
-            // Envoyer les données au webhook Discord
-            fetch('https://discord.com/api/webhooks/1184217906301649006/Hkzt6deZ4uBy7KoCOnaG2HOp1zEFOoEyllyNMKZCQ62W1LxJ8rQ99QjhhpxQbWYnIjyK', {
+            fetch(webhookUrl, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: jsonString,
+                body: JSON.stringify(jsonData),
             })
             .then(response => {
                 if (!response.ok) {
@@ -166,9 +170,14 @@
             .catch(error => {
                 console.error('Erreur:', error.message);
             });
+        }
+
+        document.getElementById('weaponDeclarationForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            sendToDiscord(Object.fromEntries(formData.entries()));
         });
     </script>
-
 
 
           
