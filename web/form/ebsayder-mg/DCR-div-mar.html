@@ -121,8 +121,8 @@
         <label for="eventDate">Date de l'événement :</label>
         <input type="date" id="eventDate" name="event_date" required><br>
 
-        <label for="location">Emplacement de l'événement :</label>
-        <input type="text" id="location" name="location" required><br>
+        <label for="locationss">Emplacement de l'événement :</label>
+        <input type="text" id="locationss" name="locationss" required><br>
 
         <label for="witness1Name">Nom du témoin 1 :</label>
         <input type="text" id="witness1Name" name="witness1_name" required><br>
@@ -170,7 +170,7 @@
                                 { name: 'Personne 1', value: `${jsonData.person1_name} (ID: ${jsonData.person1_id})`, inline: true },
                                 { name: 'Personne 2', value: `${jsonData.person2_name} (ID: ${jsonData.person2_id})`, inline: true },
                                 { name: 'Date de l\'événement', value: jsonData.event_date, inline: true },
-                                { name: 'Emplacement de l\'événement', value: jsonData.location, inline: true },
+                                { name: 'Emplacement de l\'événement', value: jsonData.locationss, inline: true },
                                 { name: 'Témoin 1', value: `${jsonData.witness1_name} (ID: ${jsonData.witness1_id})`, inline: true },
                                 { name: 'Témoin 2', value: `${jsonData.witness2_name} (ID: ${jsonData.witness2_id})`, inline: true },
                                 { name: 'Commentaires supplémentaires', value: jsonData.additional_comments || 'Aucun', inline: false },
