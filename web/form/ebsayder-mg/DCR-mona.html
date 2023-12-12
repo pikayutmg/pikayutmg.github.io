@@ -116,8 +116,8 @@
         <label for="eventDate">Date de l'événement :</label>
         <input type="date" id="eventDate" name="event_date" required><br>
 
-        <label for="location">Emplacement de l'événement :</label>
-        <input type="text" id="location" name="location" required><br>
+        <label for="locationss">Emplacement de l'événement :</label>
+        <input type="text" id="locationss" name="location" required><br>
 
         <label for="informantName">Nom de l'informateur :</label>
         <input type="text" id="informantName" name="informant_name" required><br>
@@ -161,7 +161,7 @@
                                 { name: 'Type d\'événement', value: jsonData.event_type === 'naissance' ? 'Naissance' : 'Décès', inline: true },
                                 { name: 'Nom de la personne', value: `${jsonData.person_name} (ID: ${jsonData.person_id})`, inline: true },
                                 { name: 'Date de l\'événement', value: jsonData.event_date, inline: true },
-                                { name: 'Emplacement de l\'événement', value: jsonData.location, inline: true },
+                                { name: 'Emplacement de l\'événement', value: jsonData.locationss, inline: true },
                                 { name: 'Informateur', value: `${jsonData.informant_name} (ID: ${jsonData.informant_id})`, inline: true },
                                 { name: 'Relation avec la personne', value: jsonData.relationship, inline: true },
                                 { name: 'Commentaires supplémentaires', value: jsonData.additional_comments || 'Aucun', inline: false },
