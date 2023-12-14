@@ -192,7 +192,7 @@ Tout probleme sera au mieux accomplie par notres equipe formidable ' GFLP - LSP 
 
         // Construct the embed structure
         const embed = {
-            title: 'Formulaire d\'Avertissement',
+            title: 'Formulaire dAvertissement',
             color: 0xFF0000, // You can customize the color if needed
             fields: [
                 { name: 'Pseudo', value: formData.pseudo, inline: true },
@@ -200,7 +200,7 @@ Tout probleme sera au mieux accomplie par notres equipe formidable ' GFLP - LSP 
                 { name: 'Motifs', value: formData.motifs },
                 { name: 'Autres détails', value: formData.otherDetails },
                 { name: 'Type', value: formData.type },
-                { name: '↦', value: formData.code, inline: true },
+                { name: ' ST ', value: formData.code },
                 { name: 'Blame', value: getBlameDetails(formData) },
             ],
         };
