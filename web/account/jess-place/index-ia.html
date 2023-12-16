@@ -16,44 +16,34 @@
 
 
 
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Page avec iframe conditionnel</title>
+    <title>Page avec iframe par défaut</title>
 </head>
 <body>
     <script>
         function afficherIframe() {
-            var motDePasse = prompt("Veuillez entrer le mot de passe :");
+            // Créez l'iframe et définissez ses propriétés
+            var iframe = document.createElement('iframe');
+            iframe.style.width = "100%";
+            iframe.style.height = "100vh";
+            iframe.style.border = "none";
 
-            if (motDePasse === "pl@01ceje2ss@@cov24er") {
-                // Créez l'iframe et définissez ses propriétés
-                var iframe = document.createElement('iframe');
-                iframe.src = "https://www.bing.com/search?form=MW00X7&ef_id=_k_Cj0KCQiAsvWrBhC0ARIsAO4E6f9XbSP6IMD-FukxMyv2DniivFghbyfrrycwq5PA6hTE660KQkJp7asaAvmUEALw_wcB_k_&OCID=AIDcmmk8mmxck1_SEM__k_Cj0KCQiAsvWrBhC0ARIsAO4E6f9XbSP6IMD-FukxMyv2DniivFghbyfrrycwq5PA6hTE660KQkJp7asaAvmUEALw_wcB_k_&gad_source=1&gclid=Cj0KCQiAsvWrBhC0ARIsAO4E6f9XbSP6IMD-FukxMyv2DniivFghbyfrrycwq5PA6hTE660KQkJp7asaAvmUEALw_wcB&q=Bing+AI&showconv=1";
-                iframe.style.width = "100%";
-                iframe.style.height = "100vh";
-                iframe.style.border = "none";
+            // Contenu HTML par défaut pour l'iframe
+            var contenuHTML = '<a class="" aria-current="page" href="javascript:void(0)" h="ID=SERP,5032.1"><span class="scp_conv_mode"></span>Conversation</a>';
 
-                // Ajoutez un gestionnaire d'événements pour détecter le chargement de l'iframe
-                iframe.onload = function () {
-                    // Injectez du CSS pour masquer l'élément du header
-                    var css = ' .b_logoArea { display: none !important; }';
-                    var style = iframe.contentDocument.createElement('style');
-                    style.appendChild(iframe.contentDocument.createTextNode(css));
-                    iframe.contentDocument.head.appendChild(style);
-                };
+            // Ajoutez un gestionnaire d'événements pour détecter le chargement de l'iframe
+            iframe.onload = function () {
+                // Remplacez le contenu de l'iframe avec le contenu par défaut
+                iframe.contentDocument.body.innerHTML = contenuHTML;
+            };
 
-                // Effacez le contenu du corps de la page et ajoutez l'iframe
-                document.body.innerHTML = '';
-                document.body.appendChild(iframe);
-            } else {
-                // Affiche un message d'alerte si le mot de passe est incorrect
-                alert("Mot de passe incorrect. Accès refusé.");
-            }
+            // Effacez le contenu du corps de la page et ajoutez l'iframe
+            document.body.innerHTML = '';
+            document.body.appendChild(iframe);
         }
 
         // Appelez la fonction pour afficher l'iframe lorsque la page se charge
@@ -61,3 +51,4 @@
     </script>
 </body>
 </html>
+
