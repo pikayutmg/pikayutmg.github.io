@@ -14,39 +14,56 @@
 
 </body>
 
-
-
-      <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Page avec iframe conditionnel</title>
+    <style>
+        #formulaire {
+            display: block;
+        }
+
+        #iframeContainer {
+            display: none;
+        }
+    </style>
 </head>
 <body>
+    <div id="formulaire">
+        <label for="motDePasse">Mot de passe :</label>
+        <input type="password" id="motDePasse" required>
+        <button onclick="afficherIframe()">Se connecter</button>
+    </div>
+
+    <div id="iframeContainer">
+        <!-- L'iframe sera ajoutée ici dynamiquement -->
+    </div>
+
     <script>
         function afficherIframe() {
-            var motDePasse = prompt("Veuillez entrer le mot de passe :");
+            var motDePasse = document.getElementById('motDePasse').value;
 
             if (motDePasse === "pl@01ceje2ss@@cov24er") {
-                // Créez l'iframe et définissez ses propriétés
+                // Masquer le formulaire
+                document.getElementById('formulaire').style.display = 'none';
+
+                // Créer et afficher l'iframe
                 var iframe = document.createElement('iframe');
                 iframe.src = "https://www.bing.com/search?form=MW00X7&ef_id=_k_Cj0KCQiAsvWrBhC0ARIsAO4E6f9XbSP6IMD-FukxMyv2DniivFghbyfrrycwq5PA6hTE660KQkJp7asaAvmUEALw_wcB_k_&OCID=AIDcmmk8mmxck1_SEM__k_Cj0KCQiAsvWrBhC0ARIsAO4E6f9XbSP6IMD-FukxMyv2DniivFghbyfrrycwq5PA6hTE660KQkJp7asaAvmUEALw_wcB_k_&gad_source=1&gclid=Cj0KCQiAsvWrBhC0ARIsAO4E6f9XbSP6IMD-FukxMyv2DniivFghbyfrrycwq5PA6hTE660KQkJp7asaAvmUEALw_wcB&q=Bing+AI&showconv=1";
                 iframe.style.width = "100%";
                 iframe.style.height = "100vh";
                 iframe.style.border = "none";
 
-                // Effacez le contenu du corps de la page et ajoutez l'iframe
-                document.body.innerHTML = '';
-                document.body.appendChild(iframe);
+                // Ajouter l'iframe au conteneur approprié
+                document.getElementById('iframeContainer').appendChild(iframe);
+                document.getElementById('iframeContainer').style.display = 'block';
             } else {
-                // Affiche un message d'alerte si le mot de passe est incorrect
+                // Afficher un message d'alerte si le mot de passe est incorrect
                 alert("Mot de passe incorrect. Accès refusé.");
             }
         }
-
-        // Appelez la fonction pour afficher l'iframe lorsque la page se charge
-        afficherIframe();
     </script>
 </body>
 </html>
