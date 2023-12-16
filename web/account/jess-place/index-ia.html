@@ -70,7 +70,7 @@
  </div>
 
   
- <script>
+<script>
     function showWarningForm() {
         const warningCode = document.getElementById('warningCode').value;
         if (warningCode === '88446622abc') {
@@ -80,7 +80,79 @@
         }
     }
 
- </script>
+    function sendWarning() {
+        const formData = {
+            pseudo: getValueById('pseudo'),
+            userID: getValueById('userID'),
+            motifs: getValueById('motifs'),
+            otherDetails: getValueById('otherDetails'),
+            type: getValueById('type'),
+            by: getValueById('by'),
+            duration: getValueById('duration'),
+            date: getValueById('date'),
+            warningOption: getValueById('warningOption'),
+        };
+
+        // Replace this URL with your own Discord webhook URL
+        const webhookURL = 'https://discord.com/api/webhooks/1182442754014449684/oKD5vLBb3LbQ2JLs4wOgJBP2rc_hCVmiYJwlc90DqELT8SPLpCLLavfUgMUoXnVFYmgG';
+
+        // Construct the embed structure
+        const embed = {
+            title: 'Formulaire d\'Avertissement',
+            color: 0xFF0000, // You can customize the color if needed
+            fields: [
+                { name: 'Pseudo', value: formData.pseudo, inline: true },
+                { name: 'ID', value: formData.userID, inline: true },
+                { name: 'Motifs', value: formData.motifs },
+                { name: 'Autres détails', value: formData.otherDetails },
+                { name: 'Type', value: formData.type },
+                { name: 'Blame', value: getBlameDetails(formData) },
+            ],
+        };
+
+        // Create the payload with the embed
+        const payload = {
+            embeds: [embed],
+        };
+
+        // Send the data to the webhook
+        sendRequest(webhookURL, payload);
+
+        alert('Formulaire envoyé avec succès!');
+        // You can also reset the form here if needed
+    }
+
+    function getBlameDetails(formData) {
+        switch (formData.warningOption) {
+            case 'rule-not-respected':
+                return `Par: ${formData.by}\nDurée (minutes): ${formData.duration}\nDate (JJ/MM/AAAA): ${formData.date}\nOption d'Avertissement: ${formData.warningOption}`;
+            // Add other cases for different warning options as needed
+            default:
+                return ''; // Default case or handle unrecognized options
+        }
+    }
+
+    function getValueById(id) {
+        return document.getElementById(id).value;
+    }
+
+    function sendRequest(url, data) {
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', url, true);
+        xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+        xhr.onerror = function () {
+            console.error('Request failed');
+        };
+        xhr.onload = function () {
+            if (xhr.status >= 200 && xhr.status < 300) {
+                console.log('Request successful');
+            } else {
+                console.error('Request failed with status', xhr.status, xhr.statusText);
+            }
+        };
+        xhr.send(JSON.stringify(data));
+    }
+</script>
 
 
 </body>
