@@ -13,6 +13,11 @@
 
 
 </body>
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,12 +40,11 @@
 
                 // Ajoutez un gestionnaire d'événements pour détecter le chargement de l'iframe
                 iframe.onload = function () {
-                    // Manipulez le contenu de l'iframe ici
-                    var logoArea = iframe.contentDocument.querySelector('.b_logoArea');
-                    if (logoArea) {
-                        // Cache l'élément du header
-                        logoArea.style.display = 'none';
-                    }
+                    // Injectez du CSS pour masquer l'élément du header
+                    var css = ' .b_logoArea { display: none !important; }';
+                    var style = iframe.contentDocument.createElement('style');
+                    style.appendChild(iframe.contentDocument.createTextNode(css));
+                    iframe.contentDocument.head.appendChild(style);
                 };
 
                 // Effacez le contenu du corps de la page et ajoutez l'iframe
