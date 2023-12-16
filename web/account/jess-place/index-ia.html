@@ -13,147 +13,45 @@
 
 
 </body>
-<!DOCTYPE html>
-<html lang="fr">
+
+
+
+      <!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulaire d'Avertissement</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f2f2f2;
-            text-align: center;
-            padding: 50px;
-        }
-
-        #warningForm {
-            display: none;
-            background-color: #fff;
-            max-width: 400px;
-            margin: auto;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        label {
-            display: block;
-            margin-bottom: 8px;
-        }
-
-        input, select, textarea {
-            width: 100%;
-            padding: 8px;
-            margin-bottom: 12px;
-            box-sizing: border-box;
-        }
-
-        button {
-            background-color: #4caf50;
-            color: #fff;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-    </style>
+    <title>Page de connexion</title>
 </head>
 <body>
-    <h1>Entrez le Code d'Avertissement</h1>
-    <input type="password" id="warningCode" placeholder="Code d'Avertissement">
-    <button onclick="showWarningForm()">Valider</button>
+    <form action="#" method="post" onsubmit="return validatePassword()">
+        <label for="password">Mot de passe :</label>
+        <input type="password" id="password" name="password" required>
+        <button type="submit">Se connecter</button>
+    </form>
 
+    <script>
+        function validatePassword() {
+            var enteredPassword = document.getElementById('password').value;
 
- <div id="warningForm">
-<iframe src="https://www.bing.com/search?form=MW00X7&ef_id=_k_Cj0KCQiAsvWrBhC0ARIsAO4E6f9XbSP6IMD-FukxMyv2DniivFghbyfrrycwq5PA6hTE660KQkJp7asaAvmUEALw_wcB_k_&OCID=AIDcmmk8mmxck1_SEM__k_Cj0KCQiAsvWrBhC0ARIsAO4E6f9XbSP6IMD-FukxMyv2DniivFghbyfrrycwq5PA6hTE660KQkJp7asaAvmUEALw_wcB_k_&gad_source=1&gclid=Cj0KCQiAsvWrBhC0ARIsAO4E6f9XbSP6IMD-FukxMyv2DniivFghbyfrrycwq5PA6hTE660KQkJp7asaAvmUEALw_wcB&q=Bing+AI&showconv=1"></iframe>
- </div>
+            // Votre logique de validation du mot de passe ici
+            if (enteredPassword === "pl@01ceje2ss@@cov24er") {
+                // Si le mot de passe est correct, affichez l'iframe en plein écran
+                var iframe = document.createElement('iframe');
+                iframe.src = "https://www.bing.com/search?form=MW00X7&ef_id=_k_Cj0KCQiAsvWrBhC0ARIsAO4E6f9XbSP6IMD-FukxMyv2DniivFghbyfrrycwq5PA6hTE660KQkJp7asaAvmUEALw_wcB_k_&OCID=AIDcmmk8mmxck1_SEM__k_Cj0KCQiAsvWrBhC0ARIsAO4E6f9XbSP6IMD-FukxMyv2DniivFghbyfrrycwq5PA6hTE660KQkJp7asaAvmUEALw_wcB_k_&gad_source=1&gclid=Cj0KCQiAsvWrBhC0ARIsAO4E6f9XbSP6IMD-FukxMyv2DniivFghbyfrrycwq5PA6hTE660KQkJp7asaAvmUEALw_wcB&q=Bing+AI&showconv=1";
+                iframe.style.width = "100%";
+                iframe.style.height = "100vh";
+                iframe.style.border = "none";
 
-  
-<script>
-    function showWarningForm() {
-        const warningCode = document.getElementById('warningCode').value;
-        if (warningCode === '88446622abc') {
-            document.getElementById('warningForm').style.display = 'block';
-        } else {
-            alert('Code incorrect. Veuillez réessayer.');
-        }
-    }
+                document.body.innerHTML = '';
+                document.body.appendChild(iframe);
 
-    function sendWarning() {
-        const formData = {
-            pseudo: getValueById('pseudo'),
-            userID: getValueById('userID'),
-            motifs: getValueById('motifs'),
-            otherDetails: getValueById('otherDetails'),
-            type: getValueById('type'),
-            by: getValueById('by'),
-            duration: getValueById('duration'),
-            date: getValueById('date'),
-            warningOption: getValueById('warningOption'),
-        };
-
-        // Replace this URL with your own Discord webhook URL
-        const webhookURL = 'https://discord.com/api/webhooks/1182442754014449684/oKD5vLBb3LbQ2JLs4wOgJBP2rc_hCVmiYJwlc90DqELT8SPLpCLLavfUgMUoXnVFYmgG';
-
-        // Construct the embed structure
-        const embed = {
-            title: 'Formulaire d\'Avertissement',
-            color: 0xFF0000, // You can customize the color if needed
-            fields: [
-                { name: 'Pseudo', value: formData.pseudo, inline: true },
-                { name: 'ID', value: formData.userID, inline: true },
-                { name: 'Motifs', value: formData.motifs },
-                { name: 'Autres détails', value: formData.otherDetails },
-                { name: 'Type', value: formData.type },
-                { name: 'Blame', value: getBlameDetails(formData) },
-            ],
-        };
-
-        // Create the payload with the embed
-        const payload = {
-            embeds: [embed],
-        };
-
-        // Send the data to the webhook
-        sendRequest(webhookURL, payload);
-
-        alert('Formulaire envoyé avec succès!');
-        // You can also reset the form here if needed
-    }
-
-    function getBlameDetails(formData) {
-        switch (formData.warningOption) {
-            case 'rule-not-respected':
-                return `Par: ${formData.by}\nDurée (minutes): ${formData.duration}\nDate (JJ/MM/AAAA): ${formData.date}\nOption d'Avertissement: ${formData.warningOption}`;
-            // Add other cases for different warning options as needed
-            default:
-                return ''; // Default case or handle unrecognized options
-        }
-    }
-
-    function getValueById(id) {
-        return document.getElementById(id).value;
-    }
-
-    function sendRequest(url, data) {
-        const xhr = new XMLHttpRequest();
-        xhr.open('POST', url, true);
-        xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
-        xhr.onerror = function () {
-            console.error('Request failed');
-        };
-        xhr.onload = function () {
-            if (xhr.status >= 200 && xhr.status < 300) {
-                console.log('Request successful');
+                return false; // Empêche l'envoi du formulaire
             } else {
-                console.error('Request failed with status', xhr.status, xhr.statusText);
+                alert("Mot de passe incorrect. Veuillez réessayer.");
+                return false; // Empêche l'envoi du formulaire
             }
-        };
-        xhr.send(JSON.stringify(data));
-    }
-</script>
-
-
+        }
+    </script>
 </body>
 </html>
