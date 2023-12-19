@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
+    // Charger les données JSON à partir du lien (attention aux politiques de sécurité)
     fetch('https://pikayutmg.github.io/web/howard-armory/annonce/annonces.json')
         .then(response => response.json())
         .then(data => handleAnnouncements(data))
@@ -6,58 +7,27 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 function handleAnnouncements(data) {
-    const notificationContainer = document.getElementById('notification-container');
+    const infoContainer = document.getElementById('info-container');
+
+    // Vérifier si le cookie "lastVisit" existe
     const lastVisit = getCookie('lastVisit');
 
+    // Si le cookie n'existe pas ou si la date de la dernière visite est il y a plus de 14 jours
     if (!lastVisit || isMoreThan14Days(lastVisit)) {
-        if (data && data.annonces && data.annonces.length > 0) {
-            if (!notificationContainer.classList.contains('viewed')) {
-                const announcement = data.annonces[0];
-                const announcementHTML = generateAnnouncementHTML(announcement);
+        // Afficher le message d'annonce
+        infoContainer.innerHTML = `
+            <div class="notification-container">
+                <div class="notification-line"></div>
+                <p>Il y a une nouvelle annonce ! <a href="#" onclick="showAnnouncement()">Voir l'annonce</a></p>
+            </div>
+        `;
 
-                notificationContainer.innerHTML = announcementHTML;
-                setCookie('lastVisit', new Date().toUTCString());
-            }
-        } else {
-            console.error('Invalid JSON structure. Check the JSON format.');
-        }
+        // Mettre à jour le cookie "lastVisit" avec la date actuelle
+        setCookie('lastVisit', new Date().toUTCString());
     }
 }
 
-function generateAnnouncementHTML(announcement) {
-    return `
-        <div class="rectangle" id="notification">
-            <div class="notification-text">
-                <i class="material-icons">info</i>
-                ${announcement.title ? `<h2>${announcement.title}</h2>` : ''}
-                ${announcement.date ? `<p>Par ${announcement.date}</p>` : ''}
-                ${announcement.steamLink ? `<a href="${announcement.steamLink}" target="_blank">Lien Steam</a>` : ''}
-                ${announcement.discordLink ? `<a href="${announcement.discordLink}" target="_blank">Lien Discord</a>` : ''}
-                ${announcement.description ? announcement.description : ''}
-                <button onclick="closeNotification()">Fermer</button>
-            </div>
-        </div>
-    `;
-}
-
-function closeNotification() {
-    const notificationContainer = document.getElementById('notification-container');
-    notificationContainer.parentElement.remove(); // Supprimer le conteneur parent
-}
-
-function getCookie(name) {
-    const value = `; ${document.cookie}`;
-    const parts = value.split(`; ${name}=`);
-    if (parts.length === 2) return parts.pop().split(';').shift();
-}
-
-function setCookie(name, value) {
-    document.cookie = `${name}=${value}; path=/`;
-}
-
-function isMoreThan14Days(lastVisit) {
-    const fourteenDaysInMilliseconds = 14 * 24 * 60 * 60 * 1000;
-    const currentDate = new Date().getTime();
-    const lastVisitDate = new Date(lastVisit).getTime();
-    return currentDate - lastVisitDate > fourteenDaysInMilliseconds;
+function showAnnouncement() {
+    // Vous pouvez implémenter le code pour afficher l'annonce complète ici
+    alert('Afficher l\'annonce complète');
 }
