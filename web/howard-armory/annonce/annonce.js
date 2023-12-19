@@ -10,12 +10,16 @@ function handleAnnouncements(data) {
     const lastVisit = getCookie('lastVisit');
 
     if (!lastVisit || isMoreThan14Days(lastVisit)) {
-        if (!notificationContainer.classList.contains('viewed')) {
-            const announcement = data.annonces[0]; // Utilisez l'annonce appropriée depuis votre JSON
-            const announcementHTML = generateAnnouncementHTML(announcement);
+        if (data && data.annonces && data.annonces.length > 0) {
+            if (!notificationContainer.classList.contains('viewed')) {
+                const announcement = data.annonces[0];
+                const announcementHTML = generateAnnouncementHTML(announcement);
 
-            notificationContainer.innerHTML = announcementHTML;
-            setCookie('lastVisit', new Date().toUTCString());
+                notificationContainer.innerHTML = announcementHTML;
+                setCookie('lastVisit', new Date().toUTCString());
+            }
+        } else {
+            console.error('Invalid JSON structure. Check the JSON format.');
         }
     }
 }
