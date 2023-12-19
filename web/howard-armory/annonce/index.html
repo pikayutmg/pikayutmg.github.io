@@ -22,26 +22,34 @@
 <div id="info-container"></div>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        // Charger les données JSON à partir du lien (attention aux politiques de sécurité)
-        fetch('https://pikayutmg.github.io/web/howard-armory/annonce/annonce.json')
-            .then(response => response.json())
-            .then(data => displayInfo(data))
-            .catch(error => console.error('Error fetching JSON:', error));
-    });
+document.addEventListener('DOMContentLoaded', function () {
+    // Charger les données JSON à partir du lien (attention aux politiques de sécurité)
+    fetch('https://pikayutmg.github.io/web/howard-armory/annonce/annonces.json')
+        .then(response => response.json())
+        .then(data => displayInfo(data))
+        .catch(error => console.error('Error fetching JSON:', error));
+});
 
-    function displayInfo(data) {
-        const infoContainer = document.getElementById('info-container');
+function displayInfo(data) {
+    const infoContainer = document.getElementById('info-container');
 
-        // Ajouter les informations dans le conteneur HTML
-        infoContainer.innerHTML = `
-            <h1>${data.title}</h1>
-            <h2>${data.date}</h2>
-            <p>${data.description}</p>
-            <button onclick="window.open('${data.steamLink}', '_blank')">Steam</button>
-            <button onclick="window.open('${data.discordLink}', '_blank')">Discord</button>
+    // Parcourir chaque événement dans le JSON
+    data.forEach(event => {
+        // Créer un élément div pour chaque événement
+        const eventDiv = document.createElement('div');
+        eventDiv.innerHTML = `
+            <h1>${event.title}</h1>
+            <h2>${event.date}</h2>
+            <p>${event.description}</p>
+            <button onclick="window.open('${event.steamLink}', '_blank')">Steam</button>
+            <button onclick="window.open('${event.discordLink}', '_blank')">Discord</button>
         `;
-    }
+
+        // Ajouter l'élément div au conteneur principal
+        infoContainer.appendChild(eventDiv);
+    });
+}
+
 </script>
 
 </body>
