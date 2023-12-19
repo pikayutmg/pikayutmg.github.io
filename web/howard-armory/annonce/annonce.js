@@ -14,26 +14,34 @@ function handleAnnouncements(data) {
 
     // Si le cookie n'existe pas ou si la date de la dernière visite est il y a plus de 14 jours
     if (!lastVisit || isMoreThan14Days(lastVisit)) {
-        // Afficher le message d'annonce
-        notificationContainer.innerHTML = `
-            <div class="rectangle" id="notification">
-                <div class="notification-text">
-                    <i class="material-icons">info</i>
-                    <span>&nbsp;&nbsp;This is a test notification.</span>
-                    <button onclick="closeNotification()">Fermer</button>
+        // Afficher le message d'annonce si la classe "viewed" n'est pas présente
+        if (!notificationContainer.classList.contains('viewed')) {
+            notificationContainer.innerHTML = `
+                <div class="rectangle" id="notification">
+                    <div class="notification-text">
+                        <i class="material-icons">info</i>
+                        <span>&nbsp;&nbsp;This is a test notification.</span>
+                        <button onclick="closeNotification()">Fermer</button>
+                    </div>
                 </div>
-            </div>
-        `;
+            `;
 
-        // Mettre à jour le cookie "lastVisit" avec la date actuelle
-        setCookie('lastVisit', new Date().toUTCString());
+            // Mettre à jour le cookie "lastVisit" avec la date actuelle
+            setCookie('lastVisit', new Date().toUTCString());
+        }
     }
 }
 
 function closeNotification() {
     const notificationContainer = document.getElementById('notification-container');
-    notificationContainer.parentElement.remove(); // Supprimer le conteneur parent
+
+    // Ajouter la classe "viewed" pour indiquer que la notification a été vue
+    notificationContainer.classList.add('viewed');
+
+    // Supprimer le conteneur parent
+    notificationContainer.parentElement.remove();
 }
+
 
 
 function getCookie(name) {
