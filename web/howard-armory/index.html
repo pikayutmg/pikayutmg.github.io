@@ -60,26 +60,75 @@
 <meta property="og:image" content="https://cdn.discordapp.com/attachments/1178355455832100874/1183861795010654289/01776e63-b124-41d6-961f-7bb8eec717a0.jpg?ex=6589e037&is=65776b37&hm=c531e3064d6a9e0cab2520e0137e103ebc8059a0c82628876279d5d39b8eec76">
  <style> /* Style pour le conteneur de la notification */
 	 
-.notification-container {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    background-color: #fff;
-    border: 1px solid #ccc;
-    padding: 10px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+html,
+body {
+    height: 100%;
+    margin: 0; /* Ajouté pour éviter le décalage en haut */
 }
 
-/* Style pour la ligne verticale bleue */
-.notification-line {
-    position: absolute;
-    top: 0;
-    left: -5px; /* Ajustez la valeur en fonction de l'espace désiré */
-    width: 3px;
+.container {
+    display: flex;
     height: 100%;
-    background-color: #007bff; /* Bleu */
+    justify-content: center;
+    align-items: center;
 }
+
+.rectangle {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    position: relative;
+    width: 50px;
+    height: 50px;
+    background: #380848;
+    transform: scale(0);
+    border-radius: 50%;
+    color: white;
+    opacity: 0;
+    overflow: hidden;
+    animation: scale-in .3s ease-out forwards,
+                expand .35s .25s ease-out forwards;
+}
+
+.notification-text {
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    animation: fade-in .65s ease-in forwards;
+}
+
+@keyframes scale-in {
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes expand {
+    50% {
+        width: 350px;
+        border-radius: 6px;
+    }
+    100% {
+        width: 300px;
+        border-radius: 4px;
+        box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, .2),
+                    0px 1px 1px 0px rgba(0, 0, 0, .14),
+                    0px 3px 3px -1px rgba(0, 0, 0, .12);
+    }
+}
+
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: .8;
+    }
+}
+
  </style>
  
 </head>
@@ -116,7 +165,16 @@
 
 
 		 
-	
+	<div class="container">
+    <div class="rectangle" id="notification-container">
+        <div class="notification-text">
+            <i class="material-icons">info</i>
+            <span>&nbsp;&nbsp;This is a test notification.</span>
+        </div>
+    </div>
+</div>
+
+		
 		 
             <aside>
 		       <img src="https://pikayutmg.github.io/web/howard-armory/img/gun/walther-p99.jpeg" alt="Walther P99 / MR73"><br>
