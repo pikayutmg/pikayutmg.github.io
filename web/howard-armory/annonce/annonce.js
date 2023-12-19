@@ -31,9 +31,10 @@ function handleAnnouncements(data) {
 }
 
 function closeNotification() {
-    const notificationContainer = document.getElementById('notification-container');
-    notificationContainer.innerHTML = ''; // Supprimer le contenu de la notification
+    const container = document.querySelector('.container');
+    container.innerHTML = ''; // Supprimer le contenu de tout le conteneur
 }
+
 
 function getCookie(name) {
     const value = `; ${document.cookie}`;
