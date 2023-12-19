@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 function handleAnnouncements(data) {
-    const infoContainer = document.getElementById('info-container');
+    const notificationContainer = document.getElementById('notification-container');
 
     // Vérifier si le cookie "lastVisit" existe
     const lastVisit = getCookie('lastVisit');
@@ -15,10 +15,13 @@ function handleAnnouncements(data) {
     // Si le cookie n'existe pas ou si la date de la dernière visite est il y a plus de 14 jours
     if (!lastVisit || isMoreThan14Days(lastVisit)) {
         // Afficher le message d'annonce
-        infoContainer.innerHTML = `
-            <div class="notification-container">
-                <div class="notification-line"></div>
-                <p>Il y a une nouvelle annonce ! <a href="#" onclick="showAnnouncement()">Voir l'annonce</a></p>
+        notificationContainer.innerHTML = `
+            <div class="rectangle" id="notification">
+                <div class="notification-text">
+                    <i class="material-icons">info</i>
+                    <span>&nbsp;&nbsp;This is a test notification.</span>
+                    <button onclick="closeNotification()">Fermer</button>
+                </div>
             </div>
         `;
 
@@ -27,7 +30,25 @@ function handleAnnouncements(data) {
     }
 }
 
-function showAnnouncement() {
-    // Vous pouvez implémenter le code pour afficher l'annonce complète ici
-    alert('Afficher l\'annonce complète');
+function closeNotification() {
+    const notificationContainer = document.getElementById('notification-container');
+    notificationContainer.innerHTML = ''; // Supprimer le contenu de la notification
+}
+
+function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+}
+
+function setCookie(name, value) {
+    document.cookie = `${name}=${value}; path=/`;
+}
+
+function isMoreThan14Days(lastVisit) {
+    const fourteenDaysInMilliseconds = 14 * 24 * 60 * 60 * 1000; // 14 jours en millisecondes
+    const currentDate = new Date().getTime();
+    const lastVisitDate = new Date(lastVisit).getTime();
+
+    return currentDate - lastVisitDate > fourteenDaysInMilliseconds;
 }
