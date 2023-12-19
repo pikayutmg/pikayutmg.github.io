@@ -15,7 +15,12 @@ function handleAnnouncements(data) {
     // Si le cookie n'existe pas ou si la date de la dernière visite est il y a plus de 14 jours
     if (!lastVisit || isMoreThan14Days(lastVisit)) {
         // Afficher le message d'annonce
-        infoContainer.innerHTML = '<p>Il y a une nouvelle annonce ! <a href="#" onclick="showAnnouncement()">Voir l\'annonce</a></p>';
+        infoContainer.innerHTML = `
+            <div class="notification-container">
+                <div class="notification-line"></div>
+                <p>Il y a une nouvelle annonce ! <a href="#" onclick="showAnnouncement()">Voir l'annonce</a></p>
+            </div>
+        `;
 
         // Mettre à jour le cookie "lastVisit" avec la date actuelle
         setCookie('lastVisit', new Date().toUTCString());
