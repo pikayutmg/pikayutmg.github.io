@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // Charger les données JSON à partir du lien (attention aux politiques de sécurité)
     fetch('https://pikayutmg.github.io/web/howard-armory/annonce/annonces.json')
         .then(response => response.json())
         .then(data => handleAnnouncements(data))
@@ -8,41 +7,39 @@ document.addEventListener('DOMContentLoaded', function () {
 
 function handleAnnouncements(data) {
     const notificationContainer = document.getElementById('notification-container');
-
-    // Vérifier si le cookie "lastVisit" existe
     const lastVisit = getCookie('lastVisit');
 
-    // Si le cookie n'existe pas ou si la date de la dernière visite est il y a plus de 14 jours
     if (!lastVisit || isMoreThan14Days(lastVisit)) {
-        // Afficher le message d'annonce si la classe "viewed" n'est pas présente
         if (!notificationContainer.classList.contains('viewed')) {
-            notificationContainer.innerHTML = `
-                <div class="rectangle" id="notification">
-                    <div class="notification-text">
-                        <i class="material-icons">info</i>
-                        <span>&nbsp;&nbsp;This is a test notification.</span>
-                        <button onclick="closeNotification()">Fermer</button>
-                    </div>
-                </div>
-            `;
+            const announcement = data.annonces[0]; // Utilisez l'annonce appropriée depuis votre JSON
+            const announcementHTML = generateAnnouncementHTML(announcement);
 
-            // Mettre à jour le cookie "lastVisit" avec la date actuelle
+            notificationContainer.innerHTML = announcementHTML;
             setCookie('lastVisit', new Date().toUTCString());
         }
     }
 }
 
-function closeNotification() {
-    const notificationContainer = document.getElementById('notification-container');
-
-    // Ajouter la classe "viewed" pour indiquer que la notification a été vue
-    notificationContainer.classList.add('viewed');
-
-    // Supprimer le conteneur parent
-    notificationContainer.parentElement.remove();
+function generateAnnouncementHTML(announcement) {
+    return `
+        <div class="rectangle" id="notification">
+            <div class="notification-text">
+                <i class="material-icons">info</i>
+                ${announcement.title ? `<h2>${announcement.title}</h2>` : ''}
+                ${announcement.date ? `<p>Par ${announcement.date}</p>` : ''}
+                ${announcement.steamLink ? `<a href="${announcement.steamLink}" target="_blank">Lien Steam</a>` : ''}
+                ${announcement.discordLink ? `<a href="${announcement.discordLink}" target="_blank">Lien Discord</a>` : ''}
+                ${announcement.description ? announcement.description : ''}
+                <button onclick="closeNotification()">Fermer</button>
+            </div>
+        </div>
+    `;
 }
 
-
+function closeNotification() {
+    const notificationContainer = document.getElementById('notification-container');
+    notificationContainer.parentElement.remove(); // Supprimer le conteneur parent
+}
 
 function getCookie(name) {
     const value = `; ${document.cookie}`;
@@ -55,9 +52,8 @@ function setCookie(name, value) {
 }
 
 function isMoreThan14Days(lastVisit) {
-    const fourteenDaysInMilliseconds = 14 * 24 * 60 * 60 * 1000; // 14 jours en millisecondes
+    const fourteenDaysInMilliseconds = 14 * 24 * 60 * 60 * 1000;
     const currentDate = new Date().getTime();
     const lastVisitDate = new Date(lastVisit).getTime();
-
     return currentDate - lastVisitDate > fourteenDaysInMilliseconds;
 }
