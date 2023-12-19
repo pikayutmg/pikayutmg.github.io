@@ -31,8 +31,8 @@ function handleAnnouncements(data) {
 }
 
 function closeNotification() {
-    const container = document.querySelector('.container');
-    container.remove(); // Supprimer complètement le conteneur
+    const notificationContainer = document.getElementById('notification-container');
+    notificationContainer.parentElement.remove(); // Supprimer le conteneur parent
 }
 
 
