@@ -32,7 +32,7 @@ function handleAnnouncements(data) {
 
 function closeNotification() {
     const container = document.querySelector('.container');
-    container.innerHTML = ''; // Supprimer le contenu de tout le conteneur
+    container.remove(); // Supprimer complètement le conteneur
 }
 
 
