@@ -3,18 +3,10 @@
         "ID": "692098372747919480",
         "Profile-url": "lien",
         "name": "pseudo",
-        "serveur": "serveur liste ( autoriser les <br> , <h1> a <h6>",
-        "categories": {
-            "Warn - ban - kick": {
-[
-    {
-        "ID": "692098372747919480",
-        "Profile-url": "lien",
-        "name": "pseudo",
         "serveur": "serveur liste (autoriser les <br>, <h1> à <h6>)",
         "categories": {
             "user-wbk": {
-                         "type": "warn",
+                "type": "warn",
                 "Titre": "",
                 "raison": "",
                 "par": "",
@@ -31,21 +23,6 @@
                 "LS Secure ?": "",
                 "suivie": ""
             }
-        }
-    }
-]
-
-            },
-            "user-details": {
-                "type": "profil",
-                "Pseudo": "",
-                "Identifiant": "",
-                "Profilescreen": "",
-                "serveur": "",
-                "LS Secure ?": "",
-                "suivie": ""
-            }
-            
         }
     }
 ]
