@@ -1,0 +1,52 @@
+[
+
+[ "ID" : "692098372747919480",
+  "Profile-url" : "lien",
+  "name" : "pseudo"
+"serveur" : "serveur liste ( autoriser les <br> , <h1> a <h6>" {
+
+  "categories" : "Warn - ban - kick" {
+
+ "type" : "warn" {
+
+     "Titre" : ""
+     "raison" : ""
+     "par" : ""
+     "le " : ""
+     "heure" : ""
+     "code" : ""
+ }
+
+
+
+  "categories" : "user-details" {
+
+ "type" : "profil" {
+
+     "Pseudo" : ""
+     "Identifiant" : ""
+     "Profilescreen" : ""
+     "serveur " : ""
+     "LS Secure ?" : ""
+     "suivie" : ""
+ }
+
+
+  
+
+  /// il peut en ajoouter plusieurs , le code le prendras en charge 
+
+    
+  }
+}
+
+
+
+
+
+
+]
+
+
+  
+]
