@@ -1,22 +1,3 @@
-
- async function loadData() {
-      try {
-        const response = await fetch('https://pikayutmg.github.io/web/ebsayder-roleplay/ebsayder-membre/user/here/here.json');
-        const jsonData = await response.json();
-
-        // Sélectionnez l'élément où les données JSON seront ajoutées
-        const jsonContainer = document.getElementById('json-container');
-
-        // Convertissez l'objet JSON en une chaîne JSON formatée
-        const jsonString = JSON.stringify(jsonData, null, 2);
-
-        // Ajoutez la chaîne JSON à l'élément HTML
-        jsonContainer.textContent = jsonString;
-
-      } catch (error) {
-        console.error('Erreur lors du chargement des données:', error);
-      }
-    }
-
-    // Appelez la fonction pour charger les données JSON
-    loadData();
+{
+  "site": "<div class=\"account-wrapper\" style=\"--delay: .8s\">\n  <div class=\"account-profile\">\n    <img id=\"profile-image\" src=\"\" alt=\"Image de profil\">\n    <div class=\"blob-wrap\">\n      <div class=\"blob\"></div>\n      <div class=\"blob\"></div>\n      <div class=\"blob\"></div>\n    </div>\n    <div class=\"account-name\">Mike J Morgan</div>\n    <div class=\"account-title\">Taxi Driver</div>\n  </div>\n  <div class=\"account card\">\n    <div class=\"account-cash\">$ 5637.04</div>\n    <div class=\"account-income\">Total Income</div>\n    <div class=\"account-iban\"> <p id=\"id\"> </p></div>\n  </div>\n</div>"
+}
