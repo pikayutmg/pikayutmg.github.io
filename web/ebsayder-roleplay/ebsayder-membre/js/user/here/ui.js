@@ -1,3 +1,4 @@
+ 
   // Fonction pour charger les données du profil depuis le fichier JSON
   async function loadProfileData() {
     try {
@@ -6,6 +7,7 @@
 
       // Sélectionnez les éléments où les informations du profil seront ajoutées
       const nameElement = document.getElementById('name');
+      const titleElement = document.getElementById('title');
       const idElement = document.getElementById('id');
       const profileImageElement = document.getElementById('profile-image');
 
@@ -14,6 +16,7 @@
 
       // Mettez à jour le contenu des éléments HTML avec les informations du profil
       nameElement.textContent = `Pseudo : ${userProfileData.Pseudo}`;
+      titleElement.textContent = `Titre : ${userProfileData.Titre}`;
       idElement.textContent = `Identifiant : ${userProfileData.Identifiant}`;
       profileImageElement.src = userProfileData.Profilescreen;  // Mettez à jour la source de l'image
 
@@ -24,3 +27,4 @@
 
   // Appelez la fonction pour charger les données du profil
   loadProfileData();
+ 
