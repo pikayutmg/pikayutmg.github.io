@@ -6,14 +6,27 @@
         "serveur": "serveur liste (autoriser les <br>, <h1> à <h6>)",
         "categories": {
             "user-wbk": {
-                "type": "warn",
-                "Titre": "",
-                "raison": "",
-                "par": "",
-                "le": "",
-                "heure": "",
-                "code": ""
+                "type": "Warn",
+                "Titre": "Le suspect insult ",
+                "raison": "insulte ",
+                "par": "enes",
+                "le": "55.555.55555",
+                "heure": "21.50",
+                "code": "hg55 + 5.2"
             },
+
+
+             "user-wbk": {
+                "type": "Wsarn",
+                "Titre": "Le sssuspssect insult ",
+                "raison": "insssulte ",
+                "par": "esnssses",
+                "le": "55ss.555ss.55555",
+                "heure": "ss50",
+                "code": "hgs55 + 5ss.2"
+            },
+
+            
             "user-details": {
                 "type": "profil",
                 "Pseudo": "",
