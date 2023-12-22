@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PikaYut - Research Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            margin: 50px;
+        }
+
+        #container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h2>Enter Your Pseudo</h2>
+        <input type="text" id="pseudoInput" placeholder="Your Pseudo">
+        <button onclick="submitPseudo()">Submit</button>
+    </div>
+
+    <script>
+        function submitPseudo() {
+            var pseudo = document.getElementById("pseudoInput").value;
+
+            // Create a URL with the pseudo parameter
+            var url = "https://pikayutmg.github.io/web/PikaYut-warn/sys/user/pseudo?pseudo=" + encodeURIComponent(pseudo);
+
+            // Redirect to the specified URL
+            window.location.href = url;
+        }
+    </script>
+</body>
+</html>
