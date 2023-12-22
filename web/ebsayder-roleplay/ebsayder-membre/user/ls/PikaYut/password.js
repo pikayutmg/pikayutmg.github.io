@@ -1,20 +1,23 @@
-// Mot de passe attendu
-    const expectedPassword = "2009"; // Remplacez par votre mot de passe
+function showContent() {
+    const passwordInput = document.getElementById('password-input');
+    const passwordDiv = document.getElementById('password');
+    const protectedContent = document.getElementById('protected-content');
 
-    // Fonction pour vérifier le mot de passe
-    function checkPassword() {
-      const passwordInput = document.getElementById('passwordInput');
-      const passwordDiv = document.getElementById('password');
+    // Votre mot de passe enregistré dans le JSON
+    const motDePasseAttendu = "2009";
 
-      // Vérifiez si le mot de passe est correct
-      if (passwordInput.value === expectedPassword) {
-        // Affichez le contenu protégé
+    // Vérifier si le mot de passe saisi est correct
+    if (passwordInput.value === motDePasseAttendu) {
+        // Afficher le contenu protégé
         passwordDiv.style.display = 'block';
-      } else {
-        // Affichez un message d'erreur
-        alert('Mot de passe incorrect. Veuillez réessayer.');
-      }
 
-      // Effacez le champ de mot de passe après vérification (facultatif)
-      passwordInput.value = '';
+        // Mettre à jour le contenu protégé (vous pouvez remplacer cela par votre propre contenu)
+        protectedContent.textContent = "Bienvenue sur le site protégé !";
+    } else {
+        // Afficher un message d'erreur si le mot de passe est incorrect
+        alert("Mot de passe incorrect !");
     }
+
+    // Effacer le champ du mot de passe
+    passwordInput.value = '';
+}
