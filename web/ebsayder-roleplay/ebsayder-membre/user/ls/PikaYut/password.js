@@ -1,5 +1,5 @@
 // Mot de passe attendu
-    const expectedPassword = "votreMotDePasse"; // Remplacez par votre mot de passe
+    const expectedPassword = "2009"; // Remplacez par votre mot de passe
 
     // Fonction pour vérifier le mot de passe
     function checkPassword() {
