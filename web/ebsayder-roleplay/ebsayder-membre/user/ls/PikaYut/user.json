@@ -7,14 +7,34 @@
         "categories": {
             "user-wbk": [
                 {
-                    "type": "WBK",
+                    "type": "warn 1",
                     "Titre": "Pikayut Fondateur",
                     "raison": " Fonda , donc aucun warn ",
                     "par": "N/A",
                     "le": " N/A",
                     "heure": "N/A",
                     "code": "N/A"
-                }
+                },
+
+                                {
+                    "type": "Ban 2 ",
+                    "Titre": "Pikayut Fondateur 2",
+                    "raison": " Fonda , donc aucun warn 2 ",
+                    "par": "N/A2",
+                    "le": " N/A2",
+                    "heure": "N/A2",
+                    "code": "N/A2"
+                                },
+
+                                {
+                    "type": "kick 3",
+                    "Titre": "Pikayut Fondateur3",
+                    "raison": " Fonda , donc aucun warn 3 ",
+                    "par": "N/A3",
+                    "le": " N/A3",
+                    "heure": "N/A3",
+                    "code": "N/A3"
+                                }
             ],
             "user-details": {
                 "type": "profil",
