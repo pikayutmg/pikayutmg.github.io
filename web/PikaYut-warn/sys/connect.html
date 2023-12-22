@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -40,9 +40,9 @@
 </head>
 <body>
     <div id="container">
-        <h2>Enter Your Pseudo</h2>
-        <input type="text" id="pseudoInput" placeholder="Your Pseudo">
-        <button onclick="submitPseudo()">Submit</button>
+        <h2>Entrer votre Pseudo</h2>
+        <input type="text" id="pseudoInput" placeholder="votre Pseudo">
+        <button onclick="submitPseudo()">Accez</button>
     </div>
 
     <script>
@@ -50,7 +50,7 @@
             var pseudo = document.getElementById("pseudoInput").value;
 
             // Create a URL with the pseudo parameter
-            var url = "https://pikayutmg.github.io/web/PikaYut-warn/sys/user/" + encodeURIComponent(pseudo);
+            var url = "https://pikayutmg.github.io/web/PikaYut-warn/sys/connect/" + encodeURIComponent(pseudo);
 
             // Redirect to the specified URL
             window.location.href = url;
