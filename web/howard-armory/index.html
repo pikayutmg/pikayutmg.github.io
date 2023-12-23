@@ -14,9 +14,12 @@
     <!-- Metadata -->
     <meta name="author" content="EnesGP">
     <meta name="description" content="Notre web en ligne By HowardArmory.">
+	<meta name="apple-mobile-web-app-title" content="[GFLP] HowardArmory">
+	<meta property="og:url" content="https://pikayutmg.github.io/web/howard-armory/index.html">
     
     <!-- Open Graph and Twitter metadata -->
     <meta property="og:url" content="https://pikayutmg.github.io/web/howard-armory/">
+	<meta property="og:site_name" content="[GFLP] HowardArmory">
     <meta property="og:type" content="website">
     <meta property="og:title" content="Howard Armory Web // GMOD DarkRolePlay (GTA City 1/2 French)">
     <meta property="og:description" content="Notre web en ligne By HowardArmory.">
@@ -58,86 +61,98 @@
 <meta name="google" content="nositelinkssearchbox">
 <title>HowardArmory</title>
 <meta property="og:image" content="https://cdn.discordapp.com/attachments/1178355455832100874/1183861795010654289/01776e63-b124-41d6-961f-7bb8eec717a0.jpg?ex=6589e037&is=65776b37&hm=c531e3064d6a9e0cab2520e0137e103ebc8059a0c82628876279d5d39b8eec76">
- <style> /* Style pour le conteneur de la notification */
-html,
-body {
-  height: 100%;
-  margin: 0;
-}
-
-.container {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  display: flex;
-  height: 100%;
-  justify-content: center;
-  align-items: flex-end;
-  padding: 20px; /* Ajoutez un padding selon vos besoins */
-}
-
-.rectangle {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  position: relative;
-  width: 50px;
-  height: 50px;
-  background: #380848;
-  transform: scale(0);
-  border-radius: 50%;
-  color: white;
-  opacity: 0;
-  overflow: hidden;
-  animation: scale-in 0.3s ease-out forwards, expand 0.35s 0.25s ease-out forwards;
-}
-
-.notification-text {
-  display: flex;
-  align-items: center;
-  padding: 0 16px;
-  font-family: 'Roboto', sans-serif;
-  font-size: 14px;
-  animation: fade-in 0.65s ease-in forwards;
-}
-
-@keyframes scale-in {
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-
-@keyframes expand {
-  50% {
-    width: 350px;
-    border-radius: 6px;
-  }
-  100% {
-    width: 300px;
-    border-radius: 4px;
-    box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2),
-      0px 1px 1px 0px rgba(0, 0, 0, 0.14),
-      0px 3px 3px -1px rgba(0, 0, 0, 0.12);
-  }
-}
-
-@keyframes fade-in {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 0.8;
-  }
-}
-
-svg {
-
-	width:50px;
-	eight:50px;
-}
- </style>
  
+  <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            align-items: flex-end;
+            min-height: 100vh;
+        }
+
+        .info-box {
+            position: relative;
+            width: 35%;
+            height: 50px;
+            background-color: #c8d9e4;
+            border-radius: 25px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            animation: growAndShow 1s forwards; /* Animation au chargement de la page */
+        }
+
+        @keyframes growAndShow {
+            0% {
+                width: 50px;
+                border-radius: 25pxr;
+            }
+            100% {
+                width: 35%;
+                border-radius: 25px;
+            }
+        }
+
+        .info-box img {
+            width: 50px;
+            height: 50px;
+            border-radius: 5%;
+        }
+
+        .info-box .info-text {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            right: 5%;
+            color: #fff;
+       
+    opacity: 0;
+    animation: fadeIn 1s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+
+        .info-box a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .popup-content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            position: relative;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -639,19 +654,41 @@ Choisissez la confiance, la qualité et la convivialité. Choisissez Howard Armo
 
 
 
+<body>
 
-<div class="container">
-	<div class="rectangle">
-		<div class="notification-text">
-			<span><i class="material-icons"><svg viewBox="-2.4 -2.4 28.80 28.80" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000" stroke="#000000" stroke-width="0.024" transform="rotate(0)"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <defs> <path id="info-a" d="M10.5134277,0.293457031 C12.3116048,6.98051974 11.4737956,10.510549 8,10.8835449 C1.8918457,10.8835449 -0.0366210938,14.6247559 0.773681641,16.5002441 C1.58398438,18.3757324 4.12866211,19.8500977 6.21289062,20.2067871 C8.29711914,20.5634766 11.6750488,20.5915527 15.8925781,16.5002441 C20.1101074,12.4089355 17.1142578,5.80639648 15.8925781,4.07495117 C15.078125,2.9206543 13.2850749,1.66015625 10.5134277,0.293457031 Z"></path> <path id="info-c" d="M11,22 C4.92486775,22 0,17.0751322 0,11 C0,4.92486775 4.92486775,0 11,0 C17.0751322,0 22,4.92486775 22,11 C22,17.0751322 17.0751322,22 11,22 Z M11,20.24 C16.1031111,20.24 20.24,16.1031111 20.24,11 C20.24,5.89688891 16.1031111,1.76 11,1.76 C5.89688891,1.76 1.76,5.89688891 1.76,11 C1.76,16.1031111 5.89688891,20.24 11,20.24 Z M10,10 C10,9.44771525 10.4477153,9 11,9 C11.5522847,9 12,9.44771525 12,10 L12,15 C12,15.5522847 11.5522847,16 11,16 C10.4477153,16 10,15.5522847 10,15 L10,10 Z M11,8 C10.4477153,8 10,7.55228475 10,7 C10,6.44771525 10.4477153,6 11,6 C11.5522847,6 12,6.44771525 12,7 C12,7.55228475 11.5522847,8 11,8 Z"></path> </defs> <g fill="none" fill-rule="evenodd" transform="translate(1 1)"> <g transform="translate(3 1)"> <mask id="info-b" fill="#ffffff"> <use xlink:href="#info-a"></use> </mask> <use fill="#D8D8D8" xlink:href="#info-a"></use> <g fill="#FFA0A0" mask="url(#info-b)"> <rect width="24" height="24" transform="translate(-4 -2)"></rect> </g> </g> <mask id="info-d" fill="#ffffff"> <use xlink:href="#info-c"></use> </mask> <use fill="#000000" fill-rule="nonzero" xlink:href="#info-c"></use> <g fill="#7600FF" mask="url(#info-d)"> <rect width="24" height="24" transform="translate(-1 -1)"></rect> </g> </g> </g></svg></i>
-			&nbsp;&nbsp; <button class="butt"> <a href="https://gtacityrp.fr/index.php?threads/gun-shop-howard.43374/">Visitez notres steam page ( annonce ) </a></button> </span>
-		</div><style>
-			.butt { width:15px;
-			      height: 5px;
-			      background:whitesmoke;}
-		</style>
-	</div>
+<div class="info-box">
+    <img src="https://pikayutmg.github.io/web/howard-armory/img/PNG/info1.png" alt="Info Image">
+    <div class="info-text">
+        <p>Gun Shop Howard | Articles
+            <a href="#" id="details-link">&lt; Plus de détails ? &gt;</a></p>
+    </div>
 </div>
+
+<div class="popup" id="popup">
+    <div class="popup-content">
+        <span class="close-btn" onclick="closePopup()">❌</span>
+        <iframe src="" width="100%" height="400" frameborder="0"></iframe>
+    </div>
+</div>
+
+<script>
+    document.getElementById('details-link').addEventListener('click', function (event) {
+        event.preventDefault();
+        openPopup('https://gtacityrp.fr/index.php?threads/gun-shop-howard.43374/');
+    });
+
+    function openPopup(url) {
+        document.getElementById('popup').style.display = 'flex';
+        document.querySelector('.popup-content iframe').src = url;
+    }
+
+    function closePopup() {
+        document.getElementById('popup').style.display = 'none';
+        document.querySelector('.popup-content iframe').src = '';
+    }
+</script>
+
+</body>
 
  </main>
 
