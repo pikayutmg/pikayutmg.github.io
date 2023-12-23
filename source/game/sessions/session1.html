@@ -1,127 +1,14 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    #game-board {
-      display: grid;
-      grid-template-columns: repeat(20, 20px);
-      grid-template-rows: repeat(20, 20px);
-      gap: 1px;
-      border: 2px solid #333;
-      width: 400px;
-      margin: 20px auto;
-    }
-
-    .snake {
-      background-color: #4CAF50;
-    }
-
-    .point {
-      background-color: #FF5733;
-    }
-  </style>
   <title>Multiplayer Snake Game</title>
 </head>
 <body>
-  <div id="game-board"></div>
-  <script>
-    const board = document.getElementById("game-board");
-
-    const snake = [{ x: 10, y: 10 }];
-    const blockSize = 20;
-    const boardSize = 20;
-    const speed = 200;
-
-    function createPoint() {
-      const point = {
-        x: Math.floor(Math.random() * boardSize),
-        y: Math.floor(Math.random() * boardSize),
-      };
-      return point;
-    }
-
-    let point = createPoint();
-
-    function draw() {
-      board.innerHTML = "";
-
-      // Draw snake
-      snake.forEach((segment) => {
-        const snakeSegment = document.createElement("div");
-        snakeSegment.style.gridRowStart = segment.y + 1;
-        snakeSegment.style.gridColumnStart = segment.x + 1;
-        snakeSegment.classList.add("snake");
-        board.appendChild(snakeSegment);
-      });
-
-      // Draw point
-      const pointElement = document.createElement("div");
-      pointElement.style.gridRowStart = point.y + 1;
-      pointElement.style.gridColumnStart = point.x + 1;
-      pointElement.classList.add("point");
-      board.appendChild(pointElement);
-    }
-
-    function move() {
-      const head = { ...snake[0] };
-
-      // Move snake
-      if (direction === "up") head.y--;
-      else if (direction === "down") head.y++;
-      else if (direction === "left") head.x--;
-      else if (direction === "right") head.x++;
-
-      // Check if snake ate the point
-      if (head.x === point.x && head.y === point.y) {
-        snake.unshift({ ...head });
-        point = createPoint();
-      } else {
-        // Remove tail
-        snake.pop();
-      }
-
-      // Check if snake collided with walls or itself
-      if (
-        head.x < 0 ||
-        head.x >= boardSize ||
-        head.y < 0 ||
-        head.y >= boardSize ||
-        collision()
-      ) {
-        alert("Game Over!");
-        resetGame();
-        return;
-      }
-
-      snake.unshift(head);
-      draw();
-    }
-
-    function collision() {
-      const head = snake[0];
-      return snake.slice(1).some((segment) => segment.x === head.x && segment.y === head.y);
-    }
-
-    function resetGame() {
-      snake.length = 1;
-      snake[0] = { x: 10, y: 10 };
-      point = createPoint();
-      direction = "right";
-      draw();
-    }
-
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "ArrowUp" && direction !== "down") direction = "up";
-      else if (e.key === "ArrowDown" && direction !== "up") direction = "down";
-      else if (e.key === "ArrowLeft" && direction !== "right") direction = "left";
-      else if (e.key === "ArrowRight" && direction !== "left") direction = "right";
-    });
-
-    setInterval(move, speed);
-    draw();
-  </script>
+  <h1>Multiplayer Snake Game</h1>
+  <p id="player-id"></p>
+  <div id="player-list"></div>
+  <script src="client.js"></script>
 </body>
 </html>
