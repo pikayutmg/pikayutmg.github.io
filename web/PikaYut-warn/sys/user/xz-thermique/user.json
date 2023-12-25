@@ -1,29 +1,53 @@
 [
     {
-        "ID": "662282559937314818",
-        "Profile-url": "https://cdn.discordapp.com/avatars/662282559937314818/90387d429296015dfbac83963c393eaf.webp?size=32",
-        "name": "Charlie",
+        "ID": "979731082058559538",
+        "Profile-url": "https://cdn.discordapp.com/avatars/979731082058559538/ffe4311aa84cfd3d5e5fe365a34cbafa.webp?size=32",
+        "name": "xzthermiquepanda",
         "serveur": "serveur liste (autoriser les <br>, <h1> à <h6>)",
         "categories": {
             "user-wbk": [
                 {
-                    "type": " 👋 Bienvenue Charlie  ",
-                    "Titre": " Membre depuis : 23 DECEMBRE  2022",
-                    "raison": " -- ADMIN -- ",
+                    "type": " 👋 Bienvenue xzthermiquepanda  ",
+                    "Titre": " Membre depuis : 11 Octobre  2023",
+                    "raison": "   ",
                     "par": "N/A",
                     "le": " N/A",
                     "heure": "N/A",
-                    "code": " BVN 3 8 1 18 12 9 5 "
+                    "code": " "
+                },
+
+                 {
+                    "type": " WARN  ",
+                    "Titre": "  Avertissement   ",
+                    "raison": " RAPPORTE CONFIDENTIEL  , Pas d'humourds , Abuse pour un soit disant avectissement   .   ",
+                    "par": "N/A",
+                    "le": " N/A",
+                    "heure": "N/A",
+                    "code": " PK-GFLP  : CR - 0.1  , ICC - 0.3 , STRPG - 0.6 , VICG - 0.1  ( dit harcelement )  "
+                },
+
+                 {
+                    "type": "  WARN  ",
+                    "Titre": "  Manque de respect en vers le staff  .  ",
+                    "raison": "  ..   ",
+                    "par": " ENES Gp ",
+                    "le": " 16.08.2023 ",
+                    "heure": "N/A",
+                    "code": " PK-GFLP  G-0.1 , G-0.2  ,  G-0.5  "
                 }
+                
+
+
+                
             ],
             "user-details": {
                 "type": "profil",
-                "Pseudo": " aijuminnwolfy ",
-                "Identifiant": "662282559937314818",
-                "Profilescreen": "https://cdn.discordapp.com/avatars/662282559937314818/90387d429296015dfbac83963c393eaf.webp?size=32",
-                "serveur": "",
-                "LS Secure ?": "",
-                "suivie": "",
+                "Pseudo": " xzthermiquepanda ",
+                "Identifiant": "979731082058559538",
+                "Profilescreen": "https://cdn.discordapp.com/avatars/979731082058559538/ffe4311aa84cfd3d5e5fe365a34cbafa.webp?size=32",
+                "serveur": "GEN 2 ",
+                "LS Secure ?": " // ",
+                "suivie": " oui ",
                 "password" : "" 
             }
         }
