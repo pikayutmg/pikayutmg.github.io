@@ -171,8 +171,7 @@
 
 
 
-
-  <!DOCTYPE html>
+<!DOCTYPE html> <div id="embedContainer"></div>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -192,9 +191,9 @@
         .embed-container {
             border: 2px solid #7289da;
             border-radius: 10px;
-           
+            margin: 10px;
             padding: 10px;
-            max-width: 300px;
+            width: 400px; /* Ajustez la largeur selon vos besoins */
             text-align: left;
         }
 
@@ -209,11 +208,14 @@
             font-size: 16px;
         }
     </style>
+
+
+     
     <title>Discord Webhook Sender</title>
 </head>
 <body>
     <button onclick="sendWebhook()">Send Webhook</button>
-    <div id="embedContainer"></div>
+   
     <script>
         const webhookUrl = "https://discord.com/api/webhooks/1188992531556466709/Np46uXQtZUlJwdDQhgtRNJaInKu3cFFOTgZV_vW4wkpRe8SbwanXC4bSjPiiPWb71C1b";
 
