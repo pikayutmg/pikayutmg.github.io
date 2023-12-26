@@ -10,6 +10,44 @@
     <meta name="author" content="Pikayut">
     <meta name="title" content="PikayutMG Profil">
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+
+
+
+ <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .embed-container {
+            border: 2px solid #7289da;
+            border-radius: 10px;
+            margin: 10px;
+            padding: 10px;
+            width: 400px; /* Ajustez la largeur selon vos besoins */
+            text-align: left;
+        }
+
+        img {
+            max-width: 100%;
+            border-radius: 50%;
+            margin-top: 10px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+    </style>
+
+
+
 </head>
     
     
@@ -76,6 +114,7 @@
       <div class="destination-points">
        <div class="point"> Conditions discord </div>
        <div class="sub-point">  <a href="https://pikayutmg.github.io/web/discord/serv/gflp-off/conditions.html">  accedez  </a>  </div>
+        <button onclick="sendWebhook()"> Webhook</button>
       </div>
      </div>
     </div>
@@ -100,6 +139,9 @@
    </div>
   </div>
 
+<br><br>
+    <div id="embedContainer"></div>
+  <br><br>
 
 
   <div class="user-box second-box">
@@ -161,49 +203,7 @@
 
 
 
-
-  <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-
-        .embed-container {
-            border: 2px solid #7289da;
-            border-radius: 10px;
-            margin: 10px;
-            padding: 10px;
-            max-width: 300px;
-            text-align: left;
-        }
-
-        img {
-            max-width: 100%;
-            border-radius: 50%;
-            margin-top: 10px;
-        }
-
-        button {
-            padding: 10px 20px;
-            font-size: 16px;
-        }
-    </style>
-    <title>Discord Webhook Sender</title>
-</head>
-<body>
-    <button onclick="sendWebhook()">Send Webhook</button>
-    <div id="embedContainer"></div>
+ 
     <script>
         const webhookUrl = "https://discord.com/api/webhooks/1188992531556466709/Np46uXQtZUlJwdDQhgtRNJaInKu3cFFOTgZV_vW4wkpRe8SbwanXC4bSjPiiPWb71C1b";
 
@@ -317,10 +317,7 @@
             }
         }
     </script>
-</body>
-</html>
-
-
+ 
 
    </div>
  
