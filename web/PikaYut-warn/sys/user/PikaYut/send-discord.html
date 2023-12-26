@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .embed-container {
+            border: 2px solid #7289da;
+            border-radius: 10px;
+            margin: 10px;
+            padding: 10px;
+            max-width: 300px;
+            text-align: left;
+        }
+
+        img {
+            max-width: 100%;
+            border-radius: 50%;
+            margin-top: 10px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+    </style>
+    <title>Discord Webhook Sender</title>
+</head>
+<body>
+    <button onclick="sendWebhook()">Send Webhook</button>
+    <div id="embedContainer"></div>
+    <script>
+        const webhookUrl = "https://discord.com/api/webhooks/1188992531556466709/Np46uXQtZUlJwdDQhgtRNJaInKu3cFFOTgZV_vW4wkpRe8SbwanXC4bSjPiiPWb71C1b";
+
+        async function sendWebhook() {
+            const jsonUrls = [
+                "https://pikayutmg.github.io/web/PikaYut-warn/sys/user/PikaYut/user.json",
+                "https://pikayutmg.github.io/web/PikaYut-warn/sys/user/Fake-Fether/user.json",
+                "https://pikayutmg.github.io/web/PikaYut-warn/sys/user/Charlie/user.json",
+                "https://pikayutmg.github.io/web/PikaYut-warn/sys/user/xz-thermique/user.json"
+            ];
+
+            const embedContainer = document.getElementById("embedContainer");
+
+            try {
+                for (const url of jsonUrls) {
+                    const response = await fetch(url);
+                    const data = await response.json();
+
+                    createEmbed(embedContainer, data);
+                    await sendToDiscord(webhookUrl, data);
+                }
+
+                // Fermer la page après 2 secondes
+                setTimeout(() => {
+                    window.close();
+                }, 2000);
+            } catch (error) {
+                console.error("Error fetching or processing JSON:", error);
+            }
+        }
+
+        function createEmbed(embedContainer, data) {
+            const embedDiv = document.createElement("div");
+            embedDiv.className = "embed-container";
+
+            if (data && data.length > 0 && data[0].categories && data[0].categories["user-details"]) {
+                const userDetails = data[0].categories["user-details"];
+
+                const profileDetails = `
+                    - - - Profile - - -
+                    Pseudo: ${userDetails.Pseudo}
+                    ID: ${userDetails.Identifiant}
+                    Serveur: ${userDetails.serveur}
+                `;
+
+                const wbkDetails = createWbkDetails(data[0].categories["user-wbk"]);
+
+                embedDiv.textContent = `${profileDetails}\n\n${wbkDetails}`;
+                embedContainer.appendChild(embedDiv);
+            } else {
+                console.error("Data structure is not as expected:", data);
+            }
+        }
+
+        function createWbkDetails(userWbk) {
+            if (!userWbk || !Array.isArray(userWbk) || userWbk.length === 0) {
+                return "- - - User WBK - - -\nAucun avertissement.";
+            }
+
+            const categories = userWbk.map(category => {
+                const type = category.type ? `**${category.type}**\n` : "";
+                const fields = Object.entries(category)
+                    .filter(([key, value]) => value !== undefined && key !== "type")
+                    .map(([key, value]) => `${key}: ${value}`)
+                    .join("\n");
+
+                return `${type}${fields}`;
+            });
+
+            return `- - - User WBK - - -\n${categories.join("\n")}`;
+        }
+
+        async function sendToDiscord(webhookUrl, data) {
+            try {
+                if (data && data.length > 0 && data[0].categories && data[0].categories["user-details"]) {
+                    const pseudo = data[0].categories["user-details"].Pseudo;
+                    const id = data[0].categories["user-details"].Identifiant;
+
+                    const embed = {
+                        title: `Infos pour ${pseudo} (ID: ${id})`,
+                        description: `Voir les informations ci-dessous.`,
+                        color: 16711680, // Rouge (peut être changé)
+                        fields: [
+                            {
+                                name: "- - - Profile - - -",
+                                value: `Pseudo: ${pseudo}\nID: ${id}\nServeur: ${data[0].categories["user-details"].serveur}`,
+                                inline: false
+                            },
+                            {
+                                name: "- - - User WBK - - -",
+                                value: createWbkDetails(data[0].categories["user-wbk"]),
+                                inline: false
+                            }
+                        ]
+                    };
+
+                    await fetch(webhookUrl, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ embeds: [embed] })
+                    });
+
+                    console.log(`Infos envoyées pour ${pseudo}`);
+                } else {
+                    console.error("Data structure is not as expected:", data);
+                }
+            } catch (error) {
+                console.error("Une erreur s'est produite lors de l'envoi des informations sur Discord:", error);
+            }
+        }
+    </script>
+</body>
+</html>
