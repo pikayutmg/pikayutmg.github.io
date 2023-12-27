@@ -22,8 +22,7 @@
 
     <div id="result"></div>
 
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-    <script>
+      <script>
         function search() {
             var searchTerm = document.getElementById("searchInput").value.toLowerCase();
 
@@ -48,8 +47,8 @@
             var popupContent = "<ul>";
             results.forEach(result => {
                 popupContent += `<li><strong>${result.TITRE}</strong><br>${result.DESCRIPTION}<br>
-                                 <button onclick="openUrl('${result.KEY}')">Ouvrir URL</button>
-                                 <button onclick="showUrl('${result.KEY}')">❔</button></li>`;
+                                 <button onclick="openUrl('${result.URL}')">Ouvrir URL</button>
+                                 <button onclick="showUrl('${result.URL}')">❔</button></li>`;
             });
             popupContent += "</ul>";
 
@@ -62,7 +61,7 @@
 
         function openUrl(url) {
             // Rediriger vers l'URL
-            window.location.href = `https://url-exemple.com/?url=${url}`;
+            window.location.href = url;
         }
 
         function showUrl(url) {
@@ -74,8 +73,6 @@
             });
         }
     </script>
- 
-
 
 
 
