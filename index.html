@@ -15,72 +15,15 @@
 
   
 
-    <div id="result"></div>
+    
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-    <script>
-        function search() {
-            var searchTerm = document.getElementById("searchInput").value.trim().toLowerCase();
-
-            // Vérifier si aucun terme de recherche n'est saisi
-            if (searchTerm === "") {
-                document.getElementById("result").innerHTML = "Veuillez insérer une recherche.";
-                return;
-            }
-
-            // Charger le fichier JSON
-            fetch('https://pikayutmg.github.io/source/pikayut-base/data/research.json')
-                .then(response => response.json())
-                .then(data => {
-                    // Rechercher la clé dans le JSON de manière insensible à la casse
-                    var results = data.filter(item => item.KEY.toLowerCase().includes(searchTerm));
-
-                    // Afficher les résultats dans un pop-up
-                    if (results.length > 0) {
-                        showResultsPopup(results);
-                    } else {
-                        document.getElementById("result").innerHTML = "Aucun résultat trouvé.";
-                    }
-                })
-                .catch(error => console.error('Erreur de chargement du fichier JSON', error));
-        }
-
-        function showResultsPopup(results) {
-            var popupContent = "<ul>";
-            results.forEach(result => {
-                popupContent += `<li><strong>${result.TITRE}</strong><br>${result.DESCRIPTION}<br>
-                                 <button onclick="openUrl('${result.URL}')">Ouvrir URL</button>
-                                 <button onclick="showUrl('${result.URL}')">❔</button></li>`;
-            });
-            popupContent += "</ul>";
-
-            Swal.fire({
-                title: 'Résultats de la recherche',
-                html: popupContent,
-                confirmButtonText: 'Fermer'
-            });
-        }
-
-        function openUrl(url) {
-            // Rediriger vers l'URL
-            window.location.href = url;
-        }
-
-        function showUrl(url) {
-            // Afficher l'URL dans une alerte
-            Swal.fire({
-                title: 'URL',
-                text: url,
-                confirmButtonText: 'OK'
-            });
-        }
-    </script>
 
 
  
 <!-- partial:index.partial.html -->
 <div class="page-wrapper">
- <div class="">
+ <div class="nav-wrapper">
   <div class="grad-bar"></div>
   <nav class="navbar">
     <img src="https://cdn.discordapp.com/attachments/1057796768617742407/1182409462779224184/pikayut8.png?ex=658497a0&is=657222a0&hm=6f92180503b2294550d39df53fa73b2162d9194dfc32e23c92bb5ad3693df9b2&" alt="Company Logo">
@@ -156,7 +99,7 @@
  
     
     <i class="fas fa-search" id="search-icon"></i><p><input class="search-bar" type="text" id="searchInput" placeholder="Recherche..."><button class="search-enter" onclick="search()">🔍</button></p>
-
+    <p><div id="result"></div></p>
 
 
     
@@ -240,6 +183,67 @@
   <script src="https://gflp-p.vercel.app/source/js-plug-in/+details.js"> </script>
 
 
+
+  <!-- Search bar -->
+
+      <script>
+        function search() {
+            var searchTerm = document.getElementById("searchInput").value.trim().toLowerCase();
+
+            // Vérifier si aucun terme de recherche n'est saisi
+            if (searchTerm === "") {
+                document.getElementById("result").innerHTML = "Veuillez insérer une recherche.";
+                return;
+            }
+
+            // Charger le fichier JSON
+            fetch('https://pikayutmg.github.io/source/pikayut-base/data/research.json')
+                .then(response => response.json())
+                .then(data => {
+                    // Rechercher la clé dans le JSON de manière insensible à la casse
+                    var results = data.filter(item => item.KEY.toLowerCase().includes(searchTerm));
+
+                    // Afficher les résultats dans un pop-up
+                    if (results.length > 0) {
+                        showResultsPopup(results);
+                    } else {
+                        document.getElementById("result").innerHTML = "Aucun résultat trouvé.";
+                    }
+                })
+                .catch(error => console.error('Erreur de chargement du fichier JSON', error));
+        }
+
+        function showResultsPopup(results) {
+            var popupContent = "<ul>";
+            results.forEach(result => {
+                popupContent += `<li><strong>${result.TITRE}</strong><br>${result.DESCRIPTION}<br>
+                                 <button onclick="openUrl('${result.URL}')">Ouvrir URL</button>
+                                 <button onclick="showUrl('${result.URL}')">❔</button></li>`;
+            });
+            popupContent += "</ul>";
+
+            Swal.fire({
+                title: 'Résultats de la recherche',
+                html: popupContent,
+                confirmButtonText: 'Fermer'
+            });
+        }
+
+        function openUrl(url) {
+            // Rediriger vers l'URL
+            window.location.href = url;
+        }
+
+        function showUrl(url) {
+            // Afficher l'URL dans une alerte
+            Swal.fire({
+                title: 'URL',
+                text: url,
+                confirmButtonText: 'OK'
+            });
+        }
+      </script>
+  
 </head>
 
 <!-- Popup for #about -->
