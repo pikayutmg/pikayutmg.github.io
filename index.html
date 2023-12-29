@@ -6,32 +6,33 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="https://fonts.googleapis.com/css?family=Lato:300,400" rel="stylesheet"> 
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous"><link rel="stylesheet" href="https://pikayutmg.github.io/source/css-script/style.css">
-
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10">
 </head>
 
 
 
-   
-<head>
  
-    <!-- Ajout de SweetAlert2 CDN -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10">
-</head>
 
   
 
     <div id="result"></div>
 
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script>
         function search() {
-            var searchTerm = document.getElementById("searchInput").value.toLowerCase();
+            var searchTerm = document.getElementById("searchInput").value.trim().toLowerCase();
+
+            // Vérifier si aucun terme de recherche n'est saisi
+            if (searchTerm === "") {
+                document.getElementById("result").innerHTML = "Veuillez insérer une recherche.";
+                return;
+            }
 
             // Charger le fichier JSON
             fetch('https://pikayutmg.github.io/source/pikayut-base/data/research.json')
                 .then(response => response.json())
                 .then(data => {
-                    // Rechercher la clé dans le JSON
+                    // Rechercher la clé dans le JSON de manière insensible à la casse
                     var results = data.filter(item => item.KEY.toLowerCase().includes(searchTerm));
 
                     // Afficher les résultats dans un pop-up
@@ -74,7 +75,6 @@
             });
         }
     </script>
-
 
 
  
