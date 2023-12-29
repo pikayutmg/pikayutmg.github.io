@@ -97,9 +97,36 @@
 
 
       <style>
-        input {
-          background : gray;}
-        </style>
+        
+            
+        /* Styles for the popup */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .popup-content {
+            background: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            max-width: 400px;
+            text-align: center;
+        }
+
+      .search-bar {
+    padding: 10px; 
+    border-radius: 10px;
+    border: 1px solid black; 
+      }
+      
+    </style>
     </ul>
   </nav>
   </div>
@@ -184,38 +211,9 @@
   <script src="https://gflp-p.vercel.app/source/js-plug-in/notif.js"> </script>
   <script src="https://gflp-p.vercel.app/source/js-plug-in/stop.js"> </script>
   <script src="https://gflp-p.vercel.app/source/js-plug-in/+details.js"> </script>
-  
 
 
-
-</body>
-
-<head>
- 
-    <style>
-        /* Styles for the popup */
-        .popup {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            justify-content: center;
-            align-items: center;
-        }
-
-        .popup-content {
-            background: #fff;
-            padding: 20px;
-            border-radius: 5px;
-            max-width: 400px;
-            text-align: center;
-        }
-    </style>
 </head>
-<body>
 
 <!-- Popup for #about -->
 <div id="aboutPopup" class="popup">
