@@ -1,7 +1,7 @@
      // Fonction pour charger les données du profil depuis le fichier JSON
   async function loadProfileData() {
     try {
-      const response = await fetch('https://pikayutmg.github.io/web/PikaYut-warn/sys/user/PikaYut/user.json');
+      const response = await fetch('https://pikayutmg.github.io/web/sites/officiel/pikayutmg/discord/clients/PikaYut-warn/sys/user/PikaYut/user.json');
       const userData = await response.json();
 
       // Sélectionnez les éléments où les informations du profil seront ajoutées
