@@ -2,7 +2,7 @@
   // Fonction pour charger les données depuis le fichier JSON
   async function loadUserData() {
     try {
-      const response = await fetch('https://pikayutmg.github.io/web/PikaYut-warn/sys/user/Charlie/user.json');
+      const response = await fetch('https://pikayutmg.github.io/web/sites/officiel/pikayutmg/discord/clients/PikaYut-warn/sys/user/Charlie/user.json');
       const userData = await response.json();
 
       // Sélectionnez la section où les avertissements seront ajoutés
