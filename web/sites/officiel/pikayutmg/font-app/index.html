@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Animé</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+     
+
+       
+        g-bouton-1 {
+            overflow: hidden;
+        }
+
+        g-bouton-1 a {
+            display: block;
+            padding: 10px;
+            text-decoration: none;
+            color: #fff;
+            background-color: #3498db;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        g-bouton-1 a:hover {
+            background-color: #2980b9;
+        }
+
+        /* Animation de la police */
+        
+
+        .animated a {
+            animation: fontAnimation 2s infinite;
+        }
+    </style>
+</head>
+<body>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var buttons = document.querySelectorAll('g-bouton-1');
+        buttons.forEach(function (button) {
+            button.addEventListener('click', function () {
+                button.classList.toggle('animated');
+            });
+        });
+    });
+</script>
+
+<div id="menu">
+    <g-bouton-1><a href="./Sans.html">Sans</a></g-bouton-1>
+    <g-bouton-1><a href="./outline.html">OutLind</a></g-bouton-1>
+    <g-bouton-1><a href="./tiny.html">ᶠᵒⁿᵗˢ ᵖᵉᵗⁱᵗ</a></g-bouton-1>
+    <g-bouton-1><a href="./typewriter.html">text doublé</a></g-bouton-1>
+</div>
+
+</body>
+</html>
