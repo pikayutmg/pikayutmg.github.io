@@ -1,0 +1,31 @@
+[
+    {
+        "ID": "662282559937314818",
+        "Profile-url": "https://cdn.discordapp.com/avatars/662282559937314818/90387d429296015dfbac83963c393eaf.webp?size=32",
+        "name": "Charlie",
+        "serveur": "serveur liste (autoriser les <br>, <h1> à <h6>)",
+        "categories": {
+            "user-wbk": [
+                {
+                    "type": " 👋 Bienvenue Charlie  ",
+                    "Titre": " Membre depuis : 23 DECEMBRE  2022",
+                    "raison": " -- ADMIN -- ",
+                    "par": "N/A",
+                    "le": " N/A",
+                    "heure": "N/A",
+                    "code": " BVN 3 8 1 18 12 9 5 "
+                }
+            ],
+            "user-details": {
+                "type": "profil",
+                "Pseudo": " aijuminnwolfy ",
+                "Identifiant": "662282559937314818",
+                "Profilescreen": "https://cdn.discordapp.com/avatars/662282559937314818/90387d429296015dfbac83963c393eaf.webp?size=32",
+                "serveur": "",
+                "LS Secure ?": "",
+                "suivie": "",
+                "password" : "" 
+            }
+        }
+    }
+]
