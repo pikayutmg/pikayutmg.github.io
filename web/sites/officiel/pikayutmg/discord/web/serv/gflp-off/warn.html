@@ -1,0 +1,315 @@
+<body>
+
+  <!-- JS Plug IN -->
+
+  <script src="https://gflp-p.vercel.app/source/js-plug-in/ban.js"> </script>
+  <script src="https://gflp-p.vercel.app/source/js-plug-in/ip.js"> </script>
+  <script src="https://gflp-p.vercel.app/source/js-plug-in/load.js"> </script>
+  <script src="https://gflp-p.vercel.app/source/js-plug-in/notif.js"> </script>
+  <script src="https://gflp-p.vercel.app/source/js-plug-in/stop.js"> </script>
+  <script src="https://gflp-p.vercel.app/source/js-plug-in/+details.js"> </script>
+  
+
+
+
+</body>
+
+
+
+ 
+
+
+
+
+
+
+
+<!DOCTYPE html>
+
+<html lang="Fr" >
+
+  <html>
+
+    <head>
+
+              <!-- PikaYutMG dev  -->
+
+   <script src="https://pikayutmg.github.io/plugin/site/index.js"></script>
+
+   <title>PikaYut™|•rapport </title>
+
+   <link rel="stylesheet" href="https://pikayutmg.github.io/web/pikayut/c-s/style.css">
+
+   <link rel="icon"       href="https://pikayutmg.github.io/web/pikayut/favicon.ico" />
+
+<link rel="stylesheet" href="https://pikayutmg.github.io/web/discord/CSS/data-display.css">
+
+
+
+      <!-- google tag (analytics) -->
+
+   
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QJNNJR5KZB"></script>
+
+<script>
+
+  window.dataLayer = window.dataLayer || [];
+
+  function gtag(){dataLayer.push(arguments);}
+
+  gtag('js', new Date());
+
+
+
+  gtag('config', 'G-QJNNJR5KZB');
+
+</script>
+
+
+
+
+
+      <!-- Clarity -->
+
+
+
+
+
+   <script type="text/javascript">
+
+    (function(c,l,a,r,i,t,y){
+
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+
+    })(window, document, "clarity", "script", "gspjcqjaoi");
+
+   </script>
+
+
+
+
+
+ <!-- Google Tag Manager -->
+
+   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+
+    })(window,document,'script','dataLayer','GTM-MCHBLMB');</script>
+
+    <!-- End Google Tag Manager -->
+
+
+
+
+
+      <!-- Google Tag Manager (noscript) -->
+
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MCHBLMB"
+
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+
+
+
+    <!-- End Google Tag Manager (noscript) -->
+
+
+
+
+
+
+
+
+
+
+
+    <meta name="description" content="MultiGaming and code source ™">
+
+      <meta name="keywords" content="PikaYutMG">
+
+      <meta name="author" content="PikaYut">
+
+<meta property="og:image" content="https://pikayutmg.github.io/web/favicon.png">
+
+<meta property="og:image" content="https://pikayutmg.github.io/web/favicon.png">
+
+
+
+<style>
+
+      body {
+
+   text-decoration: none;
+
+      }      
+
+         div {
+
+   text-decoration: none;
+
+      }      
+
+      
+
+          html {
+
+   text-decoration: none;
+
+                
+
+                .join
+
+{
+
+
+
+background : #6aff8d;
+
+color: silver;
+
+padding : 15px 35px;
+
+border-radius : 59px;
+
+
+
+
+
+}
+
+      }      
+
+     </style>
+
+ </head>
+
+    
+
+  <body>
+
+
+
+    <!-- Menu -->
+
+
+
+     
+
+<details>
+
+    <summary></summary>
+
+    <nav class="menu">
+
+   
+
+         <a href="https://pikayutmg.github.io/web/pikayut/">acceuil</a> 
+
+         <a href="https://pikayutmg.github.io/web/discord/index.html">Discord</a> 
+
+          
+
+   
+
+  
+
+    </nav>
+
+  </details>
+
+
+
+
+
+  <!-- fin du menu MG-->
+
+<p> voila les rapport ( a jours )</p>
+
+  
+
+<body>
+
+<div id="dataDisplay"></div>
+<script>
+var jsonUrl = "https://pikayutmg.github.io/web/discord/serv/gflp-off/Json/rapport.json";
+var dataDisplay = document.getElementById("dataDisplay");
+
+fetch(jsonUrl)
+.then(response => response.json())
+.then(data => {
+for (var id in data) {
+var person = data[id];
+var personInfo = "<h2>ID: " + id + "</h2>";
+for (var key in person) {
+personInfo += "<p><strong>" + key + ":</strong> " + person[key] + "</p>";
+}
+
+var profileButton = document.createElement("button");
+profileButton.innerHTML = "Afficher le profil";
+profileButton.addEventListener("click", createProfileButtonHandler(person.Profile));
+
+var personDiv = document.createElement("div");
+personDiv.className = "person";
+personDiv.innerHTML = personInfo;
+personDiv.appendChild(profileButton);
+
+dataDisplay.appendChild(personDiv);
+}
+})
+.catch(error => {
+console.error("Une erreur s'est produite lors de la récupération des données : ", error);
+});
+
+function createProfileButtonHandler(profileUrl) {
+return function() {
+if (profileUrl) {
+window.open(profileUrl, "_blank");
+}
+};
+}
+</script>
+</body>
+
+
+
+  </body>
+
+
+
+
+
+
+
+ 
+
+ 
+
+
+
+
+
+ 
+
+
+
+  
+
+</body>
+
+</html>
+
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+
+  
+
