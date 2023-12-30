@@ -1,0 +1,196 @@
+<body>
+
+    <!-- JS Plug IN -->
+
+    <script src="https://gflp-p.vercel.app/source/js-plug-in/ban.js"> </script>
+    <script src="https://gflp-p.vercel.app/source/js-plug-in/ip.js"> </script>
+    <script src="https://gflp-p.vercel.app/source/js-plug-in/load.js"> </script>
+    <script src="https://gflp-p.vercel.app/source/js-plug-in/notif.js"> </script>
+    <script src="https://gflp-p.vercel.app/source/js-plug-in/stop.js"> </script>
+    <script src="https://gflp-p.vercel.app/source/js-plug-in/+details.js"> </script>
+    
+ 
+
+
+</body>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulaire d'Avertissement</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            text-align: center;
+            padding: 50px;
+        }
+
+        #warningForm {
+            display: none;
+            background-color: #fff;
+            max-width: 400px;
+            margin: auto;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 12px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Entrez le Code d'Avertissement</h1>
+    <input type="password" id="warningCode" placeholder="Code d'Avertissement">
+    <button onclick="showWarningForm()">Valider</button>
+
+    <div id="warningForm">
+        <h2>Formulaire d'Avertissement</h2>
+        <form id="warningDetailsForm">
+            <label for="pseudo">Pseudo:</label>
+            <input type="text" id="pseudo" name="pseudo" required>
+
+            <label for="userID">ID:</label>
+            <input type="text" id="userID" name="userID" required>
+
+            <label for="motifs">Motifs:</label>
+            <textarea id="motifs" name="motifs" required></textarea>
+
+            <label for="otherDetails">Autres détails:</label>
+            <textarea id="otherDetails" name="otherDetails"></textarea>
+
+            <label for="type">Type:</label>
+            <select id="type" name="type">
+                <option value="blame">Blame</option>
+                <option value="warn">Warn</option>
+                <option value="ban">Ban</option>
+                <option value="kick">Kick</option>
+                <option value="kick-temp">Kick Temporaire</option>
+            </select>
+
+            <label for="by">Par:</label>
+            <input type="text" id="by" name="by" required>
+
+            <label for="duration">Durée (minutes):</label>
+            <input type="number" id="duration" name="duration">
+
+            <label for="date">Date (JJ/MM/AAAA):</label>
+            <input type="text" id="date" name="date" placeholder="JJ/MM/AAAA" required>
+
+            <label for="warningOption">Option d'Avertissement:</label>
+            <select id="warningOption" name="warningOption">
+                <option value="rule-not-respected">Règle non respectée</option>
+                <!-- Ajoutez d'autres options d'avertissement au besoin -->
+            </select>
+
+            <button type="button" onclick="sendWarning()">Envoyer</button>
+        </form>
+    </div>
+
+ <script>
+    function showWarningForm() {
+        const warningCode = document.getElementById('warningCode').value;
+        if (warningCode === '88446622abc') {
+            document.getElementById('warningForm').style.display = 'block';
+        } else {
+            alert('Code incorrect. Veuillez réessayer.');
+        }
+    }
+
+    function sendWarning() {
+        const formData = {
+            pseudo: getValueById('pseudo'),
+            userID: getValueById('userID'),
+            motifs: getValueById('motifs'),
+            otherDetails: getValueById('otherDetails'),
+            type: getValueById('type'),
+            by: getValueById('by'),
+            duration: getValueById('duration'),
+            date: getValueById('date'),
+            warningOption: getValueById('warningOption'),
+        };
+
+        // Replace this URL with your own Discord webhook URL
+        const webhookURL = 'https://discord.com/api/webhooks/1182442754014449684/oKD5vLBb3LbQ2JLs4wOgJBP2rc_hCVmiYJwlc90DqELT8SPLpCLLavfUgMUoXnVFYmgG';
+
+        // Construct the embed structure
+        const embed = {
+            title: 'Formulaire d\'Avertissement',
+            color: 0xFF0000, // You can customize the color if needed
+            fields: [
+                { name: 'Pseudo', value: formData.pseudo, inline: true },
+                { name: 'ID', value: formData.userID, inline: true },
+                { name: 'Motifs', value: formData.motifs },
+                { name: 'Autres détails', value: formData.otherDetails },
+                { name: 'Type', value: formData.type },
+                { name: 'Blame', value: getBlameDetails(formData) },
+            ],
+        };
+
+        // Create the payload with the embed
+        const payload = {
+            embeds: [embed],
+        };
+
+        // Send the data to the webhook
+        sendRequest(webhookURL, payload);
+
+        alert('Formulaire envoyé avec succès!');
+        // You can also reset the form here if needed
+    }
+
+    function getBlameDetails(formData) {
+        switch (formData.warningOption) {
+            case 'rule-not-respected':
+                return `Par: ${formData.by}\nDurée (minutes): ${formData.duration}\nDate (JJ/MM/AAAA): ${formData.date}\nOption d'Avertissement: ${formData.warningOption}`;
+            // Add other cases for different warning options as needed
+            default:
+                return ''; // Default case or handle unrecognized options
+        }
+    }
+
+    function getValueById(id) {
+        return document.getElementById(id).value;
+    }
+
+    function sendRequest(url, data) {
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', url, true);
+        xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+        xhr.onerror = function () {
+            console.error('Request failed');
+        };
+        xhr.onload = function () {
+            if (xhr.status >= 200 && xhr.status < 300) {
+                console.log('Request successful');
+            } else {
+                console.error('Request failed with status', xhr.status, xhr.statusText);
+            }
+        };
+        xhr.send(JSON.stringify(data));
+    }
+</script>
+
+
+</body>
+</html>
