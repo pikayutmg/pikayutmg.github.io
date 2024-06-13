@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PKYT - Youtube to MP3</title>
+    <title>Convertisseur YouTube en MP3</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/4.3.2/iframeResizer.min.js"></script>
 </head>
 <body>
     <h1>Convertisseur YouTube en MP3</h1>
@@ -17,23 +18,21 @@
     </div>
 
     <script>
-        document.getElementById('convertForm').addEventListener('submit', function(event) {
-    event.preventDefault(); // Empêche le rechargement de la page
+    document.getElementById('convertForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Empêche le rechargement de la page
 
-    let youtubeUrl = document.getElementById('youtubeUrl').value;
-    let iframeContainer = document.getElementById('iframeContainer');
-    let converterIframe = document.getElementById('converterIframe');
-    let conversionServiceUrl = `https://convert2mp3s.com/api/single/mp3?url=${encodeURIComponent(youtubeUrl)}`;
+        let youtubeUrl = document.getElementById('youtubeUrl').value;
+        let iframeContainer = document.getElementById('iframeContainer');
+        let converterIframe = document.getElementById('converterIframe');
+        let conversionServiceUrl = `https://convert2mp3s.com/api/single/mp3?url=${encodeURIComponent(youtubeUrl)}`;
 
-    // Affiche le service de conversion dans l'iframe
-    converterIframe.src = conversionServiceUrl;
-    iframeContainer.style.display = 'block';
+        // Affiche le service de conversion dans l'iframe
+        converterIframe.src = conversionServiceUrl;
+        iframeContainer.style.display = 'block';
 
-    // Redimensionne automatiquement l'iframe
-    iFrameResize({ log: false, minHeight: 360 }, '#converterIframe');
-});
-
+        // Redimensionne automatiquement l'iframe (optionnel)
+        iFrameResize({ log: false, minHeight: 360 }, '#converterIframe');
+    });
     </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/4.3.2/iframeResizer.min.js"></script>
 </body>
 </html>
