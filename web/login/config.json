@@ -8,9 +8,10 @@
   "pseudo_de_contact": "",
   "historique": "https://discord.com/api/webhooks/1249076705176584283/weUtcy0BWTP7T0JVv4AfbqXn5lwIEvVvNCR1njx5ufl6sIvUBURimoE1GV8-G-LbwWoV",
   "service": "PKYT",
-  "version_j": "v1.8",
-  "version_l": "v1ab",
-  "version_a": "v1ac",
-  "version_p": "v1ab",
-  "version": "2.09"
+   "plugin": true,
+ "version_j": "v2.0",
+ "version_l": "v1ab",
+ "version_a": "v1ac",
+ "version_p": "v1ab",
+ "version": "2.10",
 }
