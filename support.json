@@ -2,25 +2,34 @@
     "PKYTsupports": [
      
        {
-        "pseudo": " ☑️ • PKYT - Service |• Android ( min5 )",
-        "link": "",
-        "version": "",
+        "Nom": " ☑️ • PKYT - Service ",
+        "Type": "Android 5 - 15",
+        "Date": "30/06/2024",
+        "Version": "1.0",
+        "Lien": "https://pkyt-database-up.vercel.app/app/app/PKYTservice%20v1.apk",
+        "size": "4.3 mo",
         "IMG": ""
        }, 
 
        {
-        "pseudo": " 🚧 • PKYT - Service |• iOS  ",
-        "link": "",
-        "version": "",
+        "Nom": " 🚧 • PKYT - Service   ",
+        "Type": "iOS ",
+        "Date": "--/--/2024",
+        "Version": "1.0",
+        "Lien": " ",
+        "Size": "",
         "IMG": ""
        }, 
 
        {
-        "pseudo": " 🚧 • PKYT - Service |• Windows ",
-        "link": "",
-        "version": "",
+        "Nom": " 🚧 • PKYT - Service  ",
+        "Type": "Windows 10 / 11 - -",
+        "Date": "--/--/2024",
+        "Version": "1.0",
+        "Lien": "",
+        "Size": "",
         "IMG": ""
-       }
+       },
 
 
 
