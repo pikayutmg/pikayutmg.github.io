@@ -18,7 +18,7 @@
         }
         #results {
             margin-top: 20px;
-            width: 100%;
+            width:100%;
             max-width: 500px;
         }
     </style>
@@ -37,91 +37,127 @@
         <button onclick="testGPU()">Tester le GPU</button>
         <p id="gpuResult"></p>
     </div>
+    <div class="test">
+        <button onclick="testNetwork()">Tester le Réseau</button>
+        <p id="networkResult"></p>
+    </div>
+    <div class="test">
+        <button onclick="runAllTests()">Lancer tous les tests</button>
+        <p id="finalResult"></p>
+    </div>
     <div id="results"></div>
+
     <script>
-      // Fonction pour tester les performances du CPU
-function testCPU() {
-    const startTime = performance.now();
-    let count = 0;
-    for (let i = 0; i < 1e7; i++) {
-        count += Math.sqrt(i);
-    }
-    const endTime = performance.now();
-    const cpuTime = endTime - startTime;
-    document.getElementById('cpuResult').innerText = `Temps du test CPU: ${cpuTime.toFixed(2)} ms`;
-}
-
-// Fonction pour tester les performances de la RAM
-function testRAM() {
-    const startTime = performance.now();
-    const arr = [];
-    for (let i = 0; i < 1e7; i++) {
-        arr.push(i);
-    }
-    const endTime = performance.now();
-    const ramTime = endTime - startTime;
-    document.getElementById('ramResult').innerText = `Temps du test RAM: ${ramTime.toFixed(2)} ms`;
-}
-
-// Fonction pour tester les performances du GPU
-function testGPU() {
-    const canvas = document.createElement('canvas');
-    const gl = canvas.getContext('webgl');
-
-    if (!gl) {
-        document.getElementById('gpuResult').innerText = 'WebGL non supporté';
-        return;
-    }
-
-    const vertexShaderSource = `
-        attribute vec4 a_position;
-        void main() {
-            gl_Position = a_position;
+        // Fonction pour tester les performances du CPU
+        function testCPU() {
+            const startTime = performance.now();
+            let count = 0;
+            for (let i = 0; i < 1e7; i++) {
+                count += Math.sqrt(i);
+            }
+            const endTime = performance.now();
+            const cpuTime = endTime - startTime;
+            document.getElementById('cpuResult').innerText = `Temps du test CPU: ${cpuTime.toFixed(2)} ms`;
+            return cpuTime;
         }
-    `;
 
-    const fragmentShaderSource = `
-        void main() {
-            gl_FragColor = vec4(1, 0, 0, 1);
+        // Fonction pour tester les performances de la RAM
+        function testRAM() {
+            const startTime = performance.now();
+            const arr = [];
+            for (let i = 0; i < 1e7; i++) {
+                arr.push(i);
+            }
+            const endTime = performance.now();
+            const ramTime = endTime - startTime;
+            document.getElementById('ramResult').innerText = `Temps du test RAM: ${ramTime.toFixed(2)} ms`;
+            return ramTime;
         }
-    `;
 
-    const vertexShader = gl.createShader(gl.VERTEX_SHADER);
-    gl.shaderSource(vertexShader, vertexShaderSource);
-    gl.compileShader(vertexShader);
+        // Fonction pour tester les performances du GPU
+        function testGPU() {
+            const canvas = document.createElement('canvas');
+            const gl = canvas.getContext('webgl');
 
-    const fragmentShader = gl.createShader(gl.FRAGMENT_SHADER);
-    gl.shaderSource(fragmentShader, fragmentShaderSource);
-    gl.compileShader(fragmentShader);
+            if (!gl) {
+                document.getElementById('gpuResult').innerText = 'WebGL non supporté';
+                return 0;
+            }
 
-    const program = gl.createProgram();
-    gl.attachShader(program, vertexShader);
-    gl.attachShader(program, fragmentShader);
-    gl.linkProgram(program);
-    gl.useProgram(program);
+            const vertexShaderSource = `
+                attribute vec4 a_position;
+                void main() {
+                    gl_Position = a_position;
+                }
+            `;
 
-    const positionBuffer = gl.createBuffer();
-    gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
-    const positions = [
-        -1, -1,
-         1, -1,
-        -1,  1,
-         1,  1,
-    ];
-    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(positions), gl.STATIC_DRAW);
+            const fragmentShaderSource = `
+                void main() {
+                    gl_FragColor = vec4(1, 0, 0, 1);
+                }
+            `;
 
-    const positionLocation = gl.getAttribLocation(program, "a_position");
-    gl.enableVertexAttribArray(positionLocation);
-    gl.vertexAttribPointer(positionLocation, 2, gl.FLOAT, false, 0, 0);
+            const vertexShader = gl.createShader(gl.VERTEX_SHADER);
+            gl.shaderSource(vertexShader, vertexShaderSource);
+            gl.compileShader(vertexShader);
 
-    const startTime = performance.now();
-    for (let i = 0; i < 1e5; i++) {
-        gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
-    }
-    const endTime = performance.now();
-    const gpuTime = endTime - startTime;
-    document.getElementById('gpuResult').innerText = `Temps du test GPU: ${gpuTime.toFixed(2)} ms`;
-}
+            const fragmentShader = gl.createShader(gl.FRAGMENT_SHADER);
+            gl.shaderSource(fragmentShader, fragmentShaderSource);
+            gl.compileShader(fragmentShader);
+
+            const program = gl.createProgram();
+            gl.attachShader(program, vertexShader);
+            gl.attachShader(program, fragmentShader);
+            gl.linkProgram(program);
+            gl.useProgram(program);
+
+            const positionBuffer = gl.createBuffer();
+            gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
+            const positions = [
+                -1, -1,
+                 1, -1,
+                -1,  1,
+                 1,  1,
+            ];
+            gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(positions), gl.STATIC_DRAW);
+
+            const positionLocation = gl.getAttribLocation(program, "a_position");
+            gl.enableVertexAttribArray(positionLocation);
+            gl.vertexAttribPointer(positionLocation, 2, gl.FLOAT, false, 0, 0);
+
+            const startTime = performance.now();
+            for (let i = 0; i < 1e5; i++) {
+                gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+            }
+            const endTime = performance.now();
+            const gpuTime = endTime - startTime;
+            document.getElementById('gpuResult').innerText = `Temps du test GPU: ${gpuTime.toFixed(2)} ms`;
+            return gpuTime;
+        }
+
+        // Fonction pour tester les performances du réseau
+        async function testNetwork() {
+            const startTime = performance.now();
+            const imageUrl = 'https://www.example.com/largeimage.jpg'; // Utilisez une URL d'une image suffisamment grande
+            const img = new Image();
+
+            img.src = imageUrl + '?t=' + startTime; // Empêcher la mise en cache
+            img.onload = () => {
+                const endTime = performance.now();
+                const networkTime = endTime - startTime;
+                document.getElementById('networkResult').innerText = `Temps du test Réseau: ${networkTime.toFixed(2)} ms`;
+            };
+        }
+
+        // Fonction pour exécuter tous les tests en même temps
+        async function runAllTests() {
+            const cpuTime = testCPU();
+            const ramTime = testRAM();
+            const gpuTime = testGPU();
+            await testNetwork();
+            const finalTime = cpuTime + ramTime + gpuTime;
+            document.getElementById('finalResult').innerText = `Temps total des tests: ${finalTime.toFixed(2)} ms`;
+        }
     </script>
 </body>
 </html>
