@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test de Performance</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+        }
+        .test {
+            margin: 10px 0;
+        }
+        #results {
+            margin-top: 20px;
+            width: 100%;
+            max-width: 500px;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 5px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        p {
+            margin: 5px 0;
+        }
+        #progress {
+            margin-top: 20px;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <h1>Test de Performance du Système</h1>
+    <div id="deviceInfo"></div>
+    <div class="test">
+        <button onclick="runAllTests()">Lancer tous les tests</button>
+        <p id="finalResult"></p>
+    </div>
+    <div id="progress"></div>
+    <div id="results"></div>
+
+    <script>
+        // Fonction pour obtenir des informations sur l'appareil
+        function getDeviceInfo() {
+            const deviceInfo = {
+                appName: navigator.appName,
+                appVersion: navigator.appVersion,
+                platform: navigator.platform,
+                userAgent: navigator.userAgent,
+                cpuClass: navigator.cpuClass || 'N/A',
+                deviceMemory: navigator.deviceMemory || 'N/A',
+                hardwareConcurrency: navigator.hardwareConcurrency || 'N/A',
+            };
+
+            document.getElementById('deviceInfo').innerHTML = `
+                <p>Nom de l'appareil : ${deviceInfo.platform}</p>
+                <p>Processeur : ${deviceInfo.cpuClass}</p>
+                <p>Type de RAM : ${deviceInfo.deviceMemory} Go</p>
+                <p>Agent utilisateur : ${deviceInfo.userAgent}</p>
+                <p>AppName : ${deviceInfo.appName}</p>
+                <p>AppVersion : ${deviceInfo.appVersion}</p>
+                <p>Concurrency Matérielle : ${deviceInfo.hardwareConcurrency}</p>
+            `;
+        }
+
+        // Fonction pour tester les performances du CPU
+        function testCPU() {
+            return new Promise((resolve) => {
+                const startTime = performance.now();
+                let count = 0;
+                for (let i = 0; i < 1e7; i++) {
+                    count += Math.sqrt(i);
+                }
+                const endTime = performance.now();
+                const cpuTime = endTime - startTime;
+                document.getElementById('cpuResult').innerText = `Temps du test CPU: ${cpuTime.toFixed(2)} ms`;
+                resolve(cpuTime);
+            });
+        }
+
+        // Fonction pour tester les performances de la RAM
+        function testRAM() {
+            return new Promise((resolve) => {
+                const startTime = performance.now();
+                const arr = [];
+                for (let i = 0; i < 1e7; i++) {
+                    arr.push(i);
+                }
+                const endTime = performance.now();
+                const ramTime = endTime - startTime;
+                document.getElementById('ramResult').innerText = `Temps du test RAM: ${ramTime.toFixed(2)} ms`;
+                resolve(ramTime);
+            });
+        }
+
+        // Fonction pour tester les performances du GPU
+        function testGPU() {
+            return new Promise((resolve) => {
+                const canvas = document.createElement('canvas');
+                const gl = canvas.getContext('webgl');
+
+                if (!gl) {
+                    document.getElementById('gpuResult').innerText = 'WebGL non supporté';
+                    resolve(0);
+                    return;
+                }
+
+                const vertexShaderSource = `
+                    attribute vec4 a_position;
+                    void main() {
+                        gl_Position = a_position;
+                    }
+                `;
+
+                const fragmentShaderSource = `
+                    void main() {
+                        gl_FragColor = vec4(1, 0, 0, 1);
+                    }
+                `;
+
+                const vertexShader = gl.createShader(gl.VERTEX_SHADER);
+                gl.shaderSource(vertexShader, vertexShaderSource);
+                gl.compileShader(vertexShader);
+
+                const fragmentShader = gl.createShader(gl.FRAGMENT_SHADER);
+                gl.shaderSource(fragmentShader, fragmentShaderSource);
+                gl.compileShader(fragmentShader);
+
+                const program = gl.createProgram();
+                gl.attachShader(program, vertexShader);
+                gl.attachShader(program, fragmentShader);
+                gl.linkProgram(program);
+                gl.useProgram(program);
+
+                const positionBuffer = gl.createBuffer();
+                gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
+                const positions = [
+                    -1, -1,
+                     1, -1,
+                    -1,  1,
+                     1,  1,
+                ];
+                gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(positions), gl.STATIC_DRAW);
+
+                const positionLocation = gl.getAttribLocation(program, "a_position");
+                gl.enableVertexAttribArray(positionLocation);
+                gl.vertexAttribPointer(positionLocation, 2, gl.FLOAT, false, 0, 0);
+
+                const startTime = performance.now();
+                for (let i = 0; i < 1e5; i++) {
+                    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+                }
+                const endTime = performance.now();
+                const gpuTime = endTime - startTime;
+                document.getElementById('gpuResult').innerText = `Temps du test GPU: ${gpuTime.toFixed(2)} ms`;
+                resolve(gpuTime);
+            });
+        }
+
+        // Fonction pour tester les performances du réseau
+        function testNetwork(type) {
+            return new Promise((resolve, reject) => {
+                const startTime = performance.now();
+                fetch('https://www.example.com/largeimage.jpg?t=' + startTime) // Utilisez une URL d'une image suffisamment grande
+                    .then(response => response.blob())
+                    .then(() => {
+                        const endTime = performance.now();
+                        const networkTime = endTime - startTime;
+                        document.getElementById(type + 'Result').innerText = `Temps du test ${type} : ${networkTime.toFixed(2)} ms`;
+                        resolve(networkTime);
+                    })
+                    .catch(error => {
+                        document.getElementById(type + 'Result').innerText = `Échec du test ${type}`;
+                        reject(error);
+                    });
+            });
+        }
+
+        // Fonction pour exécuter tous les tests en même temps
+        async function runAllTests() {
+            document.getElementById('progress').innerText = 'Tests en cours...';
+            try {
+                const cpuTime = await testCPU();
+                const ramTime = await testRAM();
+                const gpuTime = await testGPU();
+                const wifiTime = await testNetwork('WIFI');
+                const mobileTime = await testNetwork('Mobile');
+                const ethernetTime = await testNetwork('Ethernet');
+                const finalTime = cpuTime + ramTime + gpuTime + wifiTime + mobileTime + ethernetTime;
+
+                document.getElementById('finalResult').innerText = `
+                    Temps total des tests: ${finalTime.toFixed(2)} ms
+                    Rapidité totale en pourcentage: ${(finalTime / 6).toFixed(2)} %
+                `;
+            } catch (error) {
+                document.getElementById('finalResult').innerText = 'Erreur lors de l\'exécution des tests';
+            }
+            document.getElementById('progress').innerText = '';
+        }
+
+        // Initialiser les informations sur l'appareil au chargement
+        window.onload = getDeviceInfo;
+    </script>
+</body>
+</html>
+<a href="./test.html">V1</a>
+<a href="./index.html">Home</a>
