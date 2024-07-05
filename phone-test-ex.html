@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PKYT : test de Performance</title>
+    <title>Test de Performance</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -63,8 +63,8 @@
 </head>
 <body>
     <h1>Test de Performance</h1>
-    <button onclick="startAllTests()">Lancer les tests</button>
     <button><a href="./index.html">home</a></button>
+    <button onclick="startAllTests()">Lancer les tests</button>
     <div class="results" id="results"></div>
 
     <script>
@@ -79,38 +79,35 @@
         async function startAllTests() {
             document.getElementById('results').innerHTML = '';
             for (let mode in modes) {
-                await runTests(mode);
+                await runTest(mode);
             }
         }
 
-        async function runTests(mode) {
+        async function runTest(mode) {
             const { iterations, weight } = modes[mode];
 
             let resultsHTML = `<div class="mode-header"><h2>Mode: ${mode.charAt(0).toUpperCase() + mode.slice(1)}</h2></div>`;
             document.getElementById('results').innerHTML += resultsHTML;
 
-            for (let i = 1; i <= 5; i++) {
-                const cpuTime = testCPU(iterations);
-                const gpuTime = testGPU(iterations);
-                const ramTime = testRAM(iterations);
+            const cpuTime = testCPU(iterations);
+            const gpuTime = testGPU(iterations);
+            const ramTime = testRAM(iterations);
 
-                const totalTime = cpuTime + gpuTime + ramTime;
-                const totalPercentage = (totalTime / (3 * iterations * weight)) * 100;
+            const totalTime = cpuTime + gpuTime + ramTime;
+            const totalPercentage = (totalTime / (3 * iterations * weight)) * 100;
 
-                resultsHTML += `
-                    <div class="test-result">
-                        <h3>Test ${i}</h3>
-                        <p>CPU: ${cpuTime.toFixed(2)} ms (${((cpuTime / iterations) * 100).toFixed(2)}%)</p>
-                        <p>GPU: ${gpuTime.toFixed(2)} ms (${((gpuTime / iterations) * 100).toFixed(2)}%)</p>
-                        <p>RAM: ${ramTime.toFixed(2)} ms (${((ramTime / iterations) * 100).toFixed(2)}%)</p>
-                        <h4>Total: ${totalTime.toFixed(2)} ms (${totalPercentage.toFixed(2)}%)</h4>
-                    </div>
-                `;
+            resultsHTML += `
+                <div class="test-result">
+                    <p>CPU: ${cpuTime.toFixed(2)} ms (${((cpuTime / iterations) * 100).toFixed(2)}%)</p>
+                    <p>GPU: ${gpuTime.toFixed(2)} ms (${((gpuTime / iterations) * 100).toFixed(2)}%)</p>
+                    <p>RAM: ${ramTime.toFixed(2)} ms (${((ramTime / iterations) * 100).toFixed(2)}%)</p>
+                    <h4>Total: ${totalTime.toFixed(2)} ms (${totalPercentage.toFixed(2)}%)</h4>
+                </div>
+            `;
 
-                document.getElementById('results').innerHTML += resultsHTML;
+            document.getElementById('results').innerHTML += resultsHTML;
 
-                await new Promise(resolve => setTimeout(resolve, 4000));  // Attendre 4 secondes
-            }
+            await new Promise(resolve => setTimeout(resolve, 4000));  // Attendre 4 secondes
         }
 
         function testCPU(iterations) {
