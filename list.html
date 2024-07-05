@@ -13,7 +13,7 @@
         h2, h3 {
             color: #333;
         }
-        form {
+        form, #exportForm {
             margin-bottom: 20px;
             background-color: #fff;
             padding: 20px;
@@ -25,7 +25,7 @@
             margin-top: 10px;
             font-weight: bold;
         }
-        input[type="text"] {
+        input[type="text"], textarea {
             width: calc(100% - 22px);
             padding: 10px;
             margin-top: 5px;
@@ -64,7 +64,7 @@
     </style>
 </head>
 <body>
-<h6><a href="./test.html">retour </a></h6>
+
 <h2>Ajout de Détails et Résultats des Tests</h2>
 
 <form id="dataForm">
@@ -118,6 +118,12 @@
     <tbody>
     </tbody>
 </table>
+
+<form id="exportForm">
+    <button type="button" onclick="exportData()">Exporter</button>
+    <textarea id="importExportArea" rows="10" placeholder="Collez ici pour importer des données..."></textarea>
+    <button type="button" onclick="importData()">Importer</button>
+</form>
 
 <script>
 function addDataToTable() {
@@ -173,6 +179,37 @@ function addDataToTable() {
 
     // Réinitialisation du formulaire
     form.reset();
+}
+
+function exportData() {
+    const table = document.getElementById('dataTable').getElementsByTagName('tbody')[0];
+    const rows = table.getElementsByTagName('tr');
+    const data = [];
+
+    for (let row of rows) {
+        const cells = row.getElementsByTagName('td');
+        const details = cells[0].innerHTML;
+        const results = cells[1].innerHTML;
+        data.push({ details, results });
+    }
+
+    const exportArea = document.getElementById('importExportArea');
+    exportArea.value = JSON.stringify(data);
+}
+
+function importData() {
+    const importArea = document.getElementById('importExportArea');
+    const data = JSON.parse(importArea.value);
+    const table = document.getElementById('dataTable').getElementsByTagName('tbody')[0];
+    table.innerHTML = '';
+
+    for (let item of data) {
+        const newRow = table.insertRow();
+        const detailsCell = newRow.insertCell(0);
+        const resultsCell = newRow.insertCell(1);
+        detailsCell.innerHTML = item.details;
+        resultsCell.innerHTML = item.results;
+    }
 }
 </script>
 
