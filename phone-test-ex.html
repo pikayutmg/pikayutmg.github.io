@@ -63,7 +63,6 @@
 </head>
 <body>
     <h1>Test de Performance</h1>
-    <button><a href="./index.html">home</a></button>
     <button onclick="startAllTests()">Lancer les tests</button>
     <div class="results" id="results"></div>
 
@@ -92,15 +91,17 @@
             const cpuTime = testCPU(iterations);
             const gpuTime = testGPU(iterations);
             const ramTime = testRAM(iterations);
+            const networkTime = testNetwork();
 
-            const totalTime = cpuTime + gpuTime + ramTime;
-            const totalPercentage = (totalTime / (3 * iterations * weight)) * 100;
+            const totalTime = cpuTime + gpuTime + ramTime + networkTime;
+            const totalPercentage = (totalTime / (4 * iterations * weight)) * 100;
 
             resultsHTML += `
                 <div class="test-result">
                     <p>CPU: ${cpuTime.toFixed(2)} ms (${((cpuTime / iterations) * 100).toFixed(2)}%)</p>
                     <p>GPU: ${gpuTime.toFixed(2)} ms (${((gpuTime / iterations) * 100).toFixed(2)}%)</p>
                     <p>RAM: ${ramTime.toFixed(2)} ms (${((ramTime / iterations) * 100).toFixed(2)}%)</p>
+                    <p>Réseau: ${networkTime.toFixed(2)} ms (${((networkTime / iterations) * 100).toFixed(2)}%)</p>
                     <h4>Total: ${totalTime.toFixed(2)} ms (${totalPercentage.toFixed(2)}%)</h4>
                 </div>
             `;
@@ -138,6 +139,16 @@
             for (let i = 0; i < iterations; i++) {
                 array[i] = Math.random();
             }
+            const end = performance.now();
+            return end - start;
+        }
+
+        function testNetwork() {
+            // Simulation d'un test réseau avec une latence moyenne
+            const start = performance.now();
+            // Ajout d'un délai simulé
+            const delay = 50 + Math.random() * 100; // Latence entre 50 et 150 ms
+            while (performance.now() - start < delay) {}
             const end = performance.now();
             return end - start;
         }
