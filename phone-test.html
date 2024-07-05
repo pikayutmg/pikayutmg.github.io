@@ -84,13 +84,11 @@
         <button onclick="generateHtmlReport()">Enregistrer en HTML</button>
         <button onclick="generateTxtReport()">Enregistrer en TXT</button>
         <button onclick="sendToDiscord()">Envoyer à Discord</button>
-        <a href="./test.html">V1</a>
-        <a href="./index.html">Home</a>
-        <a href="./list.html">liste </a>
-        <p>⚠️ attendre 5s avant de cliquer sur " lancer " , cela permet de fzire charger la page et eviter de faire le test lors du chargement.</p>
     </div>
 
     <script>
+        let testResults = null;
+
         function getDeviceInfo() {
             const deviceInfo = {
                 appName: navigator.appName,
@@ -237,24 +235,12 @@
                 const rapiditeTtlPct = (ttlFinal / 6000) * 100;
                 const deviceInfo = getDeviceInfo();
 
-                document.getElementById('finalResult').innerText = `
-                    CPU: ${cpuTime.toFixed(2)} ms
-                    GPU: ${gpuTime.toFixed(2)} ms
-                    RAM: ${ramTime.toFixed(2)} ms
-                    Réseaux WIFI: ${wifiTime.toFixed(2)} ms
-                    Réseaux Mobile: ${mobileTime.toFixed(2)} ms
-                    Réseaux Ethernet: ${ethernetTime.toFixed(2)} ms
-                    TTL Performance: ${ttlPerformance.toFixed(2)} ms
-                    TTL Réseau: ${ttlNetwork.toFixed(2)} ms
-                    TTL Finale: ${ttlFinal.toFixed(2)} ms
-                    Rapidité TTL: ${rapiditeTtlMs.toFixed(2)} ms (${rapiditeTtlPct.toFixed(2)} %)
-                `;
-
-                document.getElementById('progress').innerText = '';
-
-                return {
+                testResults = {
                     cpuTime, ramTime, gpuTime, wifiTime, mobileTime, ethernetTime, ttlPerformance, ttlNetwork, ttlFinal, rapiditeTtlMs, rapiditeTtlPct, deviceInfo
                 };
+
+                displayResults(testResults);
+                document.getElementById('progress').innerText = '';
             } catch (error) {
                 document.getElementById('finalResult').innerText = 'Erreur lors de l\'exécution des tests : ' + error.message;
                 document.getElementById('progress').innerText = '';
@@ -262,52 +248,76 @@
             }
         }
 
-        function generateHtmlReport() {
-            runAllTests().then(results => {
-                const { cpuTime, ramTime, gpuTime, wifiTime, mobileTime, ethernetTime, ttlPerformance, ttlNetwork, ttlFinal, rapiditeTtlMs, rapiditeTtlPct, deviceInfo } = results;
-                const htmlContent = `
-                    <html>
-                    <head>
-                        <title>Rapport de Performance</title>
-                    </head>
-                    <body>
-                        <h1>Rapport de Performance du Système</h1>
-                        <h2>Détails de l'appareil</h2>
-                        <p>Nom de l'appareil : ${deviceInfo.platform}</p>
-                        <p>Processeur : ${deviceInfo.cpuClass}</p>
-                        <p>Type de RAM : ${deviceInfo.deviceMemory} Go</p>
-                        <p>Agent utilisateur : ${deviceInfo.userAgent}</p>
-                        <p>AppName : ${deviceInfo.appName}</p>
-                        <p>AppVersion : ${deviceInfo.appVersion}</p>
-                        <p>Concurrency Matérielle : ${deviceInfo.hardwareConcurrency}</p>
-                        <h2>Résultats des Tests</h2>
-                        <p>CPU: ${cpuTime.toFixed(2)} ms</p>
-                        <p>GPU: ${gpuTime.toFixed(2)} ms</p>
-                        <p>RAM: ${ramTime.toFixed(2)} ms</p>
-                        <p>Réseaux WIFI: ${wifiTime.toFixed(2)} ms</p>
-                        <p>Réseaux Mobile: ${mobileTime.toFixed(2)} ms</p>
-                        <p>Réseaux Ethernet: ${ethernetTime.toFixed(2)} ms</p>
-                        <h2>Totaux</h2>
-                        <p>TTL Performance: ${ttlPerformance.toFixed(2)} ms</p>
-                        <p>TTL Réseau: ${ttlNetwork.toFixed(2)} ms</p>
-                        <p>TTL Finale: ${ttlFinal.toFixed(2)} ms</p>
-                        <p>Rapidité TTL: ${rapiditeTtlMs.toFixed(2)} ms (${rapiditeTtlPct.toFixed(2)} %)</p>
-                    </body>
-                    </html>
-                `;
+        function displayResults(results) {
+            document.getElementById('finalResult').innerText = `
+                CPU: ${results.cpuTime.toFixed(2)} ms
+                GPU: ${results.gpuTime.toFixed(2)} ms
+                RAM: ${results.ramTime.toFixed(2)} ms
+                Réseaux WIFI: ${results.wifiTime.toFixed(2)} ms
+                Réseaux Mobile: ${results.mobileTime.toFixed(2)} ms
+                Réseaux Ethernet: ${results.ethernetTime.toFixed(2)} ms
 
-                const blob = new Blob([htmlContent], { type: 'text/html' });
-                const link = document.createElement('a');
-                link.href = URL.createObjectURL(blob);
-                link.download = 'rapport_performance.html';
-                link.click();
-            });
+                Totaux:
+                TTL Performance: ${results.ttlPerformance.toFixed(2)} ms
+                TTL Réseau: ${results.ttlNetwork.toFixed(2)} ms
+                TTL Finale: ${results.ttlFinal.toFixed(2)} ms
+                Rapidité TTL: ${results.rapiditeTtlMs.toFixed(2)} ms (${results.rapiditeTtlPct.toFixed(2)} %)
+            `;
+        }
+
+        function generateHtmlReport() {
+            if (!testResults) {
+                alert('Veuillez exécuter les tests avant de générer le rapport.');
+                return;
+            }
+
+            const { cpuTime, ramTime, gpuTime, wifiTime, mobileTime, ethernetTime, ttlPerformance, ttlNetwork, ttlFinal, rapiditeTtlMs, rapiditeTtlPct, deviceInfo } = testResults;
+            const htmlContent = `
+                <html>
+                <head>
+                    <title>Rapport de Performance</title>
+                </head>
+                <body>
+                    <h1>Rapport de Performance du Système</h1>
+                    <h2>Détails de l'appareil</h2>
+                    <p>Nom de l'appareil : ${deviceInfo.platform}</p>
+                    <p>Processeur : ${deviceInfo.cpuClass}</p>
+                    <p>Type de RAM : ${deviceInfo.deviceMemory} Go</p>
+                    <p>Agent utilisateur : ${deviceInfo.userAgent}</p>
+                    <p>AppName : ${deviceInfo.appName}</p>
+                    <p>AppVersion : ${deviceInfo.appVersion}</p>
+                    <p>Concurrency Matérielle : ${deviceInfo.hardwareConcurrency}</p>
+                    <h2>Résultats des Tests</h2>
+                    <p>CPU: ${cpuTime.toFixed(2)} ms</p>
+                    <p>GPU: ${gpuTime.toFixed(2)} ms</p>
+                    <p>RAM: ${ramTime.toFixed(2)} ms</p>
+                    <p>Réseaux WIFI: ${wifiTime.toFixed(2)} ms</p>
+                    <p>Réseaux Mobile: ${mobileTime.toFixed(2)} ms</p>
+                    <p>Réseaux Ethernet: ${ethernetTime.toFixed(2)} ms</p>
+                    <h2>Totaux</h2>
+                    <p>TTL Performance: ${ttlPerformance.toFixed(2)} ms</p>
+                    <p>TTL Réseau: ${ttlNetwork.toFixed(2)} ms</p>
+                    <p>TTL Finale: ${ttlFinal.toFixed(2)} ms</p>
+                    <p>Rapidité TTL: ${rapiditeTtlMs.toFixed(2)} ms (${rapiditeTtlPct.toFixed(2)} %)</p>
+                </body>
+                </html>
+            `;
+
+            const blob = new Blob([htmlContent], { type: 'text/html' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'rapport_performance.html';
+            link.click();
         }
 
         function generateTxtReport() {
-            runAllTests().then(results => {
-                const { cpuTime, ramTime, gpuTime, wifiTime, mobileTime, ethernetTime, ttlPerformance, ttlNetwork, ttlFinal, rapiditeTtlMs, rapiditeTtlPct, deviceInfo } = results;
-                const txtContent = `
+            if (!testResults) {
+                alert('Veuillez exécuter les tests avant de générer le rapport.');
+                return;
+            }
+
+            const { cpuTime, ramTime, gpuTime, wifiTime, mobileTime, ethernetTime, ttlPerformance, ttlNetwork, ttlFinal, rapiditeTtlMs, rapiditeTtlPct, deviceInfo } = testResults;
+            const txtContent = `
 Détails :
 Nom de l'appareil : ${deviceInfo.platform}
 Processeur : ${deviceInfo.cpuClass}
@@ -330,26 +340,29 @@ TTL Performance: ${ttlPerformance.toFixed(2)} ms
 TTL Réseau: ${ttlNetwork.toFixed(2)} ms
 TTL Finale: ${ttlFinal.toFixed(2)} ms
 Rapidité TTL: ${rapiditeTtlMs.toFixed(2)} ms (${rapiditeTtlPct.toFixed(2)} %)
-                `;
+            `;
 
-                const blob = new Blob([txtContent], { type: 'text/plain' });
-                const link = document.createElement('a');
-                link.href = URL.createObjectURL(blob);
-                link.download = 'rapport_performance.txt';
-                link.click();
-            });
+            const blob = new Blob([txtContent], { type: 'text/plain' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'rapport_performance.txt';
+            link.click();
         }
 
         function sendToDiscord() {
+            if (!testResults) {
+                alert('Veuillez exécuter les tests avant d\'envoyer les résultats à Discord.');
+                return;
+            }
+
             const webhookURL = document.getElementById('webhookURL').value;
             if (!webhookURL) {
                 alert('Veuillez entrer l\'URL du webhook Discord.');
                 return;
             }
 
-            runAllTests().then(results => {
-                const { cpuTime, ramTime, gpuTime, wifiTime, mobileTime, ethernetTime, ttlPerformance, ttlNetwork, ttlFinal, rapiditeTtlMs, rapiditeTtlPct, deviceInfo } = results;
-                const messageContent = `
+            const { cpuTime, ramTime, gpuTime, wifiTime, mobileTime, ethernetTime, ttlPerformance, ttlNetwork, ttlFinal, rapiditeTtlMs, rapiditeTtlPct, deviceInfo } = testResults;
+            const messageContent = `
 Détails :
 Nom de l'appareil : ${deviceInfo.platform}
 Processeur : ${deviceInfo.cpuClass}
@@ -372,23 +385,22 @@ TTL Performance: ${ttlPerformance.toFixed(2)} ms
 TTL Réseau: ${ttlNetwork.toFixed(2)} ms
 TTL Finale: ${ttlFinal.toFixed(2)} ms
 Rapidité TTL: ${rapiditeTtlMs.toFixed(2)} ms (${rapiditeTtlPct.toFixed(2)} %)
-                `;
+            `;
 
-                fetch(webhookURL, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ content: messageContent })
-                }).then(response => {
-                    if (response.ok) {
-                        alert('Résultats envoyés avec succès à Discord.');
-                    } else {
-                        alert('Échec de l\'envoi des résultats à Discord.');
-                    }
-                }).catch(error => {
-                    alert('Erreur lors de l\'envoi des résultats à Discord : ' + error.message);
-                });
+            fetch(webhookURL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ content: messageContent })
+            }).then(response => {
+                if (response.ok) {
+                    alert('Résultats envoyés avec succès à Discord.');
+                } else {
+                    alert('Échec de l\'envoi des résultats à Discord.');
+                }
+            }).catch(error => {
+                alert('Erreur lors de l\'envoi des résultats à Discord : ' + error.message);
             });
         }
 
