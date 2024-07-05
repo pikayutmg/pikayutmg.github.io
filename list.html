@@ -5,10 +5,57 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ajout de Détails et Résultats des Tests</title>
     <style>
-        table, th, td {
-            border: 1px solid black;
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f9;
+        }
+        h2, h3 {
+            color: #333;
+        }
+        form {
+            margin-bottom: 20px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        input[type="text"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #5cb85c;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #4cae4c;
+        }
+        table {
+            width: 100%;
             border-collapse: collapse;
-            padding: 8px;
+            margin-top: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
             text-align: left;
         }
         th {
@@ -23,39 +70,39 @@
 <form id="dataForm">
     <h3>Détails :</h3>
     <label for="deviceName">Nom de l'appareil :</label>
-    <input type="text" id="deviceName" name="deviceName"><br><br>
+    <input type="text" id="deviceName" name="deviceName"><br>
     <label for="processor">Processeur :</label>
-    <input type="text" id="processor" name="processor"><br><br>
+    <input type="text" id="processor" name="processor"><br>
     <label for="ramType">Type de RAM :</label>
-    <input type="text" id="ramType" name="ramType"><br><br>
+    <input type="text" id="ramType" name="ramType"><br>
     <label for="userAgent">Agent utilisateur :</label>
-    <input type="text" id="userAgent" name="userAgent"><br><br>
+    <input type="text" id="userAgent" name="userAgent"><br>
     <label for="appName">AppName :</label>
-    <input type="text" id="appName" name="appName"><br><br>
+    <input type="text" id="appName" name="appName"><br>
     <label for="appVersion">AppVersion :</label>
-    <input type="text" id="appVersion" name="appVersion"><br><br>
+    <input type="text" id="appVersion" name="appVersion"><br>
     <label for="hardwareConcurrency">Concurrency Matérielle :</label>
-    <input type="text" id="hardwareConcurrency" name="hardwareConcurrency"><br><br>
+    <input type="text" id="hardwareConcurrency" name="hardwareConcurrency"><br>
 
     <h3>Résultats des Tests :</h3>
     <label for="cpu">CPU :</label>
-    <input type="text" id="cpu" name="cpu"><br><br>
+    <input type="text" id="cpu" name="cpu"><br>
     <label for="gpu">GPU :</label>
-    <input type="text" id="gpu" name="gpu"><br><br>
+    <input type="text" id="gpu" name="gpu"><br>
     <label for="ram">RAM :</label>
-    <input type="text" id="ram" name="ram"><br><br>
+    <input type="text" id="ram" name="ram"><br>
     <label for="total">TOTAL :</label>
-    <input type="text" id="total" name="total"><br><br>
+    <input type="text" id="total" name="total"><br>
     <label for="wifiNetwork">Réseaux WIFI :</label>
-    <input type="text" id="wifiNetwork" name="wifiNetwork"><br><br>
+    <input type="text" id="wifiNetwork" name="wifiNetwork"><br>
     <label for="mobileNetwork">Réseaux Mobile :</label>
-    <input type="text" id="mobileNetwork" name="mobileNetwork"><br><br>
+    <input type="text" id="mobileNetwork" name="mobileNetwork"><br>
     <label for="ethernetNetwork">Réseaux Ethernet :</label>
-    <input type="text" id="ethernetNetwork" name="ethernetNetwork"><br><br>
+    <input type="text" id="ethernetNetwork" name="ethernetNetwork"><br>
     <label for="ttl">Total (TTL) :</label>
-    <input type="text" id="ttl" name="ttl"><br><br>
+    <input type="text" id="ttl" name="ttl"><br>
     <label for="totalSpeed">Rapidité totale :</label>
-    <input type="text" id="totalSpeed" name="totalSpeed"><br><br>
+    <input type="text" id="totalSpeed" name="totalSpeed"><br>
 
     <button type="button" onclick="addDataToTable()">Ajouter</button>
 </form>
@@ -72,7 +119,8 @@
     </tbody>
 </table>
 
-<script>function addDataToTable() {
+<script>
+function addDataToTable() {
     const form = document.getElementById('dataForm');
 
     // Récupération des données du formulaire
@@ -125,6 +173,8 @@
 
     // Réinitialisation du formulaire
     form.reset();
-}</script>
+}
+</script>
+
 </body>
 </html>
