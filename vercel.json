@@ -1,9 +1,0 @@
-{
-  "redirects": [
-    {
-      "source": "/(.*)\\.(js|css|json)",
-      "destination": "https://pkyt-database-up.vercel.app/error/403.html",
-      "permanent": false
-    }
-  ]
-}
