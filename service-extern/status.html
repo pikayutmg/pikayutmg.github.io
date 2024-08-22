@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Status des Services</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Barre verticale pour les grands écrans */
+        .status-card {
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .status-bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            border-radius: 4px;
+        }
+
+        /* Bulle pour les petits écrans */
+        .status-indicator::before {
+            content: '';
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            margin-right: 8px;
+            border-radius: 50%;
+        }
+
+        /* Couleurs de la barre et de la bulle */
+        .status-operational .status-bar,
+        .status-operational .status-indicator::before {
+            background-color: #2d6a4f; /* Vert pour opérationnel */
+        }
+
+        .status-degraded .status-bar,
+        .status-degraded .status-indicator::before {
+            background-color: #ffcc00; /* Jaune pour performance dégradée */
+        }
+
+        .status-outage .status-bar,
+        .status-outage .status-indicator::before {
+            background-color: #d43f3a; /* Rouge pour panne majeure */
+        }
+
+        .status-maintenance .status-bar,
+        .status-maintenance .status-indicator::before {
+            background-color: #ff8800; /* Orange pour maintenance */
+        }
+
+        /* Masquer la barre sur les petits écrans */
+        @media (max-width: 640px) {
+            .status-bar {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 flex justify-center items-center min-h-screen">
+    <div id="status-container" class="bg-white p-6 rounded-lg shadow-lg w-full max-w-screen-xl">
+        <h1 class="text-2xl font-semibold text-gray-800 mb-6 text-center">Status des Services</h1>
+        <ul id="status-list" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4"></ul>
+        <p id="error-message" class="text-red-500 font-bold mt-4 text-center"></p>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const apiUrl = 'https://pikayut.instatus.com/v2/components.json';
+
+            fetch(apiUrl)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    const statusList = document.getElementById('status-list');
+                    const errorMessage = document.getElementById('error-message');
+                    errorMessage.textContent = '';
+
+                    if (data.components && Array.isArray(data.components)) {
+                        data.components.forEach(component => {
+                            const li = document.createElement('li');
+                            li.className = "status-card p-6 rounded-lg shadow-md flex flex-col justify-center items-center transition-colors text-center";
+
+                            // Création de la barre verticale
+                            const statusBar = document.createElement('div');
+                            statusBar.className = "status-bar";
+
+                            // Création du texte avec la bulle
+                            const span = document.createElement('span');
+                            span.className = "status-indicator";
+                            span.textContent = `${component.name}: `;
+
+                            switch (component.status.toLowerCase()) {
+                                case 'operational':
+                                    span.textContent += 'Opérationnel';
+                                    li.classList.add('status-operational', 'bg-green-100', 'text-green-800');
+                                    break;
+                                case 'degradedperformance':
+                                    span.textContent += 'Performance dégradée';
+                                    li.classList.add('status-degraded', 'bg-yellow-100', 'text-yellow-800');
+                                    break;
+                                case 'partialoutage':
+                                case 'majoroutage':
+                                    span.textContent += 'Panne majeure';
+                                    li.classList.add('status-outage', 'bg-red-100', 'text-red-800');
+                                    break;
+                                case 'undermaintenance':
+                                    span.textContent += 'En maintenance';
+                                    li.classList.add('status-maintenance', 'bg-orange-100', 'text-orange-800');
+                                    break;
+                                default:
+                                    span.textContent += 'État inconnu';
+                                    li.classList.add('bg-gray-100', 'text-gray-800');
+                            }
+
+                            // Ajouter la barre et le texte à la carte
+                            li.appendChild(statusBar);
+                            li.appendChild(span);
+                            statusList.appendChild(li);
+                        });
+                    } else {
+                        errorMessage.textContent = 'Aucune donnée disponible.';
+                    }
+                })
+                .catch(error => {
+                    console.error('Erreur lors de la récupération des données:', error);
+                    document.getElementById('error-message').textContent = 'Erreur lors de la récupération des données.';
+                });
+        });
+    </script>
+</body>
+</html>
