@@ -39,122 +39,82 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             padding: 20px;
         }
-        .mode-header {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px;
-            border-radius: 5px;
-            margin-bottom: 10px;
-        }
         .test-result {
-            border-bottom: 1px solid #ddd;
-            padding: 10px 0;
-        }
-        .test-result:last-child {
-            border-bottom: none;
-        }
-        h2, h3, h4 {
-            margin: 10px 0;
-        }
-        p {
-            margin: 5px 0;
+            margin-bottom: 20px;
         }
     </style>
 </head>
 <body>
     <h1>Test de Performance</h1>
-    <button onclick="startAllTests()">Lancer les tests</button>
+    <button onclick="runPerformanceTest()">Lancer le test</button>
     <div class="results" id="results"></div>
 
     <script>
-        const modes = {
-            simple: { iterations: 1000, weight: 0.5 },
-            basique: { iterations: 5000, weight: 1 },
-            moyen: { iterations: 10000, weight: 1.5 },
-            puissance: { iterations: 50000, weight: 2 },
-            extremement: { iterations: 100000, weight: 2.5 }
-        };
+        async function runPerformanceTest() {
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = '<h2>Test en cours...</h2>';
 
-        async function startAllTests() {
-            document.getElementById('results').innerHTML = '';
-            for (const mode in modes) {
-                if (modes.hasOwnProperty(mode)) {
-                    await runTest(mode);
-                }
-            }
-        }
-
-        async function runTest(mode) {
-            const { iterations, weight } = modes[mode];
-
-            let resultsHTML = `<div class="mode-header"><h2>Mode: ${mode.charAt(0).toUpperCase() + mode.slice(1)}</h2></div>`;
-            document.getElementById('results').innerHTML += resultsHTML;
-
-            const cpuTime = testCPU(iterations);
-            const gpuTime = testGPU(iterations);
-            const ramTime = testRAM(iterations);
+            const cpuTime = testCPU();
+            const gpuTime = testGPU();
+            const ramTime = testRAM();
             const networkTime = await testNetwork();
 
-            const totalTime = cpuTime + gpuTime + ramTime + networkTime;
-            const performancePercentage = ((cpuTime + gpuTime + ramTime) / totalTime) * 100;
-            const networkPercentage = (networkTime / totalTime) * 100;
-            const ttlPlusTime = totalTime + 105.17 + 333.67;
-            const ttlPlusPercentage = (totalTime / ttlPlusTime) * 100;
+            const total = cpuTime + gpuTime + ramTime + networkTime;
 
-            resultsHTML += `
+            resultsDiv.innerHTML = `
                 <div class="test-result">
-                    <p>CPU: ${cpuTime.toFixed(2)} ms (${((cpuTime / totalTime) * 100).toFixed(2)}%)</p>
-                    <p>GPU: ${gpuTime.toFixed(2)} ms (${((gpuTime / totalTime) * 100).toFixed(2)}%)</p>
-                    <p>RAM: ${ramTime.toFixed(2)} ms (${((ramTime / totalTime) * 100).toFixed(2)}%)</p>
-                    <p>Réseau: ${networkTime.toFixed(2)} ms (${((networkTime / totalTime) * 100).toFixed(2)}%)</p>
-                    <h4>Total: ${totalTime.toFixed(2)} ms (${((totalTime / (4 * iterations * weight)) * 100).toFixed(2)}%)</h4>
-                    <h4>TTL: Performance: ${performancePercentage.toFixed(2)}%, Réseau: ${networkPercentage.toFixed(2)}%</h4>
-                    <h4>TTL+: P RPD: 105.17 ms (23.97%), R RPD: 333.67 ms (76.03%), F RPD: ${ttlPlusTime.toFixed(2)} ms (100%)</h4>
+                    <h3>Résultats du Test</h3>
+                    <p>CPU: ${cpuTime.toFixed(2)} ms</p>
+                    <p>GPU: ${gpuTime.toFixed(2)} ms</p>
+                    <p>RAM: ${ramTime.toFixed(2)} ms</p>
+                    <p>Réseau: ${networkTime.toFixed(2)} ms</p>
+                    <p>Total: ${total.toFixed(2)} ms</p>
                 </div>
             `;
 
-            document.getElementById('results').innerHTML += resultsHTML;
-
-            await new Promise(resolve => setTimeout(resolve, 4000));  // Attendre 4 secondes
+            const fileContent = `CPU: ${cpuTime.toFixed(2)} ms\nGPU: ${gpuTime.toFixed(2)} ms\nRAM: ${ramTime.toFixed(2)} ms\nRéseau: ${networkTime.toFixed(2)} ms\nTotal: ${total.toFixed(2)} ms`;
+            downloadResults(fileContent);
         }
 
-        function testCPU(iterations) {
+        function testCPU() {
             const start = performance.now();
             let sum = 0;
-            for (let i = 0; i < iterations; i++) {
+            for (let i = 0; i < 100000; i++) {
                 sum += Math.sqrt(i) * Math.log(i + 1);
             }
-            const end = performance.now();
-            return end - start;
+            return performance.now() - start;
         }
 
-        function testGPU(iterations) {
-            const start = performance.now();
+        function testGPU() {
             const canvas = document.createElement('canvas');
             const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
             if (!gl) return 0;
-            for (let i = 0; i < iterations; i++) {
+
+            const start = performance.now();
+            for (let i = 0; i < 1000; i++) {
                 gl.clear(gl.COLOR_BUFFER_BIT);
             }
-            const end = performance.now();
-            return end - start;
+            return performance.now() - start;
         }
 
-        function testRAM(iterations) {
+        function testRAM() {
             const start = performance.now();
-            const array = new Array(iterations).fill(0);
-            for (let i = 0; i < iterations; i++) {
-                array[i] = Math.random();
-            }
-            const end = performance.now();
-            return end - start;
+            const array = new Array(100000).fill(0).map(() => Math.random());
+            return performance.now() - start;
         }
 
         async function testNetwork() {
             const start = performance.now();
-            await new Promise(resolve => setTimeout(resolve, 100 + Math.random() * 100)); // Latence simulée
-            const end = performance.now();
-            return end - start;
+            await fetch('https://jsonplaceholder.typicode.com/todos/1');
+            return performance.now() - start;
+        }
+
+        function downloadResults(content) {
+            const blob = new Blob([content], { type: 'text/plain' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'performance_test_results.txt';
+            link.click();
         }
     </script>
 </body>
