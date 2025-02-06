@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>LosFly</title>
+  <link href="https://fonts.googleapis.com/css?family=Work+Sans:400,800" rel="stylesheet"><link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css'><link rel="stylesheet" href="./style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="EnesGP ( EC-De )">
+  <meta name="description" content="LosFly , service de développement et de projet .">
+  <meta property="og:title" content="LosFly Community">
+  <meta property="og:description" content="V BETA 3 / Bienvenue sur la page officielle de PikaYutMG, la plateforme de divertissement ultime pour les amateurs de jeux vidéo. Découvrez les dernières actualités, guides, analyses et bien plus encore. Rejoignez-nous pour une expérience de jeu inoubliable !">
+  <meta property="og:image" content="https://pkyt-db-screen.vercel.app/PikaYut%E2%84%A2-logo/Logo-2023-v1/pikayut8.png">
+  <meta property="og:image:alt" content="Logo PikaYutMG">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://pikayutmg.github.io">
+ 
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<div class="primary-nav">
+
+	<button href="#" class="hamburger open-panel nav-toggle">
+<span class="screen-reader-text">Menu</span>
+</button>
+
+	<nav role="navigation" class="menu">
+
+		<a href="#" class="logotype">Los<span>Fly</span></a>
+
+		<div class="overflow-container">
+
+			<ul class="menu-dropdown">
+
+				<li><a href="https://losfly.vercel.app">Home</a><span class="icon"><i class="fa fa-home"></i></span></li>
+				<li><a href="./user-panel/">Se connecter</a><span class="icon"><i class="fa fa-user"></i></span></li>
+				<li><a href="./update.html">annonce</a><span class="icon"><i class="fa fa-clock-o"></i></span></li>
+				<li><a href="https://gflp-p.vercel.app/service-extern/status.html">Status des services ? </a><span class="icon"><i class="fa fa-wrench"></i></span></li>
+				<li><a href="https://discord.gg/8z82KgZaWm">Discord</a><span class="icon"><i class="fa fa-discord"></i></span></li>
+
+                <li class="menu-hasdropdown">
+					<a href="#">Nos services :</a><span class="icon"><i class="	fa fa-ellipsis-h"></i></span>
+
+					<label title="toggle menu" for="S">
+        <span class="downarrow"><i class="fa fa-caret-down"></i></span>
+      </label>
+					<input type="checkbox" class="sub-menu-checkbox" id="S" />
+
+					<ul class="sub-menu-dropdown">
+						<li><a href="https://pkyt-database-up.vercel.app">PKYT - Service</a></li>
+						<li><a href="https://doc-pkyt-use.vercel.app">PKYT - Forum</a></li>
+						<li><a href="https://ebsayderflyse.vercel.app">EbsayderFlyse</a></li>
+					</ul>
+				</li>
+
+                <li class="menu-hasdropdown">
+					<a href="#">Nos pages affiliet</a><span class="icon"><i class="	fa fa-ellipsis-h"></i></span>
+
+					<label title="toggle menu" for="L">
+        <span class="downarrow"><i class="fa fa-caret-down"></i></span>
+      </label>
+					<input type="checkbox" class="sub-menu-checkbox" id="L" />
+
+					<ul class="sub-menu-dropdown">
+						<li><a href="https://howardarmory.vercel.app">[<mark>RP</mark>]</a></li>
+						<li><a href="https://pikayutmg.github.io/web/sites/partenariat/AlFard/index.html">[<mark>GM</mark>]AlFard</a></li>
+					</ul>
+				</li>
+
+                <li class="menu-hasdropdown">
+					<a href="#">Autres</a><span class="icon"><i class="	fa fa-ellipsis-h"></i></span>
+
+					<label title="toggle menu" for="A">
+        <span class="downarrow"><i class="fa fa-caret-down"></i></span>
+      </label>
+					<input type="checkbox" class="sub-menu-checkbox" id="A" />
+
+					<ul class="sub-menu-dropdown">
+						<li><a href="./tools_pkyt/SPT.html">[<mark>TOOL</mark>] SpeedTest ( phone ) </a></li>
+						<li><a href=""><s>mon profil PKYT</s></a></li>
+						<li><a href="./#v1-gflp-plug-srdmg-v1.html">PKYT - PlugIn [<font color="green">Non suporté</font>]</a></li>
+					</ul>
+				</li>
+
+			</ul>
+
+		</div>
+
+	</nav>
+
+</div>
+
+<div class="new-wrapper">
+
+	<div id="main">
+
+		
+
+
+
+      <div id="main-contents">
+        <h1><b>Los</b>Fly</h1>
+        <h2>Dernières mises à jour</h2>
+        <div id="updates-container" class="updates-wrapper"></div>
+      </div>
+
+
+<script>
+const updates = [
+  {
+    title: "Mise à jour 1",
+    description: "Correction de bugs et amélioration des performances de l'application. Ajout d'une nouvelle fonctionnalité pour la gestion des utilisateurs.",
+    date: "06/02/2025",
+    version: "1.2.0"
+  },
+  {
+    title: "Mise à jour 2",
+    description: "Optimisation du chargement des données et refonte de l'interface utilisateur pour une meilleure expérience.",
+    date: "02/02/2025",
+    version: "1.1.5"
+  },
+  {
+    title: "Mise à jour 3",
+    description: "Ajout de nouvelles options de personnalisation pour les utilisateurs avancés.",
+    date: "28/01/2025",
+    version: "1.1.0"
+  }
+];
+
+function renderUpdates() {
+  const container = document.getElementById("updates-container");
+  container.innerHTML = "";
+
+  updates.forEach((update) => {
+    const updateCard = document.createElement("div");
+    updateCard.classList.add("update-bubble");
+    
+    const isLong = update.description.length > 100;
+    let shortDescription = update.description.slice(0, 100) + "...";
+    
+    updateCard.innerHTML = `
+      <div class="update-card">
+        <h3>${update.title}</h3>
+        <p class="update-meta">Version ${update.version} - ${update.date}</p>
+        <p class="update-description">${isLong ? shortDescription : update.description}</p>
+        ${isLong ? '<button class="read-more">En savoir plus</button>' : ''}
+      </div>
+    `;
+    
+    if (isLong) {
+      const button = updateCard.querySelector(".read-more");
+      button.addEventListener("click", () => {
+        const desc = updateCard.querySelector(".update-description");
+        if (desc.innerText === shortDescription) {
+          desc.innerText = update.description;
+          button.innerText = "Voir moins";
+        } else {
+          desc.innerText = shortDescription;
+          button.innerText = "En savoir plus";
+        }
+      });
+    }
+
+    container.appendChild(updateCard);
+  });
+}
+
+document.addEventListener("DOMContentLoaded", renderUpdates);
+</script>
+
+<style>
+.updates-wrapper {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  padding: 20px;
+}
+
+.update-bubble {
+  width: 250px;
+  background: #fff;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.update-card h3 {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.update-meta {
+  font-size: 12px;
+  color: gray;
+}
+
+.update-description {
+  font-size: 14px;
+  margin: 10px 0;
+}
+
+.read-more {
+  background: none;
+  border: none;
+  color: blue;
+  cursor: pointer;
+}
+</style>
+
+
+
+
+
+    
+</div>
+<!-- partial -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script><script  src="./script.js"></script>
+
+</body>
+</html>
