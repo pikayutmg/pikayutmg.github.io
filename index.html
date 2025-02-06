@@ -1,805 +1,117 @@
-
-
-
-
-
 <!DOCTYPE html>
-<html lang="fr" >
+<html lang="en" >
 <head>
   <meta charset="UTF-8">
-  <title>GFLP - LSP SRDMG • PikaYutMG</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-<link rel="stylesheet" href="./style.css">
- <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
- <meta charset="UTF-8">
- <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <meta name="author" content="EnesGP">
- <meta name="description" content="Bienvenue sur la page officielle de PikaYutMG, la plateforme de divertissement ultime pour les amateurs de jeux vidéo. Découvrez les dernières actualités, guides, analyses et bien plus encore. Rejoignez-nous pour une expérience de jeu inoubliable !">
- <meta property="og:title" content="PikaYutMG - Plateforme de Divertissement pour les Joueurs">
- <meta property="og:description" content="V BETA 3 / Bienvenue sur la page officielle de PikaYutMG, la plateforme de divertissement ultime pour les amateurs de jeux vidéo. Découvrez les dernières actualités, guides, analyses et bien plus encore. Rejoignez-nous pour une expérience de jeu inoubliable !">
- <meta property="og:image" content="https://pkyt-db-screen.vercel.app/PikaYut%E2%84%A2-logo/Logo-2023-v1/pikayut8.png">
- <meta property="og:image:alt" content="Logo PikaYutMG">
- <meta property="og:type" content="website">
- <meta property="og:url" content="https://pikayutmg.github.io">
-
+  <title>LosFly</title>
+  <link href="https://fonts.googleapis.com/css?family=Work+Sans:400,800" rel="stylesheet"><link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css'><link rel="stylesheet" href="./style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="EnesGP ( EC-De )">
+  <meta name="description" content="LosFly , service de développement et de projet .">
+  <meta property="og:title" content="LosFly Community">
+  <meta property="og:description" content="V BETA 3 / Bienvenue sur la page officielle de PikaYutMG, la plateforme de divertissement ultime pour les amateurs de jeux vidéo. Découvrez les dernières actualités, guides, analyses et bien plus encore. Rejoignez-nous pour une expérience de jeu inoubliable !">
+  <meta property="og:image" content="https://pkyt-db-screen.vercel.app/PikaYut%E2%84%A2-logo/Logo-2023-v1/pikayut8.png">
+  <meta property="og:image:alt" content="Logo PikaYutMG">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://pikayutmg.github.io">
+ 
 </head>
 <body>
 <!-- partial:index.partial.html -->
-<div class="container" x-data="{ rightSide: false, leftSide: false }">
-  <div class="left-side" :class="{'active' : leftSide}">
-    <div class="left-side-button" @click="leftSide = !leftSide">
-      <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
-      <svg stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-  <path d="M19 12H5M12 19l-7-7 7-7"/>
-</svg>
-    </div>
-    <div class="logo">PikaYutMG</div>
-    <div class="side-wrapper">
-      <div class="side-title">MENU</div>
-      <div class="side-menu">
-        <a href="https://gflp-p.vercel.app/">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-            <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
-            <path d="M9 22V12h6v10" />
-          </svg>
-          Home
-        </a>
-        <a  href="./web/login/">
-          <svg stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
-            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
-          </svg>
-          se connecter
-        </a>
-   
-        <a href="#File-pkyt">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-            <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
-            <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8" />
-          </svg>
-          Fichiers partagées
-        </a>
+<div class="primary-nav">
 
-        <a href="https://discord.gg/Vkqp6hJtGx">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
-            <path d="M16 2v4M8 2v4M3 10h18" />
-          </svg>
-          Discord
-        </a>
-      </div>
-    </div>
+	<button href="#" class="hamburger open-panel nav-toggle">
+<span class="screen-reader-text">Menu</span>
+</button>
 
-    <style>
-      .PKYT-Img {
-        width: 25px;
-        border-radius: 10px;
-        margin-right: 10px;
-      }
+	<nav role="navigation" class="menu">
 
-         .PKYT-Img-one {
-        width: 25px;
-        border-radius: 10px;
- 
-      }
+		<a href="#" class="logotype">Los<span>Fly</span></a>
 
-      .detailsf {
-    display: none;
-}
-     </style>
+		<div class="overflow-container">
 
+			<ul class="menu-dropdown">
 
+				<li><a href="https://losfly.vercel.app">Home</a><span class="icon"><i class="fa fa-home"></i></span></li>
+				<li><a href="./user-panel/">Se connecter</a><span class="icon"><i class="fa fa-user"></i></span></li>
+				<li><a href="./user-panel/">annonce</a><span class="icon"><i class="fa fa-clock-o"></i></span></li>
+				<li><a href="https://gflp-p.vercel.app/service-extern/status.html">Status des services ? </a><span class="icon"><i class="fa fa-wrench"></i></span></li>
+				<li><a href="https://discord.gg/8z82KgZaWm">Discord</a><span class="icon"><i class="fa fa-discord"></i></span></li>
 
-    <div class="side-wrapper">
-      <div class="side-title"> Nos service : </div>
-      <div class="side-menu">
-        <a href="https://gflp-p.vercel.app/phone-test.html">
-          <img class="PKYT-Img"  src="https://pkyt-db-screen.vercel.app/PikaYut%E2%84%A2-logo/Logo-2023-v1/pikayut8.png" >
+                <li class="menu-hasdropdown">
+					<a href="#">Nos services :</a><span class="icon"><i class="	fa fa-ellipsis-h"></i></span>
 
-          SPEED Phone  | <font color="red"><b> </b></font>
-        </a>
+					<label title="toggle menu" for="S">
+        <span class="downarrow"><i class="fa fa-caret-down"></i></span>
+      </label>
+					<input type="checkbox" class="sub-menu-checkbox" id="S" />
 
+					<ul class="sub-menu-dropdown">
+						<li><a href="https://pkyt-database-up.vercel.app">PKYT - Service</a></li>
+						<li><a href="https://doc-pkyt-use.vercel.app">PKYT - Forum</a></li>
+						<li><a href="https://ebsayderflyse.vercel.app">EbsayderFlyse</a></li>
+					</ul>
+				</li>
 
-        <a href="https://pkyt-database-up.vercel.app/">
-          <img  class="PKYT-Img" src="https://pkyt-db-img.vercel.app/PKYT/pkyt-sc/PKYT%20-%202.png" >
+                <li class="menu-hasdropdown">
+					<a href="#">Nos pages affiliet</a><span class="icon"><i class="	fa fa-ellipsis-h"></i></span>
 
-          PKYT - Service 
-        </a>
-        <a href="https://pkyt-discord.vercel.app/">
-          <img  class="PKYT-Img" src="https://pkyt-db-img.vercel.app/PKYT/pkyt-sc/PKYT%20-%202.png" >
+					<label title="toggle menu" for="L">
+        <span class="downarrow"><i class="fa fa-caret-down"></i></span>
+      </label>
+					<input type="checkbox" class="sub-menu-checkbox" id="L" />
 
-          PKYT - DRD 
-        </a>
-                <a href="https://doc-pkyt-use.vercel.app/">
-          <img  class="PKYT-Img" src="https://pkyt-db-img.vercel.app/PKYT/pkyt-sc/PKYT%20-%202.png" >
+					<ul class="sub-menu-dropdown">
+						<li><a href="https://howardarmory.vercel.app">[<mark>RP</mark>]</a></li>
+						<li><a href="https://pikayutmg.github.io/web/sites/partenariat/AlFard/index.html">[<mark>GM</mark>]AlFard</a></li>
+					</ul>
+				</li>
 
-          PKYT - Forum
-                </a>
-        <a href="https://ebsayderflyse.vercel.app">
-          <img  class="PKYT-Img" src="https://pkyt-db-screen.vercel.app/ebsayderlogo/ebsayder%203.jpg" >
+                <li class="menu-hasdropdown">
+					<a href="#">Autres</a><span class="icon"><i class="	fa fa-ellipsis-h"></i></span>
 
-          EbsayderFlyseRP
-        </a>
+					<label title="toggle menu" for="A">
+        <span class="downarrow"><i class="fa fa-caret-down"></i></span>
+      </label>
+					<input type="checkbox" class="sub-menu-checkbox" id="A" />
 
-        
+					<ul class="sub-menu-dropdown">
+						<li><a href="https://gflp-p.vercel.app/phone-test.html">[<mark>TOOL</mark>] SpeedTest ( phone ) </a></li>
+						<li><a href=""><s>mon profil PKYT</s></a></li>
+						<li><a href="./#v1-gflp-plug-srdmg-v1.html">PKYT - PlugIn [<font color="green">Non suporté</font>]</a></li>
+					</ul>
+				</li>
 
-        <div class="side-title"> Autres  : </div>
+			</ul>
 
+		</div>
 
+	</nav>
 
-
-        <a href="https://howardarmory.vercel.app/">
-          <img class="PKYT-Img"  src="https://pkyt-db-screen.vercel.app/gunshop-howard/employer/Aidan%20Howard.png" >
-
-          HowardArmory  | <font color="blue"><b> [ GMOD ]</b></font>
-        </a>
-
-        <a href="https://pikayutmg.github.io/web/sites/partenariat/AlFard/index.html">
-          <img src="#" >
-
-          AlFard  | <font color="green"><b>BETA [ MCPE / BE ]</b></font>
-        </a>
-
- 
-
-
-      </div>
-    </div>
-
-
-    
-    <a href="https://discord.gg/N9zSS9zHaQ" class="follow-me" target="_blank">
-      <span class="follow-text">
-
-          <svg class="css-i6dzq1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 127.14 96.36"><g id="图层_2" data-name="图层 2"><g id="Discord_Logos" data-name="Discord Logos"><g id="Discord_Logo_-_Large_-_White" data-name="Discord Logo - Large - White"><path d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.08,65.69,84.69,65.69Z"/></g></g></g></svg>
-        
-        
-        Notre discord ?
-     </span>
-      <span class="developer">
-       
-        PikaYutMG | GFLP - LSP SRDMG
-      </span>
-    </a>
-  </div>
-  <div class="main">
-    <div class="search-bar">
-      <input type="text" id="searchInput" placeholder="Search" /><button style="width: 10px; height: 10px; background-color: rgba(255, 255, 255, 0.13); border: 0cm;" onclick="search()">🔍</button>
-      <button class="right-side-button" @click="rightSide = !rightSide">
-         <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
-      </button>
-    </div>
-    <div class="main-container">
-      <div class="profile">
-
-
-
-
-
-
-
-
- <!-- Account With PKYT -->
-
- <div class="profile-avatar">
-<div id="profilun"></div>
 </div>
 
+<div class="new-wrapper">
+
+	<div id="main">
+
+		<div id="main-contents">
+
+			<h1><b>Los</b>Fly</h1>
 
 
+			<h2>Bienvenue chez LosFy</h2>
+            <p>Ici, vous retrouverez divers sujets tels que le développement, l'accès aux sites et projets associés, des annonces, des codes (forum), etc. Le <a href="https://discord.gg/8z82KgZaWm">Discord</a> peut être nécessaire pour nous contacter.</p>
+			<p class="intro"><strong>Service de développement</strong> et de création de <strong>projets</strong>.</p>
+<hR>
 
+            <p class="small"><strong>LosFly</strong> a débuté en 2017. Vers août 2022, plusieurs projets ont vu le jour, notamment <strong>NairWase</strong>, <strong>FayzXase</strong>, <strong>GFLP - LSP</strong> (incluant <em>SRDMG</em>), <strong>PKYT</strong> (<em>service</em>) et <strong>PikaYutMG</strong>. Tous ces projets sont dirigés et gérés par <strong>EC-De</strong> (<em>EnesCommunity-DeveloppementEnrichissement</em>), une communautée fondée également au début de l’année 2017. Bien que mis de côté un temps, <strong>LosFly</strong> a finalement été relancé en 2024.</p>
 
+		</div>
 
+	</div>
 
-        <img src="https://images.unsplash.com/photo-1508247967583-7d982ea01526?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80" alt="" class="profile-cover">
-        <div class="profile-menu">
-          <a class="profile-menu-link active">Home</a>
-          <a href="https://discord.gg/bj9M8r4r" class="profile-menu-link"> Support </a>
- 
-        </div>
-      </div>
-
-      <br><p><div id="result"></div></p><br>
-      <div class="timeline">
-        <div class="timeline-left">
-          <div class="intro box">
-            <div class="intro-title">
-              Mes info : 
-              <button class="intro-menu"></button>
-            </div>
-            <div class="info">
-              <div class="info-item">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 503.889 503.889" fill="currentColor">
-                  <path d="M453.727 114.266H345.151V70.515c0-20.832-16.948-37.779-37.78-37.779H196.517c-20.832 0-37.78 16.947-37.78 37.779v43.751H50.162C22.502 114.266 0 136.769 0 164.428v256.563c0 27.659 22.502 50.161 50.162 50.161h403.565c27.659 0 50.162-22.502 50.162-50.161V164.428c0-27.659-22.503-50.162-50.162-50.162zm-262.99-43.751a5.786 5.786 0 015.78-5.779h110.854a5.786 5.786 0 015.78 5.779v43.751H190.737zM32 164.428c0-10.015 8.147-18.162 18.162-18.162h403.565c10.014 0 18.162 8.147 18.162 18.162v23.681c0 22.212-14.894 42.061-36.22 48.27l-167.345 48.723a58.482 58.482 0 01-32.76 0L68.22 236.378C46.894 230.169 32 210.321 32 188.109zm421.727 274.725H50.162c-10.014 0-18.162-8.147-18.162-18.161V253.258c8.063 6.232 17.254 10.927 27.274 13.845 184.859 53.822 175.358 52.341 192.67 52.341 17.541 0 7.595 1.544 192.67-52.341 10.021-2.918 19.212-7.613 27.274-13.845v167.733c.001 10.014-8.147 18.162-18.161 18.162z" /></svg>
-                Service <a href="#"><a id="metier"></a></a>
-              </div>
-              <div class="info-item">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-                  <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
-                  <path d="M9 22V12h6v10" />
-                </svg>
-                Lieux <a href="#"> <a id="endroit" href=""></a></a>
-              </div>
-              <div class="info-item">
-                <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
-                  <path d="M437 75C388.7 26.6 324.4 0 256 0S123.3 26.6 75 75C26.6 123.3 0 187.6 0 256s26.6 132.7 75 181c48.3 48.4 112.6 75 181 75s132.7-26.6 181-75c48.4-48.3 75-112.6 75-181s-26.6-132.7-75-181zM252.4 481.9c-52-.9-103.7-19.5-145.2-55.8L256 277.2l21.7 21.8a165.9 165.9 0 00-35.7 87c-3.5 30.5 0 63.3 10.4 95.9zM299 320.3l105.7 105.8a224.8 224.8 0 01-121.3 54.1C262 419.5 268 360.3 299 320.3zm21.2-21.2c40-31 99.2-37 160-15.6A224.8 224.8 0 01426 404.8zM482 252.4a231.7 231.7 0 00-96-10.4 165.9 165.9 0 00-87 35.7L277.3 256l148.9-148.8c36.3 41.5 55 93.2 55.8 145.2zm-290.2-39.5c-40 31-99.2 37-160 15.6A224.8 224.8 0 0186 107.2zm-84.5-127a224.8 224.8 0 01121.3-54.1C250 92.5 244 151.7 213 191.7zM270 126c3.5-30.5 0-63.3-10.4-95.9 52 .9 103.7 19.5 145.2 55.8L256 234.8 234.3 213a165.9 165.9 0 0035.7-87zM30 259.6a242 242 0 0072.7 11.7c7.8 0 15.6-.5 23.2-1.3a165.9 165.9 0 0087-35.7l21.8 21.7L85.9 404.8a225.3 225.3 0 01-55.8-145.2z" /></svg>
-                RP <a href="#"> <a id="nom" href=""></a><a id="prenom" href=""></a>  </a>
-
-
-
-                <details class="detailsf">
-
-  
-  <p>Pseudo Discord: <a id="pseudoDiscord" href=""></a></p>
-  <p>ID Discord: <a id="idDiscord" href=""></a></p>
-  <p>Nom: </p>
-  <p>Prénom: </p>
-  <p>Date de Naissance: <a id="dateNaissance" href=""></a></p>
-  <p>Type: <a id="type" href=""></a></p>
-
-  <p>Niveau: <a id="lvl" href=""></a></p>
-  <p>Employeurs: <a id="employeurs" href=""></a></p>
-  <p>Endroit: <a id="endroit" href=""></a></p>
-  <p>Numéro: <a id="numero" href=""></a></p>
-  <p>Depuis: <a id="depuis" href=""></a></p>
-
-
-</details>
-
-               
-              </div>
-            </div>
-          </div>
-
-          <!--<div class="event box">
-            <div class="event-wrapper">
-              <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80" class="event-img" />
-              <div class="event-date">
-                <div class="event-month">Jan</div>
-                <div class="event-day">01</div>
-              </div>
-              <div class="event-title">Winter Wonderland</div>
-              <div class="event-subtitle">01st Jan, 2019 07:00AM</div>
-            </div>
-          </div> -->
-
-          <div class="pages box">
-            <div class="intro-title">
-             Application : 
-              <button class="intro-menu"></button>
-            </div>
-          
-             <div id="support"></div>
-             
-          </div>
-        </div>
-        <div class="timeline-right">
-          
-          <!-- 
-            <div class="status box">
-            <div class="status-menu">
-              <a class="status-menu-item active" href="#">Status</a>
-              <a class="status-menu-item" href="#">Photos</a>
-              <a class="status-menu-item" href="#">Videos</a>
-            </div>
-            <div class="status-main">
-              <img src="https://images.genius.com/2326b69829d58232a2521f09333da1b3.1000x1000x1.jpg" class="status-img">
-              <textarea class="status-textarea" placeholder="Write something to Quan Ha.."></textarea>
-            </div>
-            <div class="status-actions">
-              <a href="#" class="status-action">
-                <svg viewBox="-42 0 512 512" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M333.7 123.3c0 33.9-12.2 63.2-36.2 87.2-24 24-53.3 36.1-87.1 36.1h-.1c-33.9 0-63.2-12.1-87.1-36.1-24-24-36.2-53.3-36.2-87.2 0-33.9 12.2-63.2 36.2-87.2 24-24 53.2-36 87-36.1h.2c33.8 0 63.2 12.2 87.1 36.1 24 24 36.2 53.3 36.2 87.2zm0 0" fill="#ffbb85" />
-                  <path d="M427.2 424c0 26.7-8.5 48.3-25.3 64.3-16.5 15.7-38.4 23.7-65 23.7H90.2c-26.6 0-48.5-8-65-23.7C8.5 472.3 0 450.7 0 423.9c0-10.2.3-20.4 1-30.2a302.7 302.7 0 0112.1-64.9c3.3-10.3 7.8-20.5 13.4-30.3 5.8-10.2 12.5-19 20.1-26.3a89 89 0 0129-18.2c11.2-4.4 23.7-6.7 37-6.7 5.2 0 10.3 2.2 20 8.5l21 13.5c6.6 4.3 15.7 8.3 27 11.9a107.7 107.7 0 0033 5.3c11 0 22-1.8 33-5.3 11.2-3.6 20.3-7.6 27-12l21-13.4c9.7-6.3 14.7-8.5 20-8.5 13.3 0 25.7 2.3 37 6.7a89 89 0 0128.9 18.2c7.6 7.3 14.4 16.1 20.2 26.3 5.5 9.8 10 20 13.3 30.3a305.5 305.5 0 0112.1 64.9c.7 9.8 1 20 1 30.2zm0 0" fill="#6aa9ff" />
-                  <path d="M210.4 246.6h-.1V0c34 0 63.3 12.2 87.2 36.1 24 24 36.2 53.3 36.2 87.2 0 33.9-12.2 63.2-36.2 87.2-24 24-53.3 36.1-87.1 36.1zm0 0" fill="#f5a86c" />
-                  <path d="M427.2 424c0 26.7-8.5 48.3-25.3 64.3-16.5 15.7-38.4 23.7-65 23.7H210.2V286.5h3.3c11 0 22-1.8 33-5.3 11.2-3.6 20.3-7.6 27-12l21-13.4c9.7-6.3 14.7-8.5 20-8.5 13.3 0 25.7 2.3 37 6.7a89 89 0 0128.9 18.2c7.6 7.3 14.4 16.1 20.2 26.3 5.5 9.8 10 20 13.3 30.3a305.5 305.5 0 0112.1 64.9c.7 9.8 1 20 1 30.2zm0 0" fill="#2682ff" />
-                </svg>
-                People
-              </a>
-              <a href="#" class="status-action">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                  <path d="M87.084 192c-.456-5.272-.688-10.6-.688-16C86.404 78.8 162.34 0 256.004 0s169.6 78.8 169.6 176c0 5.392-.232 10.728-.688 16h.688c0 96.184-169.6 320-169.6 320s-169.6-223.288-169.6-320h.68zm168.92 32c36.392 1.024 66.744-27.608 67.84-64-1.096-36.392-31.448-65.024-67.84-64-36.392-1.024-66.744 27.608-67.84 64 1.096 36.392 31.448 65.024 67.84 64z" fill="#e21b1b" />
-                </svg>
-                Check in
-              </a>
-              <a href="#" class="status-action">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                  <circle cx="256" cy="256" r="256" fill="#ffca28" />
-                  <g fill="#6d4c41">
-                    <path d="M399.68 208.32c-8.832 0-16-7.168-16-16 0-17.632-14.336-32-32-32s-32 14.368-32 32c0 8.832-7.168 16-16 16s-16-7.168-16-16c0-35.296 28.704-64 64-64s64 28.704 64 64c0 8.864-7.168 16-16 16zM207.68 208.32c-8.832 0-16-7.168-16-16 0-17.632-14.368-32-32-32s-32 14.368-32 32c0 8.832-7.168 16-16 16s-16-7.168-16-16c0-35.296 28.704-64 64-64s64 28.704 64 64c0 8.864-7.168 16-16 16z" />
-                  </g>
-                  <path d="M437.696 294.688c-3.04-4-7.744-6.368-12.736-6.368H86.4c-5.024 0-9.728 2.336-12.736 6.336-3.072 4.032-4.032 9.184-2.688 14.016C94.112 390.88 170.08 448.32 255.648 448.32s161.536-57.44 184.672-139.648c1.376-4.832.416-9.984-2.624-13.984z" fill="#fafafa" />
-                </svg>
-                Mood
-              </a>
-              <button class="status-share">Share</button>
-            </div>
-          </div>
-
-          -->
-         
-          <div id="post"></div>
-
-          
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="right-side" :class="{ 'active': rightSide }">
-
-
-
-    <div id="profildeux"></div>
-    
-
-    <div class="side-wrapper stories">
-      <div class="side-title">PKYT - Admin</div>
-    
-      
-
-      <div id="admin"></div>
-
-
-    </div>
-    <form id="lcidForm">
-    <div class="search-bar right-search">
-      <input type="text" id="lcidInput" placeholder="rien pour le moment !!!">
-      <div class="search-bar-svgs">
-
-        <button type="submit" style="height: 20px; width: 25px; background-color: rgba(0, 255, 255, 0); border: 0px;"> 
-          <svg color="white" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-            <path d="M12 5v14M5 12h14"/>
-          </svg>
-        </button>
-
-      </form>
-      </div>
-    </div>
-  </div>
-  <div class="overlay" @click="rightSide = false; leftSide = false" :class="{ 'active': rightSide || leftSide }"></div>
 </div>
 <!-- partial -->
-  <script src='https://cdn.jsdelivr.net/gh/alpinejs/alpine@v1.9.4/dist/alpine.js'></script>
-<script>
- const LCids = localStorage.getItem('LCid');
-
-        // Vérifier si LCid existe
-        if (LCids) {
-            // Construire l'URL pour récupérer le fichier JSON du compte
-            const url = `https://pkyt-database-up.vercel.app/account/${LCids}.json`;
-
-            // Récupérer les données du fichier JSON
-            fetch(url)
-                .then(response => response.json())
-                .then(data => {
-                    // Injecter les données dans les éléments HTML appropriés
-                    document.getElementById('pseudoDiscord').textContent = data.pseudo_discord;
-                    document.getElementById('idDiscord').textContent = data.id_discord;
-                    document.getElementById('nom').textContent = data.nom;
-                    document.getElementById('prenom').textContent = data.prenom;
-                    document.getElementById('dateNaissance').textContent = data.date_naissance;
-                    document.getElementById('type').textContent = data.type;
-                    document.getElementById('metier').textContent = data.metier;
-                    document.getElementById('lvl').textContent = data.lvl;
-                    document.getElementById('employeurs').textContent = data.employeurs.join(', ');
-                    document.getElementById('endroit').textContent = data.endroit;
-                    document.getElementById('numero').textContent = data.numero;
-                    document.getElementById('depuis').textContent = data.depuis;
-                    document.getElementById('imageProfil').src = data.image_profil;
-                })
-                .catch(error => console.error('Compte PKYT introuvable', error));
-        } else {
-            console.error('LCid non trouvé dans le lS');
-            // Gérer l'erreur LCid non trouvé ici
-        }
-</script>
-
-
-  <!-- Login -->
-
- <!-- <script>
-    // Fonction pour sauvegarder le LCid dans le Local Storage
-    function sauvegarderLCid(event) {
-        event.preventDefault(); // Empêche le formulaire de se soumettre
-
-        const LCid = document.getElementById('lcidInput').value;
-
-        if (LCid) {
-            localStorage.setItem('LCid', LCid);
-            alert(" Vous etes connecter ! ");
-        } else {
-            alert("Veuillez saisir un LCid.");
-        }
-    }
-
-    // Ajoute un écouteur d'événements au formulaire
-    document.getElementById('lcidForm').addEventListener('submit', sauvegarderLCid);
-</script> -->
-
-<!-- Info -->
-  <script>
-
-
-document.addEventListener("DOMContentLoaded", function () {
-    const feedbackContainer = document.getElementById("admin");
-
-    // URL du JSON
-    const jsonUrl = "admin.json";
-
-    // Charger les données JSON
-    fetch(jsonUrl)
-        .then(response => response.json())
-        .then(data => {
-            // Créer une boîte de message pour chaque PKYT
-            data.PKYTs.forEach(PKYT => {
-                const messageBox = createMessageBox(PKYT);
-                feedbackContainer.appendChild(messageBox);
-            });
-        })
-        .catch(error => console.error("Erreur lors du chargement du JSON :", error));
-
-    // Fonction pour créer une boîte de message à partir des données du PKYT
-    function createMessageBox(PKYT) {
-        const messageBox = document.createElement("div");
-        messageBox.classList.add("message-box");
-
-        messageBox.innerHTML =    `
-
-
-        
-   <br>
-      <div class="user">
-        <img src="${PKYT.IMG}" alt="" class="user-img">
-        <div class="username">${PKYT.pseudo}
-          <div class="album-date"> ${PKYT.Depuis} <br> <b>${PKYT.PKYT} </b></div>
-        </div>
-      </div>
-   `;
-
-        return messageBox;
-    }
-});
-
-
-
-
-
-
-document.addEventListener("DOMContentLoaded", function () {
-    const feedbackContainer = document.getElementById("post");
-
-    // URL du JSON
-    const jsonUrl = "post.json";
-
-    // Charger les données JSON
-    fetch(jsonUrl)
-        .then(response => response.json())
-        .then(data => {
-            // Créer une boîte de message pour chaque PKYTp
-            data.PKYTps.forEach(PKYTp => {
-                const messageBox = createMessageBox(PKYTp);
-                feedbackContainer.appendChild(messageBox);
-            });
-        })
-        .catch(error => console.error("Erreur lors du chargement du JSON :", error));
-
-    // Fonction pour créer une boîte de message à partir des données du PKYTp
-    function createMessageBox(PKYTp) {
-        const messageBox = document.createElement("div");
-        messageBox.classList.add("message-box");
-
-        messageBox.innerHTML =    `
-
-      <div class="album box">
-            <div class="status-main">
-              <img  src="${PKYTp.IMG}" class="status-img" />
-              <div class="album-detail">
-                <div class="album-title"><strong>${PKYTp.pseudo}</strong> | -   <span>${PKYTp.PType}</span></div>
-                <div class="album-date"><b>${PKYTp.PDate}</b></div>
-              </div>
-              <button class="intro-menu"></button>
-            </div> 
-            <div class="album-content"> ${PKYTp.PText1} <br>${PKYTp.PText2}<br>${PKYTp.PText3}
-              <div class="album-photos">
-                <img  src="${PKYTp.PImgA}" alt="" class="album-photo" />
-                <div class="album-right">
-                  <img  src="${PKYTp.PImgB}" alt="" class="album-photo" />
-                  <img  src="${PKYTp.PImgC}" alt="" class="album-photo" />
-                </div>
-              </div>
-            </div>
-            <div class="album-actions">
-              <a href="#" class="album-action">
-                <img  class="PKYT-Img-one "  src="${PKYTp.PCertif}">
-                
-              </a>
-
-              <a href="#" class="album-action">
-                <img  class="PKYT-Img"  src="${PKYTp.PAdmin}">
-                
-              </a> 
-            </div>
-          </div>
-
-          
-   `;
-
-        return messageBox;
-    }
-});
-
-
-
-
-
-
-
-
-// Récupérer la valeur stockée dans le Local Storage sous la clé "LCid"
-const LCid = localStorage.getItem('LCid');
-
-document.addEventListener("DOMContentLoaded", function () {
-    const feedbackContainer = document.getElementById("profilun");
-
-    // Vérifier si LCid est défini
-    if (LCid) {
-        // URL JSON basée sur le LCid
-        const jsonUrl = `https://pkyt-up.vercel.app/account/${LCid}.json`;
-
-        // Charger les données JSON
-        fetch(jsonUrl)
-            .then(response => response.json())
-            .then(data => {
-                const PKYTprofil = {
-                    image_profil: data.image_profil,
-                    pseudo_discord: data.pseudo_discord
-                };
-
-                const messageBox = createMessageBox(PKYTprofil);
-                feedbackContainer.appendChild(messageBox);
-            })
-            .catch(error => console.error("Erreur lors du chargement du JSON :", error));
-    } else {
-        console.error("Aucun LCid trouvé dans le Local Storage.");
-    }
-
-    function createMessageBox(PKYTprofil) {
-        const messageBox = document.createElement("div");
-        messageBox.classList.add("message-box");
-
-        messageBox.innerHTML = `
-            <img src="${PKYTprofil.image_profil}" alt="Profile Image" class="profile-img">
-            <div class="profile-name">${PKYTprofil.pseudo_discord}</div>
-        `;
-
-        return messageBox;
-    }
-});
-
-
-
-
-
-
-
-
-
-
-
-
-
-document.addEventListener("DOMContentLoaded", function () {
-    const feedbackContainer = document.getElementById("support");
-
-    // URL du JSON
-    const jsonUrl = "support.json";
-
-    // Charger les données JSON
-    fetch(jsonUrl)
-        .then(response => response.json())
-        .then(data => {
-            // Créer une boîte de message pour chaque PKYTsupport
-            data.PKYTsupports.forEach(PKYTsupport => {
-                const messageBox = createMessageBox(PKYTsupport);
-                feedbackContainer.appendChild(messageBox);
-            });
-        })
-        .catch(error => console.error("Erreur lors du chargement du JSON :", error));
-
-    // Fonction pour créer une boîte de message à partir des données du PKYTsupport
-    function createMessageBox(PKYTsupport) {
-        const messageBox = document.createElement("div");
-        messageBox.classList.add("message-box");
-
-        messageBox.innerHTML =    `
-      <br>
-      <div class="user">
-        <img src="${PKYTsupport.IMG}" alt="" class="user-img">
-              <div class="username"> ${PKYTsupport.Nom} </div> 
-              <div class="username"> ${PKYTsupport.Type} V${PKYTsupport.Version}</div>
-              <div class="username"> ${PKYTsupport.Date} </div>
-              <div class="username"> <br><a href="${PKYTsupport.Lien}">Installez </a> </div>
-            </div>
-   `;
-
-        return messageBox;
-    }
-});
-
-
-
-  </script>
-
-
-
-<!-- Profil -->
-
-
-
-<script>
-
-
-
-
-document.addEventListener("DOMContentLoaded", function () {
-        const feedbackContainer = document.getElementById("profildeux");
-
-         
-    
-
-        // Vérifier si LCid est défini
-        if (LCid) {
-            // URL JSON basée sur le LCid
-            const jsonUrl = `https://pkyt-up.vercel.app/account/${LCid}.json`;
-
-            // Charger les données JSON
-            fetch(jsonUrl)
-                .then(response => response.json())
-                .then(data => {
-                    // Mettre à jour le contenu de l'élément avec les données JSON
-                    feedbackContainer.innerHTML = `
-                        
-
-
-
-                        
-<div class="account">
-  <button class="account-button">
-    <svg stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1" viewBox="0 0 24 24">
-      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-      <path d="M22 6l-10 7L2 6" />
-    </svg>
-  </button>
-  <button class="account-button">
-    <svg stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1" viewBox="0 0 24 24">
-      <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 01-3.46 0" />
-    </svg>
-  </button>
-  <span class="account-user">  ${data.pseudo_discord} 
-                        
-    <img src="${data.image_profil}" alt="Profile Image" class="account-profile">
-    <span>▼</span>
-  </span>
-</div>
-
-                    `;
-                })
-                .catch(error => console.error("Erreur lors du chargement du JSON :", error));
-        } else {
-            console.error("Aucun LCid trouvé dans le Local Storage.");
-        }
-    });
-
-
-
-
-</script>
-
-
-
-
-
-
-
-
-
-
-<!-- Search bar -->
-
-<script>
-  function search() {
-      var searchTerm = document.getElementById("searchInput").value.trim().toLowerCase();
-
-      // Vérifier si aucun terme de recherche n'est saisi
-      if (searchTerm === "") {
-          document.getElementById("result").innerHTML = "Veuillez insérer une recherche. Ecrivez help pour avoir tout les pages PikaYutMG";
-          return;
-      }
-
-      // Charger le fichier JSON
-      fetch('https://pikayutmg.github.io/source/pikayut-base/data/research.json')
-          .then(response => response.json())
-          .then(data => {
-              // Rechercher la clé dans le JSON de manière insensible à la casse
-              var results = data.filter(item => item.KEY.toLowerCase().includes(searchTerm));
-
-              // Afficher les résultats dans un pop-up
-              if (results.length > 0) {
-                  showResultsPopup(results);
-              } else {
-                  document.getElementById("result").innerHTML = "Aucun résultat trouvé.";
-              }
-          })
-          .catch(error => console.error('Erreur de chargement du fichier JSON', error));
-  }
-
-  function showResultsPopup(results) {
-      var popupContent = "<ul>";
-      results.forEach(result => {
-          popupContent += `<li><strong>${result.TITRE}</strong><br>${result.DESCRIPTION}<br>
-                           <button onclick="openUrl('${result.URL}')">Ouvrir URL</button>
-                           <button onclick="showUrl('${result.URL}')">❔</button></li>`;
-      });
-      popupContent += "</ul>";
-
-      Swal.fire({
-          title: 'Résultats de la recherche',
-          html: popupContent,
-          confirmButtonText: 'Fermer'
-      });
-  }
-
-  function openUrl(url) {
-      // Rediriger vers l'URL
-      window.location.href = url;
-  }
-
-  function showUrl(url) {
-      // Afficher l'URL dans une alerte
-      Swal.fire({
-          title: 'URL',
-          text: url,
-          confirmButtonText: 'OK'
-      });
-  }
-</script>
-
-</head>
-
- 
-
-<style>
-   /* Styles for the popup */
-   .popup {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            justify-content: center;
-            align-items: center;
-        }
-
-        .popup-content {
-            background: #fff;
-            padding: 20px;
-            border-radius: 5px;
-            max-width: 400px;
-            text-align: center;
-        }
-
-</style>
-
-<script src="https://pkyt-admin-partage-account.vercel.app/c-s/auth/ban/r-partage.js"></script>
-
-
-
-
-
-
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script><script  src="./script.js"></script>
 
 </body>
 </html>
