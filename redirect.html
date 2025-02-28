@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ECDE Redirection...</title>
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Récupérer les paramètres de l'URL
+            const params = new URLSearchParams(window.location.search);
+            const lbKey = params.get("LB");
+
+            if (lbKey) {
+                // Charger le fichier JSON
+                fetch("https://enes-cde.vercel.app/data/json/link-balise.json")
+                    .then(response => response.json())
+                    .then(data => {
+                        const targetUrl = data[lbKey];
+
+                        if (targetUrl) {
+                            // Redirection vers l'URL trouvée
+                            setTimeout(() => {
+                                window.location.href = targetUrl
+                            }, 3000);
+
+                            // Fermer la page après un court délai (si possible)
+                            setTimeout(() => {
+                                window.close();
+                            }, 6000);
+                        } else {
+                            document.body.innerHTML = `<h2>Clé "${lbKey}" introuvable.</h2>`;
+                        }
+                    })
+                    .catch(error => {
+                        document.body.innerHTML = `<h2>Erreur de chargement du LB</h2>`;
+                        console.error("Erreur de chargement du LB:", error);
+                    });
+            } else {
+                document.body.innerHTML = "<h2>Aucune clé LB détectée.</h2>";
+            }
+        });
+    </script>
+</head>
+<body>
+    
+    
+    <div class='flex space-x-2 justify-center items-center bg-white h-screen dark:invert'>
+        <span class='sr-only'>Loading...</span>
+         <div class='h-8 w-8 bg-black rounded-full animate-bounce [animation-delay:-0.3s]'></div>
+       <div class='h-8 w-8 bg-black rounded-full animate-bounce [animation-delay:-0.15s]'></div>
+       <div class='h-8 w-8 bg-black rounded-full animate-bounce'></div>
+   </div>
+
+</body>
+</html>

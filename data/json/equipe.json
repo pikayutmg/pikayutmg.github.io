@@ -1,0 +1,53 @@
+[
+    {
+        "pdp": "https://pkyt-db-screen.vercel.app/PikaYut%E2%84%A2-logo/Logo-2023-v1/pikayut8.png",
+        "pseudo": "PikaYut",
+        "role": "<font color=''>Fondateur</font>"
+    },
+    {
+        "pdp": "./data/img/equipe/ryuu.png",
+        "pseudo": "Ryu",
+        "role": "<font color=''>Co-Fondateur</font>"
+    },
+    {
+        "pdp": "./data/img/equipe/fs_kickzi.png",
+        "pseudo": "Fs Kickzi",
+        "role": "<font color=''>Responsable <u>Staff</u></font>"
+    },
+    {
+        "pdp": "./data/img/equipe/personrages.png",
+        "pseudo": "PersonRages",
+        "role": "<font color=''>Responsable <u>Staff</u></font>"
+    },
+    {
+        "pdp": "./data/img/equipe/aijuminn.png",
+        "pseudo": "Aijuminn Wolfy",
+        "role": "<font color=''>💠 - Admin✓ </font>"
+    },
+    {
+        "pdp": "./data/img/equipe/xzthermiquepanda.png",
+        "pseudo": "XzThermique Panda",
+        "role": "<font color=''>💠 - Administration</font>"
+    },
+    {
+        "pdp": "./data/img/equipe/swize_off.png",
+        "pseudo": "Swize Off",
+        "role": "<font color=''>🟠 - Sécuriter</font>"
+    },
+    {
+        "pdp": "./data/img/equipe/xzthermiquepanda.png",
+        "pseudo": "XzThermique Pandas",
+        "role": "<font color=''>🟠 - Support </font>"
+    },
+    {
+        "pdp": "./data/img/equipe/personrages.png",
+        "pseudo": "PersonRages",
+        "role": "<font color=''>🟠 - Support </font>"
+    },
+    {
+        "pdp": "./data/img/equipe/swize_off.png",
+        "pseudo": "Swize Off",
+        "role": "<font color=''>🟠 - Support </font>"
+    }
+]
+
