@@ -1,3 +1,0 @@
-{
-  "site": "<div class=\"account-wrapper\" style=\"--delay: .8s\">\n  <div class=\"account-profile\">\n    <img id=\"profile-image\" src=\"\" alt=\"Image de profil\">\n    <div class=\"blob-wrap\">\n      <div class=\"blob\"></div>\n      <div class=\"blob\"></div>\n      <div class=\"blob\"></div>\n    </div>\n    <div class=\"account-name\">Mike J Morgan</div>\n    <div class=\"account-title\">Taxi Driver</div>\n  </div>\n  <div class=\"account card\">\n    <div class=\"account-cash\">$ 5637.04</div>\n    <div class=\"account-income\">Total Income</div>\n    <div class=\"account-iban\"> <p id=\"id\"> </p></div>\n  </div>\n</div>"
-}
