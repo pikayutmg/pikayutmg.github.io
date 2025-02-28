@@ -1,1 +1,0 @@
-document.write("<script>\r\n        function redirectToURL() {\r\n            window.location.href = 'https:\/\/pikayutmg.github.io\/web\/redirection\/mtn';\r\n        }\r\n\r\n        \/\/ Appeler la fonction de redirection apr\u00e8s un d\u00e9lai d'une seconde (1000 ms)\r\n        setTimeout(redirectToURL, 1000);\r\n    <\/script>");
