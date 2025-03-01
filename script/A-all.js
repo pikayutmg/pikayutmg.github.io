@@ -3,7 +3,7 @@
 //
 document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("ecde_all").innerHTML = `
-<!--// Rien pour le moment-->
+
     `;
   });
   //
@@ -38,3 +38,17 @@ document.addEventListener("DOMContentLoaded", function () {
   
       // Appeler la fonction pour remplacer les textes dès que la page est prête
       document.addEventListener('DOMContentLoaded', replaceTextFromJson);
+
+
+///
+/// Enes CDE Google Tag : Analitycs : 
+/// 
+
+
+document.write("<!-- Google tag (gtag.js) -->\r\n<script async src=\"https:\/\/www.googletagmanager.com\/gtag\/js?id=G-NHMQWLC3VY\"><\/script>\r\n<script>\r\n  window.dataLayer = window.dataLayer || [];\r\n  function gtag(){dataLayer.push(arguments);}\r\n  gtag('js', new Date());\r\n\r\n  gtag('config', 'G-NHMQWLC3VY');\r\n<\/script>");
+
+///
+/// Enes CDE Google Tag : cookies : 
+/// 
+
+document.write("<script type=\"text\/javascript\">\r\nvar _iub = _iub || [];\r\n_iub.csConfiguration = {\"siteId\":3947906,\"cookiePolicyId\":60956874,\"lang\":\"fr\",\"storage\":{\"useSiteId\":true}};\r\n<\/script>\r\n<script type=\"text\/javascript\" src=\"https:\/\/cs.iubenda.com\/autoblocking\/3947906.js\"><\/script>\r\n<script type=\"text\/javascript\" src=\"\/\/cdn.iubenda.com\/cs\/gpp\/stub.js\"><\/script>\r\n<script type=\"text\/javascript\" src=\"\/\/cdn.iubenda.com\/cs\/iubenda_cs.js\" charset=\"UTF-8\" async><\/script>");
