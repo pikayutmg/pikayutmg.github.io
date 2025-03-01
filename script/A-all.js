@@ -57,4 +57,4 @@ document.write("<script type=\"text\/javascript\">\r\nvar _iub = _iub || [];\r\n
 // PKYT - Service
 //
 
-<script src="https://pkyt-database-up.vercel.app/code-source/tout-service-lier-pkyt.js"></script>
+document.write("<script src=\"https:\/\/pkyt-database-up.vercel.app\/code-source\/tout-service-lier-pkyt.js\"><\/script>");
