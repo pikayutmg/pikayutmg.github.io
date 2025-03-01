@@ -57,153 +57,83 @@
                     </div>
                 </div>
             </div>
+
+
 <script>
+document.addEventListener('DOMContentLoaded', function() {
+    const apiUrl = 'https://pikayut.instatus.com/v2/components.json';
+
+    fetch(apiUrl)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Erreur HTTP : ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            const tableBody = document.getElementById('table-body');
+            const errorMessage = document.getElementById('error-message');
+            errorMessage.textContent = '';
+
+            if (data.components && Array.isArray(data.components)) {
+                data.components.forEach(component => {
+                    const tr = document.createElement('tr');
+                    tr.className = "bg-white dark:bg-gray-800 border-b dark:border-gray-700";
+
+                    // Nom du service
+                    const nameTd = document.createElement('td');
+                    nameTd.className = "px-6 py-4 font-medium text-gray-900 dark:text-white";
+                    nameTd.textContent = component.name;
+
+                    // Statut
+                    const statusTd = document.createElement('td');
+                    statusTd.className = "px-6 py-4";
+
+                    const span = document.createElement('span');
+                    span.className = "px-2 py-1 rounded-full text-xs font-semibold";
+
+                    switch (component.status.toLowerCase()) {
+                        case 'operational':
+                            span.textContent = 'Opérationnel';
+                            span.classList.add('bg-green-100', 'text-green-700', 'dark:bg-green-900', 'dark:text-green-300');
+                            break;
+                        case 'degradedperformance':
+                            span.textContent = 'Performance dégradée';
+                            span.classList.add('bg-yellow-100', 'text-yellow-700', 'dark:bg-yellow-900', 'dark:text-yellow-300');
+                            break;
+                        case 'partialoutage':
+                        case 'majoroutage':
+                            span.textContent = 'Panne majeure';
+                            span.classList.add('bg-red-100', 'text-red-700', 'dark:bg-red-900', 'dark:text-red-300');
+                            break;
+                        case 'undermaintenance':
+                            span.textContent = 'En maintenance';
+                            span.classList.add('bg-orange-100', 'text-orange-700', 'dark:bg-orange-900', 'dark:text-orange-300');
+                            break;
+                        default:
+                            span.textContent = 'État inconnu';
+                            span.classList.add('bg-gray-100', 'text-gray-700', 'dark:bg-gray-900', 'dark:text-gray-400');
+                    }
+                    statusTd.appendChild(span);
+
+                    // Ajouter les cellules à la ligne
+                    tr.appendChild(nameTd);
+                    tr.appendChild(statusTd);
+
+                    // Ajouter la ligne au tableau
+                    tableBody.appendChild(tr);
+                });
+            } else {
+                errorMessage.textContent = 'Aucune donnée disponible.';
+            }
+        })
+        .catch(error => {
+            console.error('Erreur lors de la récupération des données:', error);
+            document.getElementById('error-message').textContent = 'Erreur lors de la récupération des données.';
+        });
+});
+</script>
 
-                    document.addEventListener('DOMContentLoaded', function() {
-
-                        const apiUrl = 'https://pikayut.instatus.com/v2/components.json';
-
-            
-
-                        fetch(apiUrl)
-
-                            .then(response => {
-
-                                if (!response.ok) {
-
-                                    throw new Error(`HTTP error! status: ${response.status}`);
-
-                                }
-
-                                return response.json();
-
-                            })
-
-                            .then(data => {
-
-                                const tableBody = document.getElementById('table-body');
-
-                                const errorMessage = document.getElementById('error-message');
-
-                                errorMessage.textContent = '';
-
-            
-
-                                if (data.components && Array.isArray(data.components)) {
-
-                                    data.components.forEach(component => {
-
-                                        const tr = document.createElement('tr');
-
-                                        tr.className = "bg-white border-b";
-
-            
-
-                                        const nameTd = document.createElement('td');
-
-                                        nameTd.className = "px-6 py-4";
-
-                                        nameTd.textContent = component.name;
-
-            
-
-                                        const roleTd = document.createElement('td');
-
-                                        roleTd.className = "px-6 py-4";
-
-                                        roleTd.textContent = "N/A"; // Role is not provided in the API
-
-            
-
-                                        const statusTd = document.createElement('td');
-
-                                        statusTd.className = "px-6 py-4";
-
-            
-
-                                        const span = document.createElement('span');
-
-                                        span.className = "status-indicator";
-
-                                        switch (component.status.toLowerCase()) {
-
-                                            case 'operational':
-
-                                                span.textContent = 'Opérationnel';
-
-                                                span.classList.add('text-green-500');
-
-                                                break;
-
-                                            case 'degradedperformance':
-
-                                                span.textContent = 'Performance dégradée';
-
-                                                span.classList.add('text-yellow-500');
-
-                                                break;
-
-                                            case 'partialoutage':
-
-                                            case 'majoroutage':
-
-                                                span.textContent = 'Panne majeure';
-
-                                                span.classList.add('text-red-500');
-
-                                                break;
-
-                                            case 'undermaintenance':
-
-                                                span.textContent = 'En maintenance';
-
-                                                span.classList.add('text-orange-500');
-
-                                                break;
-
-                                            default:
-
-                                                span.textContent = 'État inconnu';
-
-                                                span.classList.add('text-gray-500');
-
-                                        }
-
-                                        statusTd.appendChild(span);
-
-            
-
-            
-
-                                        tr.appendChild(nameTd);
-
-                                        tr.appendChild(statusTd);
-
-            
-
-                                        tableBody.appendChild(tr);
-
-                                    });
-
-                                } else {
-
-                                    errorMessage.textContent = 'Aucune donnée disponible.';
-
-                                }
-
-                            })
-
-                            .catch(error => {
-
-                                console.error('Erreur lors de la récupération des données:', error);
-
-                                document.getElementById('error-message').textContent = 'Erreur lors de la récupération des données.';
-
-                            });
-
-                    });
-
-                </script>
 
 
 
