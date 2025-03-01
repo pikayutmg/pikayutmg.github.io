@@ -1,167 +1,70 @@
 <!DOCTYPE html>
-    <html lang="fr">
-        <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="EnesCDE - Plateforme de services et documentation.">
-        <meta name="keywords" content="EnesCDE, Services, Documentation, PKYT, Web , PikaYutMG , GFLP , LSP , SRDMG , Ebsayder , Howard , Armory">
-        <meta name="author" content="EnesCDE">
-    
-        <!-- Open Graph (Facebook & LinkedIn) -->
-        <meta property="og:title" content="EnesCDE - Services , Accueil">
-        <meta property="og:description" content="Découvrez EnesCDE, la plateforme offrant divers services et documentations en ligne.">
-        <meta property="og:image" content="https://enes-cde.vercel.app/data/ilg/web/meta.html">
-        <meta property="og:url" content="https://enes-cde.vercel.app">
-        <meta property="og:type" content="website">
-    
-        <!-- Twitter Card -->
-        <meta name="twitter:card" content="summary_large_image">
-        <meta name="twitter:title" content="EnesCDE - Services & Documentation">
-        <meta name="twitter:description" content="Découvrez EnesCDE, la plateforme offrant divers services et documentations en ligne.">
-        <meta name="twitter:image" content="https://enes-cde.vercel.app/data/ilg/web/meta.html">
-    
-        <title>EnesCDE - Ressources [STATUS]</title>
-        <link rel="icon" type="image/png" href="https://enes-cde.vercel.app/data/img/web/favicon.png">
-        
-        
-        <!-- Script pour ajouter dynamiquement le footer -->
-        <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
-        <script src="https://enes-cde.vercel.app/script/A-footer.js" defer></script>
-        <script src="https://enes-cde.vercel.app/script/A-menu.js" defer></script>
-        <script src="https://enes-cde.vercel.app/script/A-all.js" defer></script>
-        <div id="ecde_all"></div>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="EnesCDE - Plateforme de services et documentation.">
+    <meta name="keywords" content="EnesCDE, Services, Documentation, PKYT, Web, PikaYutMG, GFLP, LSP, SRDMG, Ebsayder, Howard, Armory">
+    <meta name="author" content="EnesCDE">
 
-    </head>
-    <body class="bg-gray-100">
-        <div class="flex h-screen">
-            <!-- Menu : Deb -->
-            <div id="ecde_menu"  class="w-20"></div>
-            <!-- Menu : Fin -->
-    
-            <!-- Main Content -->
-            <main class="flex-1 p-6 bg-gray-100">
-                <h1 class="text-2xl font-semibold text-gray-900">Ressources :</h1>
-                <div class="mt-4 p-6 bg-white rounded-lg shadow-md">
-                    <p class="text-gray-600">Les ressources vous permettent de consulter le statut de chaque plateforme et service, y compris les pages affiliées. En cas de problème sur un site, celui-ci sera signalé ici.</p>
-                </div>
+    <title>EnesCDE - Ressources [STATUS]</title>
+    <link rel="icon" type="image/png" href="https://enes-cde.vercel.app/data/img/web/favicon.png">
 
-<br>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
 
-                <div class="container">
-                    <div class="overflow-x-auto rounded-lg shadow">
-                        <table class="w-full text-sm text-left text-gray-500">
-                            <!-- Table Header -->
-                            <thead class="text-xs text-gray-700 uppercase bg-gray-50">
-                                <tr>
-                                    <th scope="col" class="px-6 py-3">
-                                        <button class="flex items-center">
-                                            Service&Plateforme
-                                        </button>
-                                    </th>
-                                    <th scope="col" class="px-6 py-3">Status</th>
-                                </tr>
-                            </thead>
-            
-                            <!-- Table Body -->
-                            <tbody id="table-body">
-                                <!-- Data will be populated here by JavaScript -->
-                            </tbody>
-                        </table>
-            
-                        <!-- Pagination -->
-                        <div class="flex items-center justify-between p-4 bg-white">
-                            <span class="text-sm text-gray-700"><center>Enes CDE , Service , Plateforem et autres.</center></span>
-                        </div>
+    <!-- Scripts -->
+    <script src="https://enes-cde.vercel.app/script/A-footer.js" defer></script>
+    <script src="https://enes-cde.vercel.app/script/A-menu.js" defer></script>
+    <script src="https://enes-cde.vercel.app/script/A-all.js" defer></script>
+</head>
+<body class="bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-white">
+    <div class="flex h-screen">
+        <!-- Menu -->
+        <div id="ecde_menu" class="w-20"></div>
+
+        <!-- Main Content -->
+        <main class="flex-1 p-6">
+            <h1 class="text-2xl font-semibold">Ressources :</h1>
+
+            <div class="mt-4 p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md">
+                <p class="text-gray-600 dark:text-gray-300">
+                    Les ressources vous permettent de consulter le statut de chaque plateforme et service, y compris les pages affiliées.
+                </p>
+            </div>
+
+            <br>
+
+            <!-- Table -->
+            <div class="container">
+                <div class="overflow-x-auto rounded-lg shadow">
+                    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-300">
+                        <thead class="text-xs text-gray-700 dark:text-gray-200 uppercase bg-gray-50 dark:bg-gray-700">
+                            <tr>
+                                <th scope="col" class="px-6 py-3">Service & Plateforme</th>
+                                <th scope="col" class="px-6 py-3">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="table-body">
+                            <!-- Data populated by JavaScript -->
+                        </tbody>
+                    </table>
+
+                    <div class="flex items-center justify-between p-4 bg-white dark:bg-gray-800">
+                        <span class="text-sm text-gray-700 dark:text-gray-400">
+                            <center>Enes CDE, Service, Plateforme et autres.</center>
+                        </span>
                     </div>
                 </div>
+            </div>
 
-                <div class="container ma p-6">
-                    <p id="error-message" class="text-red-500 text-center mt-4"></p>
-                </div>
+            <div class="container p-6">
+                <p id="error-message" class="text-red-500 text-center mt-4"></p>
+            </div>
 
-
-                <script>
-                    document.addEventListener('DOMContentLoaded', function() {
-                        const apiUrl = 'https://pikayut.instatus.com/v2/components.json';
-            
-                        fetch(apiUrl)
-                            .then(response => {
-                                if (!response.ok) {
-                                    throw new Error(`HTTP error! status: ${response.status}`);
-                                }
-                                return response.json();
-                            })
-                            .then(data => {
-                                const tableBody = document.getElementById('table-body');
-                                const errorMessage = document.getElementById('error-message');
-                                errorMessage.textContent = '';
-            
-                                if (data.components && Array.isArray(data.components)) {
-                                    data.components.forEach(component => {
-                                        const tr = document.createElement('tr');
-                                        tr.className = "bg-white border-b";
-            
-                                        const nameTd = document.createElement('td');
-                                        nameTd.className = "px-6 py-4";
-                                        nameTd.textContent = component.name;
-            
-                                        const roleTd = document.createElement('td');
-                                        roleTd.className = "px-6 py-4";
-                                        roleTd.textContent = "N/A"; // Role is not provided in the API
-            
-                                        const statusTd = document.createElement('td');
-                                        statusTd.className = "px-6 py-4";
-            
-                                        const span = document.createElement('span');
-                                        span.className = "status-indicator";
-                                        switch (component.status.toLowerCase()) {
-                                            case 'operational':
-                                                span.textContent = 'Opérationnel';
-                                                span.classList.add('text-green-500');
-                                                break;
-                                            case 'degradedperformance':
-                                                span.textContent = 'Performance dégradée';
-                                                span.classList.add('text-yellow-500');
-                                                break;
-                                            case 'partialoutage':
-                                            case 'majoroutage':
-                                                span.textContent = 'Panne majeure';
-                                                span.classList.add('text-red-500');
-                                                break;
-                                            case 'undermaintenance':
-                                                span.textContent = 'En maintenance';
-                                                span.classList.add('text-orange-500');
-                                                break;
-                                            default:
-                                                span.textContent = 'État inconnu';
-                                                span.classList.add('text-gray-500');
-                                        }
-                                        statusTd.appendChild(span);
-            
-            
-                                        tr.appendChild(nameTd);
-                                        tr.appendChild(statusTd);
-            
-                                        tableBody.appendChild(tr);
-                                    });
-                                } else {
-                                    errorMessage.textContent = 'Aucune donnée disponible.';
-                                }
-                            })
-                            .catch(error => {
-                                console.error('Erreur lors de la récupération des données:', error);
-                                document.getElementById('error-message').textContent = 'Erreur lors de la récupération des données.';
-                            });
-                    });
-                </script>
-                
-                <!-- Footer : Deb -->
-                <div id="ecde_footer"></div>
-                <!-- Footer : Fin -->
-            </main>
-        </div>
-    </body>
-    </html>
-
+            <!-- Footer -->
+            <div id="ecde_footer"></div>
+        </main>
+    </div>
 </body>
 </html>
