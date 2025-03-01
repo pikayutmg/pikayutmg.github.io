@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 </style>
 
-    <aside class="w-20 bg-white border-r border-gray-200 dark:bg-gray-900 dark:border-gray-700">
+    <aside class="w-20 bg-white border-r border-gray-200 dark:bg-gray-900 dark:border-gray-700 MF">
     <div class="h-full flex flex-col items-center py-4">
         <!-- Logo -->
         <div class="p-2">
