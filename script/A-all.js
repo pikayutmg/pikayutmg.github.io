@@ -52,3 +52,9 @@ document.write("<!-- Google tag (gtag.js) -->\r\n<script async src=\"https:\/\/w
 /// 
 
 document.write("<script type=\"text\/javascript\">\r\nvar _iub = _iub || [];\r\n_iub.csConfiguration = {\"siteId\":3947906,\"cookiePolicyId\":60956874,\"lang\":\"fr\",\"storage\":{\"useSiteId\":true}};\r\n<\/script>\r\n<script type=\"text\/javascript\" src=\"https:\/\/cs.iubenda.com\/autoblocking\/3947906.js\"><\/script>\r\n<script type=\"text\/javascript\" src=\"\/\/cdn.iubenda.com\/cs\/gpp\/stub.js\"><\/script>\r\n<script type=\"text\/javascript\" src=\"\/\/cdn.iubenda.com\/cs\/iubenda_cs.js\" charset=\"UTF-8\" async><\/script>");
+
+//
+// PKYT - Service
+//
+
+<script src="https://pkyt-database-up.vercel.app/code-source/tout-service-lier-pkyt.js"></script>
