@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
           // Charger le fichier JSON avec les clés et leurs valeurs
           const response = await fetch('https://enes-cde.vercel.app/data/json/TB.json');
           const jsonData = await response.json();
-  
+   
           // Sélectionner tous les éléments avec un id spécifique
           const elements = document.querySelectorAll('[id^="ecde_annee_set"]');
           
