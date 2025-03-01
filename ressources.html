@@ -57,7 +57,157 @@
                     </div>
                 </div>
             </div>
+<script>
 
+                    document.addEventListener('DOMContentLoaded', function() {
+
+                        const apiUrl = 'https://pikayut.instatus.com/v2/components.json';
+
+            
+
+                        fetch(apiUrl)
+
+                            .then(response => {
+
+                                if (!response.ok) {
+
+                                    throw new Error(`HTTP error! status: ${response.status}`);
+
+                                }
+
+                                return response.json();
+
+                            })
+
+                            .then(data => {
+
+                                const tableBody = document.getElementById('table-body');
+
+                                const errorMessage = document.getElementById('error-message');
+
+                                errorMessage.textContent = '';
+
+            
+
+                                if (data.components && Array.isArray(data.components)) {
+
+                                    data.components.forEach(component => {
+
+                                        const tr = document.createElement('tr');
+
+                                        tr.className = "bg-white border-b";
+
+            
+
+                                        const nameTd = document.createElement('td');
+
+                                        nameTd.className = "px-6 py-4";
+
+                                        nameTd.textContent = component.name;
+
+            
+
+                                        const roleTd = document.createElement('td');
+
+                                        roleTd.className = "px-6 py-4";
+
+                                        roleTd.textContent = "N/A"; // Role is not provided in the API
+
+            
+
+                                        const statusTd = document.createElement('td');
+
+                                        statusTd.className = "px-6 py-4";
+
+            
+
+                                        const span = document.createElement('span');
+
+                                        span.className = "status-indicator";
+
+                                        switch (component.status.toLowerCase()) {
+
+                                            case 'operational':
+
+                                                span.textContent = 'Opérationnel';
+
+                                                span.classList.add('text-green-500');
+
+                                                break;
+
+                                            case 'degradedperformance':
+
+                                                span.textContent = 'Performance dégradée';
+
+                                                span.classList.add('text-yellow-500');
+
+                                                break;
+
+                                            case 'partialoutage':
+
+                                            case 'majoroutage':
+
+                                                span.textContent = 'Panne majeure';
+
+                                                span.classList.add('text-red-500');
+
+                                                break;
+
+                                            case 'undermaintenance':
+
+                                                span.textContent = 'En maintenance';
+
+                                                span.classList.add('text-orange-500');
+
+                                                break;
+
+                                            default:
+
+                                                span.textContent = 'État inconnu';
+
+                                                span.classList.add('text-gray-500');
+
+                                        }
+
+                                        statusTd.appendChild(span);
+
+            
+
+            
+
+                                        tr.appendChild(nameTd);
+
+                                        tr.appendChild(statusTd);
+
+            
+
+                                        tableBody.appendChild(tr);
+
+                                    });
+
+                                } else {
+
+                                    errorMessage.textContent = 'Aucune donnée disponible.';
+
+                                }
+
+                            })
+
+                            .catch(error => {
+
+                                console.error('Erreur lors de la récupération des données:', error);
+
+                                document.getElementById('error-message').textContent = 'Erreur lors de la récupération des données.';
+
+                            });
+
+                    });
+
+                </script>
+
+
+
+            
             <div class="container p-6">
                 <p id="error-message" class="text-red-500 text-center mt-4"></p>
             </div>
