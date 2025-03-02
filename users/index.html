@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+    <html lang="fr">
+        <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="EnesCDE - Plateforme de services et documentation.">
+        <meta name="keywords" content="EnesCDE, Services, Documentation, PKYT, Web , LosFly , LsFly , PikaYutMG , GFLP , LSP , SRDMG , Ebsayder , Howard , Armory , PikaYut , enes , enesgp , egp , ecde ; enes cde , communitydeveloppement , developpement , community PikaYutMG , Projet , MultiGaming, Gaming HTML  ">
+        <meta name="author" content="EnesCDE">
+    
+        <!-- Open Graph (Facebook & LinkedIn) -->
+        <meta property="og:title" content="EnesCDE - Services , Accueil">
+        <meta property="og:description" content="Découvrez EnesCDE, la plateforme offrant divers services et documentations en ligne.">
+        <meta property="og:image" content="https://enes-cde.vercel.app/data/ilg/web/meta.html">
+        <meta property="og:url" content="https://enes-cde.vercel.app">
+        <meta property="og:type" content="website">
+    
+        <!-- Twitter Card -->
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="EnesCDE - Services & Documentation">
+        <meta name="twitter:description" content="Découvrez EnesCDE, la plateforme offrant divers services et documentations en ligne.">
+        <meta name="twitter:image" content="https://enes-cde.vercel.app/data/ilg/web/meta.html">
+    
+        <title>EnesCDE - Accueil</title>
+        <link rel="icon" type="image/png" href="https://enes-cde.vercel.app/data/img/web/favicon.png">
+        
+        
+        <!-- Script pour ajouter dynamiquement le footer -->
+        <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+        <script src="https://enes-cde.vercel.app/script/A-footer.js" defer></script>
+        <script src="https://enes-cde.vercel.app/script/A-menu.js" defer></script>
+        <script src="https://enes-cde.vercel.app/script/A-all.js" defer></script>
+        <div id="ecde_all"></div>
+
+    </head>
+    <body class="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white">
+        <div class="flex h-screen">
+            <!-- Menu : Deb -->
+            <div id="ecde_menu"  class="w-20"></div>
+            <!-- Menu : Fin -->
+    
+            <!-- Main Content -->
+            <main class="flex-1 p-6 bg-gray-100 dark:bg-gray-800">
+    <h1 class="text-2xl font-semibold text-gray-900 dark:text-white"> Connectez vous :</h1>
+
+  
+                
+
+
+
+ 
+<div class="container px-4 mx-auto">
+  <div class="max-w-lg mx-auto">
+    <div class="text-center mb-6">
+      <h2 class="text-3xl md:text-4xl font-extrabold text-gray-100 dark:text-gray-300">Se connecter</h2>
+    </div>
+    <form id="loginform">
+      <div class="mb-6">
+        <label for="email" class="block mb-2 font-extrabold text-gray-100 dark:text-gray-300">Email</label>
+        <input type="email" id="email" class="inline-block w-full p-4 leading-6 text-lg font-extrabold placeholder-indigo-900 dark:placeholder-gray-300 bg-white dark:bg-gray-800 shadow border-2 border-indigo-900 dark:border-indigo-600 rounded" placeholder="email">
+      </div>
+      <div class="mb-6">
+        <label for="password" class="block mb-2 font-extrabold text-gray-100 dark:text-gray-300" for="">Password</label>
+        <input type="password" id="password" class="inline-block w-full p-4 leading-6 text-lg font-extrabold placeholder-indigo-900 dark:placeholder-gray-300 bg-white dark:bg-gray-800 shadow border-2 border-indigo-900 dark:border-indigo-600 rounded" placeholder="**********">
+      </div>
+      <div class="flex flex-wrap -mx-4 mb-6 items-center justify-between">
+        <div class="w-full lg:w-auto px-4 mb-4 lg:mb-0">
+          <label for="">
+              <span class="ml-1 font-extrabold text-gray-100 dark:text-gray-300">Service : EnesCDE</span>
+            </label>
+        </div>
+        <div class="w-full lg:w-auto px-4"><a class="inline-block font-extrabold hover:underline text-indigo-800 dark:text-indigo-400" href="https://pkyt-database-up.vercel.app/account/v3/c_c/create_an_account.html">Pas de compte ?</a></div>
+      </div>
+      <button class="inline-block w-full py-4 px-6 mb-6 text-center text-lg leading-6 text-white font-extrabold bg-indigo-800 hover:bg-indigo-900 border-3 border-indigo-900 dark:border-indigo-600 shadow rounded transition duration-200">Sign in</button>
+      <p class="text-center font-extrabold text-gray-100 dark:text-gray-300">Don&rsquo;t have an account? <a class="text-red-500 hover:underline"
+         type="submit" href="#">Se connecter</a></p>
+    </form>
+  </div>
+</div>
+
+
+
+  <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    checkAccountStatus();
+});
+
+function getLocalStorageValue(key) {
+    return localStorage.getItem(key);
+}
+
+function showPopup(id) {
+    document.getElementById(id).style.display = "block";
+}
+
+// Vérification du compte
+function checkAccountStatus() {
+    const account = getLocalStorageValue("account");
+    const serviceKey = getLocalStorageValue("ECDE_L");
+
+    if (account && serviceKey === "ECDE_L") {
+        showPopup("popup-already-connected");
+    } else {
+        showPopup("popup-reset");
+    }
+}
+
+// Réinitialisation du profil
+function resetProfile() {
+    localStorage.removeItem("account");
+    localStorage.removeItem("ECDE_L");
+    alert("Votre profil a été réinitialisé !");
+    window.location.reload();
+}
+
+// Gestion du formulaire de connexion
+document.getElementById("loginform").addEventListener("submit", async function(event) {
+    event.preventDefault();
+
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+    const service = document.getElementById("Service").value;
+    
+    const url = `https://pkyt-database-up.vercel.app/account/v3/${email}-${password}*${service}.json`;
+
+    try {
+        const response = await fetch(url);
+
+        if (!response.ok) {
+            showPopup("popup-reset");
+            return;
+        }
+
+        const data = await response.json();
+
+        if (!data || !data.service || data.service.nomDuService !== service) {
+            showPopup("popup-reset");
+            return;
+        }
+
+        // Stocker les informations dans le localStorage
+        localStorage.setItem("account", `${email}-${password}*pkyt`);
+        localStorage.setItem("ECDE_L", "ECDE_L");
+
+        alert("Connexion réussie ! ");
+        window.location.href = "https://enes-cde.vercel.app/users/panel/";
+    } catch (error) {
+        console.error("Erreur lors de la connexion :", error);
+        showPopup("popup-reset");
+    }
+});
+
+</script>
+
+                <!-- Footer : Deb -->
+                <div id="ecde_footer"></div>
+                <!-- Footer : Fin -->
+            </main>
+        </div>
+    </body>
+    </html>
+
+</body>
+</html>
