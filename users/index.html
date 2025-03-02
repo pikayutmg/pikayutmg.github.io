@@ -78,78 +78,89 @@
 </div>
 
 
+<script>
 
-  <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    checkAccountStatus();
-});
-
-function getLocalStorageValue(key) {
-    return localStorage.getItem(key);
-}
-
-function showPopup(id) {
-    document.getElementById(id).style.display = "block";
-}
-
-// Vérification du compte
-function checkAccountStatus() {
-    const account = getLocalStorageValue("account");
-    const serviceKey = getLocalStorageValue("ECDE_L");
-
-    if (account && serviceKey === "ECDE_L") {
-        showPopup("popup-already-connected");
-    } else {
-        showPopup("popup-reset");
-    }
-}
-
-// Réinitialisation du profil
-function resetProfile() {
-    localStorage.removeItem("account");
-    localStorage.removeItem("ECDE_L");
-    alert("Votre profil a été réinitialisé !");
-    window.location.reload();
-}
-
-// Gestion du formulaire de connexion
-document.getElementById("loginform").addEventListener("submit", async function(event) {
-    event.preventDefault();
-
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
-    const service = document.getElementById("Service").value;
+document.addEventListener("DOMContentLoaded", () => {
+    const form = document.getElementById("loginform");
     
-    const url = `https://pkyt-database-up.vercel.app/account/v3/${email}-${password}*${service}.json`;
-
-    try {
-        const response = await fetch(url);
-
-        if (!response.ok) {
-            showPopup("popup-reset");
+    // Vérification automatique si les données existent déjà
+    checkStoredSession();
+    
+    form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+        
+        if (!email || !password) {
+            showPopup("Veuillez entrer vos identifiants.");
+            console.error("🔰[E-CDE]📄connexion [Champs vides]");
             return;
         }
-
-        const data = await response.json();
-
-        if (!data || !data.service || data.service.nomDuService !== service) {
-            showPopup("popup-reset");
-            return;
+        
+        const filePath = `compta/v4/${email}◘${password}.json`;
+        const url = `https://api.github.com/repos/PKYT-Service/database_EnesCDE/contents/${filePath}`;
+        
+        try {
+            const response = await fetch(url, {
+                headers: { 'Accept': 'application/vnd.github.v3+json' }
+            });
+            
+            if (!response.ok) {
+                throw new Error("Identifiants incorrects");
+            }
+            
+            const data = await response.json();
+            const decodedContent = JSON.parse(atob(data.content));
+            
+            if (decodedContent.CompteInfo.Email === email && decodedContent.CompteInfo.MDP === password) {
+                storeSession(email, password);
+                window.location.href = "./panel/";
+            } else {
+                showPopup("Identifiants incorrects. Veuillez réessayer.");
+                console.error("🔰[E-CDE]📄connexion [Mauvais identifiants]");
+            }
+        } catch (error) {
+            showPopup("Erreur lors de la connexion. Vérifiez vos identifiants.");
+            console.error("🔰[E-CDE]📄connexion [Erreur API]", error);
         }
-
-        // Stocker les informations dans le localStorage
-        localStorage.setItem("account", `${email}-${password}*pkyt`);
-        localStorage.setItem("ECDE_L", "ECDE_L");
-
-        alert("Connexion réussie ! ");
-        window.location.href = "https://enes-cde.vercel.app/users/panel/";
-    } catch (error) {
-        console.error("Erreur lors de la connexion :", error);
-        showPopup("popup-reset");
-    }
+    });
 });
 
+function showPopup(message) {
+    alert(message); // Remplacer par un vrai popup Tailwind si nécessaire
+}
+
+function storeSession(email, password) {
+    const now = new Date();
+    const expiration = new Date(now.getTime() + 2 * 60 * 60 * 1000); // Expire en 2 heures
+    
+    localStorage.setItem("Enes-CDE-C", JSON.stringify({ valid: true, expiry: expiration }));
+    localStorage.setItem("email⸜password", JSON.stringify({ email, password }));
+}
+
+function checkStoredSession() {
+    const sessionData = JSON.parse(localStorage.getItem("Enes-CDE-C"));
+    const userData = JSON.parse(localStorage.getItem("email⸜password"));
+    
+    if (sessionData && userData) {
+        const now = new Date();
+        const expiration = new Date(sessionData.expiry);
+        
+        if (now < expiration) {
+            if (confirm("Vous êtes déjà connecté. Voulez-vous être redirigé vers le panel ?")) {
+                window.location.href = "./panel/";
+            }
+        } else {
+            localStorage.removeItem("Enes-CDE-C");
+            localStorage.removeItem("email⸜password");
+        }
+    }
+}
+
+    
 </script>
+
 
                 <!-- Footer : Deb -->
                 <div id="ecde_footer"></div>
