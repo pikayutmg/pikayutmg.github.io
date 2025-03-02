@@ -1,0 +1,94 @@
+Fait un code , ou :
+
+Je dois entrer email et mot de passe , 
+
+Il fait en fetch github sur ce repo : database_EnesCDE
+Owner PKYT-Service
+File : compta/v4/{email}◘{motdepasse}.json
+
+Recupere le contenue du json : 
+{
+  "CompteInfo": {
+    "Email": "  ",
+    "MDP": "  ", 
+    "ECDE-ID": "  ", 
+    "Date": "  ", 
+    "Service": "  "
+  },
+  "ProfilInfo": {
+    "Nom": "  ", 
+    "Prenom": "  ", 
+    "Pdp" : "",
+    "Pseudo": "  ", 
+    "Reseau": "  ", 
+    "Type": "  ", 
+    "Description": "  "
+  },
+  "Others": {
+    "01": "  ", 
+    "02": "  ", 
+    "03": "  ",
+    "04": "  ", 
+    "05": "  ", 
+    "06": "  ", 
+    "07": "  ",
+    "08": "  ", 
+    "09": "  ", 
+    "10": "  ", 
+    "IR": "  "
+  },
+  "Details": {
+    "Permissions": "None",
+    "Admin": "None"
+  }
+}
+
+
+et compare : 
+Email du fichier contre email entré par lutilisateur 
+mot de passe  du fichier contre mot de passe entré par lutilisateur 
+
+Si ok , le rediriger vers ./panel/
+sinon le le mettre un pop up tailwind lui disant qu'il nas aps entrer de bonne info . 
+
+les erreur sont sur ce format dans la conso;e : 🔰[E-CDE]📄connexion [Syntaxe]
+
+Voici le formulaire ( a ne pas editer , je veux juste un js : 
+<div class="container px-4 mx-auto">
+  <div class="max-w-lg mx-auto">
+    <div class="text-center mb-6">
+      <h2 class="text-3xl md:text-4xl font-extrabold text-gray-100 dark:text-gray-300">Se connecter</h2>
+    </div>
+    <form id="loginform">
+      <div class="mb-6">
+        <label for="email" class="block mb-2 font-extrabold text-gray-100 dark:text-gray-300">Email</label>
+        <input type="email" id="email" class="inline-block w-full p-4 leading-6 text-lg font-extrabold placeholder-indigo-900 dark:placeholder-gray-300 bg-white dark:bg-gray-800 shadow border-2 border-indigo-900 dark:border-indigo-600 rounded" placeholder="email">
+      </div>
+      <div class="mb-6">
+        <label for="password" class="block mb-2 font-extrabold text-gray-100 dark:text-gray-300" for="">Password</label>
+        <input type="password" id="password" class="inline-block w-full p-4 leading-6 text-lg font-extrabold placeholder-indigo-900 dark:placeholder-gray-300 bg-white dark:bg-gray-800 shadow border-2 border-indigo-900 dark:border-indigo-600 rounded" placeholder="**********">
+      </div>
+      <div class="flex flex-wrap -mx-4 mb-6 items-center justify-between">
+        <div class="w-full lg:w-auto px-4 mb-4 lg:mb-0">
+          <label for="">
+              <span class="ml-1 font-extrabold text-gray-100 dark:text-gray-300">EnesCDE <mark>V4</mark></span>
+            </label>
+        </div>
+        <div class="w-full lg:w-auto px-4"><a class="inline-block font-extrabold hover:underline text-indigo-800 dark:text-indigo-400" href="https://pkyt-database-up.vercel.app">PKYT - Service</a></div>
+      </div>
+      <button class="inline-block w-full py-4 px-6 mb-6 text-center text-lg leading-6 text-white font-extrabold bg-indigo-800 hover:bg-indigo-900 border-3 border-indigo-900 dark:border-indigo-600 shadow rounded transition duration-200" type="submit">Se connecter</button>
+      <p class="text-center font-extrabold text-gray-100 dark:text-gray-300">Vous n&rsquo;avez pas de compte ? <a class="text-red-500 hover:underline"
+         href="./new_users.html"> inscrivez-vous ici!</a></p>
+    </form>
+  </div>
+</div> ) 
+
+
+De plus , si la connexion les valeurs / comparaison sont juste , 
+alors ajouter dans le localsessions : Enes-CDE-C : true-date(europe)-heure:minute .
+Si elle expire tout els 2 heures . 
+Et ajouter dans le localsessions : email⸜password
+
+
+
+En plus , si j'ai deja email⸜password et  Enes-CDE-C ( avec valeurs uniquement )  verifier le contenue json ( email+mdp) comparer et verifier si la Enes-CDE-C a expirer  , si non : mettre un popup  demander sil veut extre rediriger , ou sil veux se reconnecter . sinon rien mettre 
