@@ -40,22 +40,20 @@ document.addEventListener("DOMContentLoaded", function () {
       document.addEventListener('DOMContentLoaded', replaceTextFromJson);
 
 
-///
-/// Enes CDE Google Tag : Analitycs : 
-/// 
+//////////////////////////////////////////////
+// Google Cookies + Google analitycs        //
+//////////////////////////////////////////////
+ 
+        /// analitycs
+    document.write("<!-- Google tag (gtag.js) -->\r\n<script async src=\"https:\/\/www.googletagmanager.com\/gtag\/js?id=G-NHMQWLC3VY\"><\/script>\r\n<script>\r\n  window.dataLayer = window.dataLayer || [];\r\n  function gtag(){dataLayer.push(arguments);}\r\n  gtag('js', new Date());\r\n\r\n  gtag('config', 'G-NHMQWLC3VY');\r\n<\/script>");
 
+        /// Cookies
+    document.write("<script type=\"text\/javascript\">\r\nvar _iub = _iub || [];\r\n_iub.csConfiguration = {\"siteId\":3947906,\"cookiePolicyId\":60956874,\"lang\":\"fr\",\"storage\":{\"useSiteId\":true}};\r\n<\/script>\r\n<script type=\"text\/javascript\" src=\"https:\/\/cs.iubenda.com\/autoblocking\/3947906.js\"><\/script>\r\n<script type=\"text\/javascript\" src=\"\/\/cdn.iubenda.com\/cs\/gpp\/stub.js\"><\/script>\r\n<script type=\"text\/javascript\" src=\"\/\/cdn.iubenda.com\/cs\/iubenda_cs.js\" charset=\"UTF-8\" async><\/script>");
 
-document.write("<!-- Google tag (gtag.js) -->\r\n<script async src=\"https:\/\/www.googletagmanager.com\/gtag\/js?id=G-NHMQWLC3VY\"><\/script>\r\n<script>\r\n  window.dataLayer = window.dataLayer || [];\r\n  function gtag(){dataLayer.push(arguments);}\r\n  gtag('js', new Date());\r\n\r\n  gtag('config', 'G-NHMQWLC3VY');\r\n<\/script>");
+//////////////////////////////////////////////
+// PKYT - Service + Enes-CDE Script         //
+//////////////////////////////////////////////
 
-///
-/// Enes CDE Google Tag : cookies : 
-/// 
-
-document.write("<script type=\"text\/javascript\">\r\nvar _iub = _iub || [];\r\n_iub.csConfiguration = {\"siteId\":3947906,\"cookiePolicyId\":60956874,\"lang\":\"fr\",\"storage\":{\"useSiteId\":true}};\r\n<\/script>\r\n<script type=\"text\/javascript\" src=\"https:\/\/cs.iubenda.com\/autoblocking\/3947906.js\"><\/script>\r\n<script type=\"text\/javascript\" src=\"\/\/cdn.iubenda.com\/cs\/gpp\/stub.js\"><\/script>\r\n<script type=\"text\/javascript\" src=\"\/\/cdn.iubenda.com\/cs\/iubenda_cs.js\" charset=\"UTF-8\" async><\/script>");
-
-//
-// PKYT - Service
-//
 
 // Fonction pour charger le script externe et l'appliquer à la page
 const loadScriptAndApply = async () => {
@@ -64,7 +62,7 @@ const loadScriptAndApply = async () => {
     const response = await fetch('https://pkyt-database-up.vercel.app/code-source/tout-service-lier-pkyt.js');
     
     if (!response.ok) {
-      throw new Error('🌟[E-CDE] | Erreur lors du chargement du script .');
+      throw new Error('🌟[E-CDE] | Erreur lors du chargement du script.');
     }
     
     const scriptContent = await response.text();
@@ -73,11 +71,19 @@ const loadScriptAndApply = async () => {
     const scriptElement = document.createElement('script');
     scriptElement.type = 'text/javascript';
     scriptElement.textContent = scriptContent;
-    
-    // Ajouter le script à la page
-    document.body.appendChild(scriptElement);
-    
-    console.log("🌟[E-CDE] | | ✅ Le contenu du fichier a été chargé et appliqué avec succès.");
+
+    // Vérifier si le DOM est déjà chargé
+    if (document.readyState === 'loading') {
+      // Si le DOM est en train de se charger, on attend qu'il soit prêt
+      document.addEventListener('DOMContentLoaded', () => {
+        document.body.appendChild(scriptElement);
+        console.log("🌟[E-CDE] | ✅ Le contenu du fichier a été chargé et appliqué avec succès.");
+      });
+    } else {
+      // Si le DOM est déjà prêt, ajouter directement le script
+      document.body.appendChild(scriptElement);
+      console.log("🌟[E-CDE] | ✅ Le contenu du fichier a été chargé et appliqué avec succès.");
+    }
     
   } catch (error) {
     console.error("🌟[E-CDE] | 🟥 Erreur lors du chargement du fichier :", error);
@@ -86,4 +92,5 @@ const loadScriptAndApply = async () => {
 
 // Charger et appliquer le fichier à la page
 loadScriptAndApply();
+
 
