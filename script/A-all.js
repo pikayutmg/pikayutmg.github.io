@@ -67,23 +67,15 @@ const loadScriptAndApply = async () => {
     
     const scriptContent = await response.text();
     
-    // Créer un élément script
+    // Créer un élément script et spécifier qu'il s'agit d'un module
     const scriptElement = document.createElement('script');
-    scriptElement.type = 'text/javascript';
+    scriptElement.type = 'module'; // Indique que le script doit être traité comme un module
     scriptElement.textContent = scriptContent;
-
-    // Vérifier si le DOM est déjà chargé
-    if (document.readyState === 'loading') {
-      // Si le DOM est en train de se charger, on attend qu'il soit prêt
-      document.addEventListener('DOMContentLoaded', () => {
-        document.body.appendChild(scriptElement);
-        console.log("🌟[E-CDE] | ✅ Le contenu du fichier a été chargé et appliqué avec succès.");
-      });
-    } else {
-      // Si le DOM est déjà prêt, ajouter directement le script
-      document.body.appendChild(scriptElement);
-      console.log("🌟[E-CDE] | ✅ Le contenu du fichier a été chargé et appliqué avec succès.");
-    }
+    
+    // Ajouter le script à la page
+    document.body.appendChild(scriptElement);
+    
+    console.log("🌟[E-CDE] | ✅ Le contenu du fichier a été chargé et appliqué avec succès.");
     
   } catch (error) {
     console.error("🌟[E-CDE] | 🟥 Erreur lors du chargement du fichier :", error);
@@ -92,5 +84,6 @@ const loadScriptAndApply = async () => {
 
 // Charger et appliquer le fichier à la page
 loadScriptAndApply();
+
 
 
