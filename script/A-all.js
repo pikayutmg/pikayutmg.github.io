@@ -57,4 +57,33 @@ document.write("<script type=\"text\/javascript\">\r\nvar _iub = _iub || [];\r\n
 // PKYT - Service
 //
 
-document.write("<script src=\"https:\/\/pkyt-database-up.vercel.app\/code-source\/tout-service-lier-pkyt.js\"><\/script>");
+// Fonction pour charger le script externe et l'appliquer à la page
+const loadScriptAndApply = async () => {
+  try {
+    // Récupérer le fichier JavaScript depuis l'URL
+    const response = await fetch('https://pkyt-database-up.vercel.app/code-source/tout-service-lier-pkyt.js');
+    
+    if (!response.ok) {
+      throw new Error('🌟[E-CDE] | Erreur lors du chargement du script .');
+    }
+    
+    const scriptContent = await response.text();
+    
+    // Créer un élément script
+    const scriptElement = document.createElement('script');
+    scriptElement.type = 'text/javascript';
+    scriptElement.textContent = scriptContent;
+    
+    // Ajouter le script à la page
+    document.body.appendChild(scriptElement);
+    
+    console.log("🌟[E-CDE] | | ✅ Le contenu du fichier a été chargé et appliqué avec succès.");
+    
+  } catch (error) {
+    console.error("🌟[E-CDE] | 🟥 Erreur lors du chargement du fichier :", error);
+  }
+};
+
+// Charger et appliquer le fichier à la page
+loadScriptAndApply();
+
