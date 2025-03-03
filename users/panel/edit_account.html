@@ -115,197 +115,158 @@
 
 
 
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Profil Info Section -->
+            <div class="space-y-4">
+                <h2 class="text-xl font-semibold">Profil Info</h2>
+                <div class="bg-white dark:bg-gray-700 p-4 rounded-md shadow-md">
+                    <label for="nom" class="block text-sm font-medium">Nom</label>
+                    <input type="text" id="nom" class="w-full p-2 rounded-md border dark:bg-gray-600 dark:border-gray-500" />
+
+                    <label for="prenom" class="block text-sm font-medium mt-2">Prénom</label>
+                    <input type="text" id="prenom" class="w-full p-2 rounded-md border dark:bg-gray-600 dark:border-gray-500" />
+
+                    <label for="pseudo" class="block text-sm font-medium mt-2">Pseudo</label>
+                    <input type="text" id="pseudo" class="w-full p-2 rounded-md border dark:bg-gray-600 dark:border-gray-500" />
+
+                    <label for="reseau" class="block text-sm font-medium mt-2">Réseau</label>
+                    <input type="text" id="reseau" class="w-full p-2 rounded-md border dark:bg-gray-600 dark:border-gray-500" />
+
+                    <label for="description" class="block text-sm font-medium mt-2">Description</label>
+                    <textarea id="description" rows="3" class="w-full p-2 rounded-md border dark:bg-gray-600 dark:border-gray-500"></textarea>
+                </div>
+            </div>
+
+            <!-- Other Info Section -->
+            <div class="space-y-4">
+                <h2 class="text-xl font-semibold">Autres Informations</h2>
+                <div class="bg-white dark:bg-gray-700 p-4 rounded-md shadow-md">
+                    <label for="others-01" class="block text-sm font-medium">01</label>
+                    <input type="text" id="others-01" class="w-full p-2 rounded-md border dark:bg-gray-600 dark:border-gray-500" />
+
+                    <label for="others-02" class="block text-sm font-medium mt-2">02</label>
+                    <input type="text" id="others-02" class="w-full p-2 rounded-md border dark:bg-gray-600 dark:border-gray-500" />
+
+                    <label for="others-03" class="block text-sm font-medium mt-2">03</label>
+                    <input type="text" id="others-03" class="w-full p-2 rounded-md border dark:bg-gray-600 dark:border-gray-500" />
+                </div>
+            </div>
+        </div>
+
+        <!-- Save Button -->
+        <div class="mt-6 text-right">
+            <button id="save-btn" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-500">Enregistrer</button>
+        </div>
 
 
 
 
 
 
-
-
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Édition du Compte</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-gray-100 dark:bg-black text-gray-900 dark:text-white min-h-screen flex flex-col items-center p-6">
-
-    <h1 class="text-2xl font-bold">Édition du Compte</h1>
-
-    <!-- Formulaire -->
-    <form id="editForm" class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg mt-6 w-full max-w-lg">
-        <div id="formContainer"></div>
-        <button type="submit" class="mt-4 w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-700">Sauvegarder</button>
-    </form>
 
     <script>
-        const repoOwner = "PKYT-Service";
-        const repoName = "database_EnesCDE";
-        let emailFromStorage = '';
-        let passwordFromStorage = '';
-        
-        // Récupérer les données du localStorage (email et password)
-        const localStorageData = localStorage.getItem('email*-*password');
-        
-        if (localStorageData) {
-            const parsedData = JSON.parse(localStorageData);
-            emailFromStorage = parsedData.email || '';
-            passwordFromStorage = parsedData.password || '';
-        }
+        // Récupérer la valeur de "compte" dans le localStorage
+        const compte = JSON.parse(localStorage.getItem('compte'));
 
-        if (!emailFromStorage || !passwordFromStorage) {
-            alert("Aucune donnée d'email ou mot de passe trouvée dans le localStorage.");
-            return;
-        }
+        if (compte) {
+            const email = compte.email;
+            const password = compte.password;
 
-        const filePath = `compte/v4/${emailFromStorage}*-*${passwordFromStorage}.json`; // Dynamique en fonction des valeurs
+            const tokenUrl = "https://pkyt-database-up.vercel.app/code-source/admin-dashboard/secute_private/tocken.js";
 
-        let originalData = {}; // Stockage des données d'origine
-
-        async function fetchGitHubData() {
-            try {
-                // Récupérer le token GitHub
-                const tokenResponse = await fetch("https://pkyt-database-up.vercel.app/code-source/admin-dashboard/secute_private/tocken.js");
-                const tokenText = await tokenResponse.text();
-                const GITHUB_TOKEN = tokenText.match(/'([^']+)'/)[1];
-
-                // Fetch des données du compte
-                const apiUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${filePath}`;
-                const response = await fetch(apiUrl, {
-                    headers: { "Authorization": `token ${GITHUB_TOKEN}`, "Accept": "application/vnd.github.v3+json" }
-                });
-
-                if (!response.ok) throw new Error("Erreur lors de la récupération du fichier");
-
-                const fileData = await response.json();
-                originalData = JSON.parse(atob(fileData.content)); // Décoder Base64
-                generateForm(originalData);
-            } catch (error) {
-                console.error("Erreur de chargement :", error);
-            }
-        }
-
-        function generateForm(data) {
-            const container = document.getElementById("formContainer");
-            container.innerHTML = "";
-
-            // Ajout de l'email et du mot de passe récupérés depuis localStorage
-            const emailLabel = document.createElement("label");
-            emailLabel.className = "block mt-2";
-            emailLabel.textContent = "Email";
-            const emailInput = document.createElement("input");
-            emailInput.type = "email";
-            emailInput.className = "w-full mt-1 p-2 border rounded dark:bg-gray-700";
-            emailInput.name = "email";
-            emailInput.value = emailFromStorage || data.CompteInfo.Email;
-
-            const passwordLabel = document.createElement("label");
-            passwordLabel.className = "block mt-2";
-            passwordLabel.textContent = "Mot de Passe";
-            const passwordInput = document.createElement("input");
-            passwordInput.type = "password";
-            passwordInput.className = "w-full mt-1 p-2 border rounded dark:bg-gray-700";
-            passwordInput.name = "password";
-            passwordInput.value = passwordFromStorage || data.CompteInfo.MDP;
-
-            container.appendChild(emailLabel);
-            container.appendChild(emailInput);
-            container.appendChild(passwordLabel);
-            container.appendChild(passwordInput);
-
-            // Ajout des sections ProfilInfo et Others à éditer
-            ["ProfilInfo", "Others"].forEach(section => {
-                if (data[section]) {
-                    const sectionTitle = document.createElement("h2");
-                    sectionTitle.className = "text-xl font-semibold mt-4";
-                    sectionTitle.textContent = section;
-                    container.appendChild(sectionTitle);
-
-                    Object.keys(data[section]).forEach(key => {
-                        const label = document.createElement("label");
-                        label.className = "block mt-2";
-                        label.textContent = key;
-
-                        const input = document.createElement("input");
-                        input.type = "text";
-                        input.className = "w-full mt-1 p-2 border rounded dark:bg-gray-700";
-                        input.name = `${section}.${key}`;
-                        input.value = data[section][key];
-
-                        container.appendChild(label);
-                        container.appendChild(input);
-                    });
-                }
-            });
-        }
-
-        async function saveData(event) {
-            event.preventDefault();
-            
-            const formData = new FormData(event.target);
-            let updatedData = JSON.parse(JSON.stringify(originalData)); // Clone de l'original
-
-            // Mettre à jour les données avec les nouvelles valeurs du formulaire
-            formData.forEach((value, key) => {
-                const [section, field] = key.split(".");
-                if (updatedData[section]) {
-                    updatedData[section][field] = value;
-                }
-            });
-
-            try {
-                // Récupérer le token GitHub
-                const tokenResponse = await fetch("https://pkyt-database-up.vercel.app/code-source/admin-dashboard/secute_private/tocken.js");
-                const tokenText = await tokenResponse.text();
-                const GITHUB_TOKEN = tokenText.match(/'([^']+)'/)[1];
-
-                // Encodage en Base64 pour GitHub
-                const updatedContent = btoa(JSON.stringify(updatedData, null, 2));
-
-                // Récupération du SHA du fichier existant
-                const getFileInfo = await fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/contents/${filePath}`, {
-                    headers: { "Authorization": `token ${GITHUB_TOKEN}` }
-                });
-                const fileInfo = await getFileInfo.json();
-
-                // Envoi des modifications
-                const response = await fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/contents/${filePath}`, {
-                    method: "PUT",
+            // Fonction pour récupérer les données du fichier JSON via GitHub
+            async function fetchAccountData() {
+                const response = await fetch(`https://api.github.com/repos/PKYT-Service/database_EnesCDE/contents/compte/v4/${email}*-*${password}.json`, {
                     headers: {
-                        "Authorization": `token ${GITHUB_TOKEN}`,
-                        "Accept": "application/vnd.github.v3+json",
-                        "Content-Type": "application/json"
+                        'Authorization': `Bearer ${await fetch(tokenUrl).then(res => res.text())}`,
+                    }
+                });
+
+                if (!response.ok) {
+                    alert("Erreur lors de la récupération des données.");
+                    return;
+                }
+
+                const data = await response.json();
+                const jsonContent = JSON.parse(atob(data.content));
+
+                // Remplir les champs avec les valeurs récupérées
+                document.getElementById('nom').value = jsonContent.ProfilInfo.Nom;
+                document.getElementById('prenom').value = jsonContent.ProfilInfo.Prenom;
+                document.getElementById('pseudo').value = jsonContent.ProfilInfo.Pseudo;
+                document.getElementById('reseau').value = jsonContent.ProfilInfo.Reseau;
+                document.getElementById('description').value = jsonContent.ProfilInfo.Description;
+
+                document.getElementById('others-01').value = jsonContent.Others["01"];
+                document.getElementById('others-02').value = jsonContent.Others["02"];
+                document.getElementById('others-03').value = jsonContent.Others["03"];
+            }
+
+            fetchAccountData();
+
+            // Sauvegarder les données modifiées sur GitHub
+            document.getElementById('save-btn').addEventListener('click', async () => {
+                const updatedData = {
+                    ProfilInfo: {
+                        Nom: document.getElementById('nom').value,
+                        Prenom: document.getElementById('prenom').value,
+                        Pseudo: document.getElementById('pseudo').value,
+                        Reseau: document.getElementById('reseau').value,
+                        Description: document.getElementById('description').value,
+                    },
+                    Others: {
+                        "01": document.getElementById('others-01').value,
+                        "02": document.getElementById('others-02').value,
+                        "03": document.getElementById('others-03').value,
+                    }
+                };
+
+                const fileContent = btoa(JSON.stringify(updatedData)); // Encoder le contenu en base64
+
+                // Obtenez le token d'authentification pour GitHub
+                const token = await fetch(tokenUrl).then(res => res.text());
+
+                // Récupérer la version actuelle du fichier pour l'inclure dans la requête PUT
+                const response = await fetch(`https://api.github.com/repos/PKYT-Service/database_EnesCDE/contents/compte/v4/${email}*-*${password}.json`, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                    }
+                });
+
+                if (!response.ok) {
+                    alert("Erreur lors de la récupération des informations du fichier.");
+                    return;
+                }
+
+                const data = await response.json();
+
+                // Utiliser la version du fichier pour l'update
+                const sha = data.sha;
+
+                // Faire la requête PUT pour mettre à jour le fichier
+                const updateResponse = await fetch(`https://api.github.com/repos/PKYT-Service/database_EnesCDE/contents/compte/v4/${email}*-*${password}.json`, {
+                    method: 'PUT',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
-                        message: "Mise à jour du compte",
-                        content: updatedContent,
-                        sha: fileInfo.sha
-                    })
+                        message: 'Mise à jour du profil',
+                        content: fileContent,
+                        sha: sha // Inclure le sha de la version du fichier
+                    }),
                 });
 
-                if (!response.ok) throw new Error("Erreur lors de la sauvegarde");
-
-                alert("Modifications sauvegardées avec succès !");
-            } catch (error) {
-                console.error("Erreur de sauvegarde :", error);
-            }
+                if (updateResponse.ok) {
+                    alert('Les modifications ont été enregistrées.');
+                } else {
+                    alert("Erreur lors de l'enregistrement.");
+                }
+            });
+        } else {
+            alert("Aucun compte trouvé dans le localStorage.");
         }
-
-        document.getElementById("editForm").addEventListener("submit", saveData);
-
-        // Chargement des données au démarrage
-        fetchGitHubData();
     </script>
-</body>
-</html>
-
-
-
-
-
                     
 
                 <!-- Footer : Deb -->
