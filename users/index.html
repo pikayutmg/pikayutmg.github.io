@@ -81,38 +81,48 @@
 <script>
 
 document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", () => {
     const form = document.getElementById("loginform");
-    
+
     // Vérification automatique si les données existent déjà
     checkStoredSession();
-    
+
     form.addEventListener("submit", async (e) => {
         e.preventDefault();
-        
+
         const email = document.getElementById("email").value;
         const password = document.getElementById("password").value;
-        
+
         if (!email || !password) {
             showPopup("Veuillez entrer vos identifiants.");
             console.error("🔰[E-CDE]📄connexion [Champs vides]");
             return;
         }
-        
-        const filePath = `compte/v4/${email}*-*${password}.json`;
+
+        // Utilisation d'un séparateur standard
+        const filePath = `compte/v4/${email}-${password}.json`;
         const url = `https://api.github.com/repos/PKYT-Service/database_EnesCDE/contents/${filePath}`;
-        
+        const token = "VOTRE_TOKEN_GITHUB"; // Remplacez par votre token personnel
+
         try {
             const response = await fetch(url, {
-                headers: { 'Accept': 'application/vnd.github.v3+json' }
+                headers: {
+                    'Accept': 'application/vnd.github.v3+json',
+                    'Authorization': `token ${token}`
+                }
             });
-            
-            if (!response.ok) {
-                throw new Error("Identifiants incorrects");
+
+            if (response.status === 404) {
+                showPopup("Identifiants incorrects. Veuillez réessayer.");
+                console.error("🔰[E-CDE]📄connexion [Fichier non trouvé]");
+                return;
+            } else if (!response.ok) {
+                throw new Error(`Erreur HTTP: ${response.status}`);
             }
-            
+
             const data = await response.json();
             const decodedContent = JSON.parse(atob(data.content));
-            
+
             if (decodedContent.CompteInfo.Email === email && decodedContent.CompteInfo.MDP === password) {
                 storeSession(email, password);
                 window.location.href = "./panel/";
@@ -134,31 +144,29 @@ function showPopup(message) {
 function storeSession(email, password) {
     const now = new Date();
     const expiration = new Date(now.getTime() + 2 * 60 * 60 * 1000); // Expire en 2 heures
-    
+
     localStorage.setItem("Enes-CDE-C", JSON.stringify({ valid: true, expiry: expiration }));
-    localStorage.setItem("email⸜password", JSON.stringify({ email, password }));
+    localStorage.setItem("email-password", JSON.stringify({ email, password }));
 }
 
 function checkStoredSession() {
     const sessionData = JSON.parse(localStorage.getItem("Enes-CDE-C"));
-    const userData = JSON.parse(localStorage.getItem("email*-*password"));
-    
+    const userData = JSON.parse(localStorage.getItem("email-password"));
+
     if (sessionData && userData) {
         const now = new Date();
         const expiration = new Date(sessionData.expiry);
-        
+
         if (now < expiration) {
             if (confirm("Vous êtes déjà connecté. Voulez-vous être redirigé vers le panel ?")) {
                 window.location.href = "./panel/";
             }
         } else {
             localStorage.removeItem("Enes-CDE-C");
-            localStorage.removeItem("email*-*password");
+            localStorage.removeItem("email-password");
         }
     }
 }
-
-    
 </script>
 
 
