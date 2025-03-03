@@ -98,7 +98,7 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
         
-        const filePath = `compte/v4/${email}◘${password}.json`;
+        const filePath = `compte/v4/${email}*-*${password}.json`;
         const url = `https://api.github.com/repos/PKYT-Service/database_EnesCDE/contents/${filePath}`;
         
         try {
@@ -141,7 +141,7 @@ function storeSession(email, password) {
 
 function checkStoredSession() {
     const sessionData = JSON.parse(localStorage.getItem("Enes-CDE-C"));
-    const userData = JSON.parse(localStorage.getItem("email⸜password"));
+    const userData = JSON.parse(localStorage.getItem("email*-*password"));
     
     if (sessionData && userData) {
         const now = new Date();
@@ -153,7 +153,7 @@ function checkStoredSession() {
             }
         } else {
             localStorage.removeItem("Enes-CDE-C");
-            localStorage.removeItem("email⸜password");
+            localStorage.removeItem("email*-*password");
         }
     }
 }
