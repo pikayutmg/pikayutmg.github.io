@@ -1,5 +1,5 @@
 async function verifierCompte() {
-    const credentials = localStorage.getItem("email*-*password");
+    const credentials = localStorage.getItem("compte");
     const sessionData = localStorage.getItem("Enes-CDE-C");
     
     if (!credentials || !sessionData) {
