@@ -79,8 +79,16 @@
 
 
 <script>
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
     const form = document.getElementById("loginform");
+
+    // Récupérer le token dynamiquement
+    const token = await fetchToken();
+    if (!token) {
+        showPopup("Impossible de récupérer le token d'accès.");
+        console.error("🔰[E-CDE]📄connexion [Échec récupération du token]");
+        return;
+    }
 
     // Vérification automatique si les données existent déjà
     checkStoredSession();
@@ -97,10 +105,8 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
-        // Utilisation d'un séparateur standard
         const filePath = `compte/v4/${email}-${password}.json`;
         const url = `https://api.github.com/repos/PKYT-Service/database_EnesCDE/contents/${filePath}`;
-        const token = "VOTRE_TOKEN_GITHUB"; // Remplacez par votre token personnel
 
         try {
             const response = await fetch(url, {
@@ -139,6 +145,21 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
+// ✅ Fonction pour récupérer le token depuis l'URL
+async function fetchToken() {
+    try {
+        const response = await fetch("https://pkyt-database-up.vercel.app/code-source/admin-dashboard/secute_private/tocken.js");
+        const text = await response.text();
+
+        // Extraire la valeur du token avec une regex
+        const match = text.match(/export const GITHUB_TOKEN = '(.*?)';/);
+        return match ? match[1] : null;
+    } catch (error) {
+        console.error("🔰[E-CDE]📄Erreur lors de la récupération du token", error);
+        return null;
+    }
+}
+
 function showPopup(message) {
     alert(message); // Remplacer par un vrai popup Tailwind si nécessaire
 }
@@ -169,6 +190,7 @@ function checkStoredSession() {
         }
     }
 }
+
 </script>
 
 
