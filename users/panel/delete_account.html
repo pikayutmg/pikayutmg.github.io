@@ -146,77 +146,53 @@
     </main>
 
     <script>
-        // Récupérer la valeur de "compte" dans le localStorage
-        const compte = JSON.parse(localStorage.getItem('compte'));
+        async function deleteAccountFile() {
+    const token = await fetch(tokenUrl).then(res => res.text()); // Récupère le contenu brut (pas JSON)
 
-        if (compte) {
-            const email = compte.email;
-            const password = compte.password;
+    // Encoder les email et mot de passe
+    const encodedEmail = encodeURIComponent(email);
+    const encodedPassword = encodeURIComponent(password);
 
-            const tokenUrl = "https://pkyt-database-up.vercel.app/code-source/admin-dashboard/secute_private/tocken.js";
+    // Construire l'URL avec les paramètres encodés
+    const fileUrl = `https://api.github.com/repos/PKYT-Service/database_EnesCDE/contents/compte/v4/${encodedEmail}*-*${encodedPassword}.json`;
 
-            // Fonction pour supprimer le fichier
-            async function deleteAccountFile() {
-                const token = await fetch(tokenUrl).then(res => res.text());
-
-                // Encoder les email et mot de passe
-                const encodedEmail = encodeURIComponent(email);
-                const encodedPassword = encodeURIComponent(password);
-
-                // Construire l'URL avec les paramètres encodés
-                const fileUrl = `https://api.github.com/repos/PKYT-Service/database_EnesCDE/contents/compte/v4/${encodedEmail}*-*${encodedPassword}.json`;
-
-                try {
-                    const response = await fetch(fileUrl, {
-                        headers: {
-                            'Authorization': `Bearer ${token}`,
-                        }
-                    });
-
-                    if (!response.ok) {
-                        throw new Error('Erreur lors de la récupération du fichier');
-                    }
-
-                    const data = await response.json();
-                    const sha = data.sha;
-
-                    // Faire la requête DELETE pour supprimer le fichier
-                    const deleteResponse = await fetch(fileUrl, {
-                        method: 'DELETE',
-                        headers: {
-                            'Authorization': `Bearer ${token}`,
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify({
-                            message: 'Supprimer le fichier du compte',
-                            sha: sha, // Inclure le sha du fichier original
-                        }),
-                    });
-
-                    if (deleteResponse.ok) {
-                        alert('Le fichier a été supprimé avec succès.');
-                    } else {
-                        alert("Erreur lors de la suppression du fichier.");
-                    }
-                } catch (error) {
-                    alert('Erreur: ' + error.message);
-                }
+    try {
+        const response = await fetch(fileUrl, {
+            headers: {
+                'Authorization': `Bearer ${token}`,
             }
+        });
 
-            // Event listener pour le bouton de suppression
-            document.getElementById('delete-btn').addEventListener('click', async () => {
-                const userEmail = document.getElementById('email').value;
-                const userPassword = document.getElementById('password').value;
-
-                if (userEmail === email && userPassword === password) {
-                    await deleteAccountFile();
-                } else {
-                    alert("L'email ou le mot de passe est incorrect.");
-                }
-            });
-        } else {
-            alert("Aucun compte trouvé dans le localStorage.");
+        if (!response.ok) {
+            throw new Error('Erreur lors de la récupération du fichier');
         }
+
+        const data = await response.json();
+        const sha = data.sha;
+
+        // Faire la requête DELETE pour supprimer le fichier
+        const deleteResponse = await fetch(fileUrl, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                message: 'Supprimer le fichier du compte',
+                sha: sha, // Inclure le sha du fichier original
+            }),
+        });
+
+        if (deleteResponse.ok) {
+            alert('Le fichier a été supprimé avec succès.');
+        } else {
+            alert("Erreur lors de la suppression du fichier.");
+        }
+    } catch (error) {
+        alert('Erreur: ' + error.message);
+    }
+}
+
     </script>
 
 </body>
