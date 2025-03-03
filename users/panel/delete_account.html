@@ -146,27 +146,6 @@
     </main>
 
     <script>
-document.addEventListener('DOMContentLoaded', () => {
-    const deleteBtn = document.getElementById('delete-btn');
-    
-    // Vérifier si le bouton existe avant d'ajouter l'événement
-    if (deleteBtn) {
-        deleteBtn.addEventListener('click', async () => {
-            const userEmail = document.getElementById('email').value;
-            const userPassword = document.getElementById('password').value;
-
-            // Vérification de l'email et du mot de passe
-            if (userEmail === email && userPassword === password) {
-                await deleteAccountFile(userEmail, userPassword);
-            } else {
-                alert("L'email ou le mot de passe est incorrect.");
-            }
-        });
-    } else {
-        console.error("Le bouton de suppression n'a pas été trouvé.");
-    }
-});
-
 async function deleteAccountFile(email, password) {
     try {
         // Récupérer le contenu de tocken.js comme texte brut
@@ -225,7 +204,6 @@ async function deleteAccountFile(email, password) {
         alert('Erreur: ' + error.message);
     }
 }
-
     </script>
 
 </body>
