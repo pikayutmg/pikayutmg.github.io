@@ -169,12 +169,12 @@ function storeSession(email, password) {
     const expiration = new Date(now.getTime() + 2 * 60 * 60 * 1000); // Expire en 2 heures
 
     localStorage.setItem("Enes-CDE-C", JSON.stringify({ valid: true, expiry: expiration }));
-    localStorage.setItem("email*-*password", JSON.stringify({ email, password }));
+    localStorage.setItem("compte", JSON.stringify({ email, password }));
 }
 
 function checkStoredSession() {
     const sessionData = JSON.parse(localStorage.getItem("Enes-CDE-C"));
-    const userData = JSON.parse(localStorage.getItem("email*-*password"));
+    const userData = JSON.parse(localStorage.getItem("compte"));
 
     if (sessionData && userData) {
         const now = new Date();
@@ -186,7 +186,7 @@ function checkStoredSession() {
             }
         } else {
             localStorage.removeItem("Enes-CDE-C");
-            localStorage.removeItem("email*-*password");
+            localStorage.removeItem("compte");
         }
     }
 }
