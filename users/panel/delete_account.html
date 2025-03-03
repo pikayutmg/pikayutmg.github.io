@@ -99,121 +99,97 @@
 
 
 
+        <!-- Formulaire de modification -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="bg-white dark:bg-gray-700 p-4 rounded-md shadow-md">
+                <p class="text-lg">Êtes-vous sûr de vouloir supprimer ce fichier ?</p>
+                <p class="text-sm">Le fichier sera renommé avec l'extension `.dlt.json` pour indiquer qu'il est supprimé.</p>
+
+                <!-- Email et password -->
+                <label for="email" class="block text-sm font-medium mt-4">Email</label>
+                <input type="email" id="email" class="w-full p-2 rounded-md border dark:bg-gray-600 dark:border-gray-500" placeholder="exemple@gmail.com" />
+
+                <label for="password" class="block text-sm font-medium mt-2">Mot de passe</label>
+                <input type="password" id="password" class="w-full p-2 rounded-md border dark:bg-gray-600 dark:border-gray-500" placeholder="exemplepasjlsd" />
+
+                <div class="mt-6 text-right">
+                    <button id="delete-btn" class="bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-500">Supprimer le compte</button>
+                </div>
+            </div>
+        </div>
 
 
+    <script>
+        // Récupérer la valeur de "compte" dans le localStorage
+        const compte = JSON.parse(localStorage.getItem('compte'));
 
+        if (compte) {
+            const email = compte.email;
+            const password = compte.password;
 
+            const tokenUrl = "https://pkyt-database-up.vercel.app/code-source/admin-dashboard/secute_private/tocken.js";
 
+            // Fonction pour renommer le fichier en .dlt.json
+            async function deleteAccountFile() {
+                const token = await fetch(tokenUrl).then(res => res.text());
 
+                // Récupérer le fichier depuis GitHub
+                const response = await fetch(`https://api.github.com/repos/PKYT-Service/database_EnesCDE/contents/compte/v4/${email}*-*${password}.json`, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                    }
+                });
 
+                if (!response.ok) {
+                    alert("Erreur lors de la récupération des données.");
+                    return;
+                }
 
+                const data = await response.json();
+                const sha = data.sha;
 
+                // Faire la requête PUT pour renommer le fichier
+                const newFileName = `${email}*-*${password}.dlt.json`;
 
+                const updateResponse = await fetch(`https://api.github.com/repos/PKYT-Service/database_EnesCDE/contents/compte/v4/${newFileName}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        message: 'Renommer le fichier pour simuler la suppression',
+                        sha: sha, // Inclure le sha du fichier original
+                        content: data.content, // Garder le même contenu
+                    }),
+                });
 
+                if (updateResponse.ok) {
+                    alert('Le fichier a été renommé en .dlt.json, simulant une suppression.');
+                } else {
+                    alert("Erreur lors de la suppression du fichier.");
+                }
+            }
 
+            // Event listener pour le bouton de suppression
+            document.getElementById('delete-btn').addEventListener('click', async () => {
+                const userEmail = document.getElementById('email').value;
+                const userPassword = document.getElementById('password').value;
 
-
-
-
-
-  <script>
-    async function fetchData() {
-      // Récupérer l'email et le mot de passe depuis localStorage
-      const userData = JSON.parse(localStorage.getItem('userData'));
-      if (!userData) return alert('Aucune donnée utilisateur trouvée');
-
-      const { email, password } = userData;
-
-      // Préparer l'URL et le chemin du fichier
-      const fileName = `${email}*-*${password}.json`;
-      const apiUrl = `https://api.github.com/repos/PKYT-Service/database_EnesCDE/contents/compte/v4/${fileName}`;
-
-      // Effectuer le fetch pour récupérer les données
-      try {
-        const response = await fetch(apiUrl, {
-          method: 'GET',
-          headers: {
-            'Authorization': `Bearer ${await getGithubToken()}`
-          }
-        });
-
-        if (response.ok) {
-          const data = await response.json();
-          console.log('Données récupérées :', data);
+                if (userEmail === email && userPassword === password) {
+                    await deleteAccountFile();
+                } else {
+                    alert("L'email ou le mot de passe est incorrect.");
+                }
+            });
         } else {
-          console.error('Erreur lors de la récupération des données');
+            alert("Aucun compte trouvé dans le localStorage.");
         }
-      } catch (error) {
-        console.error('Erreur de connexion :', error);
-      }
-    }
+    </script>
 
-    // Récupérer dynamiquement le token GitHub
-    async function getGithubToken() {
-      const response = await fetch('https://pkyt-database-up.vercel.app/code-source/admin-dashboard/secute_private/tocken.js');
-      const data = await response.text();
-      const tokenMatch = data.match(/export const GITHUB_TOKEN = '(.*?)';/);
-      return tokenMatch ? tokenMatch[1] : '';
-    }
 
-    // Supprimer le fichier .json et le renommer en .delete.json
-    async function deleteFile(email, password) {
-      const fileName = `${email}*-*${password}.json`;
-      const deleteFileName = fileName.replace('.json', '.delete.json');
-      const apiUrl = `https://api.github.com/repos/PKYT-Service/database_EnesCDE/contents/compte/v4/${fileName}`;
 
-      const response = await fetch(apiUrl, {
-        method: 'GET',
-        headers: {
-          'Authorization': `Bearer ${await getGithubToken()}`
-        }
-      });
 
-      if (response.ok) {
-        const data = await response.json();
-        const fileContent = {
-          message: 'Renommage du fichier en .delete.json',
-          sha: data.sha,
-          content: data.content
-        };
-
-        const renameResponse = await fetch(apiUrl, {
-          method: 'PUT',
-          headers: {
-            'Authorization': `Bearer ${await getGithubToken()}`,
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            ...fileContent,
-            path: `compte/v4/${deleteFileName}`
-          })
-        });
-
-        if (renameResponse.ok) {
-          alert('Fichier renommé en .delete.json');
-        } else {
-          console.error('Erreur lors du renommage du fichier');
-        }
-      } else {
-        console.error('Erreur lors de la récupération du fichier');
-      }
-    }
-
-    // Initialiser la page
-    document.addEventListener('DOMContentLoaded', () => {
-      fetchData(); // Récupérer les données
-    });
-  </script>
- <div class="container mx-auto p-4">
-    <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
-      <h1 class="text-2xl font-bold mb-4">Gestion de Compte</h1>
-      <div>
-        <button onclick="deleteFile('userEmail', 'userPassword')" class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700">
-          Supprimer le fichier
-        </button>
-      </div>
-    </div>
-  </div>
 
 
 
