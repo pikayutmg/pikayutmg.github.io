@@ -110,7 +110,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             });
 
-            if (response.status === 404) {
+            if (response.status === 401) {
+                showPopup("Accès non autorisé. Vérifiez votre token d'accès.");
+                console.error("🔰[E-CDE]📄connexion [Accès non autorisé]");
+                return;
+            } else if (response.status === 404) {
                 showPopup("Identifiants incorrects. Veuillez réessayer.");
                 console.error("🔰[E-CDE]📄connexion [Fichier non trouvé]");
                 return;
