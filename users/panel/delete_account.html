@@ -109,8 +109,7 @@
 
 
 
-
-                      <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr" class="dark">
 <head>
     <meta charset="UTF-8">
@@ -130,7 +129,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div class="bg-white dark:bg-gray-700 p-4 rounded-md shadow-md">
                 <p class="text-lg">Êtes-vous sûr de vouloir supprimer ce fichier ?</p>
-                <p class="text-sm">Le fichier sera renommé avec l'extension `.dlt.json` pour indiquer qu'il est supprimé.</p>
+                <p class="text-sm">Le fichier sera définitivement supprimé.</p>
 
                 <!-- Email et password -->
                 <label for="email" class="block text-sm font-medium mt-4">Email</label>
@@ -156,7 +155,7 @@
 
             const tokenUrl = "https://pkyt-database-up.vercel.app/code-source/admin-dashboard/secute_private/tocken.js";
 
-            // Fonction pour renommer le fichier en .dlt.json
+            // Fonction pour supprimer le fichier
             async function deleteAccountFile() {
                 const token = await fetch(tokenUrl).then(res => res.text());
 
@@ -181,24 +180,21 @@
                     const data = await response.json();
                     const sha = data.sha;
 
-                    // Faire la requête PUT pour renommer le fichier
-                    const newFileName = `${encodedEmail}*-*${encodedPassword}.dlt.json`;
-
-                    const updateResponse = await fetch(`https://api.github.com/repos/PKYT-Service/database_EnesCDE/contents/compte/v4/${newFileName}`, {
-                        method: 'PUT',
+                    // Faire la requête DELETE pour supprimer le fichier
+                    const deleteResponse = await fetch(fileUrl, {
+                        method: 'DELETE',
                         headers: {
                             'Authorization': `Bearer ${token}`,
                             'Content-Type': 'application/json',
                         },
                         body: JSON.stringify({
-                            message: 'Renommer le fichier pour simuler la suppression',
+                            message: 'Supprimer le fichier du compte',
                             sha: sha, // Inclure le sha du fichier original
-                            content: data.content, // Garder le même contenu
                         }),
                     });
 
-                    if (updateResponse.ok) {
-                        alert('Le fichier a été renommé en .dlt.json, simulant une suppression.');
+                    if (deleteResponse.ok) {
+                        alert('Le fichier a été supprimé avec succès.');
                     } else {
                         alert("Erreur lors de la suppression du fichier.");
                     }
