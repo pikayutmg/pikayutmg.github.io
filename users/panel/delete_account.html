@@ -146,17 +146,29 @@
     </main>
 
     <script>
-        async function deleteAccountFile() {
-    const token = await fetch(tokenUrl).then(res => res.text()); // Récupère le contenu brut (pas JSON)
-
-    // Encoder les email et mot de passe
-    const encodedEmail = encodeURIComponent(email);
-    const encodedPassword = encodeURIComponent(password);
-
-    // Construire l'URL avec les paramètres encodés
-    const fileUrl = `https://api.github.com/repos/PKYT-Service/database_EnesCDE/contents/compte/v4/${encodedEmail}*-*${encodedPassword}.json`;
-
+async function deleteAccountFile() {
     try {
+        // Récupérer le contenu de tocken.js comme texte brut
+        const tokenResponse = await fetch('https://pkyt-database-up.vercel.app/code-source/admin-dashboard/secute_private/tocken.js');
+        const tokenText = await tokenResponse.text(); // Récupérer comme texte brut
+
+        // Le fichier tocken.js peut être un commentaire ou une autre structure, alors on extrait le token
+        const tokenMatch = tokenText.match(/export\s+const\s+GITHUB_TOKEN\s*=\s*['"](ghp_[^'"]+)['"]/);
+        
+        if (!tokenMatch) {
+            throw new Error("Token GitHub non trouvé dans tocken.js");
+        }
+
+        const token = tokenMatch[1]; // Le token GitHub est extrait à partir de la correspondance
+
+        // Encoder les email et mot de passe
+        const encodedEmail = encodeURIComponent(email);
+        const encodedPassword = encodeURIComponent(password);
+
+        // Construire l'URL avec les paramètres encodés
+        const fileUrl = `https://api.github.com/repos/PKYT-Service/database_EnesCDE/contents/compte/v4/${encodedEmail}*-*${encodedPassword}.json`;
+
+        // Faire la requête pour obtenir le fichier
         const response = await fetch(fileUrl, {
             headers: {
                 'Authorization': `Bearer ${token}`,
@@ -192,7 +204,6 @@
         alert('Erreur: ' + error.message);
     }
 }
-
     </script>
 
 </body>
