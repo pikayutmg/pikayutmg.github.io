@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vérification & Redirection</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-black text-white flex justify-center items-center h-screen">
+
+    <div class="text-center">
+        <!-- Animation de chargement -->
+        <div class="flex justify-center">
+            <div class="w-10 h-10 border-4 border-gray-300 border-t-transparent rounded-full animate-spin"></div>
+        </div>
+        <h1 class="text-xl font-bold mt-4">Chargement en cours...</h1>
+
+        <!-- Étapes -->
+        <ul id="steps" class="mt-4 text-left space-y-2">
+            <li id="step1" class="opacity-50">1️⃣ Charge le script...</li>
+            <li id="step2" class="opacity-50">2️⃣ Vérifie la présence des clés...</li>
+            <li id="step3" class="opacity-50">3️⃣ Suppression des clés...</li>
+            <li id="step4" class="opacity-50">4️⃣ Vérification de la suppression...</li>
+        </ul>
+    </div>
+
+    <script>
+        async function startProcess() {
+            try {
+                updateStep(1, "✅ Charge le script...");
+
+                // Vérification des clés
+                updateStep(2, "🔍 Vérifie la présence des clés...");
+                const emailPassword = localStorage.getItem("email*-*password");
+                const enesCDE = localStorage.getItem("Enes-CDE-C");
+
+                if (!emailPassword || !enesCDE) {
+                    throw new Error("Clés manquantes !");
+                }
+
+                // Suppression des clés
+                updateStep(3, "🗑️ Suppression des clés...");
+                localStorage.removeItem("email*-*password");
+                localStorage.removeItem("Enes-CDE-C");
+
+                // Vérification de la suppression
+                updateStep(4, "🔄 Vérification de la suppression...");
+                if (localStorage.getItem("email*-*password") || localStorage.getItem("Enes-CDE-C")) {
+                    throw new Error("Les clés sont encore présentes !");
+                }
+
+                // Succès : Redirection
+                updateStep(4, "✅ Suppression réussie ! Redirection...");
+                setTimeout(() => {
+                    window.location.href = "https://enes-cde.vercel.app";
+                }, 2000);
+            } catch (error) {
+                console.error(error);
+                updateStep(4, "❌ Erreur ! Recommence...");
+                setTimeout(startProcess, 3000);
+            }
+        }
+
+        function updateStep(step, text) {
+            document.getElementById(`step${step}`).textContent = text;
+            document.getElementById(`step${step}`).classList.remove("opacity-50");
+        }
+
+        // Démarrer le processus au chargement de la page
+        startProcess();
+    </script>
+</body>
+</html>
