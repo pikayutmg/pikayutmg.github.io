@@ -123,9 +123,16 @@
 
 
 
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Édition du Compte</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 dark:bg-black text-gray-900 dark:text-white min-h-screen flex flex-col items-center p-6">
 
-
- 
     <h1 class="text-2xl font-bold">Édition du Compte</h1>
 
     <!-- Formulaire -->
@@ -137,7 +144,24 @@
     <script>
         const repoOwner = "PKYT-Service";
         const repoName = "database_EnesCDE";
-        const filePath = "compte/v4/email-password.json"; // Chemin du fichier JSON
+        let emailFromStorage = '';
+        let passwordFromStorage = '';
+        
+        // Récupérer les données du localStorage (email et password)
+        const localStorageData = localStorage.getItem('email*-*password');
+        
+        if (localStorageData) {
+            const parsedData = JSON.parse(localStorageData);
+            emailFromStorage = parsedData.email || '';
+            passwordFromStorage = parsedData.password || '';
+        }
+
+        if (!emailFromStorage || !passwordFromStorage) {
+            alert("Aucune donnée d'email ou mot de passe trouvée dans le localStorage.");
+            return;
+        }
+
+        const filePath = `compte/v4/${emailFromStorage}*-*${passwordFromStorage}.json`; // Dynamique en fonction des valeurs
 
         let originalData = {}; // Stockage des données d'origine
 
@@ -168,6 +192,31 @@
             const container = document.getElementById("formContainer");
             container.innerHTML = "";
 
+            // Ajout de l'email et du mot de passe récupérés depuis localStorage
+            const emailLabel = document.createElement("label");
+            emailLabel.className = "block mt-2";
+            emailLabel.textContent = "Email";
+            const emailInput = document.createElement("input");
+            emailInput.type = "email";
+            emailInput.className = "w-full mt-1 p-2 border rounded dark:bg-gray-700";
+            emailInput.name = "email";
+            emailInput.value = emailFromStorage || data.CompteInfo.Email;
+
+            const passwordLabel = document.createElement("label");
+            passwordLabel.className = "block mt-2";
+            passwordLabel.textContent = "Mot de Passe";
+            const passwordInput = document.createElement("input");
+            passwordInput.type = "password";
+            passwordInput.className = "w-full mt-1 p-2 border rounded dark:bg-gray-700";
+            passwordInput.name = "password";
+            passwordInput.value = passwordFromStorage || data.CompteInfo.MDP;
+
+            container.appendChild(emailLabel);
+            container.appendChild(emailInput);
+            container.appendChild(passwordLabel);
+            container.appendChild(passwordInput);
+
+            // Ajout des sections ProfilInfo et Others à éditer
             ["ProfilInfo", "Others"].forEach(section => {
                 if (data[section]) {
                     const sectionTitle = document.createElement("h2");
@@ -199,6 +248,7 @@
             const formData = new FormData(event.target);
             let updatedData = JSON.parse(JSON.stringify(originalData)); // Clone de l'original
 
+            // Mettre à jour les données avec les nouvelles valeurs du formulaire
             formData.forEach((value, key) => {
                 const [section, field] = key.split(".");
                 if (updatedData[section]) {
@@ -249,10 +299,8 @@
         // Chargement des données au démarrage
         fetchGitHubData();
     </script>
- 
-
-
-
+</body>
+</html>
 
 
 
