@@ -1,2 +1,222 @@
-Bientôt, le panel sortira uniquement à la V4.
-<script src="__sessions__.js"></script>
+<!DOCTYPE html>
+    <html lang="fr">
+        <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="EnesCDE - Plateforme de services et documentation.">
+        <meta name="keywords" content="EnesCDE, Services, Documentation, PKYT, Web , LosFly , LsFly , PikaYutMG , GFLP , LSP , SRDMG , Ebsayder , Howard , Armory , PikaYut , enes , enesgp , egp , ecde ; enes cde , communitydeveloppement , developpement , community PikaYutMG , Projet , MultiGaming, Gaming HTML  ">
+        <meta name="author" content="EnesCDE">
+    
+        <!-- Open Graph (Facebook & LinkedIn) -->
+        <meta property="og:title" content="EnesCDE - Services , Accueil">
+        <meta property="og:description" content="Découvrez EnesCDE, la plateforme offrant divers services et documentations en ligne.">
+        <meta property="og:image" content="https://enes-cde.vercel.app/data/ilg/web/meta.html">
+        <meta property="og:url" content="https://enes-cde.vercel.app">
+        <meta property="og:type" content="website">
+    
+        <!-- Twitter Card -->
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="EnesCDE - Services & Documentation">
+        <meta name="twitter:description" content="Découvrez EnesCDE, la plateforme offrant divers services et documentations en ligne.">
+        <meta name="twitter:image" content="https://enes-cde.vercel.app/data/ilg/web/meta.html">
+    
+        <title>EnesCDE - Accueil</title>
+        <link rel="icon" type="image/png" href="https://enes-cde.vercel.app/data/img/web/favicon.png">
+        
+        
+        <!-- Script pour ajouter dynamiquement le footer -->
+        <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+        <script src="https://enes-cde.vercel.app/script/A-footer.js" defer></script>
+        <script src="https://enes-cde.vercel.app/script/A-menu.js" defer></script>
+        <script src="https://enes-cde.vercel.app/script/A-all.js" defer></script>
+        <script src="https://enes-cde.vercel.app/users/panel/__sessions__.js" defer></script>
+        <script src="https://enes-cde.vercel.app/script/A-new_update.js"></script>
+        
+        <div id="ecde_all"></div>
+
+    </head>
+    <body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white">
+        <div class="flex h-screen">
+            <!-- Menu : Deb -->
+            <div id="ecde_menu"  class="w-20"></div>
+            <!-- Menu : Fin -->
+    
+            <!-- Main Content -->
+            <main class="flex-1 p-6 bg-gray-100 dark:bg-gray-900">
+
+ 
+
+
+                  <style>
+                      @keyframes fadeInUp {
+                          from { opacity: 0; transform: translateY(20px); }
+                          to { opacity: 1; transform: translateY(0); }
+                      }
+                      .animate-fade-in-up {
+                          animation: fadeInUp 0.6s ease-out forwards;
+                      }
+                      .transition-transform {
+                          transition-property: transform;
+                          transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+                          transition-duration: 150ms;
+                      }
+                  </style>
+              </head>
+              <body class="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 transition-colors duration-300">
+                  <header class="bg-white dark:bg-gray-800 shadow-md fixed w-full z-10 transition-colors duration-300">
+                      <nav class="container mx-auto px-6 py-3">
+                          <div class="flex justify-between items-center">
+                              <a href="#" class="text-2xl font-bold text-primary-light dark:text-primary-dark">Dashboard</a>
+                              <div class="hidden md:flex space-x-6">
+                                  <a href="https://enes-cde.vercel.app" class="hover:text-primary-light dark:hover:text-primary-dark transition-colors duration-300">Accueil</a>
+                                  <a href="https://enes-cde.vercel.app/services.html" class="hover:text-primary-light dark:hover:text-primary-dark transition-colors duration-300">services</a>
+                                  <a href="./logout.html" class="hover:text-primary-light dark:hover:text-primary-dark transition-colors duration-300">déconnexion</a>
+                              </div>
+                              <div class="flex items-center">
+                                  <button id="darkModeToggle" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-300 mr-4" aria-label="Toggle dark mode">
+                                      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                                      </svg>
+                                  </button>
+                                  <button id="mobileMenuToggle" class="md:hidden focus:outline-none" aria-label="Toggle mobile menu">
+                                      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                                      </svg>
+                                  </button>
+                              </div>
+                          </div>
+                      </nav>
+                      <div id="mobileMenu" class="md:hidden hidden bg-white dark:bg-gray-800 transition-colors duration-300">
+                          <a href="https://enes-cde.vercel.app" class="block py-2 px-4 text-sm hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-300">accueil</a>
+                          <a href="https://enes-cde.vercel.app/services.html" class="block py-2 px-4 text-sm hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-300">services</a>
+                          <a href="./logout.html" class="block py-2 px-4 text-sm hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-300">déconnexion</a>
+                      </div>
+                  </header>
+              
+                  <main class="container mx-auto px-6 py-20">
+                      <section id="about" class="mb-20 pt-16 animate-fade-in-up">
+                          <h1 class="text-4xl md:text-6xl font-bold mb-4 text-primary-light dark:text-primary-dark">Bienvenue <a id="ProfilInfo:Prenom">ProfilInfo:Prenom</a> <a id="ProfilInfo:Nom">ProfilInfo:Nom</a> </h1>
+                          <p class="text-xl mb-8">Ce panel vous permet de controler votre compte.</p>
+                          <a href="./edit_account.html" class="bg-primary-light dark:bg-primary-dark text-red px-6 py-3 rounded-full font-semibold hover:bg-opacity-90 transition-colors duration-300"> Modifier le comtpe ? </a><bR>
+                          <a href="./delete_account.html" class="bg-primary-light dark:bg-primary-dark dark:text-red-500 text-red-100 px-6 py-3 rounded-full font-semibold hover:bg-opacity-90 transition-colors duration-300"> <mark>Supprimer</mark> le compte !</a>
+                      </section>
+              
+                      <section id="projects" class="mb-20 animate-fade-in-up" style="animation-delay: 0.2s;">
+                          <h2 class="text-3xl font-bold mb-8 text-primary-light dark:text-primary-dark">Services : </h2>
+                          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                              <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 transform hover:scale-105 transition-transform">
+                                  <h3 class="text-xl font-semibold mb-2">PKYT - Service</h3>
+                                  <p class="mb-4">Créer un systeme de compte sans trop coder ? tout se passe la bas .</p>
+                                  <a href="https://pkyt-database-up.vercel.app/" class="text-primary-light dark:text-primary-dark hover:underline transition-colors duration-300">Consutler →</a>
+                              </div>
+                              <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 transform hover:scale-105 transition-transform">
+                                  <h3 class="text-xl font-semibold mb-2">PKYT - Forum</h3>
+                                  <p class="mb-4">Des renseignements , Aides et reglement sont presents .</p>
+                                  <a href="http://doc-pkyt-use.vercel.app/" class="text-primary-light dark:text-primary-dark hover:underline transition-colors duration-300">Consutler →</a>
+                              </div>
+                              <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 transform hover:scale-105 transition-transform">
+                                  <h3 class="text-xl font-semibold mb-2">Howard Armory [Panel]</h3>
+                                  <p class="mb-4">Basée sur le systeme PKYT V4 By EnesCDE , elle vous permet de voir votre emploie du temps , votre salaires , les dernieres actues et de faire des rapport .</p>
+                                  <a href="https://howardarmory.vercel.app/" class="text-primary-light dark:text-primary-dark hover:underline transition-colors duration-300">Consutler →</a>
+                              </div>
+                              <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 transform hover:scale-105 transition-transform">
+                                  <h3 class="text-xl font-semibold mb-2">EbsayderFlyse</h3>
+                                  <p class="mb-4">Navré mais flemme de continuer le projet ...</p>
+                                  <a href="#" class="text-primary-light dark:text-primary-dark hover:underline transition-colors duration-300">Consutler →</a>
+                              </div>
+                          </div>
+                      </section>
+
+                <!-- Footer : Deb -->
+                <div id="ecde_footer"></div>
+                <!-- Footer : Fin -->
+            </main>
+        </div>
+    </body>
+    <script>
+      // Dark mode toggle
+      const darkModeToggle = document.getElementById('darkModeToggle');
+      const html = document.documentElement;
+
+      darkModeToggle.addEventListener('click', () => {
+          html.classList.toggle('dark');
+          localStorage.setItem('darkMode', html.classList.contains('dark'));
+      });
+
+      // Check for saved dark mode preference
+      if (localStorage.getItem('darkMode') === 'true' || 
+          (!('darkMode' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+          html.classList.add('dark');
+      }
+
+      // Mobile menu toggle
+      const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+      const mobileMenu = document.getElementById('mobileMenu');
+
+      mobileMenuToggle.addEventListener('click', () => {
+          mobileMenu.classList.toggle('hidden');
+      });
+
+      // Smooth scroll for navigation links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+          anchor.addEventListener('click', function (e) {
+              e.preventDefault();
+              const targetId = this.getAttribute('href');
+              const targetElement = document.querySelector(targetId);
+              const yOffset = -60; // Adjust this value based on your header height
+              const y = targetElement.getBoundingClientRect().top + window.pageYOffset + yOffset;
+
+              window.scrollTo({top: y, behavior: 'smooth'});
+
+              // Close mobile menu if open
+              if (!mobileMenu.classList.contains('hidden')) {
+                  mobileMenu.classList.add('hidden');
+              }
+          });
+      });
+
+      // Intersection Observer for fade-in animations
+      const observerOptions = {
+          root: null,
+          rootMargin: '0px',
+          threshold: 0.1
+      };
+
+      const observer = new IntersectionObserver((entries, observer) => {
+          entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                  entry.target.classList.add('animate-fade-in-up');
+                  observer.unobserve(entry.target);
+              }
+          });
+      }, observerOptions);
+
+      document.querySelectorAll('section').forEach(section => {
+          observer.observe(section);
+      });
+
+      // Form submission (replace with your own logic)
+      const form = document.querySelector('form');
+      form.addEventListener('submit', (e) => {
+          e.preventDefault();
+          alert('Form submitted! (Replace this with your own logic)');
+          form.reset();
+      });
+  </script>
+                    <script>
+                      tailwind.config = {
+                          darkMode: 'class',
+                          theme: {
+                              extend: {
+                                  colors: {
+                                      primary: {
+                                          light: '#000000', // indigo-800
+                                          dark: '#0a15f0', // blue-900
+                                      }
+                                  }
+                              }
+                          }
+                      }
+                  </script>
+</body>
+</html>
