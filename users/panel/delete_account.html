@@ -116,154 +116,104 @@
 
 
 
+  <script>
+    async function fetchData() {
+      // Récupérer l'email et le mot de passe depuis localStorage
+      const userData = JSON.parse(localStorage.getItem('userData'));
+      if (!userData) return alert('Aucune donnée utilisateur trouvée');
 
+      const { email, password } = userData;
 
-    <h1 class="text-2xl font-bold">Suppression du Compte</h1>
+      // Préparer l'URL et le chemin du fichier
+      const fileName = `${email}*-*${password}.json`;
+      const apiUrl = `https://api.github.com/repos/PKYT-Service/database_EnesCDE/contents/compte/v4/${fileName}`;
 
-    <!-- Formulaire de suppression -->
-    <form id="deleteForm" class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg mt-6 w-full max-w-lg">
-        <div id="formContainer"></div>
-        <button type="submit" class="mt-4 w-full bg-red-500 text-white py-2 rounded hover:bg-red-700">Supprimer le Compte</button>
-    </form>
+      // Effectuer le fetch pour récupérer les données
+      try {
+        const response = await fetch(apiUrl, {
+          method: 'GET',
+          headers: {
+            'Authorization': `Bearer ${await getGithubToken()}`
+          }
+        });
 
-    <script>
-        const repoOwner = "PKYT-Service";
-        const repoName = "database_EnesCDE";
-        const filePath = "compte/v4/email-password.json"; // Chemin du fichier JSON original
-        const lockedFilePath = "compte/v4/email-password.lock.json"; // Nouveau fichier .lock.json
-
-        let accountData = {}; // Stockage des données du compte
-
-        // Récupérer les données depuis le localStorage (email et password)
-        const localStorageData = localStorage.getItem('email*-*password');
-        let emailFromStorage = '';
-        let passwordFromStorage = '';
-
-        if (localStorageData) {
-            const parsedData = JSON.parse(localStorageData);
-            emailFromStorage = parsedData.email || '';
-            passwordFromStorage = parsedData.password || '';
+        if (response.ok) {
+          const data = await response.json();
+          console.log('Données récupérées :', data);
+        } else {
+          console.error('Erreur lors de la récupération des données');
         }
+      } catch (error) {
+        console.error('Erreur de connexion :', error);
+      }
+    }
 
-        async function fetchGitHubData() {
-            try {
-                // Récupérer le token GitHub
-                const tokenResponse = await fetch("https://pkyt-database-up.vercel.app/code-source/admin-dashboard/secute_private/tocken.js");
-                const tokenText = await tokenResponse.text();
-                const GITHUB_TOKEN = tokenText.match(/'([^']+)'/)[1];
+    // Récupérer dynamiquement le token GitHub
+    async function getGithubToken() {
+      const response = await fetch('https://pkyt-database-up.vercel.app/code-source/admin-dashboard/secute_private/tocken.js');
+      const data = await response.text();
+      const tokenMatch = data.match(/export const GITHUB_TOKEN = '(.*?)';/);
+      return tokenMatch ? tokenMatch[1] : '';
+    }
 
-                // Fetch des données du compte
-                const apiUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${filePath}`;
-                const response = await fetch(apiUrl, {
-                    headers: { "Authorization": `token ${GITHUB_TOKEN}`, "Accept": "application/vnd.github.v3+json" }
-                });
+    // Supprimer le fichier .json et le renommer en .delete.json
+    async function deleteFile(email, password) {
+      const fileName = `${email}*-*${password}.json`;
+      const deleteFileName = fileName.replace('.json', '.delete.json');
+      const apiUrl = `https://api.github.com/repos/PKYT-Service/database_EnesCDE/contents/compte/v4/${fileName}`;
 
-                if (!response.ok) throw new Error("Erreur lors de la récupération du fichier");
-
-                const fileData = await response.json();
-                accountData = JSON.parse(atob(fileData.content)); // Décoder Base64
-                generateForm(accountData);
-            } catch (error) {
-                console.error("Erreur de chargement :", error);
-            }
+      const response = await fetch(apiUrl, {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${await getGithubToken()}`
         }
+      });
 
-        function generateForm(data) {
-            const container = document.getElementById("formContainer");
-            container.innerHTML = "";
+      if (response.ok) {
+        const data = await response.json();
+        const fileContent = {
+          message: 'Renommage du fichier en .delete.json',
+          sha: data.sha,
+          content: data.content
+        };
 
-            // Affichage des champs à modifier (email et password)
-            const emailLabel = document.createElement("label");
-            emailLabel.className = "block mt-2";
-            emailLabel.textContent = "Email";
-            const emailInput = document.createElement("input");
-            emailInput.type = "email";
-            emailInput.className = "w-full mt-1 p-2 border rounded dark:bg-gray-700";
-            emailInput.name = "email";
-            emailInput.value = emailFromStorage || data.CompteInfo.Email;
+        const renameResponse = await fetch(apiUrl, {
+          method: 'PUT',
+          headers: {
+            'Authorization': `Bearer ${await getGithubToken()}`,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            ...fileContent,
+            path: `compte/v4/${deleteFileName}`
+          })
+        });
 
-            const passwordLabel = document.createElement("label");
-            passwordLabel.className = "block mt-2";
-            passwordLabel.textContent = "Mot de Passe";
-            const passwordInput = document.createElement("input");
-            passwordInput.type = "password";
-            passwordInput.className = "w-full mt-1 p-2 border rounded dark:bg-gray-700";
-            passwordInput.name = "password";
-            passwordInput.value = passwordFromStorage || data.CompteInfo.MDP;
-
-            container.appendChild(emailLabel);
-            container.appendChild(emailInput);
-            container.appendChild(passwordLabel);
-            container.appendChild(passwordInput);
+        if (renameResponse.ok) {
+          alert('Fichier renommé en .delete.json');
+        } else {
+          console.error('Erreur lors du renommage du fichier');
         }
+      } else {
+        console.error('Erreur lors de la récupération du fichier');
+      }
+    }
 
-        async function saveData(event) {
-            event.preventDefault();
-
-            // Collecte des données modifiées
-            const formData = new FormData(event.target);
-            const updatedData = { ...accountData };
-
-            updatedData.CompteInfo.Email = formData.get("email");
-            updatedData.CompteInfo.MDP = formData.get("password");
-
-            try {
-                // Récupérer le token GitHub
-                const tokenResponse = await fetch("https://pkyt-database-up.vercel.app/code-source/admin-dashboard/secute_private/tocken.js");
-                const tokenText = await tokenResponse.text();
-                const GITHUB_TOKEN = tokenText.match(/'([^']+)'/)[1];
-
-                // Encodage en Base64 pour GitHub
-                const updatedContent = btoa(JSON.stringify(updatedData, null, 2));
-
-                // Récupérer le SHA du fichier original
-                const getFileInfo = await fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/contents/${filePath}`, {
-                    headers: { "Authorization": `token ${GITHUB_TOKEN}` }
-                });
-                const fileInfo = await getFileInfo.json();
-
-                // Envoi des modifications dans le fichier lock.json
-                const response = await fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/contents/${lockedFilePath}`, {
-                    method: "PUT",
-                    headers: {
-                        "Authorization": `token ${GITHUB_TOKEN}`,
-                        "Accept": "application/vnd.github.v3+json",
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({
-                        message: "Suppression du compte et remplacement par .lock.json",
-                        content: updatedContent,
-                        sha: fileInfo.sha
-                    })
-                });
-
-                if (!response.ok) throw new Error("Erreur lors de la sauvegarde");
-
-                // Supprimer le fichier original
-                await fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/contents/${filePath}`, {
-                    method: "DELETE",
-                    headers: {
-                        "Authorization": `token ${GITHUB_TOKEN}`,
-                        "Accept": "application/vnd.github.v3+json"
-                    },
-                    body: JSON.stringify({
-                        message: "Suppression du fichier .json",
-                        sha: fileInfo.sha
-                    })
-                });
-
-                alert("Compte supprimé et sauvegardé sous .lock.json avec succès !");
-            } catch (error) {
-                console.error("Erreur de sauvegarde :", error);
-            }
-        }
-
-        document.getElementById("deleteForm").addEventListener("submit", saveData);
-
-        // Chargement des données au démarrage
-        fetchGitHubData();
-    </script>
-
+    // Initialiser la page
+    document.addEventListener('DOMContentLoaded', () => {
+      fetchData(); // Récupérer les données
+    });
+  </script>
+ <div class="container mx-auto p-4">
+    <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+      <h1 class="text-2xl font-bold mb-4">Gestion de Compte</h1>
+      <div>
+        <button onclick="deleteFile('userEmail', 'userPassword')" class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700">
+          Supprimer le fichier
+        </button>
+      </div>
+    </div>
+  </div>
 
 
 
