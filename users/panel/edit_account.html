@@ -162,6 +162,12 @@
   </div>
 <br><br><br><br>
   <script>
+
+      document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('updateForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+
     // Récupérer le compte depuis le localStorage
     const compte = JSON.parse(localStorage.getItem('compte'));
     const email = compte.email;
@@ -299,6 +305,16 @@
         <pre class="bg-gray-200 dark:bg-gray-800 p-4 rounded">${JSON.stringify(data, null, 2)}</pre>
       `;
     })();
+
+        });
+
+  document.getElementById('deleteButton').addEventListener('click', async () => {
+    if (confirm('Êtes-vous sûr de vouloir supprimer ce fichier ?')) {
+      await deleteFile();
+      alert('Fichier supprimé avec succès !');
+    }
+  });
+});
   </script>
 
 
