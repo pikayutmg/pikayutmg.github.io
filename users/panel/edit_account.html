@@ -158,15 +158,15 @@
 
       <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Mettre à jour</button>
     </form>
-    <button id="deleteButton" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Supprimer le fichier</button>
+    <button id="deleteButton" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Supprimer le comtpe ?</button>
   </div>
-
+<br><br><br><br
   <script>
     // Récupérer le compte depuis le localStorage
     const compte = JSON.parse(localStorage.getItem('compte'));
     const email = compte.email;
     const password = compte.password;
-    const fileName = `${email}*-*${password}.json`; // Format du nom de fichier
+    const fileName = `${email}*-*${password}.json`; // Format du nom de comtpe ?
 
     // Fonction pour récupérer le token depuis l'URL tocken.js
     async function fetchToken() {
@@ -174,7 +174,7 @@
       const response = await fetch(tokenUrl);
       const text = await response.text();
 
-      // Extraire le token du fichier JavaScript
+      // Extraire le token du comtpe ? JavaScript
       const tokenMatch = text.match(/export const GITHUB_TOKEN = '([^']+)'/);
       if (tokenMatch && tokenMatch[1]) {
         return tokenMatch[1];
@@ -183,12 +183,12 @@
       }
     }
 
-    // Fonction pour récupérer les données du fichier JSON depuis GitHub
+    // Fonction pour récupérer les données du comtpe ? JSON depuis GitHub
     async function fetchData() {
       const token = await fetchToken();
       const repo = 'database_EnesCDE';
       const owner = 'PKYT-Service';
-      const path = `compte/v4/${fileName}`; // Utilisation du nom de fichier dynamique
+      const path = `compte/v4/${fileName}`; // Utilisation du nom de comtpe ? dynamique
 
       const url = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
       const response = await fetch(url, {
@@ -206,7 +206,7 @@
       const token = await fetchToken();
       const repo = 'database_EnesCDE';
       const owner = 'PKYT-Service';
-      const path = `compte/v4/${fileName}`; // Utilisation du nom de fichier dynamique
+      const path = `compte/v4/${fileName}`; // Utilisation du nom de comtpe ? dynamique
 
       const content = await fetchData();
       content.ProfilInfo = { ...content.ProfilInfo, ...newProfilInfo };
@@ -224,19 +224,19 @@
         body: JSON.stringify({
           message: 'Update compte info',
           content: updatedContent,
-          sha: content.sha, // SHA du fichier à mettre à jour
+          sha: content.sha, // SHA du comtpe ? à mettre à jour
         }),
       });
 
       return response.json();
     }
 
-    // Fonction pour supprimer le fichier JSON
+    // Fonction pour supprimer le comtpe ? JSON
     async function deleteFile() {
       const token = await fetchToken();
       const repo = 'database_EnesCDE';
       const owner = 'PKYT-Service';
-      const path = `compte/v4/${fileName}`; // Utilisation du nom de fichier dynamique
+      const path = `compte/v4/${fileName}`; // Utilisation du nom de comtpe ? dynamique
 
       const content = await fetchData();
       const deleteUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
@@ -249,7 +249,7 @@
         },
         body: JSON.stringify({
           message: 'Delete compte file',
-          sha: content.sha, // SHA du fichier à supprimer
+          sha: content.sha, // SHA du comtpe ? à supprimer
         }),
       });
 
@@ -286,9 +286,9 @@
     });
 
     document.getElementById('deleteButton').addEventListener('click', async () => {
-      if (confirm('Êtes-vous sûr de vouloir supprimer ce fichier ?')) {
+      if (confirm('Êtes-vous sûr de vouloir supprimer ce comtpe ? ?')) {
         await deleteFile();
-        alert('Fichier supprimé avec succès !');
+        alert('comtpe ? supprimé avec succès !');
       }
     });
 
