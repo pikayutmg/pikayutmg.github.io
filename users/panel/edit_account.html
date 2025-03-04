@@ -162,89 +162,59 @@
   </div>
 <br><br><br><br>
   <script>
+document.addEventListener('DOMContentLoaded', async () => {
+  // Récupérer le compte depuis le localStorage
+  const compte = JSON.parse(localStorage.getItem('compte'));
+  const email = compte.email;
+  const password = compte.password;
+  const fileName = `${email}*-*${password}.json`;
 
-      document.addEventListener('DOMContentLoaded', () => {
-  document.getElementById('updateForm').addEventListener('submit', async (e) => {
-    e.preventDefault();
+  // Fonction pour récupérer le token depuis l'URL tocken.js
+  async function fetchToken() {
+    const tokenUrl = 'https://pkyt-database-up.vercel.app/code-source/admin-dashboard/secute_private/tocken.js';
+    const response = await fetch(tokenUrl);
+    const text = await response.text();
 
+    // Extraire le token du fichier JavaScript
+    const tokenMatch = text.match(/export const GITHUB_TOKEN = '([^']+)'/);
+    if (tokenMatch && tokenMatch[1]) {
+      return tokenMatch[1];
+    } else {
+      throw new Error('Token not found in tocken.js');
+    }
+  }
 
-    // Récupérer le compte depuis le localStorage
-    const compte = JSON.parse(localStorage.getItem('compte'));
-    const email = compte.email;
-    const password = compte.password;
-    const fileName = `${email}*-*${password}.json`; // Format du nom de comtpe ?
+  // Fonction pour récupérer les données du fichier JSON depuis GitHub
+  async function fetchData() {
+    const token = await fetchToken();
+    const repo = 'database_EnesCDE';
+    const owner = 'PKYT-Service';
+    const path = `compte/v4/${fileName}`;
 
-    // Fonction pour récupérer le token depuis l'URL tocken.js
-    async function fetchToken() {
-      const tokenUrl = 'https://pkyt-database-up.vercel.app/code-source/admin-dashboard/secute_private/tocken.js';
-      const response = await fetch(tokenUrl);
-      const text = await response.text();
+    const url = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
+    const response = await fetch(url, {
+      headers: {
+        Authorization: `token ${token}`,
+      },
+    });
+    const data = await response.json();
+    const content = JSON.parse(atob(data.content));
+    return content;
+  }
 
-      // Extraire le token du comtpe ? JavaScript
-      const tokenMatch = text.match(/export const GITHUB_TOKEN = '([^']+)'/);
-      if (tokenMatch && tokenMatch[1]) {
-        return tokenMatch[1];
-      } else {
-        throw new Error('Token not found in tocken.js');
+  // Fonction pour supprimer le fichier JSON
+  async function deleteFile() {
+    try {
+      const token = await fetchToken();
+      const repo = 'database_EnesCDE';
+      const owner = 'PKYT-Service';
+      const path = `compte/v4/${fileName}`;
+
+      const content = await fetchData();
+      if (!content.sha) {
+        throw new Error('SHA du fichier non trouvé.');
       }
-    }
 
-    // Fonction pour récupérer les données du comtpe ? JSON depuis GitHub
-    async function fetchData() {
-      const token = await fetchToken();
-      const repo = 'database_EnesCDE';
-      const owner = 'PKYT-Service';
-      const path = `compte/v4/${fileName}`; // Utilisation du nom de comtpe ? dynamique
-
-      const url = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
-      const response = await fetch(url, {
-        headers: {
-          Authorization: `token ${token}`,
-        },
-      });
-      const data = await response.json();
-      const content = JSON.parse(atob(data.content)); // Décoder le contenu base64
-      return content;
-    }
-
-    // Fonction pour mettre à jour les informations du compte
-    async function updateCompte(newProfilInfo, newOthers) {
-      const token = await fetchToken();
-      const repo = 'database_EnesCDE';
-      const owner = 'PKYT-Service';
-      const path = `compte/v4/${fileName}`; // Utilisation du nom de comtpe ? dynamique
-
-      const content = await fetchData();
-      content.ProfilInfo = { ...content.ProfilInfo, ...newProfilInfo };
-      content.Others = { ...content.Others, ...newOthers };
-
-      const updatedContent = btoa(JSON.stringify(content)); // Encoder en base64
-      const updateUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
-
-      const response = await fetch(updateUrl, {
-        method: 'PUT',
-        headers: {
-          Authorization: `token ${token}`,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          message: 'Update compte info',
-          content: updatedContent,
-          sha: content.sha, // SHA du comtpe ? à mettre à jour
-        }),
-      });
-
-      return response.json();
-    }
-
-    // Fonction pour supprimer le comtpe ? JSON
-    async function deleteFile() {
-      const token = await fetchToken();
-      const repo = 'database_EnesCDE';
-      const owner = 'PKYT-Service';
-      const path = `compte/v4/${fileName}`; // Utilisation du nom de comtpe ? dynamique
-
-      const content = await fetchData();
       const deleteUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
 
       const response = await fetch(deleteUrl, {
@@ -255,15 +225,30 @@
         },
         body: JSON.stringify({
           message: 'Delete compte file',
-          sha: content.sha, // SHA du comtpe ? à supprimer
+          sha: content.sha,
         }),
       });
 
-      return response.json();
-    }
+      const result = await response.json();
 
-    // Gestion des événements
-    document.getElementById('updateForm').addEventListener('submit', async (e) => {
+      if (response.ok) {
+        alert('Fichier supprimé avec succès !');
+        console.log('Réponse de l\'API GitHub :', result);
+      } else {
+        throw new Error(`Erreur lors de la suppression du fichier : ${result.message}`);
+      }
+    } catch (error) {
+      console.error('Erreur lors de la suppression du fichier :', error);
+      alert(`Erreur lors de la suppression du fichier : ${error.message}`);
+    }
+  }
+
+  // Gestion des événements
+  const updateForm = document.getElementById('updateForm');
+  const deleteButton = document.getElementById('deleteButton');
+
+  if (updateForm) {
+    updateForm.addEventListener('submit', async (e) => {
       e.preventDefault();
       const newProfilInfo = {
         Nom: document.getElementById('nom').value,
@@ -290,30 +275,37 @@
       await updateCompte(newProfilInfo, newOthers);
       alert('Compte mis à jour avec succès!');
     });
+  } else {
+    console.error('Élément #updateForm non trouvé dans le DOM.');
+  }
 
-    document.getElementById('deleteButton').addEventListener('click', async () => {
-      if (confirm('Êtes-vous sûr de vouloir supprimer ce comtpe ? ?')) {
+  if (deleteButton) {
+    deleteButton.addEventListener('click', async () => {
+      if (confirm('Êtes-vous sûr de vouloir supprimer ce fichier ?')) {
         await deleteFile();
-        alert('comtpe ? supprimé avec succès !');
       }
     });
+  } else {
+    console.error('Élément #deleteButton non trouvé dans le DOM.');
+  }
 
-    // Charger les données du compte au démarrage
-    (async () => {
+  // Charger les données du compte au démarrage
+  const compteInfoElement = document.getElementById('compteInfo');
+  if (compteInfoElement) {
+    try {
       const data = await fetchData();
-      document.getElementById('compteInfo').innerHTML = `
+      compteInfoElement.innerHTML = `
         <pre class="bg-gray-200 dark:bg-gray-800 p-4 rounded">${JSON.stringify(data, null, 2)}</pre>
       `;
-    })();
-
-        });
-
-  document.getElementById('deleteButton').addEventListener('click', async () => {
-    if (confirm('Êtes-vous sûr de vouloir supprimer ce fichier ?')) {
-      await deleteFile();
-      alert('Fichier supprimé avec succès !');
+    } catch (error) {
+      console.error('Erreur lors du chargement des données :', error);
+      compteInfoElement.innerHTML = `
+        <p class="text-red-500">Erreur lors du chargement des données : ${error.message}</p>
+      `;
     }
-  });
+  } else {
+    console.error('Élément #compteInfo non trouvé dans le DOM.');
+  }
 });
   </script>
 
