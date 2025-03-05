@@ -216,6 +216,57 @@
                               }
                           }
                       }
+
+
+
+
+                        async function fetchFile(fileUrl) {
+    const response = await fetch(fileUrl);
+    const data = await response.json();
+    if (response.ok) {
+        // Vérification si le contenu est bien présent
+        if (data.content) {
+            const decodedContent = atob(data.content);  // Décoder le contenu base64
+
+            if (decodedContent.trim() !== "") {
+                try {
+                    const logs = JSON.parse(decodedContent);  // Convertir le contenu en JSON
+
+                    // Ajouter les consultations à l'affichage
+                    logs.forEach(log => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>${log['ID-User']}</td>
+                            <td>${log.date.split('=')[0]}</td>
+                            <td>${log.date.split('=')[1]}</td>
+                            <td>${log.URL}</td>
+                            <td><button onclick="showPopup(${JSON.stringify(log)})">Voir</button></td>
+                        `;
+                        document.getElementById('logTableBody').appendChild(row);
+
+                        // Organiser les consultations par utilisateur
+                        if (!userMap[log['ID-User']]) {
+                            userMap[log['ID-User']] = [];
+                        }
+                        userMap[log['ID-User']].push(log);
+                    });
+
+                    // Mettre à jour la liste des utilisateurs
+                    updateUserList();
+                } catch (error) {
+                    console.error("Erreur lors du parsing du JSON :", error);
+                }
+            } else {
+                console.warn("Contenu vide trouvé dans le fichier :", fileUrl);
+            }
+        } else {
+            console.warn("Le fichier ne contient pas de contenu base64 valide :", fileUrl);
+        }
+    } else {
+        console.error('Erreur lors de la récupération du fichier :', fileUrl);
+    }
+}
+
                   </script>
 </body>
 </html>
