@@ -4,7 +4,7 @@ async function verifierCompte() {
     
     if (!credentials || !sessionData) {
         console.warn("Données manquantes, redirection...");
-        window.location.href = "index.html";
+        window.location.href = "../index.html";
         return;
     }
     
@@ -14,7 +14,7 @@ async function verifierCompte() {
     // Vérification de la session
     if (!session.valid || new Date(session.expiry) < new Date(Date.now() - 3 * 60 * 60 * 1000)) {
         console.warn("Session invalide ou expirée, redirection...");
-        window.location.href = "index.html";
+        window.location.href = "../index.html";
         return;
     }
     
@@ -30,7 +30,7 @@ async function verifierCompte() {
     
     if (!response.ok) {
         console.warn("Compte non valide, redirection...");
-        window.location.href = "index.html";
+        window.location.href = "../index.html";
         return;
     }
     
@@ -41,7 +41,7 @@ async function verifierCompte() {
         console.log("Compte valide");
     } else {
         console.warn("Compte non valide, redirection...");
-        window.location.href = "index.html";
+        window.location.href = "../index.html";
     }
 }
 
