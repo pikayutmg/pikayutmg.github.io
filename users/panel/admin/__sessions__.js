@@ -32,7 +32,7 @@ const GITHUB_TOKEN = tokenText.match(/['"](ghp_[A-Za-z0-9]+)['"]/)[1]; // Extrac
     
     if (!response.ok) {
         console.warn("Compte non valide, redirection...");
-        window.location.href = "index.html";
+        window.location.href = "../index.html";
         return;
     }
     
@@ -50,7 +50,7 @@ const GITHUB_TOKEN = tokenText.match(/['"](ghp_[A-Za-z0-9]+)['"]/)[1]; // Extrac
         }
     } else {
         console.warn("Compte non valide, redirection...");
-        window.location.href = "index.html";
+        window.location.href = "../index.html";
     }
 }
 
