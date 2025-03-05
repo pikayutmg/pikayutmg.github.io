@@ -4,7 +4,7 @@ async function verifierCompte() {
 
     if (!credentials || !sessionData) {
         console.warn("Données manquantes, redirection...");
-        window.location.href = "index.html";
+        window.location.href = "../index.html";
         return;
     }
 
