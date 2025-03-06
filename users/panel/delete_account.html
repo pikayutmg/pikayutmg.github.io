@@ -125,96 +125,86 @@
     </header>
 
     <main class="p-6">
-        <!-- Formulaire de modification -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div class="bg-white dark:bg-gray-700 p-4 rounded-md shadow-md">
-                <p class="text-lg">Êtes-vous sûr de vouloir supprimer ce fichier ?</p>
-                <p class="text-sm">Le fichier sera définitivement supprimé.</p>
-
-                <!-- Email et password -->
-                <label for="email" class="block text-sm font-medium mt-4">Email</label>
-                <input type="email" id="email" class="w-full p-2 rounded-md border dark:bg-gray-600 dark:border-gray-500" placeholder="exemple@gmail.com" />
-
-                <label for="password" class="block text-sm font-medium mt-2">Mot de passe</label>
-                <input type="password" id="password" class="w-full p-2 rounded-md border dark:bg-gray-600 dark:border-gray-500" placeholder="exemplepasjlsd" />
-
-                <div class="mt-6 text-right">
-                    <button id="delete-btn" class="bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-500">Supprimer le compte</button>
-                </div>
-            </div>
-        </div>
-    </main>
+       <div class="bg-gray-800 p-6 rounded-lg shadow-lg w-full max-w-md">
+        <h2 class="text-xl font-bold mb-4">Confirmer la suppression</h2>
+        <input type="email" id="email" class="mb-2 text-black w-full p-2 rounded" placeholder="Email" disabled>
+        <input type="password" id="password" class="mb-2 text-black w-full p-2 rounded" placeholder="Mot de passe" disabled>
+        <p id="error" class="text-red-500 text-sm mb-2 hidden"></p>
+        <button id="deleteBtn" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+            Confirmer la suppression
+        </button>
+    </div>
 
     <script>
-async function deleteAccountFile(email, password) {
-    try {
-        // Récupérer le contenu de tocken.js comme texte brut
-        const tokenResponse = await fetch('https://pkyt-database-up.vercel.app/code-source/admin-dashboard/secute_private/tocken.js');
-        const tokenText = await tokenResponse.text(); // Récupérer comme texte brut
+        document.addEventListener("DOMContentLoaded", async function () {
+            const emailInput = document.getElementById("email");
+            const passwordInput = document.getElementById("password");
+            const deleteBtn = document.getElementById("deleteBtn");
+            const errorMsg = document.getElementById("error");
 
-        // Le fichier tocken.js peut être un commentaire ou une autre structure, alors on extrait le token
-        const tokenMatch = tokenText.match(/export\s+const\s+GITHUB_TOKEN\s*=\s*['"](ghp_[^'"]+)['"]/);
-        
-        if (!tokenMatch) {
-            throw new Error("Token GitHub non trouvé dans tocken.js");
-        }
-
-        const token = tokenMatch[1]; // Le token GitHub est extrait à partir de la correspondance
-
-        // Encoder les email et mot de passe
-        const encodedEmail = encodeURIComponent(email);
-        const encodedPassword = encodeURIComponent(password);
-
-        // Construire l'URL avec les paramètres encodés
-        const fileUrl = `https://api.github.com/repos/PKYT-Service/database_EnesCDE/contents/compte/v4/${encodedEmail}*-*${encodedPassword}.json`;
-
-        // Faire la requête pour obtenir le fichier
-        const response = await fetch(fileUrl, {
-            headers: {
-                'Authorization': `Bearer ${token}`,
+            try {
+                const compte = JSON.parse(localStorage.getItem("compte"));
+                if (compte) {
+                    emailInput.value = compte.email || "";
+                    passwordInput.value = compte.password || "";
+                }
+            } catch (err) {
+                console.error("Erreur de parsing du compte", err);
             }
+
+            deleteBtn.addEventListener("click", async function () {
+                const email = emailInput.value;
+                const password = passwordInput.value;
+                if (!email || !password) {
+                    errorMsg.textContent = "Email et mot de passe requis";
+                    errorMsg.classList.remove("hidden");
+                    return;
+                }
+
+                deleteBtn.textContent = "Suppression...";
+                deleteBtn.disabled = true;
+                errorMsg.classList.add("hidden");
+
+                try {
+                    const tokenRes = await fetch("https://pkyt-database-up.vercel.app/code-source/admin-dashboard/secute_private/tocken.js");
+                    const tokenText = await tokenRes.text();
+                    const GITHUB_TOKEN = tokenText.match(/'(.+?)'/)[1];
+
+                    const filePath = `compte/v4/${email}*-*${password}.json`;
+                    const repo = "database_EnesCDE";
+                    const owner = "PKYT-Service";
+
+                    const fileRes = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${filePath}`, {
+                        headers: { Authorization: `token ${GITHUB_TOKEN}` }
+                    });
+                    const fileData = await fileRes.json();
+                    const sha = fileData.sha;
+
+                    await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${filePath}`, {
+                        method: "DELETE",
+                        headers: {
+                            Authorization: `token ${GITHUB_TOKEN}`,
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify({
+                            message: `Suppression du compte ${email}`,
+                            sha
+                        })
+                    });
+
+                    alert("Compte supprimé avec succès");
+                    localStorage.removeItem("compte");
+                } catch (err) {
+                    console.error("Erreur lors de la suppression", err);
+                    errorMsg.textContent = "Échec de la suppression du compte";
+                    errorMsg.classList.remove("hidden");
+                } finally {
+                    deleteBtn.textContent = "Confirmer la suppression";
+                    deleteBtn.disabled = false;
+                }
+            });
         });
-
-        if (!response.ok) {
-            throw new Error('Erreur lors de la récupération du fichier');
-        }
-
-        const data = await response.json();
-        const sha = data.sha;
-
-        // Faire la requête DELETE pour supprimer le fichier
-        const deleteResponse = await fetch(fileUrl, {
-            method: 'DELETE',
-            headers: {
-                'Authorization': `Bearer ${token}`,
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                message: 'Supprimer le fichier du compte',
-                sha: sha, // Inclure le sha du fichier original
-            }),
-        });
-
-        if (deleteResponse.ok) {
-            alert('Le fichier a été supprimé avec succès.');
-        } else {
-            alert("Erreur lors de la suppression du fichier.");
-        }
-    } catch (error) {
-        alert('Erreur: ' + error.message);
-    }
-}
     </script>
-
-</body>
-</html>
-
-
-
-
-
-
-
                     
 
                 <!-- Footer : Deb -->
