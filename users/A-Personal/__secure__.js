@@ -1,4 +1,3 @@
-
 document.addEventListener("DOMContentLoaded", function() {
     // Appliquer les styles généraux à la page
     document.body.style.margin = "0";
@@ -80,8 +79,8 @@ document.addEventListener("DOMContentLoaded", function() {
     const threeHours = 3 * 60 * 60 * 1000; // 3 heures en millisecondes
 
     if (lastLoginTime && (currentTime - lastLoginTime < threeHours)) {
-        // Si l'utilisateur a déjà réussi la connexion récemment, on le redirige directement
-        window.location.href = "https://enes-cde.vercel.app/";
+        // Si l'utilisateur a déjà réussi la connexion récemment, afficher un message de bienvenue
+        showWelcomePopup();
     }
 
     // Fetch des comptes depuis GitHub
@@ -96,6 +95,32 @@ document.addEventListener("DOMContentLoaded", function() {
             console.error("Erreur lors du fetch des comptes :", error);
             return null;
         }
+    }
+
+    // Affichage de la popup de bienvenue
+    function showWelcomePopup() {
+        const popup = document.createElement("div");
+        popup.style.position = "fixed";
+        popup.style.top = "50%";
+        popup.style.left = "50%";
+        popup.style.transform = "translate(-50%, -50%)";
+        popup.style.backgroundColor = "#333";
+        popup.style.padding = "20px";
+        popup.style.borderRadius = "10px";
+        popup.style.color = "#fff";
+        popup.style.textAlign = "center";
+        popup.style.boxShadow = "0px 0px 15px rgba(255, 255, 255, 0.5)";
+        popup.innerHTML = `
+            <h3>Bienvenue, vous êtes connecté !</h3>
+            <button id="closePopup" style="background: #007bff; color: white; border: none; padding: 10px; border-radius: 5px; cursor: pointer; font-size: 14px;">Fermer</button>
+        `;
+        document.body.appendChild(popup);
+
+        // Fermeture de la popup
+        const closePopupBtn = document.getElementById("closePopup");
+        closePopupBtn.addEventListener("click", () => {
+            document.body.removeChild(popup);
+        });
     }
 
     // Vérification des identifiants
@@ -113,7 +138,7 @@ document.addEventListener("DOMContentLoaded", function() {
             alert("Accès autorisé !");
             // Sauvegarder l'heure de la dernière connexion réussie
             localStorage.setItem("lastLoginTime", Date.now());
-            window.location.href = "https://enes-cde.vercel.app/"; // Redirection après connexion réussie
+            showWelcomePopup(); // Affichage de la popup de bienvenue
         } else {
             window.location.href = "https://enes-cde.vercel.app/"; // Redirection si identifiants incorrects
         }
