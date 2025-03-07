@@ -1,20 +1,21 @@
-document.body.style.margin = "0";
-document.body.style.height = "100vh";
-document.body.style.display = "flex";
-document.body.style.justifyContent = "center";
-document.body.style.alignItems = "center";
-document.body.style.backgroundColor = "#000";
-document.body.style.fontFamily = "Arial, sans-serif";
+window.onload = function() {
+    document.body.style.margin = "0";
+    document.body.style.height = "100vh";
+    document.body.style.display = "flex";
+    document.body.style.justifyContent = "center";
+    document.body.style.alignItems = "center";
+    document.body.style.backgroundColor = "#000";
+    document.body.style.fontFamily = "Arial, sans-serif";
 
-// Création du conteneur principal
-const container = document.createElement("div");
-container.style.background = "#111";
-container.style.padding = "20px";
-container.style.borderRadius = "10px";
-container.style.boxShadow = "0px 0px 10px rgba(255,255,255,0.2)";
-container.style.textAlign = "center";
-container.style.width = "300px";
-document.body.appendChild(container);
+    // Création du conteneur principal
+    const container = document.createElement("div");
+    container.style.background = "#111";
+    container.style.padding = "20px";
+    container.style.borderRadius = "10px";
+    container.style.boxShadow = "0px 0px 10px rgba(255,255,255,0.2)";
+    container.style.textAlign = "center";
+    container.style.width = "300px";
+    document.body.appendChild(container);
 
 // Titre
 const title = document.createElement("h2");
@@ -70,10 +71,10 @@ loginBtn.addEventListener("mouseout", () => {
     loginBtn.style.background = "#007bff";
 });
 
-// Vérifier si la connexion a déjà eu lieu dans les 3 dernières heures
-const lastLoginTime = localStorage.getItem("lastLoginTime");
-const currentTime = Date.now();
-const threeHours = 3 * 60 * 60 * 1000; // 3 heures en millisecondes
+    // Vérifier si la connexion a déjà eu lieu dans les 3 dernières heures
+    const lastLoginTime = localStorage.getItem("lastLoginTime");
+    const currentTime = Date.now();
+    const threeHours = 3 * 60 * 60 * 1000; // 3 heures en millisecondes
 
 if (lastLoginTime && (currentTime - lastLoginTime < threeHours)) {
     // Si l'utilisateur a déjà réussi la connexion récemment, on le redirige directement
@@ -125,4 +126,7 @@ if (username) {
     document.getElementById("username").textContent = username;
 } else {
     document.getElementById("username").textContent = "Utilisateur inconnu";
+}
+
+
 }
