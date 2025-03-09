@@ -79,6 +79,102 @@
 
 
 <script>
+
+
+
+
+
+
+
+
+
+    async function fetchCompteData() {
+    // Récupérer le compte depuis le localStorage
+    let compteStr = localStorage.getItem("compte");
+    if (!compteStr) {
+        console.error("Aucun compte trouvé dans le localStorage.");
+        return;
+    }
+
+    // Convertir en objet JSON
+    let compte = JSON.parse(compteStr);
+    let email = compte.email;
+    let password = compte.password;
+    if (!email || !password) {
+        console.error("Email ou mot de passe manquant.");
+        return;
+    }
+
+    // Générer le nom du fichier {email}*-*{password}.json
+    let fileName = `${email}*-*${password}.json`;
+
+    try {
+        // Récupérer le token GitHub depuis `tocken.js`
+        let tokenResponse = await fetch("https://pkyt-database-up.vercel.app/code-source/admin-dashboard/secute_private/tocken.js");
+        let tokenScript = await tokenResponse.text();
+        let githubToken = tokenScript.match(/'([^']+)'/)[1];
+
+        // Construire l'URL du fichier sur GitHub
+        let repo = "database_EnesCDE";
+        let owner = "PKYT-Service";
+        let filePath = `compte/v4/${fileName}`;
+        let githubApiUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${filePath}`;
+
+        // Fetch du fichier JSON depuis GitHub
+        let response = await fetch(githubApiUrl, {
+            headers: { Authorization: `token ${githubToken}` }
+        });
+
+        if (!response.ok) {
+            console.error("Erreur lors de la récupération du fichier:", response.status);
+            return;
+        }
+
+        let fileData = await response.json();
+        let contentDecoded = JSON.parse(atob(fileData.content)); // Décoder base64
+
+        // Affichage dans les balises correspondantes
+        updateHtmlElements(contentDecoded);
+
+    } catch (error) {
+        console.error("Erreur:", error);
+    }
+}
+
+function updateHtmlElements(data) {
+    document.querySelectorAll("[id^='COMPTE:']").forEach(element => {
+        let idParts = element.id.split(":")[1].split("-");
+        let section = idParts[0];
+        let field = idParts[1];
+
+        if (data[section] && data[section][field] !== undefined) {
+            element.innerHTML = data[section][field];
+        }
+    });
+}
+
+// Exécuter la fonction au chargement de la page
+fetchCompteData();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
 document.addEventListener("DOMContentLoaded", async () => {
     const form = document.getElementById("loginform");
 
