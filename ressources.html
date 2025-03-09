@@ -36,7 +36,7 @@
             <br>
 
             <!-- STATs -->
-<div class="container mx-auto px-4" >
+<div class="container mx-auto px-4">
     <div class="overflow-x-auto rounded-lg shadow">
         <table class="max-w-full w-full text-sm text-left text-gray-500 dark:text-gray-300">
             <thead class="text-xs text-gray-700 dark:text-gray-200 uppercase bg-stone-300 dark:bg-gray-900">
@@ -51,12 +51,13 @@
         </table>
 
         <div class="flex items-center justify-between p-4 bg-white dark:bg-gray-800">
-            <span class="text-sm text-gray-700 dark:text-gray-400">
-                <center>Enes CDE, Service, Plateforme et autres.</center>
+            <span class="text-sm text-gray-700 dark:text-gray-400 text-center">
+                Enes CDE, Service, Plateforme et autres.
             </span>
         </div>
     </div>
 </div>
+
 
 
 
@@ -79,7 +80,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (data.components && Array.isArray(data.components)) {
                 data.components.forEach(component => {
                     const tr = document.createElement('tr');
-                    tr.className = "bg-white dark:bg-gray-800 border-b dark:border-gray-700";
+                    tr.className = "bg-teal-100 dark:bg-teal-950 border-b dark:border-gray-700";
 
                     // Nom du service
                     const nameTd = document.createElement('td');
