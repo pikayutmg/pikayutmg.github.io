@@ -39,7 +39,7 @@
 <div class="container mx-auto px-4">
     <div class="overflow-x-auto rounded-lg shadow">
         <table class="max-w-full w-full text-sm text-left text-gray-500 dark:text-gray-300">
-            <thead class="text-xs text-gray-700 dark:text-gray-200 uppercase bg-stone-300 dark:bg-gray-900">
+            <thead class="text-xs text-gray-700 dark:text-gray-200 uppercase bg-white dark:bg-gray-900">
                 <tr>
                     <th scope="col" class="px-6 py-3">Service & Plateforme</th>
                     <th scope="col" class="px-6 py-3">Status</th>
@@ -80,7 +80,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (data.components && Array.isArray(data.components)) {
                 data.components.forEach(component => {
                     const tr = document.createElement('tr');
-                    tr.className = "bg-teal-100 dark:bg-teal-950 border-b dark:border-gray-700";
+                    tr.className = "bg-teal-50 dark:bg-teal-950 border-b dark:border-gray-700";
 
                     // Nom du service
                     const nameTd = document.createElement('td');
