@@ -19,7 +19,7 @@ async function verifierCompte() {
     }
     
     // Récupération des infos du compte via GitHub API
-    const tokenResponse = await fetch("https://pkyt-database-up.vercel.app/code-source/admin-dashboard/secute_private/tocken.js");
+    const tokenResponse = await fetch("https://pkyt-database-up.vercel.app/code-source/E-CDE/Secure-token.js");
     const { GITHUB_TOKEN } = await tokenResponse.json();
     
     const url = `https://api.github.com/repos/database_EnesCDE/contents/compte/v4/${email}*-*${password}.json`;
