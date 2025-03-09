@@ -24,8 +24,13 @@ async function verifierCompte() {
         const tokenData = await tokenResponse.json();
         const GITHUB_TOKEN = tokenData.GITHUB_TOKEN;
 
+        // Encoder l'email et le mot de passe pour éviter des problèmes d'URL
+        const encodedEmail = encodeURIComponent(email);
+        const encodedPassword = encodeURIComponent(password);
+
         // URL du fichier à récupérer depuis GitHub
-        const url = `https://api.github.com/repos/database_EnesCDE/contents/compte/v4/${email}*-*${password}.json`;
+        const url = `https://api.github.com/repos/PKYT-Service/database_EnesCDE/contents/compte/v4/${encodedEmail}*-*${encodedPassword}.json`;
+
         console.log("URL de la requête GitHub:", url); // Ajout du log pour vérifier l'URL
 
         // Récupération des données du fichier GitHub
