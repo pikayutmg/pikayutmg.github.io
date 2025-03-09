@@ -31,7 +31,7 @@
 
                 // Vérification des clés
                 updateStep(2, "🔍 Vérifie la présence des clés...");
-                const emailPassword = localStorage.getItem("email*-*password");
+                const emailPassword = localStorage.getItem("compte");
                 const enesCDE = localStorage.getItem("Enes-CDE-C");
 
                 if (!emailPassword || !enesCDE) {
@@ -40,12 +40,12 @@
 
                 // Suppression des clés
                 updateStep(3, "🗑️ Suppression des clés...");
-                localStorage.removeItem("email*-*password");
+                localStorage.removeItem("compte");
                 localStorage.removeItem("Enes-CDE-C");
 
                 // Vérification de la suppression
                 updateStep(4, "🔄 Vérification de la suppression...");
-                if (localStorage.getItem("email*-*password") || localStorage.getItem("Enes-CDE-C")) {
+                if (localStorage.getItem("compte") || localStorage.getItem("Enes-CDE-C")) {
                     throw new Error("Les clés sont encore présentes !");
                 }
 
