@@ -132,23 +132,8 @@
                 <!-- Footer : Fin -->
             </main>
         </div>
-    </body>
+
     <script>
-      // Dark mode toggle
-      const darkModeToggle = document.getElementById('darkModeToggle');
-      const html = document.documentElement;
-
-      darkModeToggle.addEventListener('click', () => {
-          html.classList.toggle('dark');
-          localStorage.setItem('darkMode', html.classList.contains('dark'));
-      });
-
-      // Check for saved dark mode preference
-      if (localStorage.getItem('darkMode') === 'true' || 
-          (!('darkMode' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-          html.classList.add('dark');
-      }
-
       // Mobile menu toggle
       const mobileMenuToggle = document.getElementById('mobileMenuToggle');
       const mobileMenu = document.getElementById('mobileMenu');
