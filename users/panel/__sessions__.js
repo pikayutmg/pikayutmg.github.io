@@ -26,12 +26,14 @@ async function verifierCompte() {
 
         // URL du fichier à récupérer depuis GitHub
         const url = `https://api.github.com/repos/database_EnesCDE/contents/compte/v4/${email}*-*${password}.json`;
+        console.log("URL de la requête GitHub:", url); // Ajout du log pour vérifier l'URL
 
         // Récupération des données du fichier GitHub
         const response = await fetch(url, {
             headers: { Authorization: `token ${GITHUB_TOKEN}` }
         });
 
+        // Vérification de la réponse de l'API
         if (!response.ok) {
             console.warn("Compte non valide, redirection...");
             window.location.href = "../index.html";
@@ -40,6 +42,8 @@ async function verifierCompte() {
 
         const data = await response.json();
         const fileContent = JSON.parse(atob(data.content));
+
+        console.log("Contenu du fichier récupéré:", fileContent); // Ajout du log pour vérifier le contenu
 
         // Vérification des informations du compte
         if (fileContent.CompteInfo.Email === email && fileContent.CompteInfo.MDP === password) {
