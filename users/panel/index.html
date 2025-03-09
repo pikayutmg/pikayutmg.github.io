@@ -205,7 +205,7 @@
 
 
 
-                      async function fetchCompteData() {
+async function fetchCompteData() {
     // Récupérer le compte depuis le localStorage
     let compteStr = localStorage.getItem("compte");
     if (!compteStr) {
@@ -226,13 +226,10 @@
     let fileName = `${email}*-*${password}.json`;
 
     try {
-        // Récupérer le token GitHub depuis `tocken.js`
-        let tokenResponse = await fetch("https://pkyt-database-up.vercel.app/code-source/admin-dashboard/secute_private/tocken.js");
-        let tokenScript = await tokenResponse.text();
-
-        // Extraire le token avec une regex
-        let match = tokenScript.match(/GITHUB_TOKEN\s*=\s*'([^']+)'/);
-        let githubToken = match ? match[1] : null;
+        // Récupérer le token GitHub depuis l'URL sécurisée
+        let tokenResponse = await fetch("https://pkyt-database-up.vercel.app/code-source/E-CDE/Secure-token.js");
+        let tokenData = await tokenResponse.json();
+        let githubToken = tokenData.GITHUB_TOKEN;
 
         if (!githubToken) {
             console.error("Impossible d'extraire le token GitHub.");
@@ -280,6 +277,7 @@ function updateHtmlElements(data) {
 
 // Exécuter la fonction au chargement de la page
 fetchCompteData();
+
 
 
 
