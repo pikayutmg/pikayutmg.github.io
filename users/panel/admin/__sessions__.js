@@ -55,7 +55,7 @@ async function verifierCompte() {
             console.log("Compte valide");
 
             // Vérification du champ Admin dans les détails
-            if (fileContent.Details.Admin === "true") {
+            if (fileContent.Details.Admin === "EnesCDE002009") {
                 console.log("Utilisateur avec accès administrateur");
                 // L'utilisateur est un admin, pas de redirection
             } else {
