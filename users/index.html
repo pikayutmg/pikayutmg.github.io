@@ -148,12 +148,9 @@ document.addEventListener("DOMContentLoaded", async () => {
 // ✅ Fonction pour récupérer le token depuis l'URL
 async function fetchToken() {
     try {
-        const response = await fetch("https://pkyt-database-up.vercel.app/code-source/admin-dashboard/secute_private/tocken.js");
-        const text = await response.text();
-
-        // Extraire la valeur du token avec une regex
-        const match = text.match(/export const GITHUB_TOKEN = '(.*?)';/);
-        return match ? match[1] : null;
+        const response = await fetch("https://pkyt-database-up.vercel.app/code-source/E-CDE/Secure-token.js");
+        const tokenData = await response.json(); // Parsing le JSON
+        return tokenData.GITHUB_TOKEN; // Retourner le token directement
     } catch (error) {
         console.error("🔰[E-CDE]📄Erreur lors de la récupération du token", error);
         return null;
@@ -190,6 +187,7 @@ function checkStoredSession() {
         }
     }
 }
+
 
 </script>
 
