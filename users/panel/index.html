@@ -199,6 +199,7 @@
                               }
                           }
                       }
+// Fonction pour récupérer les données du compte
 async function fetchCompteData() {
     // Récupérer le compte depuis le localStorage
     let compteStr = localStorage.getItem("compte");
@@ -257,24 +258,33 @@ async function fetchCompteData() {
     }
 }
 
+// Fonction pour mettre à jour les éléments HTML
 function updateHtmlElements(data) {
-    // Récupérer tous les éléments dont l'id commence par "COMPTE:"
+    // Vérifie les données dans le JSON
+    console.log("Données du compte:", data);
+
+    // Récupère tous les éléments dont l'ID commence par "COMPTE:"
     document.querySelectorAll("[id^='COMPTE:']").forEach(element => {
-        // Extraire la section et le champ depuis l'id de l'élément
+        // Extraire la section et le champ depuis l'ID de l'élément
         let idParts = element.id.split(":")[1].split("-");
         let section = idParts[0];  // Exemple: ProfilInfo
         let field = idParts[1];    // Exemple: Prenom
 
-        // Vérifier si la section et le champ existent dans le JSON
+        console.log(`Mise à jour de l'élément avec ID: ${element.id}`);
+        console.log(`Section: ${section}, Field: ${field}`);
+        console.log("Valeur à mettre à jour:", data[section] && data[section][field]);
+
         if (data[section] && data[section][field] !== undefined) {
-            // Mettre à jour l'élément avec la valeur correspondante
+            // Met à jour l'élément avec la valeur correspondante
             element.innerHTML = data[section][field];
         }
     });
 }
 
 // Exécuter la fonction au chargement de la page
-fetchCompteData();
+document.addEventListener("DOMContentLoaded", () => {
+    fetchCompteData();
+});
 
 </script>
                   
