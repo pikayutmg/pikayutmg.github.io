@@ -55,11 +55,12 @@ async function verifierCompte() {
             console.log("Compte valide");
 
             // Vérification du champ Admin dans les détails
-            if (fileContent.Details.Admin !== "true") {
+            if (fileContent.Details.Admin === "true") {
+                console.log("Utilisateur avec accès administrateur");
+                // L'utilisateur est un admin, pas de redirection
+            } else {
                 console.warn("Utilisateur non autorisé, redirection...");
                 window.location.href = "../index.html";
-            } else {
-                console.log("Utilisateur avec accès administrateur");
             }
         } else {
             console.warn("Compte non valide, redirection...");
