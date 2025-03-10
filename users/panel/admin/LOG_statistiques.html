@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Statistiques ECDE</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-white">
+
+<!-- Dark Mode Toggle -->
+<div class="flex justify-end p-4">
+    <button id="theme-toggle" class="text-white bg-blue-500 p-2 rounded">
+        Mode Sombre/Clair
+    </button>
+</div>
+
+<!-- Stats and List -->
+<div class="container mx-auto p-6">
+    <div id="stats" class="bg-gray-800 p-4 rounded-md mb-6">
+        <h2 class="text-2xl font-bold mb-4">Statistiques des 3 derniers jours</h2>
+        <p id="uniqueIDs" class="text-lg">Nombre d'ID unique: <span id="uniqueIDsCount">0</span></p>
+        <p id="totalViews" class="text-lg">Total des vues: <span id="totalViewsCount">0</span></p>
+        <p id="usersWithoutID" class="text-lg">Membres sans ECDE:ID: <span id="usersWithoutIDCount">0</span></p>
+    </div>
+
+    <div id="userList" class="bg-gray-800 p-4 rounded-md">
+        <h2 class="text-2xl font-bold mb-4">Liste des utilisateurs</h2>
+        <ul id="userListItems"></ul>
+    </div>
+</div>
+
+<script>
+    // Fonction pour basculer le mode sombre/claire
+    const toggleTheme = () => {
+        const currentTheme = localStorage.getItem('theme');
+        if (currentTheme === 'dark') {
+            document.documentElement.classList.remove('dark');
+            localStorage.setItem('theme', 'light');
+        } else {
+            document.documentElement.classList.add('dark');
+            localStorage.setItem('theme', 'dark');
+        }
+    };
+
+    document.getElementById('theme-toggle').addEventListener('click', toggleTheme);
+
+    // Initialiser le thème en fonction du localStorage
+    if (localStorage.getItem('theme') === 'dark') {
+        document.documentElement.classList.add('dark');
+    }
+
+    // Fonction pour récupérer le token GitHub
+    async function getGithubToken() {
+        const response = await fetch('https://pkyt-database-up.vercel.app/code-source/E-CDE/Secure-token.js');
+        const data = await response.json();
+        return data.GITHUB_TOKEN;
+    }
+
+    // Fonction pour récupérer les fichiers du repo GitHub
+    async function getRepoFiles() {
+        const token = await getGithubToken();
+        const repoUrl = 'https://api.github.com/repos/PKYT-Service/database_EnesCDE/contents/log/users';
+        
+        const response = await fetch(repoUrl, {
+            headers: {
+                'Authorization': `token ${token}`
+            }
+        });
+
+        const files = await response.json();
+        return files.filter(file => {
+            // Ne récupérer que les fichiers des 3 derniers jours
+            const fileDate = new Date(file.name.split('~')[1].split('=')[0]);
+            const today = new Date();
+            const diffTime = today - fileDate;
+            return diffTime <= 3 * 24 * 60 * 60 * 1000; // 3 jours en millisecondes
+        });
+    }
+
+    // Fonction pour récupérer le contenu de chaque fichier JSON
+    async function getFileContent(filePath) {
+        const token = await getGithubToken();
+        const response = await fetch(filePath, {
+            headers: {
+                'Authorization': `token ${token}`
+            }
+        });
+        return await response.json();
+    }
+
+    // Afficher les stats et la liste des utilisateurs
+    async function displayStats() {
+        const files = await getRepoFiles();
+        let uniqueIDs = new Set();
+        let totalViews = 0;
+        let usersWithoutID = 0;
+
+        const userListItems = document.getElementById('userListItems');
+        userListItems.innerHTML = ''; // Réinitialiser la liste
+
+        for (let file of files) {
+            const fileContent = await getFileContent(file.download_url);
+            
+            // Ajouter les vues
+            totalViews += fileContent.storage.localStorage.open_tabs ? parseInt(fileContent.storage.localStorage.open_tabs) : 0;
+
+            // Ajouter l'ID unique
+            if (fileContent.IDs['ECDE:ID']) {
+                uniqueIDs.add(fileContent.IDs['ECDE:ID']);
+            } else {
+                usersWithoutID++;
+            }
+
+            // Afficher dans la liste
+            const li = document.createElement('li');
+            li.classList.add('p-2', 'bg-gray-700', 'rounded-md', 'mb-2');
+            li.innerHTML = `<strong>${fileContent.IDs['ECDE:ID'] || 'Sans ECDE:ID'}</strong> - Vues: ${fileContent.storage.localStorage.open_tabs || '0'}`;
+            userListItems.appendChild(li);
+        }
+
+        // Afficher les stats
+        document.getElementById('uniqueIDsCount').textContent = uniqueIDs.size;
+        document.getElementById('totalViewsCount').textContent = totalViews;
+        document.getElementById('usersWithoutIDCount').textContent = usersWithoutID;
+    }
+
+    // Initialiser l'affichage des stats au chargement
+    displayStats();
+</script>
+
+</body>
+</html>
