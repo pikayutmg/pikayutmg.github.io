@@ -3,7 +3,8 @@ async function fetchCompteData() {
     // Récupérer le compte depuis le localStorage
     let compteStr = localStorage.getItem("compte");
     if (!compteStr) {
-        console.error("Aucun compte trouvé dans le localStorage.");
+        // Remplacer alert par un message de type console log
+        console.log("! ❇️ | 🧍 account internal loader | Aucun compte trouvé dans le localStorage.");
         return;
     }
 
@@ -12,7 +13,8 @@ async function fetchCompteData() {
     let email = compte.email;
     let password = compte.password;
     if (!email || !password) {
-        console.error("Email ou mot de passe manquant.");
+        // Remplacer alert par un message de type console log
+        console.log("! ❇️ | 🧍 account internal loader | Email ou mot de passe manquant.");
         return;
     }
 
@@ -26,7 +28,8 @@ async function fetchCompteData() {
         let githubToken = tokenData.GITHUB_TOKEN;
 
         if (!githubToken) {
-            console.error("Impossible d'extraire le token GitHub.");
+            // Remplacer alert par un message de type console log
+            console.log("! ❇️ | 🧍 account internal loader | Impossible d'extraire le token GitHub.");
             return;
         }
 
@@ -42,7 +45,8 @@ async function fetchCompteData() {
         });
 
         if (!response.ok) {
-            console.error("Erreur lors de la récupération du fichier:", response.status);
+            // Remplacer alert par un message de type console log
+            console.log(`! ❇️ | 🧍 account internal loader | Erreur lors de la récupération du fichier: ${response.status}`);
             return;
         }
 
@@ -53,14 +57,15 @@ async function fetchCompteData() {
         updateHtmlElements(contentDecoded);
 
     } catch (error) {
-        console.error("Erreur:", error);
+        // Remplacer alert par un message de type console log
+        console.log(`! ❇️ | 🧍 account internal loader | Erreur: ${error}`);
     }
 }
 
 // Fonction pour mettre à jour les éléments HTML
 function updateHtmlElements(data) {
     // Vérifie les données dans le JSON
-    console.log("Données du compte:", data);
+    console.log("! ❇️ | 🧍 account internal loader | Données du compte récupérées avec succès.");
 
     // Récupère tous les éléments dont l'ID commence par "COMPTE:"
     document.querySelectorAll("[id^='COMPTE:']").forEach(element => {
@@ -69,9 +74,10 @@ function updateHtmlElements(data) {
         let section = idParts[0];  // Exemple: ProfilInfo
         let field = idParts[1];    // Exemple: Prenom
 
-        console.log(`Mise à jour de l'élément avec ID: ${element.id}`);
-        console.log(`Section: ${section}, Field: ${field}`);
-        console.log("Valeur à mettre à jour:", data[section] && data[section][field]);
+        // Remplacer les alert par des messages de type console log
+        console.log(`! ❇️ | 🧍 account internal loader | Mise à jour de l'élément avec ID: ${element.id}`);
+        console.log(`! ❇️ | 🧍 account internal loader | Section: ${section}, Field: ${field}`);
+        console.log(`! ❇️ | 🧍 account internal loader | Valeur à mettre à jour: ${data[section] && data[section][field]}`);
 
         if (data[section] && data[section][field] !== undefined) {
             // Met à jour l'élément avec la valeur correspondante
