@@ -100,17 +100,18 @@ async function displayStats() {
         // Ajouter les vues
         totalViews += fileContent.storage.localStorage.open_tabs ? parseInt(fileContent.storage.localStorage.open_tabs) : 0;
 
-        // Ajouter l'ID unique
-        if (fileContent.IDs['ECDE:ID']) {
-            uniqueIDs.add(fileContent.IDs['ECDE:ID']);
+        // Vérifier si l'ECDE:ID existe et est valide
+        const ecdeID = fileContent.IDs['ECDE:ID'];
+        if (ecdeID && ecdeID.trim() !== '') {
+            uniqueIDs.add(ecdeID); // Ajouter l'ID valide
         } else {
-            usersWithoutID++;
+            usersWithoutID++; // Compter les membres sans ECDE:ID valide
         }
 
         // Afficher dans la liste
         const li = document.createElement('li');
         li.classList.add('p-2', 'bg-gray-700', 'rounded-md', 'mb-2');
-        li.innerHTML = `<strong>${fileContent.IDs['ECDE:ID'] || 'Sans ECDE:ID'}</strong> - Vues: ${fileContent.storage.localStorage.open_tabs || '0'}`;
+        li.innerHTML = `<strong>${ecdeID || 'Sans ECDE:ID'}</strong> - Vues: ${fileContent.storage.localStorage.open_tabs || '0'}`;
         userListItems.appendChild(li);
     }
 
