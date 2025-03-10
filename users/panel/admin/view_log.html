@@ -1,17 +1,41 @@
 <!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Logs Utilisateurs</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-<script src="./__sessions__.js"></script>
+    <html lang="fr">
+        <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-</head>
-<body class="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white">
+        <title>EnesCDE - Admin > LOG-View</title>
+        <link rel="icon" type="image/png" href="https://enes-cde.vercel.app/data/img/web/favicon.png">
+        
+        
+        <!-- Script pour ajouter dynamiquement le footer -->
+        <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+        <script src="https://enes-cde.vercel.app/script/A-footer.js" defer></script>
+        <script src="https://enes-cde.vercel.app/users/panel/admin/__menu__.js" defer></script>
+        <script src="https://enes-cde.vercel.app/script/A-all.js" defer></script>
+        <script src="./__sessions__.js"></script>
+        <div id="ecde_all"></div>
+
+    </head>
+    <body class="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white">
+        <div class="flex h-screen">
+            <!-- Menu : Deb -->
+            <div id="ecde_menu"  class="w-20"></div>
+            <!-- Menu : Fin -->
+    
+            <!-- Main Content -->
+            <main class="flex-1 p-6 bg-gray-100 dark:bg-gray-800">
+    <h1 class="text-2xl font-semibold text-gray-900 dark:text-white">Admin - Consulter les logs :</h1>
 
 
-     <div class="mt-4 p-6 bg-white dark:bg-gray-900 rounded-lg shadow-md">
+    
+                
+
+
+
+
+
+<div class="mt-4 p-6 bg-white dark:bg-gray-900 rounded-lg shadow-md">
         <p class="text-red-600 dark:text-red-300">
                     <b><u>Les logs prennent du temps a charger !</u></b>
         </p>
@@ -368,5 +392,21 @@ function showIpLogs(ip) {
     // Charger les logs au chargement de la page
     fetchLogs();
 </script>
+
+
+
+
+
+
+
+                <!-- Footer : Deb -->
+                <div id="ecde_footer"></div>
+                <!-- Footer : Fin -->
+            </main>
+        </div>
+
+        
+
 </body>
 </html>
+
