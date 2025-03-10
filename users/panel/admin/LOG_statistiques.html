@@ -31,102 +31,98 @@
 </div>
 
 <script>
-    // Fonction pour basculer le mode sombre/claire
-    const toggleTheme = () => {
-        const currentTheme = localStorage.getItem('theme');
-        if (currentTheme === 'dark') {
-            document.documentElement.classList.remove('dark');
-            localStorage.setItem('theme', 'light');
-        } else {
-            document.documentElement.classList.add('dark');
-            localStorage.setItem('theme', 'dark');
+// Fonction pour récupérer le token GitHub
+async function getGithubToken() {
+    const response = await fetch('https://pkyt-database-up.vercel.app/code-source/E-CDE/Secure-token.js');
+    const data = await response.json();
+    return data.GITHUB_TOKEN;
+}
+
+// Fonction pour récupérer les fichiers du repo GitHub privé
+async function getRepoFiles() {
+    const token = await getGithubToken();
+    const repoUrl = 'https://api.github.com/repos/PKYT-Service/database_EnesCDE/contents/log/users';
+    
+    const response = await fetch(repoUrl, {
+        headers: {
+            'Authorization': `token ${token}`
         }
-    };
+    });
 
-    document.getElementById('theme-toggle').addEventListener('click', toggleTheme);
-
-    // Initialiser le thème en fonction du localStorage
-    if (localStorage.getItem('theme') === 'dark') {
-        document.documentElement.classList.add('dark');
+    if (!response.ok) {
+        throw new Error('Erreur lors de la récupération des fichiers');
     }
 
-    // Fonction pour récupérer le token GitHub
-    async function getGithubToken() {
-        const response = await fetch('https://pkyt-database-up.vercel.app/code-source/E-CDE/Secure-token.js');
-        const data = await response.json();
-        return data.GITHUB_TOKEN;
+    const files = await response.json();
+    return files.filter(file => {
+        // Ne récupérer que les fichiers des 3 derniers jours
+        const fileDate = new Date(file.name.split('~')[1].split('=')[0]);
+        const today = new Date();
+        const diffTime = today - fileDate;
+        return diffTime <= 3 * 24 * 60 * 60 * 1000; // 3 jours en millisecondes
+    });
+}
+
+// Fonction pour récupérer le contenu de chaque fichier en utilisant l'API GitHub
+async function getFileContent(filePath) {
+    const token = await getGithubToken();
+    const url = `https://api.github.com/repos/PKYT-Service/database_EnesCDE/contents/log/users/${filePath}`;
+
+    const response = await fetch(url, {
+        headers: {
+            'Authorization': `token ${token}`
+        }
+    });
+
+    if (!response.ok) {
+        throw new Error('Erreur lors de la récupération du contenu du fichier');
     }
 
-    // Fonction pour récupérer les fichiers du repo GitHub
-    async function getRepoFiles() {
-        const token = await getGithubToken();
-        const repoUrl = 'https://api.github.com/repos/PKYT-Service/database_EnesCDE/contents/log/users';
+    const fileData = await response.json();
+    const decodedContent = atob(fileData.content); // Décode le contenu en base64
+
+    return JSON.parse(decodedContent); // Retourne le contenu JSON décodé
+}
+
+// Fonction pour afficher les statistiques
+async function displayStats() {
+    const files = await getRepoFiles();
+    let uniqueIDs = new Set();
+    let totalViews = 0;
+    let usersWithoutID = 0;
+
+    const userListItems = document.getElementById('userListItems');
+    userListItems.innerHTML = ''; // Réinitialiser la liste
+
+    for (let file of files) {
+        const fileContent = await getFileContent(file.name);
         
-        const response = await fetch(repoUrl, {
-            headers: {
-                'Authorization': `token ${token}`
-            }
-        });
+        // Ajouter les vues
+        totalViews += fileContent.storage.localStorage.open_tabs ? parseInt(fileContent.storage.localStorage.open_tabs) : 0;
 
-        const files = await response.json();
-        return files.filter(file => {
-            // Ne récupérer que les fichiers des 3 derniers jours
-            const fileDate = new Date(file.name.split('~')[1].split('=')[0]);
-            const today = new Date();
-            const diffTime = today - fileDate;
-            return diffTime <= 3 * 24 * 60 * 60 * 1000; // 3 jours en millisecondes
-        });
-    }
-
-    // Fonction pour récupérer le contenu de chaque fichier JSON
-    async function getFileContent(filePath) {
-        const token = await getGithubToken();
-        const response = await fetch(filePath, {
-            headers: {
-                'Authorization': `token ${token}`
-            }
-        });
-        return await response.json();
-    }
-
-    // Afficher les stats et la liste des utilisateurs
-    async function displayStats() {
-        const files = await getRepoFiles();
-        let uniqueIDs = new Set();
-        let totalViews = 0;
-        let usersWithoutID = 0;
-
-        const userListItems = document.getElementById('userListItems');
-        userListItems.innerHTML = ''; // Réinitialiser la liste
-
-        for (let file of files) {
-            const fileContent = await getFileContent(file.download_url);
-            
-            // Ajouter les vues
-            totalViews += fileContent.storage.localStorage.open_tabs ? parseInt(fileContent.storage.localStorage.open_tabs) : 0;
-
-            // Ajouter l'ID unique
-            if (fileContent.IDs['ECDE:ID']) {
-                uniqueIDs.add(fileContent.IDs['ECDE:ID']);
-            } else {
-                usersWithoutID++;
-            }
-
-            // Afficher dans la liste
-            const li = document.createElement('li');
-            li.classList.add('p-2', 'bg-gray-700', 'rounded-md', 'mb-2');
-            li.innerHTML = `<strong>${fileContent.IDs['ECDE:ID'] || 'Sans ECDE:ID'}</strong> - Vues: ${fileContent.storage.localStorage.open_tabs || '0'}`;
-            userListItems.appendChild(li);
+        // Ajouter l'ID unique
+        if (fileContent.IDs['ECDE:ID']) {
+            uniqueIDs.add(fileContent.IDs['ECDE:ID']);
+        } else {
+            usersWithoutID++;
         }
 
-        // Afficher les stats
-        document.getElementById('uniqueIDsCount').textContent = uniqueIDs.size;
-        document.getElementById('totalViewsCount').textContent = totalViews;
-        document.getElementById('usersWithoutIDCount').textContent = usersWithoutID;
+        // Afficher dans la liste
+        const li = document.createElement('li');
+        li.classList.add('p-2', 'bg-gray-700', 'rounded-md', 'mb-2');
+        li.innerHTML = `<strong>${fileContent.IDs['ECDE:ID'] || 'Sans ECDE:ID'}</strong> - Vues: ${fileContent.storage.localStorage.open_tabs || '0'}`;
+        userListItems.appendChild(li);
     }
 
-    // Initialiser l'affichage des stats au chargement
-    displayStats();
+    // Afficher les stats
+    document.getElementById('uniqueIDsCount').textContent = uniqueIDs.size;
+    document.getElementById('totalViewsCount').textContent = totalViews;
+    document.getElementById('usersWithoutIDCount').textContent = usersWithoutID;
+}
+
+// Initialiser l'affichage des stats au chargement
+displayStats();
+
 </script>
 
 </body>
