@@ -1,100 +1,54 @@
-<script src="https://unpkg.com/@tailwindcss/browser@4"></script>
-<script src="./__sessions__.js"></script>
+<!DOCTYPE html>
+    <html lang="fr">
+        <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+        <title>EnesCDE - Admin > LOG-View</title>
+        <link rel="icon" type="image/png" href="https://enes-cde.vercel.app/data/img/web/favicon.png">
+        
+        
+        <!-- Script pour ajouter dynamiquement le footer -->
+        <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+        <script src="https://enes-cde.vercel.app/script/A-footer.js" defer></script>
+        <script src="https://enes-cde.vercel.app/users/panel/admin/__menu__.js" defer></script>
+        <script src="https://enes-cde.vercel.app/script/A-all.js" defer></script>
+        <script src="./__sessions__.js"></script>
+        <div id="ecde_all"></div>
 
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+    </head>
+    <body class="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white">
+        <div class="flex h-screen">
+            <!-- Menu : Deb -->
+            <div id="ecde_menu"  class="w-20"></div>
+            <!-- Menu : Fin -->
+    
+            <!-- Main Content -->
+            <main class="flex-1 p-6 bg-gray-100 dark:bg-gray-800">
+    <h1 class="text-2xl font-semibold text-gray-900 dark:text-white">Admin - Home :</h1>
 
-<div class="h-full bg-white dark:bg-gray-900">
 
-  <div class="container flex justify-center mx-auto relative md:px-0 px-4 md:my-10 bg-[#111111] dark:bg-gray-800 rounded-none md:rounded-xl overflow-hidden">
-    <!-- Nav -->
-    <nav class="bg-[#111111] dark:bg-gray-800 max-w-7xl fixed top-0 md:top-5 left-0 md:left-auto md:fixed shadow-lg w-full z-50 rounded-none md:rounded-lg">
-      <div class="mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between items-center h-16">
-          <!-- Logo -->
-          <div class="flex-shrink-0">
-            <a href="#" class="lg:text-xl md:text-lg text-sm font-bold text-gray-700 dark:text-white capitalize">
-              EnesCDE • Dashboard 
-            </a>
-          </div>
+    
+                
 
-          <!-- Desktop Menu -->
-          <div class="hidden md:flex space-x-8 text-gray-400">
-            <a href="../index.html" class="text-blue-400 dark:text-blue-600">Sessions Users</a>
-            <a href="https://enes-cde.vercel.app/" class="hover:text-blue-400 dark:hover:text-blue-600">EnesCDE</a>
-            <a href="./view_log.html">Logs</a>
-          </div>
 
-          <!-- Mobile Menu Button -->
-          <div class="md:hidden flex items-center">
-            <button id="mobile-menu-button" class="text-blue-400 dark:text-blue-600 hover:text-blue-600 focus:outline-none">
-              <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
-              </svg>
-            </button>
-          </div>
+
+
+
+
+              
+
+
+
+
+
+                <!-- Footer : Deb -->
+                <div id="ecde_footer"></div>
+                <!-- Footer : Fin -->
+            </main>
         </div>
-      </div>
 
-      <!-- Mobile Menu -->
-      <div id="mobile-menu" class="absolute inset-0 bg-[#111111] dark:bg-gray-900 bg-opacity-50 z-50 hidden">
-        <div class="fixed inset-y-0 left-0 bg-[#111111] dark:bg-gray-800 w-64 p-6 transform -translate-x-full transition-transform">
-          <button id="close-menu-button" class="text-blue-400 dark:text-blue-600 hover:text-blue-600 focus:outline-none mb-4">
-            <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </button>
-          <nav class="space-y-4 text-gray-400 dark:text-gray-700">
-            <a href="../index.html" class="text-blue-400 dark:text-blue-600">Sessions Users</a>
-            <a href="https://enes-cde.vercel.app/" class="hover:text-blue-400 dark:hover:text-blue-600">EnesCDE</a>
-            <a href="./view_log.html">Logs</a>
-          </nav>
-        </div>
-      </div>
-    </nav>
-  </div>
+        
 
-  <div class="items-center mt-10 md:mt-5 w-10/12 grid-cols-2 mx-auto overflow-x-hidden lg:grid md:py-14 lg:py-24 xl:py-14 lg:mt-3 xl:mt-5" data-aos="fade-right" data-aos-duration="800">
-    <div class="pr-2 md:mb-14 py-14 md:py-0">
-      <h1 class="text-3xl font-semibold text-blue-900 dark:text-white xl:text-5xl lg:text-3xl">
-        <span class="block w-full">Bienvenue dans le panel ECDE. Une **accès bêta contrôlé** vous permet d'explorer et de tester les fonctionnalités en avant-première, avec des restrictions spécifiques pour garantir la stabilité et la sécurité du système.
-      </h1>
-      <p class="py-4 text-lg text-gray-500 dark:text-gray-300 2xl:py-8 md:py-6 2xl:pr-5">
-       Ce panneau vous permet de contrôler les API, de gérer les services PKYT-Service ainsi que les comptes ECDE V4 et PKYT-Account V3. Il offre une interface centralisée pour surveiller, configurer et optimiser vos services en toute simplicité.
-      </p>
-      <div class="mt-4">
-        <a href="#contact" class="px-5 py-3 text-lg tracking-wider text-white bg-blue-500 dark:bg-blue-700 rounded-lg md:px-8 hover:bg-blue-600 dark:hover:bg-blue-800 group">
-          <span>[Panel en développement]</span>
-        </a>
-      </div>
-    </div>
-
-    <div class="pb-10 overflow-hidden md:p-10 lg:p-0 sm:pb-0">
-      <img id="heroImg1" class="transition-all duration-300 ease-in-out hover:scale-105 lg:w-full sm:mx-auto sm:w-4/6 sm:pb-12 lg:pb-0" 
-        src="https://bootstrapmade.com/demo/templates/FlexStart/assets/img/hero-img.png" 
-        alt="Awesome hero page image" width="500" height="488"/>
-    </div>
-  </div>
-
-</div>
-
-<script>
-  const mobileMenuButton = document.getElementById('mobile-menu-button');
-  const mobileMenu = document.getElementById('mobile-menu');
-  const closeMenuButton = document.getElementById('close-menu-button');
-
-  mobileMenuButton.addEventListener('click', () => {
-    mobileMenu.classList.remove('hidden');
-    mobileMenu.querySelector('div').classList.remove('-translate-x-full');
-  });
-
-  closeMenuButton.addEventListener('click', () => {
-    mobileMenu.querySelector('div').classList.add('-translate-x-full');
-    setTimeout(() => mobileMenu.classList.add('hidden'), 300);
-  });
-
-  mobileMenu.addEventListener('click', (e) => {
-    if (e.target === mobileMenu) {
-      closeMenuButton.click();
-    }
-  });
-</script>
+</body>
+</html>
